@@ -1,0 +1,12 @@
+apache-cxf-2.6.0
+WebContent
+.classpath
+.project
+.settings
+build
+src/com/travelport/schema
+src/com/travelport/service
+.DS_Store
+src/com/travelport/uapi/unit3
+
+
