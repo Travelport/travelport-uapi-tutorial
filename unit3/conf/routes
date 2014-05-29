@@ -1,0 +1,35 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~ LESSON 7
+
+# Home page
+POST    /herokufb/                   controllers.lesson7.HelloWorld.postFromFB()
+
+# ~~~~ LESSON 8
+
+POST    /entertoken                  controllers.lesson8.FakeFB.submit()
+GET     /entertoken                  controllers.lesson8.FakeFB.get()
+
+GET     /birthday/start/:id          controllers.lesson8.Lesson8.start(id)
+POST    /birthday/                   controllers.lesson8.Lesson8.postFromFB()
+
+GET     /birthday/init/friend/:id    controllers.lesson8.Lesson8.friendInit(id)
+GET     /birthday/friend/:id         controllers.lesson8.Lesson8.friendIter(id)
+
+GET     /birthday/init/geo/:id       controllers.lesson8.Lesson8.geoInit(id)
+GET     /birthday/geo/:id            controllers.lesson8.Lesson8.geoIter(id)
+
+GET     /birthday/init/price/:id     controllers.lesson8.Lesson8.priceInit(id)
+GET     /birthday/price/:id          controllers.lesson8.Lesson8.priceIter(id)
+
+GET     /terminal/state/:state/:country controllers.lesson8.SearchTerminal.search(state,country,loc  ?=null)
+GET     /terminal/country/:country controllers.lesson8.SearchTerminal.searchCountry(country,loc ?=null)
+
+GET     /visit/start            controllers.lesson9.Lesson9.start()
+GET     /visit/go               controllers.lesson9.Lesson9.go(outbound,ret,originName,originLat, originLon, destName, destLat, destLon, flexDates)
+POST    /visit/start/           controllers.lesson9.Lesson9.start()
+GET     /visit/terminal         controllers.lesson9.Lesson9.nearestTerminal(name, lat, lon)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,17 @@
+@(friends: List[com.restfb.types.User])
+
+@page("Show Some Data About a List Of Friends") {
+<table cols="4">
+    <tbody>
+        @for(f <- friends) {
+            <tr>
+                <td>@f.getLastName()</td>
+                <td>@f.getFirstName()</td>
+                <td>@f.getBirthday()</td>
+                <td>@f.getHometownName()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+        
+}

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/filefinishing_v8_0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.travelport.com/schema/filefinishing_v8_0"
+	xmlns:common="http://www.travelport.com/schema/common_v15_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>
+			(c) Travelport GDS 2008 All rights reserved. Proprietary
+			Information of Travelport GDS.
+		</xs:documentation>
+	</xs:annotation>
+
+	<xs:import namespace="http://www.travelport.com/schema/common_v15_0"
+		schemaLocation="../common_v15_0/Common.xsd" />
+
+	<xs:element name="Vendor">
+		<xs:annotation>
+			<xs:documentation>Vendor/Supplier</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VendorCode" type="xs:string" minOccurs="0"
+					maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>If the type does not apply to all vendor, the
+							code can limit the association to only the vendor specified in
+							the sequence of VendorCode.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Type" type="typeVendor" use="required" />
+		</xs:complexType>
+	</xs:element>
+  <xs:element name="GDSString">
+      <xs:annotation>
+         <xs:documentation>GDS String used to specify content of misc fields in a PNR</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:simpleContent>
+            <xs:extension base="xs:string">
+               <xs:attribute name="PNRField" type="typePNRFieldGDSString" use="required">
+                  <xs:annotation>
+                     <xs:documentation>PNR field for which the string is to be applied.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:simpleContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="ItineraryString">
+      <xs:annotation>
+         <xs:documentation>Itinerary String used to specify content of Passive Segment that needs to be created in a PNR</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="City" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Indicates Passive Segment City of Service</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:attribute name="ReferenceType" type="typeCityReference" use="required"/>
+                  <xs:attribute name="Specific" type="xs:string"/>
+               </xs:complexType>
+            </xs:element>
+            <xs:choice>
+               <xs:element name="DueAmount" type="xs:string"/>
+               <xs:element name="PaidAmount" type="xs:string"/>
+               <xs:element name="FreeForm" type="xs:string"/>
+            </xs:choice>
+         </xs:sequence>
+         <xs:attribute name="SegmentType" type="typeItinerary" use="required">
+            <xs:annotation>
+               <xs:documentation>Specify the type of passive segment that will be created.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="StartDate" type="typeDateReference" use="required">
+            <xs:annotation>
+               <xs:documentation>Indicates the passive segment start date. Can be linked to segment or ahead retention date.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="EndDate" type="typeDateReference" use="optional">
+            <xs:annotation>
+               <xs:documentation>Indicates the passive segment end date. Can be linked to segment or ahead retention date.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="VendorCode" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Vendor Code - Required for 1V</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Status" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Status - Required for 1V</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="FFString" type="typeFFString">
+      <xs:annotation>
+         <xs:documentation>Create FF Admin String Request</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+      <xs:complexType name="typeFFString">
+         <xs:sequence>
+            <xs:choice>
+               <xs:element ref="GDSString"/>
+               <xs:element ref="ItineraryString"/>
+            </xs:choice>
+            <xs:element ref="Vendor" minOccurs="0"/>
+            <xs:element ref="Rule" minOccurs="0" maxOccurs="unbounded"/>    
+            <xs:element ref="AssociatedProfile" minOccurs="0" maxOccurs="unbounded" />        
+         </xs:sequence>
+         <xs:attribute name="ID" type="xs:integer" use="required">
+            <xs:annotation>
+               <xs:documentation>Uniquely indentify the FF String.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Version" type="xs:integer" use="required">
+            <xs:annotation>
+               <xs:documentation>Version of the FF String</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Name" use="required">
+            <xs:annotation>
+               <xs:documentation>Name of String. Must be unique for Agency</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="required"/>
+         <xs:attribute name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Descriiption of String</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Active" type="xs:boolean" default="false">
+            <xs:annotation>
+               <xs:documentation>If Active, String and Rules will be considered 'live' and applied. False by default</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="ApplyRule" type="typeApplyRule">
+            <xs:annotation>
+               <xs:documentation>Rule that controls how the string is applied to the PNR.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="RestrictedUse" type="xs:boolean" default="true">
+            <xs:annotation>
+               <xs:documentation>Indicates that the FF string can only be changed by ???</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="DomesticMarket" type="xs:boolean" default="false">
+             <xs:annotation>
+                 <xs:documentation>Apply String when Origin and Destination Countries are same</xs:documentation>
+             </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="InternationalMarket" type="xs:boolean" default="false">
+             <xs:annotation>
+                 <xs:documentation>Apply String when Origin and Destination Countries are different </xs:documentation>
+             </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="SecondaryOwner" type="common:typeProfileID" use="optional">
+            <xs:annotation>
+                <xs:documentation>Secondary Owner of the FileFinishing string</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   
+   <xs:simpleType name="typePNRFieldGDSString">
+      <xs:annotation>
+         <xs:documentation>List of PNR Fields for which FF String can be configured</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="AccountingRemark"/>
+         <xs:enumeration value="AddressDelivery"/>
+         <xs:enumeration value="AddressMailing"/>
+         <xs:enumeration value="CustomerID"/>
+         <xs:enumeration value="AssociatedRemark"/>
+         <xs:enumeration value="UnassociatedRemark"/>
+         <xs:enumeration value="GeneralRemark"/>
+         <xs:enumeration value="FormOfPayment"/>
+         <xs:enumeration value="NameFieldRemark"/>
+         <xs:enumeration value="Phone"/>
+         <xs:enumeration value="Postscript"/>
+         <xs:enumeration value="SSR"/>
+         <xs:enumeration value="OSI"/>
+         <xs:enumeration value="TicketingStatus"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="typeItinerary">
+      <xs:annotation>
+         <xs:documentation>Passive Segment Type</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Tour"/>
+         <xs:enumeration value="Hotel"/>
+         <xs:enumeration value="Car"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="typeApplyRule">
+      <xs:annotation>
+         <xs:documentation>When to apply FF String</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="ApplyEveryNewPNR"/>
+         <xs:enumeration value="ApplyOncePerPNR"/>
+         <xs:enumeration value="ApplyOncePerSegment"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="typeDuePaidInd">
+      <xs:annotation>
+         <xs:documentation>Due/Paid/Text Indicator</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Due"/>
+         <xs:enumeration value="Paid"/>
+         <xs:enumeration value="Text"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="typeCityReference">
+      <xs:annotation>
+         <xs:documentation>City to be referenced in Passive Segment</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="FirstItineraryCity"/>
+         <xs:enumeration value="LastItineraryCity"/>
+         <xs:enumeration value="SpecificCity"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="typeDateReference">
+      <xs:annotation>
+         <xs:documentation>Start Date to be referenced in Passive Segment</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="FirstDepartureDate"/>
+         <xs:enumeration value="LastDepartureDate"/>
+         <xs:enumeration value="RetentionDate+30"/>
+         <xs:enumeration value="RetentionDate+60"/>
+         <xs:enumeration value="RetentionDate+90"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="typeVendor">
+      <xs:annotation>
+         <xs:documentation>Vendor / Supplier Type</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Air"/>
+         <xs:enumeration value="Car"/>
+         <xs:enumeration value="Hotel"/>
+         <xs:enumeration value="Tour"/>
+         <xs:enumeration value="Rail"/>
+         <xs:enumeration value="Cruise"/>
+         <xs:enumeration value="Misc"/>
+         <xs:enumeration value="Insurance"/>
+         <xs:enumeration value="AllReservation"/>         
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="Rule">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="AllMustOccur" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Conditions that must occur for the rule to be active.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element ref="Condition" maxOccurs="unbounded">
+                        <xs:annotation>
+                           <xs:documentation>This is the condition</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="AtLeastOneMustOccur" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>List of the condition that at least one must be active.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element ref="Condition" maxOccurs="unbounded">
+                        <xs:annotation>
+                           <xs:documentation>This is the Condition</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="Activity" use="required">
+            <xs:annotation>
+               <xs:documentation>Booking activity.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="Create"/>
+                  <xs:enumeration value="Modify"/>
+                  <xs:enumeration value="Cancel"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="Condition">
+      <xs:complexType>
+         <xs:attribute name="Trigger" use="required">
+            <xs:annotation>
+               <xs:documentation>Products (Air, Car, Hotel etc) which would trigger the rule</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="Air"/>
+                  <xs:enumeration value="Car"/>
+                  <xs:enumeration value="Hotel"/>
+                  <xs:enumeration value="Tour"/>
+                  <xs:enumeration value="Rail"/>
+                  <xs:enumeration value="Cruise"/>
+                  <xs:enumeration value="Miscellaneous"/>
+                  <xs:enumeration value="Insurance"/>
+                  <xs:enumeration value="EntireReservation"/>
+                  <xs:enumeration value="MultipleStoredFares"/>   
+                  <xs:enumeration value="Waitlist"/>               
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+         <xs:attribute name="Item">
+            <xs:annotation>
+               <xs:documentation>Items under each Product for which rules can be configured</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:enumeration value="DepartureDate"/>
+                  <xs:enumeration value="DepartureCity"/>
+                  <xs:enumeration value="FlightNumber"/>
+                  <xs:enumeration value="DestinationCity"/>
+                  <xs:enumeration value="PickupDate"/>
+                  <xs:enumeration value="PickupLocation"/>
+                  <xs:enumeration value="DropOffDate"/>
+                  <xs:enumeration value="DropOffLocation"/>
+                  <xs:enumeration value="CarType"/>
+                  <xs:enumeration value="CheckInDate"/>
+                  <xs:enumeration value="Location"/>
+                  <xs:enumeration value="CheckOutDate"/>
+                  <xs:enumeration value="RoomType"/>
+                  <xs:enumeration value=""/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="FFStringSearchResult">
+      <xs:annotation>
+         <xs:documentation>FF Search Resukt</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="ID" type="xs:integer" use="required"/>
+         <xs:attribute name="Name" type="xs:string" use="required"/>
+         <xs:attribute name="SecondaryOwner" type="common:typeProfileID" use="optional">
+		    <xs:annotation>
+		        <xs:documentation>Secondary Owner of the FileFinishing string</xs:documentation>
+		    </xs:annotation>
+		</xs:attribute>
+         <xs:attribute name="Modifiable" type="xs:boolean" use="required">
+            <xs:annotation>
+                <xs:documentation>searching agent would need to know which searched FF string he can modify and which not.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AssociatedProfile">
+      <xs:annotation>
+         <xs:documentation>Profiles associated to String</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="ProfileID" type="common:typeProfileID" use="required">
+            <xs:annotation>
+               <xs:documentation>Profile ID</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AssociatedFFString">
+      <xs:annotation>
+         <xs:documentation>FF String</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="ID" type="xs:integer" use="required">
+            <xs:annotation>
+               <xs:documentation>FF String ID</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Name" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>FF String Name</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>FF String Description</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Modifiable" type="xs:boolean" use="required">
+            <xs:annotation>
+                <xs:documentation>searching agent would need to know which searched FF string he can modify and which not.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="FFAdminProfileSearchResult">
+      <xs:annotation>
+         <xs:documentation>Profile - FF String Association Search Result</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="AssociatedFFString" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>FF String Search Result</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="ProfileID" type="common:typeProfileID" use="required">
+            <xs:annotation>
+               <xs:documentation>Profile ID</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="ProfileName" type="common:StringLength1to128" use="required">
+            <xs:annotation>
+               <xs:documentation>Profile Name</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="ProfileType" type="common:typeProfileLevel" use="required">
+            <xs:annotation>
+               <xs:documentation>Profile Type</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>         
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="FFAdminProfileSearchModifiers">
+        <xs:annotation>
+            <xs:documentation>Specifies the range of search results. If omitted, the default values for each attribute are used.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="MaxResults" type="common:typeMaxResults" default="25">
+                    <xs:annotation>
+                            <xs:documentation>Limits the number of search results in the response. Note that performance may decline when a large number of results is requested.</xs:documentation>
+                    </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="StartFromResult" type="common:typeStartFromResult" default="1">
+                    <xs:annotation>
+                            <xs:documentation>The starting search index of the results returned. Used to browse beyond the initial search results.</xs:documentation>
+                    </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+   </xs:element>
+   <xs:element name="FFAdminUnassociatedFFSearchResult">
+		<xs:annotation>
+			<xs:documentation>Profile - Unassociated FF String Search Result</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="ID" type="xs:integer" use="required">
+				<xs:annotation>
+					<xs:documentation>FF String ID</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>FF String Name</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Description" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>FF String Description</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ProviderCode" type="common:typeProviderCode"
+				use="required" />
+			<xs:attribute name="Modifiable" type="xs:boolean" use="required">
+	            <xs:annotation>
+	                <xs:documentation>searching agent would need to know which searched FF string he can modify and which not.</xs:documentation>
+	            </xs:annotation>
+	        </xs:attribute>
+		</xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="PassiveServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/passive_v14_0"
+             xmlns:ns1="http://www.travelport.com/schema/passive_v14_0"
+             targetNamespace="http://www.travelport.com/service/passive_v14_0">
+
+    <import namespace="http://www.travelport.com/service/passive_v14_0"
+            location="PassiveAbstract.wsdl"/>
+
+
+    <binding name="PassiveReservationServiceBinding" type="tns:PassiveReservationServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/PassiveService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="PassiveCancelServiceBinding" type="tns:PassiveCancelServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/PassiveService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="PassiveService">
+        <port name="PassiveReservationServicePort" binding="tns:PassiveReservationServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/PassiveService"/>
+        </port>
+        <port name="PassiveCancelServicePort" binding="tns:PassiveCancelServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/PassiveService"/>
+        </port>
+    </service>
+    
+</definitions>

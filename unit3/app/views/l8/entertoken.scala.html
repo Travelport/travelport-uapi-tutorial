@@ -1,0 +1,12 @@
+@(tokForm: Form[data.Token])
+@page("Enter Facebook OAuth Token") {
+    @helper.form(action = lesson8.routes.FakeFB.submit()) {
+            @helper.inputText(tokForm("oauth"), 
+                '_label -> "OAuth String From The Logs Of Hello World")
+            @helper.checkbox(field = tokForm("lesson9"), args =
+            '_label -> "For Lesson 9?"
+        )
+        
+            <input type="submit" value="Start App"/>
+    }
+}

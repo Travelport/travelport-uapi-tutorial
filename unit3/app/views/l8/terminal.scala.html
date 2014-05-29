@@ -1,0 +1,55 @@
+@(terminals: List[models.Terminal], haveLocation: Boolean, lat: Float, lon: Float)
+@distanceKM(targetLat: Float, targetLon:Float) = @{
+    controllers.lesson8.SearchTerminal.distFrom(lat,lon,targetLat,targetLon) / 1000.0
+}
+
+@page("Search Results") {
+
+
+<table id="resulttable">
+  <thead>
+    <tr>
+        <th>Name</th>
+        @if(haveLocation) {
+            <th>Distance</th>
+        }
+        <th>Ucode</th>
+        <th>Iata</th>
+        <th>Rail</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Country</th>
+        <th>Lat/Lon</th>
+        <th>Parent</th>
+        <th>Type</th>
+        <th>Metro?</th>
+        <th>Significant?</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for((terminal,i) <- terminals.zipWithIndex) {
+        @defining(i%2) { style => 
+        <tr class="rowcolor@style">
+        <td>@terminal.name</td>
+        @if(haveLocation) {
+            <td>@{distanceKM(terminal.latitude, terminal.longitude)}</td>
+        }
+        <td>@terminal.ucode</td>
+        <td>@terminal.iataCode</td>
+        <td>@terminal.railDistributor</td>
+        <td>@terminal.address</td>
+        <td>@terminal.city</td>
+        <td>@terminal.stateCode</td>
+        <td>@terminal.countryCode (<i>@terminal.country</i>)</td>
+        <td>@terminal.latitude/@terminal.longitude</td>
+        <td>@terminal.parent</td>
+        <td>@terminal.stType</td>
+        <td>@terminal.metro</td>
+        <td>@terminal.significant</td>
+        </tr>
+     }
+  }
+  </tbody>
+</table>
+}

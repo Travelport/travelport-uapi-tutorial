@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="FileFinishingService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/filefinishing_v8_0"
+             xmlns:ns1="http://www.travelport.com/schema/filefinishing_v8_0"
+             xmlns:common="http://www.travelport.com/schema/common_v15_0"
+             targetNamespace="http://www.travelport.com/service/filefinishing_v8_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/filefinishing_v8_0">
+            <include schemaLocation="FileFinishingReqRsp.xsd"/>
+        </schema>
+    </types>
+    
+    <message name="FFAdminCreateReq">
+        <part name="parameters" element="ns1:FFAdminCreateReq" />
+    </message>
+
+    <message name="FFAdminCreateRsp">
+        <part name="result" element="ns1:FFAdminCreateRsp" />
+    </message>
+    
+    <message name="FFAdminModifyReq">
+        <part name="parameters" element="ns1:FFAdminModifyReq" />
+    </message>
+
+    <message name="FFAdminModifyRsp">
+        <part name="result" element="ns1:FFAdminModifyRsp" />
+    </message>
+
+    <message name="FFAdminDeleteReq">
+        <part name="parameters" element="ns1:FFAdminDeleteReq" />
+    </message>
+
+    <message name="FFAdminDeleteRsp">
+        <part name="result" element="ns1:FFAdminDeleteRsp" />
+    </message>
+    
+    <message name="FFAdminRetrieveReq">
+        <part name="parameters" element="ns1:FFAdminRetrieveReq" />
+    </message>
+
+    <message name="FFAdminRetrieveRsp">
+        <part name="result" element="ns1:FFAdminRetrieveRsp" />
+    </message>
+    
+    <message name="FFAdminSearchReq">
+        <part name="parameters" element="ns1:FFAdminSearchReq" />
+    </message>
+
+    <message name="FFAdminSearchRsp">
+        <part name="result" element="ns1:FFAdminSearchRsp" />
+    </message>
+
+    <message name="FFAdminMasterDataReq">
+        <part name="parameters" element="ns1:FFAdminMasterDataReq" />
+    </message>
+
+    <message name="FFAdminMasterDataRsp">
+        <part name="result" element="ns1:FFAdminMasterDataRsp" />
+    </message>
+    
+    <message name="FFAdminProfileSearchReq">
+        <part name="parameters" element="ns1:FFAdminProfileSearchReq" />
+    </message>
+
+    <message name="FFAdminProfileSearchRsp">
+        <part name="result" element="ns1:FFAdminProfileSearchRsp" />
+    </message>
+    
+    <message name="UtilFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+    
+    <message name="FFAdminUnassignedFFSearchReq">
+        <part name="parameters" element="ns1:FFAdminUnassignedFFSearchReq" />
+    </message>
+
+    <message name="FFAdminUnassignedFFSearchRsp">
+        <part name="result" element="ns1:FFAdminUnassignedFFSearchRsp" />
+    </message>
+    
+    <!--  Port Types  -->
+
+    <portType name="FFAdminCreatePortType">
+        <operation name="service">
+            <input message="tns:FFAdminCreateReq" />
+            <output message="tns:FFAdminCreateRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="FFAdminModifyPortType">
+        <operation name="service">
+            <input message="tns:FFAdminModifyReq" />
+            <output message="tns:FFAdminModifyRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="FFAdminDeletePortType">
+        <operation name="service">
+            <input message="tns:FFAdminDeleteReq" />
+            <output message="tns:FFAdminDeleteRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="FFAdminRetrievePortType">
+        <operation name="service">
+            <input message="tns:FFAdminRetrieveReq" />
+            <output message="tns:FFAdminRetrieveRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+     <portType name="FFAdminSearchPortType">
+        <operation name="service">
+            <input message="tns:FFAdminSearchReq" />
+            <output message="tns:FFAdminSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="FFAdminMasterDataRetrievePortType">
+        <operation name="service">
+            <input message="tns:FFAdminMasterDataReq" />
+            <output message="tns:FFAdminMasterDataRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="FFAdminProfileSearchPortType">
+        <operation name="service">
+            <input message="tns:FFAdminProfileSearchReq" />
+            <output message="tns:FFAdminProfileSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="FFAdminUnassignedFFSearchPortType">
+        <operation name="service">
+            <input message="tns:FFAdminUnassignedFFSearchReq" />
+            <output message="tns:FFAdminUnassignedFFSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+</definitions>

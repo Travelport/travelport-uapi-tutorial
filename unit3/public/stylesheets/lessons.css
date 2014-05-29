@@ -1,0 +1,164 @@
+
+/*
+ * SHARED CSS FOR FB
+ */
+
+
+/*
+ * For the fakeFB code used to do local dev
+ */
+input#oauth {
+	height:2.0em;
+}
+
+/* 
+ *just for lesson 8 
+ */
+
+div.container {
+    padding-left: 30px; 
+}
+
+#progressbar {
+	height: 25px;
+	width: 100%; 
+}
+
+#resulttable .rowcolor0 {
+	background-color: white;
+}
+
+#resulttable .rowcolor1 {
+    background-color: lightgrey;
+}
+
+th {
+	align: left;
+/*   cell-border-top: 1px;*/
+}
+
+#resulttable td {
+    border-color: #600;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    margin: 0;
+    padding: 4px;
+}
+
+#resulttable {
+    border-color: #600;
+    border-width: 1px 0 1px 1px;
+    border-style: solid;
+}
+
+
+/* 
+ *just for lesson 9
+ */
+ 
+input#friend {
+	height: 2.0em;
+}
+
+input#outpicker {
+    height: 2.0em;
+    width:70px;
+}
+input#returnpicker {
+    height: 2.0em;
+    width:70px;
+}
+
+span.inputRow {
+	width:100%;
+}
+div.inputContainer {
+	display:inline
+}
+
+div.friendPhoto {
+    width:250px;
+    height:250px;
+    text-align:center;
+    vertical-align:top;
+    display:inline-block;
+    y-overflow: visible;
+    
+}
+div.friendInput {
+    width:30%;
+    text-align:center;
+    vertical-align: top;
+    display:inline-block;
+}
+div.itinPanel {
+    vertical-align:top;
+	width:30%;
+    text-align:left;
+    display:inline-block;
+    height:250px;
+    overflow-y: scroll;
+}
+
+button.searchButton {
+	margin-top:20px;
+	enabled: false;
+}
+
+div.statusLine {
+	padding: 5px;
+	text-align:center;
+
+}
+div.friendInput {
+    width:30%;
+    text-align:center;
+    vertical-align: top;
+    display:inline-block;
+}
+
+div.mapContainer {
+    border: 1px solid black;
+    display: inline;
+    width:760%;
+}
+
+div.flightData {
+    display: inline-block;
+	width:30%;
+    height:300px;
+    margin:0px;
+    padding:10px;
+    text-align:left;
+    vertical-align:top;
+}
+
+div.map_canvas {
+	display: inline-block;
+    height: 300px;
+    width: 70%;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.journey {
+	margin:0px;
+	font-size:0.8em;
+	line-height:120%;
+	padding-left:20px;
+}
+
+.open {
+	background-color: lightgray;
+}
+
+span.flight {
+    padding-left: 20px;
+}
+
+span.when {
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+

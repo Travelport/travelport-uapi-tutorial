@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Greg Walters (WORLDSPAN) -->
+<xs:schema xmlns="http://www.travelport.com/schema/passive_v14_0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.travelport.com/schema/common_v15_0"
+    xmlns:universalRecord_v16_0="http://www.travelport.com/schema/universal_v16_0"
+	targetNamespace="http://www.travelport.com/schema/passive_v14_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>
+			(c) Travelport GDS 2008 All rights reserved. Proprietary
+			Information of Travelport GDS.
+		</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.travelport.com/schema/common_v15_0" schemaLocation="../common_v15_0/CommonReqRsp.xsd" />
+    <xs:import namespace="http://www.travelport.com/schema/universal_v16_0" schemaLocation="../universal_v16_0/UniversalRecord.xsd" />
+	<xs:include schemaLocation="../passive_v14_0/Passive.xsd" />
+	<xs:element name="PassiveCreateReservationReq">
+		<xs:annotation>
+			<xs:documentation>
+				Request to create a passive reservation
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseCreateReservationReq">
+					<xs:sequence>
+						<xs:element ref="common:SupplierLocator" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="PassiveSegment"
+							maxOccurs="unbounded" />
+						<xs:element ref="PassiveRemark" minOccurs="0"
+							maxOccurs="unbounded" />
+						<xs:element ref="AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="common:ActionStatus" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PassiveCreateReservationRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+					   <xs:choice>
+                        <xs:element ref="universalRecord_v16_0:UniversalRecord" />
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PassiveCancelReq">
+        <xs:annotation>
+            <xs:documentation>Request for cancellation of Passive reservation/segment.</xs:documentation>
+            <xs:documentation>Given the ProviderReservationInfo and PassiveReservationLocatorCode , it will cancel the Passive Reservation</xs:documentation>
+            <xs:documentation>An optional attribute of 'Key' will enable cancellation of a particular PassiveSegment in the Passive Reservation</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="PassiveSegmentRef" minOccurs="0" maxOccurs="unbounded">
+                        	<xs:annotation>
+            					<xs:documentation>
+                					PassiveSegmentRef element refers the Key of the PassiveSegment to be canceled.
+            					</xs:documentation>
+        					</xs:annotation>
+		                </xs:element>
+		                <xs:element ref="common:FileFinishingInfo" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="PassiveReservationLocatorCode" type="xs:string" use="required">
+                        <xs:annotation>
+            				<xs:documentation>Locator Code of the passive reservation to be canceled.</xs:documentation>
+        				</xs:annotation>
+                    </xs:attribute>
+                    <xs:attributeGroup ref="universalRecord_v16_0:providerReservation">
+                        <xs:annotation>
+            				<xs:documentation>Host ProviderCode and Locator Code of the passive reservation to be canceled</xs:documentation>
+        				</xs:annotation>
+                    </xs:attributeGroup>
+                    <xs:attribute name="Version" type="common:typeURVersion" use="required" />                                        
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PassiveCancelRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a PassiveCancelReq. The UniversalRecord returned reflects the requested modifications.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:choice>
+                        <xs:element ref="universalRecord_v16_0:UniversalRecord" minOccurs="0" maxOccurs="1"/>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,88 @@
+@(fbAppId: String, fbSecret:String, fbChannel:String, googMapsKey:String)
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+      
+   div#results {
+        background-color: lightgray;
+    }
+   div#items {
+    margin-top: 50px;
+    padding-top: 0px;
+   }
+   div#items span {
+    margin-top: 5px;
+   }
+   span.itinDetails {
+    font-size: 0.75em;
+    margin-left: 10px;
+   }
+   span.itinLink {
+    cursor: pointer;
+    color: blue; 
+    font-size: 0.75em;
+   }
+   span.price {
+    font-size: 0.75em;
+    font-weight: bold;
+    width: 100px;
+   }
+   span.titling {
+    font-size: 1.25em;
+    font-weight: bold;
+   }
+    </style>
+    <script>
+       tutorial = {};
+    </script>
+  <script type="text/javascript"
+      src="/assets/javascripts/jquery-1.7.2.js">
+  </script>
+  <script type="text/javascript"
+      src="/assets/javascripts/lesson9.js">
+  </script>
+  <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=@googMapsKey&sensor=false">
+  </script>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '@fbAppId', // App ID
+      apiKey     : '@fbSecret',
+      channelUrl : '@fbChannel', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+    console.log("----done with init-----");
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+   </script>
+    
+    <script>
+   </script>
+
+  </head>
+  <body onload="tutorial.initialize()">
+  <div id="fb-root"></div>
+  <div id="map_canvas" style="width:100%; height:100%"></div>
+  <div id="results" class="transparent">
+    <div id="user" style="border:1px black solid; height:50px; width:50px; float:left;"></div>
+    <div id="target" style="margin-left:5px; border:1px black solid; height:50px; width:50px; float:left"></div>
+    <img style="float:right;" height="52px"; src="/assets/images/travelport-logo.jpg"/>
+    <div id="items" style="width:100%; height:75%"></div>
+  </div>
+  </body>
+</html>

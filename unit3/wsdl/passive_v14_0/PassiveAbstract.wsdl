@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractPassiveServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/passive_v14_0"
+             xmlns:passive="http://www.travelport.com/schema/passive_v14_0"
+             xmlns:ns1="http://www.travelport.com/schema/passive_v14_0"
+             xmlns:common="http://www.travelport.com/schema/common_v15_0"
+             xmlns:ur="http://www.travelport.com/schema/universal_v16_0"
+             targetNamespace="http://www.travelport.com/service/passive_v14_0">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/passive_v14_0">
+            <include schemaLocation="PassiveReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="PassiveCreateReservationReq">
+        <part name="parameters" element="passive:PassiveCreateReservationReq"/>
+    </message>
+
+    <message name="PassiveCreateReservationRsp">
+        <part name="result" element="passive:PassiveCreateReservationRsp"/>
+    </message>
+
+    <message name="PassiveFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>
+    
+    <message name="UniversalRecordSupportedVersions">
+        <part name="supportedVersions" element="ur:SupportedVersions"/>
+    </message>
+    
+    <message name="PassiveCancelReq">
+        <part name="parameters" element="passive:PassiveCancelReq"/>
+    </message>
+
+    <message name="PassiveCancelRsp">
+        <part name="result" element="passive:PassiveCancelRsp"/>
+    </message>
+    
+    <portType name="PassiveReservationServicePortType">
+        <operation name="service">
+            <input message="tns:PassiveCreateReservationReq"/>
+            <output message="tns:PassiveCreateReservationRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:PassiveFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="PassiveCancelServicePortType">
+        <operation name="service">
+            <input message="tns:PassiveCancelReq"/>
+            <output message="tns:PassiveCancelRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:PassiveFaultMessage"/>
+        </operation>
+    </portType>
+
+</definitions>

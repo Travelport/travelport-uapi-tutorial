@@ -1,0 +1,85 @@
+ @(title: String)(content: Html)
+
+<html>
+<head>
+<title>@title</title>
+<link href="@routes.Assets.at("stylesheets/jquery.ui.all.css")"
+    rel="stylesheet"
+	type="text/css" />
+<link href="@routes.Assets.at("stylesheets/lessons.css")" rel="stylesheet" type="text/css" />
+<link href="@routes.Assets.at("stylesheets/twitter/bootstrap/css/bootstrap.min.css")" rel="stylesheet"
+	type="text/css" />
+<link href="@routes.Assets.at("stylesheets/twitter/css/style.css?body=1")" rel="stylesheet" type="text/css" />
+<script src="@routes.Assets.at("javascripts/jquery-1.7.2.js")"></script>
+
+<script src="@routes.Assets.at("javascripts/jquery.ui.core.js")"></script>
+<script src="@routes.Assets.at("javascripts/jquery.ui.widget.js")"></script>
+<script src="@routes.Assets.at("javascripts/jquery.ui.progressbar.js")"></script>
+
+</head>
+
+<body>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">TravelPort Universal API Tutorial</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="content">
+			<div class="page-header">
+				<table border=0>
+					<tbody>
+						<tr>
+							<td width="80%">
+								<h1>@title</h1>
+							</td>
+							<td width=250>
+							 <img src="@routes.Assets.at("images/travelport-logo.jpg")"
+							     width=244 height=66>
+							 </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+    	    <div class="row">
+		      <div class="span12">@content</div>
+		    </div>
+	      </div>
+	<footer>
+		<hr>
+		<div align="center">
+			<div id="footer">
+				<p>
+					Follow us on <a href="http://twitter.com/#!/Travelport"
+						target="_blank"><img
+						src="https://travelport-universal-api.custhelp.com/euf/assets/developer-network/images/icon-twitter.jpg"
+						alt="Twitter"></a> <a
+						href="http://www.youtube.com/user/TravelportTube" target="_blank"><img
+						src="https://travelport-universal-api.custhelp.com/euf/assets/developer-network/images/icon-youtube.jpg"
+						alt="YouTube"></a>
+				</p>
+				<p class="links">
+					<a href="http://www.travelport.com/legal/privacypolicy.aspx"
+						target="_blank">Privacy Policy</a> | <a
+						href="http://www.travelport.com/legal/termsconditions.aspx"
+						target="_blank">Terms &amp; Conditions</a> | <a
+						href="http://www.travelport.com/about.aspx" target="_blank">About
+						Travelport</a><br>
+				</p>
+				<p>
+					© 2011-2012 Travelport, LP. All rights reserved.<br> All
+					Travelport logos and marks as well as all other Travelport
+					proprietry materialis<br> depicted herein are the property of
+					Travelport, LP. and/or its affiliates.<br> Other trademarks
+					are property of their respective owners.
+				</p>
+			</div>
+		</div>
+		<!-- /center -->
+	</footer>
+	</div>
+</body>
+</html>
