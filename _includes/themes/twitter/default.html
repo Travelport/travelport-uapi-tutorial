@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <meta name="author" content="{{ site.author.name }}">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/pygment.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+	<!---needed pygmentize -->
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+  </head>
+
+  <body>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <h1><a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a></h1>
+          <ul class="nav">
+            {% assign pages_list = site.pages %}
+            {% assign group = 'navigation' %}
+            {% include JB/pages_list %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="content">
+        {{ content }}
+      </div> <!-- /content  -->
+      
+      
+      <footer>
+	<!-- #base template stuff -->
+        <!-- p>&copy; {{ site.author.name }} 2012 
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p -->
+
+	<!--  Insert Travelport footer -->
+	<hr>
+	<div align="center">
+	<div id="footer">
+	<p>Follow us on <a href="http://twitter.com/#!/Travelport" target="_blank"><img src="https://travelport-universal-api.custhelp.com/euf/assets/developer-network/images/icon-twitter.jpg" alt="Twitter"></a>
+	<a href="http://www.youtube.com/user/TravelportTube" target="_blank"><img src="https://travelport-universal-api.custhelp.com/euf/assets/developer-network/images/icon-youtube.jpg" alt="YouTube"></a></p>
+	<p class="links"><a href="http://www.travelport.com/legal/privacypolicy.aspx" target="_blank">Privacy Policy</a> | 
+	<a href="http://www.travelport.com/legal/termsconditions.aspx" target="_blank">Terms &amp; Conditions</a> | 
+	<a href="http://www.travelport.com/about.aspx" target="_blank">About Travelport</a><br></p>
+	<p>&copy; 2011-2012 Travelport, LP. All rights reserved.<br>
+	All Travelport logos and marks as well as all other Travelport proprietry materialis<br>
+	depicted herein are the property of Travelport, LP. and/or its affiliates.<br>
+	Other trademarks are property of their respective owners.</p></div>
+	</div> <!-- /center -->
+
+      </footer>
+
+    </div> <!-- /container -->
+
+    {% include JB/analytics %}
+  </body>
+</html>
