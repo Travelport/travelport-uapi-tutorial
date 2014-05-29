@@ -1,0 +1,12 @@
+logs
+project/project
+project/target
+target
+tmp
+.history
+dist.DS_Store
+.classpath
+.project
+.settings
+
+lib/*javadoc.jar
