@@ -1,0 +1,2710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/universal_v26_0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.travelport.com/schema/universal_v26_0" 
+    xmlns:common="http://www.travelport.com/schema/common_v26_0"    
+    xmlns:vehicle_v26_0="http://www.travelport.com/schema/vehicle_v26_0"    
+    xmlns:air_v26_0="http://www.travelport.com/schema/air_v26_0"    
+    xmlns:hotel_v26_0="http://www.travelport.com/schema/hotel_v26_0"    
+    xmlns:passive_v26_0="http://www.travelport.com/schema/passive_v26_0"    
+    xmlns:rail_v26_0="http://www.travelport.com/schema/rail_v26_0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>
+            (c) Travelport GDS 2008 All rights reserved. Proprietary
+            Information of Travelport GDS.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import schemaLocation="../common_v26_0/Common.xsd" namespace="http://www.travelport.com/schema/common_v26_0" />
+        
+    <xs:import schemaLocation="../vehicle_v26_0/Vehicle.xsd" namespace="http://www.travelport.com/schema/vehicle_v26_0" />
+    
+       
+    <xs:import schemaLocation="../air_v26_0/Air.xsd" namespace="http://www.travelport.com/schema/air_v26_0" />
+       
+    <xs:import schemaLocation="../hotel_v26_0/Hotel.xsd" namespace="http://www.travelport.com/schema/hotel_v26_0" />
+        
+    <xs:import schemaLocation="../passive_v26_0/Passive.xsd" namespace="http://www.travelport.com/schema/passive_v26_0"/>
+        
+    <xs:import schemaLocation="../rail_v26_0/Rail.xsd" namespace="http://www.travelport.com/schema/rail_v26_0"/>
+    
+    <xs:element name="SupportedVersions">
+        <xs:annotation>
+            <xs:documentation>
+                SOAP Header element that determines what version a
+                particular request supports
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="urVersion" use="optional"
+                type="xs:string" />
+            <xs:attribute name="airVersion" use="optional"
+                type="xs:string" />
+            <xs:attribute name="hotelVersion" use="optional"
+                type="xs:string" />
+            <xs:attribute name="vehicleVersion" use="optional"
+                type="xs:string" />
+            <xs:attribute name="passiveVersion" type="xs:string"
+                use="optional" />
+            <xs:attribute name="railVersion" use="optional" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecord">
+        <xs:annotation>
+            <xs:documentation>
+                Universal Record holds one or more provider reservations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:LinkedUniversalRecord" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:Group" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:BookingTraveler" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:ServiceFeeInfo" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:OSI" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:ActionStatus" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ProviderReservationInfo" minOccurs="0" maxOccurs="unbounded" />
+                <xs:choice>                    
+                    <xs:element ref="air_v26_0:AirReservation" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:HotelReservation"  minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+                
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:VehicleReservation" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="passive_v26_0:PassiveReservation" minOccurs="0" maxOccurs="unbounded" />
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="rail_v26_0:RailReservation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>
+			      <xs:element ref="air_v26_0:EMDSummaryInfo" minOccurs="0" maxOccurs="unbounded">
+			         <xs:annotation>
+			            <xs:documentation>List of EMDs to be shown as part of UR. Supported providers are 1V/1G/1P/1J</xs:documentation>
+			         </xs:annotation>
+			      </xs:element>
+			    </xs:choice>
+                <xs:element ref="common:ProviderARNKSegment" minOccurs="0" maxOccurs="unbounded"/>               
+                <xs:element ref="SegmentContinuityInfo" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:XMLRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:GeneralRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:AccountingRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:UnassociatedRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:Postscript" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:AgencyInfo" minOccurs="0" />
+                <xs:element ref="common:AppliedProfile" minOccurs="0" />
+                <xs:element ref="common:AgencyContactInfo" minOccurs="0"/>                
+                <xs:element ref="common:CustomerID" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:CommissionRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:ConsolidatorRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="UnmaskedDataRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:InvoiceRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <!--<xs:element ref="BookingTravelerInfo" minOccurs="0" maxOccurs="unbounded"/>-->
+                <xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded" >
+                        <xs:annotation>
+                                <xs:documentation>Review Booking or Queue Minders is to add the reminders in the Provider Reservation along with the date time and Queue details. On the date time defined in reminders, the message along with the PNR goes to the desired Queue. </xs:documentation>
+                        </xs:annotation>
+               </xs:element>
+               <xs:element ref="common:SSR" minOccurs="0" maxOccurs="unbounded" >
+                        <xs:annotation>
+                                <xs:documentation>SSR's having no bookingTravelerRef need to add at providerReservation level outside bookingTraveler</xs:documentation>
+                        </xs:annotation>
+               </xs:element> 
+               <xs:element ref="common:InvoiceData" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+           	<xs:attribute name="LocatorCode" type="common:typeLocatorCode" use="required">
+                 <xs:annotation>
+                               <xs:documentation>Unique Identifier of a Universal Record. If this is ViewOnly UR then Locator Code is '999999'.</xs:documentation>
+                        </xs:annotation>
+             </xs:attribute>
+            <xs:attribute name="SavedTripLocatorCode"
+                type="common:typeLocatorCode" use="optional"/>  
+            <xs:attribute name="LockReason" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The reason for which the reservation is
+                        currently locked for modifications
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CreateDate" type="xs:dateTime"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date and time that this reservation was
+                        created.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Version" type="common:typeURVersion"
+                use="optional" />
+            <xs:attribute name="Status" use="required" type="typeURStatus"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UnmaskedDataRemark">
+        <xs:annotation>
+            <xs:documentation>Security remark to a PNR .If a PCC is a Bridge-Branch/5-CP-Consolidator AND is also listed in this field,it can retrieve the PNR data UNMASKED and UNSUPPRESSED.PROVIDER SUPPORTED:JAL.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:PseudoCityCode" minOccurs="1" maxOccurs="11"/>
+            </xs:sequence>
+            <xs:attribute name="Key" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Key to be used for internal processing.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProviderReservationInfoRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Provider reservation reference key.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Contains the Provider Code of the provider for which this element is used</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+        </xs:complexType>
+    </xs:element>
+<xs:element name="ProviderReservationInfo">
+        <xs:annotation>
+            <xs:documentation>
+                Provider Reservation informations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ProviderReservationDetails" minOccurs="0"/>
+                <xs:element ref="ExternalReservationInfo" minOccurs="0"  maxOccurs="1"/>                
+            </xs:sequence>
+            <xs:attribute name="Key" type="common:typeRef"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Key value of the provider reservation
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProviderCode"
+                type="common:typeProviderCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the Provider Code of the entity housing
+                        the actual reservation in the event this is a
+                        passive one.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="LocatorCode"
+                type="common:typeProviderLocatorCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the Locator Code of the actual
+                        reservation in the event this is a passive
+                        reservation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CreateDate" type="xs:dateTime"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date and time that this reservation was
+                        created.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="HostCreateDate" type="xs:date"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date that this reservation was
+                        created in the host system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ModifiedDate" type="xs:dateTime"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date and time that this reservation was last
+                        modified for any reason.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+          <xs:attribute name="Imported" type="xs:boolean" use="optional">
+            <xs:annotation>
+               <xs:documentation>Identifies a reservation that was originally created elsewhere and imported into a Universal Record.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="TicketingModifiersRef" type="common:typeRef" use="optional">
+            <xs:annotation>
+               <xs:documentation>
+                        Reference to a Ticketing Modifers which is attached to this PNR. Ticketing Modifers referred  by this Key is a Primary Ticketing
+                        Modifers. Worldspan Primary DI line will be supported using this feature.
+               </xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="InQueueMode" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:documentation>Identifies whether the gds pnr is being processed from the GDS queue.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="GroupRef" type="common:typeRef" use="optional">
+             <xs:annotation>
+                 <xs:documentation>Represents a traveler group for Group booking and all their accompanying data. SUPPORTED PROVIDER: Worldspan and JAL. </xs:documentation>
+             </xs:annotation>
+         </xs:attribute>
+         <xs:attributeGroup ref="common:attrElementKeyResults"/>
+         <xs:attribute name="OwningPCC" type="common:typePCC" use="optional">
+             <xs:annotation>
+                 <xs:documentation>Indentifies the owning PCC of the PNR. PROVIDER SUPPORTED: Worldspan,JAL,Galileo and Apollo</xs:documentation>
+             </xs:annotation>
+         </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:attributeGroup name="providerReservation">
+        <xs:attribute name="ProviderCode" type="common:typeProviderCode"
+            use="required" />
+        <xs:attribute name="ProviderLocatorCode"
+            type="common:typeProviderLocatorCode" use="required" />
+    </xs:attributeGroup>
+    <xs:attributeGroup name="optionalProviderReservation">
+        <xs:annotation>
+            <xs:documentation>
+                Attribute group of optional provider and locator code.
+                Use this group where provider and locator code both are
+                optional
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="ProviderCode" type="common:typeProviderCode"
+            use="optional" />
+        <xs:attribute name="ProviderLocatorCode"
+            type="common:typeProviderLocatorCode" use="optional" />
+    </xs:attributeGroup>
+
+    <xs:element name="ProviderReservationStatus">
+        <xs:annotation>
+            <xs:documentation>
+                Status of the cancellation for this provider
+                reservation.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CancelInfo"
+                    type="common:typeResultMessage" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            If the provider reservation was not
+                            successfully cancelled or cancelled with
+                            warnings the provider system might provides
+                            some textual information describing the
+                            reason.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="CreateDate" type="xs:dateTime"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date and time that this reservation was
+                        created.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ModifiedDate" type="xs:dateTime"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date and time that this reservation was last
+                        modified for any reason.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProviderCode"
+                type="common:typeProviderCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the Provider Code of the entity housing
+                        the actual reservation in the event this is a
+                        passive one.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="LocatorCode"
+                type="common:typeProviderLocatorCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Contains the Locator Code of the actual
+                        reservation in the event this is a passive
+                        reservation.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Cancelled" type="xs:boolean"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Will be true if the reservation was successfuly
+                        cancelled on the provider system.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <!--*** Shared Elements ***-->
+    <xs:element name="AirReservationCriteria">
+        <xs:annotation>
+            <xs:documentation>
+                Criteria for searching the Air reservations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DepartureDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Flight Departure Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+                <xs:element name="ArrivalDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Flight Arrival Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+             </xs:sequence>
+            <xs:attribute name="Origin" type="common:typeIATACode"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The IATA location code for this origination of this entity.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Destination" type="common:typeIATACode"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The IATA location code for this destination of this entity.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>           
+            <xs:attribute name="FlightNumber" type="xs:string"
+                use="optional" />
+            <xs:attribute name="Carrier" type="common:typeCarrier"
+                use="optional" />
+            <xs:attribute name="PassiveOnly"  type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Search for Passives Only</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelReservationCriteria">
+        <xs:annotation>
+            <xs:documentation>
+                Criteria for searching the Hotel reservations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CheckInDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Hotel Check In Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+             </xs:sequence>        
+            <xs:attribute name="HotelChainCode" type="common:typeHotelChainCode">
+                <xs:annotation>
+                   <xs:documentation>Hotel Chain Code</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="HotelCode" type="common:typeHotelCode" />        
+            <xs:attribute name="HotelConfirmation" type="xs:string" use="optional" />
+            <xs:attribute name="Location" type="common:typeIATACode" />    
+            <xs:attribute name="PassiveOnly"  type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Search for Passives Only</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>                   
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleReservationCriteria">
+        <xs:annotation>
+            <xs:documentation>
+                Criteria for searching the Vehicle reservations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+             <xs:sequence>
+                <xs:element name="PickUpDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Vehicle PickUp Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+             </xs:sequence>
+            <xs:attribute name="VehicleConfirmation" type="xs:string" use="optional" />
+            <xs:attribute name="Location" type="common:typeIATACode" />
+            <xs:attribute name="VendorCode" type="common:typeSupplierCode">
+                <xs:annotation>
+                    <xs:documentation>Vehicle Vendor Code</xs:documentation>
+                </xs:annotation>    
+            </xs:attribute>   
+            <xs:attribute name="LocationNumber" type="xs:string" />     
+            <xs:attribute name="PassiveOnly"  type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Search for Passives Only</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--<xs:element name="GroundReservationCriteria">
+        <xs:annotation>
+            <xs:documentation>
+                Criteria for searching the Ground reservations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="GroundConfirmation" type="xs:string"
+                use="optional" />
+            <xs:attribute name="PickUpDate" type="xs:date" />
+            <xs:attribute name="Location" type="common:typeIATACode" />
+        </xs:complexType>
+    </xs:element>
+
+    --><xs:element name="RailReservationCriteria">
+        <xs:annotation>
+            <xs:documentation> Criteria for searching the Rail reservations
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="JourneyDepartureDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Hotel Check In Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>           
+                <xs:element name="JourneyArrivalDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Hotel Check In Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+                <xs:element name="SegmentDepartureDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Hotel Check In Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>           
+                <xs:element name="SegmentArrivalDate" type="typeDateSpec" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Hotel Check In Date or Date Range</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+             </xs:sequence>              
+            <xs:attribute name="JourneyOrigin" type="common:typeIATACode" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The IATA location code for this origination of this entity.
+                        </xs:documentation>
+                    </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="JourneyDestination" type="common:typeIATACode" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The IATA location code for this destination of this entity.
+                        </xs:documentation>
+                    </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="JourneyRailLocOrigin" type="common:typeRailLocationCode" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            RCH specific origin code (a.k.a UCodes) which uniquely identifies a train station.
+                        </xs:documentation>
+                    </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="JourneyRailLocDestination" type="common:typeRailLocationCode" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                          RCH specific destination code (a.k.a UCodes) which uniquely identifies a train station.
+                        </xs:documentation>
+                    </xs:annotation>
+            </xs:attribute>             
+            <xs:attribute name="SupplierCode" type="xs:string" use="optional" />
+            <xs:attribute name="TrainNumber" type="xs:string" use="optional" />
+            <xs:attribute name="PassiveOnly"  type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Search for Passives Only</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ProviderReservationSearchResult">
+        <xs:annotation>
+            <xs:documentation>
+                Container for reservations that match the search
+                criteria
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:Name" maxOccurs="unbounded"
+                    minOccurs="0" />
+                <xs:element name="ProductInfo" type="typeProductInfo"
+                    minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:AgencyInfo" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="UniversalRecordLocatorCode"
+                type="xs:string" use="optional" />
+            <xs:attribute name="CreatedDate" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date the resevation record was created
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="EarliestTravelDate" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date on which th earliest travel can occur
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Ticketed" type="typeReservationTicketed"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        If the reservation is ticketed. Applies to an
+                        AIR reservation only
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProviderCode" type="xs:string"
+                use="required" />
+            <xs:attribute name="ProviderLocatorCode" type="xs:string"
+                use="optional" />
+            <xs:attribute name="ExternalSearchIndex"
+                type="typeExternalSearchIndex" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RecordIdentifier">
+        <xs:annotation>
+            <xs:documentation>
+                The information that uniquly identifies a particular
+                supplier reservation.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="UniversalLocatorCode"
+                type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="ProviderCode"
+                type="common:typeProviderCode" use="optional" />
+            <xs:attribute name="ProviderLocatorCode"
+                type="common:typeLocatorCode" use="optional" />
+        </xs:complexType>
+    </xs:element>
+   <xs:element name="UniversalModifyCmd">
+        <xs:annotation>
+            <xs:documentation>
+                Container for the elements that will be batch updated to
+                a UniversalRecord
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="VehicleAdd" minOccurs="0" />
+                <xs:element ref="VehicleDelete" minOccurs="0" />
+                <xs:element ref="VehicleUpdate" minOccurs="0" />
+                <xs:element ref="AirAdd" minOccurs="0" />
+                <xs:element ref="AirDelete" minOccurs="0" />
+                <xs:element ref="AirUpdate" minOccurs="0" />
+                <xs:element ref="UniversalAdd" minOccurs="0" />
+                <xs:element ref="UniversalDelete" minOccurs="0" />
+                <xs:element ref="UniversalUpdate" minOccurs="0" />
+                <xs:element ref="HotelAdd" minOccurs="0" />
+                <xs:element ref="HotelUpdate" minOccurs="0" />
+                <xs:element ref="HotelDelete" minOccurs="0" />
+                <xs:element ref="PassiveAdd" minOccurs="0" />
+                <xs:element ref="PassiveDelete" minOccurs="0" />
+                </xs:choice>
+                <xs:attribute name="Key" type="common:typeRef" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Refers the universal modify command key. It should be unique in the request.</xs:documentation>
+                    </xs:annotation>
+           </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="PassiveAdd">
+        <xs:complexType>
+            <xs:choice>  
+                <xs:sequence>
+                     <xs:element ref="passive_v26_0:PassiveSegment" minOccurs="1" maxOccurs="unbounded">
+                          <xs:annotation>
+                              <xs:documentation>This represents a Passive Segment  of type Car,Hotel, Tour,Surface,Air etc.</xs:documentation>
+                          </xs:annotation>
+                     </xs:element>
+                     <xs:element ref="passive_v26_0:PassiveRemark" minOccurs="0" maxOccurs="unbounded">
+                          <xs:annotation>
+                              <xs:documentation>This contains Remark corresponding to any PassiveSegment</xs:documentation>
+                          </xs:annotation>
+                     </xs:element>
+                </xs:sequence>
+                <xs:sequence>
+                     <xs:element ref="passive_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                              <xs:documentation>This contains Associated Remark corresponding to any PassiveSegment.</xs:documentation>
+                          </xs:annotation>
+                     </xs:element>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element ref="common:SupplierLocator" minOccurs="1" maxOccurs="unbounded">
+                          <xs:annotation>
+                              <xs:documentation>SupplierLocator to be added to the host for Air Passive.</xs:documentation>
+                          </xs:annotation>
+                     </xs:element>
+                </xs:sequence>
+                <xs:sequence>
+                    <xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode" use="required">
+                <xs:annotation>
+                        <xs:documentation>This represents a Passive Reservation Locator Code</xs:documentation>
+                 </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>BookingTravelerRef will be used to specify BookingTraveler in UR. Currently this will be used to add TravelComplianceData. Later this can used for other elements which are associated with BookngTraveler.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+   
+       <xs:element name="PassiveDelete">
+            <xs:complexType>
+                <xs:attribute name="ReservationLocatorCode"
+                    type="common:typeLocatorCode" use="required" />
+                <xs:attribute name="Element" type="common:typeElement"
+                    use="required" />
+                <xs:attribute name="Key" type="common:typeRef"
+                    use="optional" />
+            </xs:complexType>
+        </xs:element> 
+       
+        <xs:element name="HotelAdd">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:LoyaltyCard" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:Guarantee" minOccurs="0" />                
+                <xs:element ref="hotel_v26_0:GuestInformation" minOccurs="0" />                
+                <xs:element ref="hotel_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:BookingSource" minOccurs="0"
+                    maxOccurs="1" />                
+                <xs:element ref="hotel_v26_0:HotelSpecialRequest" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="1" />     
+                <xs:element ref="common:ReservationName" minOccurs="0" maxOccurs="1" />  
+                <xs:element ref="common:ThirdPartyInformation" minOccurs="0"/>   
+                <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>BookingTravelerRef will be used to specify BookingTraveler in UR. Currently this will be used to LoyaltyCard modification. Later this can used for other elements which are associated with BookngTraveler.</xs:documentation>
+                 </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelUpdate">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:LoyaltyCard" minOccurs="0"
+                    maxOccurs="unbounded"/>
+                <xs:element ref="common:Guarantee" minOccurs="0" />                
+                <xs:element ref="hotel_v26_0:GuestInformation" minOccurs="0" />                
+                <xs:element ref="hotel_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:BookingSource" minOccurs="0" maxOccurs="1" />                
+                <xs:element ref="hotel_v26_0:HotelSpecialRequest" minOccurs="0" maxOccurs="1" />                
+                <xs:element ref="hotel_v26_0:HotelRateInfo"/>                
+                <xs:element ref="hotel_v26_0:HotelStay"/>
+                <xs:element ref="hotel_v26_0:HotelCommission" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="1" />                
+                <xs:element ref="common:ReservationName" minOccurs="0" maxOccurs="1" /> 
+                <xs:element ref="common:ThirdPartyInformation" minOccurs="0"/>    
+                <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>         
+            </xs:choice>
+            <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode"
+                use="required" />
+            <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>BookingTravelerRef will be used to specify BookingTraveler in UR. Currently this will be used to LoyaltyCard modification. Later this can used for other elements which are associated with BookngTraveler.</xs:documentation>
+                 </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelDelete">
+        <xs:complexType>
+            <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode"
+                use="required" />
+            <xs:attribute name="Element" type="common:typeElement"
+                use="required" />
+            <xs:attribute name="Key" type="common:typeRef" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="UniversalAdd">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:AccountingRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:GeneralRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:OSI" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:UnassociatedRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:XMLRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:Postscript" minOccurs="0" maxOccurs="1"/>    
+                <xs:element ref="common:BookingTravelerInfo"
+                    minOccurs="0" maxOccurs="1" />
+                <xs:element ref="common:ServiceFeeInfo"
+                    minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element ref="common:LinkedUniversalRecord"
+                    minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:AgencyContactInfo"
+                    minOccurs="0" maxOccurs="1" />
+                <xs:element ref="common:CustomerID" 
+                    minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:CommissionRemark" 
+                minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:ConsolidatorRemark" 
+                    minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:InvoiceRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:ActionStatus" minOccurs="0"/>
+                 <xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                        <xs:documentation>
+                            Element to add Review booking to a PNR .
+                        </xs:documentation>
+                    </xs:annotation>
+                    </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalUpdate">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:AccountingRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:GeneralRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:OSI" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:UnassociatedRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:XMLRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:Postscript" minOccurs="0" maxOccurs="1"/> 
+                <xs:element ref="common:BookingTravelerInfo"
+                    minOccurs="0" maxOccurs="1" />
+                <xs:element ref="common:ServiceFeeInfo"
+                    minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Status" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Flag that determines whether UR and History
+                            are accessible.
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Archived" />
+                            <xs:enumeration value="Retained" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="common:AgencyContactInfo"
+                    minOccurs="0" maxOccurs="1" />
+                <xs:element ref="common:CustomerID" 
+                    minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:CommissionRemark" 
+                minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:ConsolidatorRemark" 
+                    minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="common:InvoiceRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:ActionStatus" minOccurs="0"/>
+                <xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                        <xs:documentation>
+                            Element to Update an existing Review booking of a PNR .
+                        </xs:documentation>
+                    </xs:annotation>
+                    </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalDelete">
+        <xs:complexType>
+            <xs:attribute name="Element" type="common:typeElement"
+                use="required" />
+            <xs:attribute name="Key" type="common:typeRef"
+                use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AirDelete">
+        <xs:complexType>
+            <xs:attribute name="ReservationLocatorCode"
+                type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="Element" type="common:typeElement"
+                use="required" />
+            <xs:attribute name="Key" type="common:typeRef"
+                use="optional" />
+            <xs:attribute name="BookingTravelerRef"
+                type="common:typeRef" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AirAdd">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:AccountingRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:SupplierLocator" minOccurs="0" maxOccurs="unbounded" />                 
+                <xs:element ref="air_v26_0:AirSegment" minOccurs="0" maxOccurs="unbounded" />                
+                <xs:element ref="air_v26_0:AirPricingInfo" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:CreditCardAuth" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:DeliveryInfo" minOccurs="0" />
+                <xs:element ref="common:FormOfPayment" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:Payment" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:SSR" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:LoyaltyCard" minOccurs="0"
+                    maxOccurs="unbounded" />                
+                <xs:element ref="air_v26_0:AutoSeatAssignment" minOccurs="0" />                
+                <xs:element ref="air_v26_0:SpecificSeatAssignment" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:GeneralRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                               
+                <xs:element ref="air_v26_0:FeeInfo" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:HostToken" minOccurs="0"
+                    maxOccurs="unbounded" />                
+                <xs:element ref="air_v26_0:AirPricingTicketingModifiers" maxOccurs="unbounded"/>                
+                <xs:element ref="air_v26_0:OptionalServicesInfo" minOccurs="0"/>                
+                <xs:element ref="air_v26_0:AirPricingPayment" minOccurs="0" />                
+                <xs:element ref="air_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element ref="air_v26_0:PocketItineraryRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element ref="air_v26_0:AirSegmentPricingModifiers" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attribute name="ReservationLocatorCode"
+                type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="BookingTravelerRef"
+                type="common:typeRef" use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AirUpdate">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:AccountingRemark" minOccurs="0"
+                    maxOccurs="unbounded" />
+                               
+                <xs:element ref="air_v26_0:AirSegment" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:CreditCardAuth" minOccurs="0"
+                    maxOccurs="unbounded" />                
+                <xs:element ref="air_v26_0:AirPricingAdjustment" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="air_v26_0:AirPricingTicketingModifiers" maxOccurs="unbounded">
+                   <xs:annotation>
+                      <xs:documentation>Ticketing modifiers to be updated.</xs:documentation>
+                   </xs:annotation>
+                   </xs:element>
+                <xs:element ref="common:DeliveryInfo" minOccurs="0" />
+                <!-- TODO: -->
+                <!--<xs:element ref="CancelAndRebook" minOccurs="0"/>-->
+                <xs:element ref="AirSegmentSpecialUpdate" minOccurs="0" />
+                <xs:element ref="common:LoyaltyCard" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:SSR" minOccurs="0"
+                    maxOccurs="unbounded" />
+                <xs:element ref="common:GeneralRemark" minOccurs="0"
+                    maxOccurs="unbounded" />                
+                <xs:element ref="air_v26_0:AutoSeatAssignment" minOccurs="0" />                
+                <xs:element ref="air_v26_0:SpecificSeatAssignment" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:FormOfPayment" minOccurs="0"
+                    maxOccurs="unbounded" />                
+                <xs:element ref="air_v26_0:AirPricingPayment" minOccurs="0" />                
+                <xs:element ref="air_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element ref="air_v26_0:PocketItineraryRemark" minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element ref="air_v26_0:OptionalServicesInfo" minOccurs="0"/>
+                <xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:choice>
+            <xs:attribute name="ReservationLocatorCode"
+                type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="BookingTravelerRef"
+                type="common:typeRef" use="optional" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AirSegmentSpecialUpdate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>                    
+                    <xs:element ref="air_v26_0:AirSegment" />
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="Action" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="ApproveScheduleChange" />
+                        <xs:enumeration
+                            value="ApproveScheduleChangeOverrideMCT" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="VehicleDelete">
+        <xs:complexType>
+            <xs:attribute name="ReservationLocatorCode"
+                type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="Element" type="common:typeElement"
+                use="required" />
+            <xs:attribute name="Key" type="common:typeRef"
+                use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleAdd">
+      <xs:complexType>
+         <xs:choice>
+            <xs:element ref="common:LoyaltyCard" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="common:DriversLicense" minOccurs="0" />            
+            <xs:element ref="vehicle_v26_0:VehicleSpecialRequest" minOccurs="0"/>
+            <xs:element ref="common:SpecialEquipment" minOccurs="0" maxOccurs="5"/>            
+            <xs:element ref="vehicle_v26_0:PaymentInformation" minOccurs="0"/>
+            <xs:element ref="common:Guarantee" minOccurs="0"/>
+            <xs:element ref="common:BookingSource" minOccurs="0"/>            
+            <xs:element ref="vehicle_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>            
+            <xs:element ref="vehicle_v26_0:DeliveryAddress" minOccurs="0"/>            
+            <xs:element ref="vehicle_v26_0:CollectionAddress" minOccurs="0"/>
+            <xs:element ref="common:ThirdPartyInformation" minOccurs="0"/>
+            <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>            
+         </xs:choice>
+         <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode" use="required"/>
+         <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>BookingTravelerRef will be used to specify BookingTraveler in UR. Currently this will be used to LoyaltyCard modification. Later this can used for other elements which are associated with BookngTraveler.</xs:documentation>
+                 </xs:annotation>
+          </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+    <xs:element name="VehicleUpdate">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:LoyaltyCard" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:DriversLicense" minOccurs="0" />
+                <xs:element ref="common:Guarantee" minOccurs="0"/>
+                <xs:element ref="common:BookingSource" minOccurs="0"/>                
+                <xs:element ref="vehicle_v26_0:VehicleRateInfo" minOccurs="0"/>                        
+                <xs:element ref="vehicle_v26_0:PaymentInformation" minOccurs="0"/>                
+                <xs:element ref="vehicle_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>                
+                <xs:element ref="vehicle_v26_0:VehicleSpecialRequest" minOccurs="0"/>                
+                <xs:element ref="vehicle_v26_0:DeliveryAddress" minOccurs="0"/>                
+                <xs:element ref="vehicle_v26_0:CollectionAddress" minOccurs="0"/>                
+                <xs:element ref="vehicle_v26_0:VehicleReturnDateLocation" minOccurs="0"/>                
+                <xs:element ref="vehicle_v26_0:VehiclePickupDateLocation" minOccurs="0"/>
+                <xs:element ref="common:ThirdPartyInformation" minOccurs="0">
+                   <xs:annotation>
+                      <xs:documentation>Third party supplier locator information. Specifically applicable for SDK booking. Previously saved values can be updated for SupplierCode, SupplierName and SupplierLocatorCode. If an attribute is not passed here, then previously saved value for that attribute will be deleted.</xs:documentation>
+                   </xs:annotation>
+                </xs:element>
+                <xs:element ref="common:TravelComplianceData" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="vehicle_v26_0:VehicleTypeIdentifier" minOccurs="0"/>
+            </xs:choice>
+            <xs:attribute name="ReservationLocatorCode"
+                type="common:typeLocatorCode" use="required" />
+            <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>BookingTravelerRef will be used to specify BookingTraveler in UR. Currently this will be used to LoyaltyCard modification. Later this can used for other elements which are associated with BookngTraveler.</xs:documentation>
+                 </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Modifiers ***-->
+    <xs:element name="ProviderReservationSearchModifiers">
+        <xs:annotation>
+            <xs:documentation>
+                Controls and switches for the PNR Search request.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="IncludeAllNames" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        If true, include all the passenger names in the
+                        results. Otherwise include only the name of the
+                        primary passenger.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="IncludeAgentInfo" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Include information about the agent who created,
+                        modified or ticketed the PNR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MaxResults" use="optional" type="common:typeMaxResults" default="20"/>
+            <xs:attribute name="StartFromResult" use="optional" type="common:typeStartFromResult"
+                default="1"/>
+            <xs:attribute name="ExcludeAir" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Exclude Air reservations from the results
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ExcludeVehicle" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Exclude Vehicle reservations from the results
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ExcludeHotel" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Exclude Hotel reservations from the results
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ExcludeGround" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Exclude Ground reservations from the results
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <!--*** Shared Data Types ***-->
+    
+    <xs:complexType name="typeProductInfo">
+      <xs:annotation>
+         <xs:documentation>Information on the product type and its provider
+            </xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ProductType" type="common:typeProduct" use="required">
+         <xs:annotation>
+            <xs:documentation>The type of product returned
+                </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="xs:string" use="optional">
+         <xs:annotation>
+            <xs:documentation>The code of the vendor. For Air, Car and Hotel this will be an IATA vendor code.
+                </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProviderCode" type="xs:string" use="required"/>
+      <xs:attribute name="ProviderLocatorCode" type="xs:string" use="required"/>
+   </xs:complexType>
+   
+    <xs:simpleType name="typeReservationTicketed">
+        <xs:annotation>
+            <xs:documentation>
+                Information on whether the reservation is ticketed
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Yes" />
+            <xs:enumeration value="No" />
+            <xs:enumeration value="Not Applicable" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="typeExternalSearchIndex">
+        <xs:annotation>
+            <xs:documentation>
+                This index is used for retrieving locator code from GDS.
+                Provider specific info that can be used to help identify
+                a record if no ProviderLocatorCode is known
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string" />
+    </xs:simpleType>
+
+    <xs:element name="SearchAgent">
+        <xs:annotation>
+            <xs:documentation>
+                Search restriction by Agent
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="BranchId" minOccurs="0"
+                    maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="CreatedByAgent" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Agent ID that created a PNR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ModifiedByAgent" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Agent ID that modified a PNR last.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="TicketedByAgent" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Agent ID that ticketed a PNR.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SearchAccount">
+        <xs:annotation>
+            <xs:documentation>
+                Search restriction by Account
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="ClientID" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Identifier of the corporation this account is
+                        for.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="BranchID" type="common:typeBranchId"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Account Branch ID.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BranchId" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>
+                Branch ID to restrict search.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <xs:simpleType name="typeHistoryAction">
+        <xs:annotation>
+            <xs:documentation>
+                Defines the list of available data types for
+                UniversalRecord History actions
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AirAdd" />
+            <xs:enumeration value="AirCancel" />
+            <xs:enumeration value="AirCreate" />
+            <xs:enumeration value="AirDelete" />
+            <xs:enumeration value="AirUpdate" />
+            <xs:enumeration value="HotelAdd" />
+            <xs:enumeration value="HotelCancel" />
+            <xs:enumeration value="HotelCreate" />
+            <xs:enumeration value="HotelDelete" />
+            <xs:enumeration value="HotelUpdate" />
+            <xs:enumeration value="Import" />
+            <xs:enumeration value="Sync" />
+            <xs:enumeration value="URAdd" />
+            <xs:enumeration value="URDelete" />
+            <xs:enumeration value="URUpdate" />
+            <xs:enumeration value="URCancel" />
+            <xs:enumeration value="URCreate" />
+            <xs:enumeration value="VehicleAdd" />
+            <xs:enumeration value="VehicleCancel" />
+            <xs:enumeration value="VehicleCreate" />
+            <xs:enumeration value="VehicleDelete" />
+            <xs:enumeration value="VehicleUpdate" />
+            <xs:enumeration value="PassiveCreate"/>
+            <xs:enumeration value="PassiveCancel"/>
+            <xs:enumeration value="PassiveAdd" />  
+            <xs:enumeration value="PassiveDelete" />  
+            <xs:enumeration value="Ticketing"/>  
+            <xs:enumeration value="ETRSync"/>
+            <xs:enumeration value="AirRefund" />  
+            <xs:enumeration value="RailCreate" />          
+            <xs:enumeration value="RailCancel" />          
+            <xs:enumeration value="RailModify" />
+            <xs:enumeration value="AirExchange" />
+            <xs:enumeration value="Issue" />
+            <xs:enumeration value="URModify" />
+            <xs:enumeration value="GdsQueuePlace"/>
+            <xs:enumeration value="GdsQueueRemove"/>
+            <xs:enumeration value="VoidTkt"/>
+            <xs:enumeration value="AirMerchandisingFulfillment"/>
+            <xs:enumeration value="EMDRetrieve"/>
+            <xs:enumeration value="EMDIssue"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="UniversalRecordHistorySearchResult">
+        <xs:annotation>
+            <xs:documentation>
+                Container for Universal Record history result.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Old" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Representation of the element before the
+                            modification took place.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="New" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Representation of the element after the
+                            modification took place.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ModifiedBy" type="xs:string"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The agent or entity that performed the
+                        modification
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ModifiedDate" type="xs:string"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        When the Universal Record was modified.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ElementType" type="xs:string"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The type of element that was added or deleted
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Action" type="typeHistoryAction"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The action that was taken on the defined element
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="TransactionId" type="xs:string" use="optional">
+                <xs:annotation>
+                     <xs:documentation>
+                        System generated unique identifier for this atomic transaction. Travelport Internal Usage Only.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UniversalRecordHistorySearchModifiers">
+        <xs:annotation>
+            <xs:documentation>
+                Controls and switches for the Universal Record history
+                request.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ElementType" type="xs:string"
+                    minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The Type of History that is to be searched
+                            for.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:choice minOccurs="0">
+                    <xs:element name="ModifiedDate" type="xs:date">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Only search for modifications that
+                                occured on that date.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ModifiedRange">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Only search for modifications that
+                                occured between the two dates
+                                (inclusive).
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="ModifiedStart"
+                                    type="xs:date" />
+                                <xs:element name="ModifiedEnd"
+                                    type="xs:date" />
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+           <xs:attribute name="MaxResults" type="common:typeMaxResults"
+                use="optional" default="20"/>
+            <xs:attribute name="StartFromResult" type="common:typeStartFromResult" use="optional"
+                default="1"/>
+            <xs:attribute name="ModifiedBy">
+                <xs:annotation>
+                    <xs:documentation>
+                        Agent code that modified the Universal Record
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DebugMode" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                     <xs:documentation>
+                        Returns Debug info. Travelport Internal Usage Only.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SegmentContinuityInfo">
+        <xs:annotation>
+            <xs:documentation>This container holds Arnks and segment continuity remarks</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ArvlUnknSegment" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="ContinuityOverrideRemark" minOccurs="0" maxOccurs="unbounded" />    
+            </xs:sequence>
+            <xs:attribute name="ArrivalUnknownSegmentCount" type="xs:integer" use="optional"/>
+        </xs:complexType>
+    </xs:element> 
+       
+    <xs:element name="ArvlUnknSegment">
+        <xs:annotation>
+            <xs:documentation>An ARNK segment that identifies a missing travel information</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+                <xs:sequence>
+                     <xs:element name="BookingTravelerRef" minOccurs="0" maxOccurs="255">
+                         <xs:annotation>
+                            <xs:documentation>Reference Element for Booking Traveler</xs:documentation>
+                        </xs:annotation>
+                         <xs:complexType>                        
+                            <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                        </xs:complexType>
+                     </xs:element>
+                </xs:sequence>
+                <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                <xs:attribute name="Origin" type="common:typeIATACode" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The IATA CITY code for this origination of this entity.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="Destination" type="common:typeIATACode" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>
+                            The IATA CITY code for this destination of this entity.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>    
+                <xs:attribute name="TravelOrder" type="xs:integer" use="optional">
+                <xs:annotation>
+                    <xs:documentation>To identify the appropriate travel sequence for Air/Car/Hotel segments/reservations based on travel dates. This ordering is applicable across the UR not provider or traveler specific</xs:documentation>
+                </xs:annotation>
+                </xs:attribute>                                
+        </xs:complexType>        
+    </xs:element>
+   
+    <xs:element name="ContinuityOverrideRemark">
+        <xs:annotation>
+            <xs:documentation>A textual remark container to hold any printable text. (max 512 chars)</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="Category" use="optional" default="MCT">
+                    <xs:annotation>
+                            <xs:documentation>This is remark category is always MCT. 'Minimum Connect Time'</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="10"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="BaseSearchModifiers">
+      <xs:annotation>
+      <xs:documentation>Controls and switches for the Universal Record Search and Saved Trip search request.</xs:documentation>
+      </xs:annotation>
+        <xs:sequence>
+            <xs:element name="TravelDate" type="typeDateSpec" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Matched with flight departure date or hotel check-in date or vehicle pick-up date. For Rail, travel date should be between journey start and end dates, Cannot be combined with any date in product level ReservationCriteria</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="IncludeAllNames" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+               <xs:documentation>
+                        If true, include all the passenger names in the results. Otherwise include only the name of the primary passenger.
+                    </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="IncludeAgentInfo" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+               <xs:documentation>
+                        Include information about the agent who created, modified or ticketed the Universal Record.
+                    </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="MaxResults" use="optional" type="common:typeMaxResults" default="20"/>
+         <xs:attribute name="StartFromResult" use="optional" type="common:typeStartFromResult"/>
+         <xs:attribute name="ExcludeAir" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+               <xs:documentation>
+                        Exclude Air reservations from the results
+                    </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="ExcludeVehicle" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+               <xs:documentation>Exclude Vehicle reservations from the results</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="ExcludeHotel" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+               <xs:documentation>Exclude Hotel reservations from the results.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+    </xs:complexType>
+    <xs:element name="UniversalRecordSearchModifiers">
+      <xs:annotation>
+         <xs:documentation>Controls and switches for the Universal Record Search request.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+        <xs:complexContent>
+            <xs:extension base="BaseSearchModifiers"/>
+        </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+     <xs:element name="TravelerCriteria"> 
+     <xs:annotation>
+        <xs:documentation>Criteria for Searching misc traveler information</xs:documentation>
+     </xs:annotation>
+     <xs:complexType>
+       <xs:choice>
+          <xs:annotation>
+              <xs:documentation>Specifies Search Criteria as either Travler Name Details or Traveler Applied Profile Id</xs:documentation>
+          </xs:annotation>
+           <xs:element ref="NameCriteria" minOccurs="0" />
+           <xs:element ref="AppliedProfileCriteria" minOccurs="0"/>
+         </xs:choice>
+        <xs:attribute name="PhoneNumber" type="xs:string" use="optional">
+           <xs:annotation>
+              <xs:documentation>To Search for Phone Number match</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="VIPOnly" type="xs:boolean" use="optional">
+           <xs:annotation>
+              <xs:documentation>To Search for VIP traveler</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>
+     </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="NameCriteria">
+       <xs:annotation>
+           <xs:documentation>Traveler First Name and Last Name for Searching misc traveler information</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+          <xs:attribute name="FirstName">
+              <xs:annotation>
+                 <xs:documentation>Search with Traveler First Name</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+              <xs:restriction base="xs:string">
+                    <xs:maxLength value="30"/>
+                    <xs:minLength value="1"/>
+              </xs:restriction>
+           </xs:simpleType>
+           </xs:attribute>
+           <xs:attribute name="LastName">
+              <xs:annotation>
+                 <xs:documentation>Search with Traveler Last Name</xs:documentation>
+              </xs:annotation>
+                          <xs:simpleType>
+              <xs:restriction base="xs:string">
+                    <xs:maxLength value="30"/>
+                    <xs:minLength value="1"/>
+              </xs:restriction>
+           </xs:simpleType>
+           </xs:attribute>
+        </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="AppliedProfileCriteria">
+     <xs:annotation>
+         <xs:documentation>Traveler Applied Profile Id for Searching misc traveler information</xs:documentation>
+     </xs:annotation>
+     <xs:complexType>
+         <xs:attribute name="TravelerProfileId">
+             <xs:annotation>
+                 <xs:documentation>Search with Traveler Applied Profile Id</xs:documentation>
+             </xs:annotation>
+             <xs:simpleType>
+                <xs:restriction base="common:typeProfileID"/>
+             </xs:simpleType>
+     </xs:attribute>
+     </xs:complexType>
+  </xs:element>
+  
+    
+   <xs:element name="UniversalRecordSearchResult">
+      <xs:annotation>
+         <xs:documentation>Container for reservations that match the search criteria
+            </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="ProductInfo" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="typeProductInfo">
+                        <xs:sequence>
+                           <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="UniversalRecordLocatorCode" type="xs:string" use="optional"/>
+         <xs:attribute name="EarliestTravelDate" type="xs:string" use="optional">
+            <xs:annotation>
+               <xs:documentation>The date on which th earliest travel can occur
+                    </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="CreatedDate" type="xs:string" use="optional">
+            <xs:annotation>
+               <xs:documentation>The date the resevation record was created
+                    </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="SavedTripLocatorCode" type="common:typeLocatorCode" use="optional">
+            <xs:annotation>
+               <xs:documentation>Locator Code of the Saved Trip that is associated to the Universal Record.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+               <xs:attribute name="Ticketed" type="typeReservationTicketed" use="optional">
+         <xs:annotation>
+            <xs:documentation>If the universal record is ticketed or not or partially ticketed </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="RecordStatus" type="common:typeRecordStatus" use="optional">
+        <xs:annotation>
+            <xs:documentation>Status of Universal Record e.g. Current,Past,Cancelled</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TicketStatus" type="common:URTicketStatus" use="optional">
+         <xs:annotation>
+            <xs:documentation>If the universal record is ticketed or not or partially ticketed </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   <xs:complexType name="typeDateSpec">
+        <xs:annotation>
+            <xs:documentation>Specifies dates as either specific date or a date range</xs:documentation>
+        </xs:annotation>
+        <xs:choice>
+            <xs:element name="DateRange" type="common:typeDateRange" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SpecificDate" type="xs:date" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:element name="SavedTrip">
+        <xs:annotation>
+            <xs:documentation>SavedTrip holds a draft Itinerary/booking which can be used at later point of time to do a booking.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <!--  Common information. -->
+                <xs:element ref="common:BookingTraveler" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element ref="common:AgencyContactInfo" minOccurs="0"/>
+                <xs:element ref="common:SearchPassenger" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:PointOfSale" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:AccountingRemark" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element ref="common:GeneralRemark" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:AgencyInfo" minOccurs="0" />
+                <xs:element ref="common:ReservationName" minOccurs="0" />
+                
+                <!--  Air related information -->
+                <xs:choice>                    
+                    <xs:element ref="air_v26_0:AirPricingModifiers" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="air_v26_0:AirPricingSolution" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>                                
+                <!--  Vehicle related information -->               
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:VehicleSearchModifiers" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>                
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:VehicleDateLocation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>                
+                
+                <xs:element ref="common:SpecialEquipment" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:VehicleSpecialRequest" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:PaymentInformation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                   
+                    <xs:element ref="vehicle_v26_0:DeliveryAddress" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:CollectionAddress" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:FlightArrivalInformation" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="vehicle_v26_0:Vehicle" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+
+                <!--  Hotel related information -->
+                <xs:element ref="common:VendorLocation" minOccurs="0" maxOccurs="unbounded"/>
+                
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:HotelProperty" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:HotelStay" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:HotelRulesModifiers" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:HotelDetailsModifiers" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:HotelRateDetail" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="hotel_v26_0:PromotionCode" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <!-- Rail related information -->               
+                <xs:choice>                    
+                    <xs:element ref="rail_v26_0:RailPricingSolution" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                <xs:choice>                    
+                    <xs:element ref="rail_v26_0:RailFareNote" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:choice>
+                
+                <!--  SavedTrip specific -->
+                <xs:element ref="SavedTripNote" minOccurs="0" maxOccurs="3"/>
+                <xs:element ref="SavedTripActivity" minOccurs="0" maxOccurs="unbounded"/>
+                <!-- Profile Information -->
+                <xs:element ref="ProfileAssociation" minOccurs="0" maxOccurs="unbounded"/>
+                <!--  Policy Information -->
+                <xs:element ref="PolicyInformation" minOccurs="0" maxOccurs="1"/>           
+            </xs:sequence>
+            <xs:attribute name="LocatorCode" type="common:typeLocatorCode" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Alpha numeric String to identify a SavedTrip uniquely.</xs:documentation>
+                </xs:annotation>                
+            </xs:attribute>
+            <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Alpha numeric String to identify a the UniversalRecord created using this SavedTrip.</xs:documentation>
+                </xs:annotation>                
+            </xs:attribute>            
+            <xs:attribute name="Name"  use="required">
+                <xs:annotation>
+                    <xs:documentation>Name of the Saved Trip.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50"/>
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>                
+            </xs:attribute>
+            <xs:attribute name="CreateDate" type="xs:dateTime" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The date and time that this SavedTrip was created.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+           <xs:attribute name="ModifiedDate" type="xs:dateTime" use="optional">
+            <xs:annotation>
+               <xs:documentation>The date and time that this SavedTrip was Modified.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Version" type="common:typeURVersion" use="optional" />
+         <xs:attribute name="Status" use="required" type="typeURStatus"/>
+         <xs:attribute name="CreatedByAgent" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The Agent Code who created the SavedTrip.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ModifiedByAgent" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The Agent Code that modified the SavedTrip.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>            
+        </xs:complexType>
+    </xs:element>   
+    <xs:element name="SavedTripNote">
+        <xs:complexType>
+            <xs:attribute name="Text" use="required">
+                <xs:annotation>
+                    <xs:documentation>Custom free Text related to SavedTrip.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="333"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripActivity">
+        <xs:annotation>
+            <xs:documentation>This element ties together related objects for a saved trip.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="BookingTravelerRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the associated travelers.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SearchPassengerRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the associated travelers.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PointOfSaleRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the point of sale present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AccountingRemarkRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the AccountingRemark present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GeneralRemarkRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the GeneralRemark present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <!--  Air related information -->
+                <xs:element name="AirPricingModifierRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the Air Pricing modifier present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AirPricingSolutionRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the air pricing solution present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <!--  Vehicle related information -->
+                <xs:element name="VehicleSearchModifiersRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the VehicleSearchModifiers present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="VehicleDateLocationRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the VehicleDateLocation present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SpecialEquipmentRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the SpecialEquipment present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="VehicleSpecialRequestRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the VehicleSpecialRequest present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PaymentInformationRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the PaymentInformation present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DeliveryAddressRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the DeliveryAddress present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="CollectionAddressRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the CollectionAddress present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="FlightArrivalInformationRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the FlightArrivalInformation present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="VehicleRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the Vehicle present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <!--  Hotel related information -->
+                <xs:element name="VendorLocationRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the VendorLocation present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HotelPropertyRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the HotelProperty present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HotelStayRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the HotelStay present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HotelRulesModifiersRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the HotelRulesModifiers present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HotelDetailsModifiersRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the HotelDetailsModifiers present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="HotelRateDetailRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the HotelRateDetail present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PromotionCodeRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the PromotionCode present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <!--  Rail related information -->
+                <xs:element name="RailPricingSolutionRef" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Reference to the rail pricing solution present in the saved trip.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Key" type="common:typeRef" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Type" use="required">
+                <xs:annotation>
+                    <xs:documentation>Service which is the source for the references present in this element.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="LowFareSearch"/>
+                        <xs:enumeration value="AirPrice"/>
+                        <xs:enumeration value="VehicleSearchAvailability"/>
+                        <xs:enumeration value="VehicleBook"/>
+                        <xs:enumeration value="HotelDetailsSearch"/>
+                        <xs:enumeration value="HotelRulesSearch"/>
+                        <xs:enumeration value="HotelSearch"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProfileAssociation">
+        <xs:annotation>
+            <xs:documentation>Profile information associated with
+                SavedTrip.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="TravelerID" type="common:typeRef"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>Traveler ID associated with saved Trip.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="BookingTravelerRef" type="common:typeRef"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>Booking Traveler associated with Profile.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>         
+        </xs:complexType>
+    </xs:element>   
+    <xs:element name="PolicyInformation">
+        <xs:annotation>
+            <xs:documentation>Policy information associated with SavedTrip.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AirPolicy" type="typeSegmentPolicy"
+                    minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="RailPolicy" type="typeSegmentPolicy"
+                    minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="HotelPolicy" type="typeSegmentPolicy"
+                    minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="VehiclePolicy" type="typeSegmentPolicy"
+                    minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="BookingTravelerRef" type="common:typeRef"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>Booking Traveler associated to this policy
+                        information.</xs:documentation>
+
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="typeSegmentPolicy">
+        <xs:sequence>
+            <xs:element ref="Preference" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="SegmentRef" use="required" type="common:typeRef">
+            <xs:annotation>
+                <xs:documentation>Reference to the original segment.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="InPolicy" type="xs:boolean" use="optional"
+            default="true">
+            <xs:annotation>
+                <xs:documentation>Determine if this segment is In or Out of
+                    policy. By default it is InPolicy.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="InContract" type="xs:boolean" use="optional"
+            default="true">
+            <xs:annotation>
+                <xs:documentation>Determine if this segment is In or Out of
+                    contract. By default it is InContract.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:element name="Preference">
+        <xs:annotation>
+            <xs:documentation>Preferences of the segment related to
+                the profile (Agent, Branch, etc.).</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Owner" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Traveler" />
+                        <xs:enumeration value="Account" />
+                        <xs:enumeration value="Agent" />
+                        <xs:enumeration value="Branch" />
+                        <xs:enumeration value="Agency" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>             
+        </xs:complexType>
+    </xs:element>        
+    <xs:simpleType name="typeURStatus">
+        <xs:annotation>
+            <xs:documentation>Status of the UniversalRecord or the SavedTrip.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Active" />
+            <xs:enumeration value="Archived" />
+            <xs:enumeration value="Retained" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:element name="SavedTripSearchModifiers">
+      <xs:annotation>
+         <xs:documentation>Controls and switches for the SavedTrip Search request.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+        <xs:complexContent>
+            <xs:extension base="BaseSearchModifiers">
+                <xs:attribute name="SavedTripName" type="xs:string" use="optional">
+                   <xs:annotation>
+                      <xs:documentation>Represents name of a savedTrip.</xs:documentation>
+                   </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ExcludeURAssociated" type="xs:boolean" use="optional" default="true">
+                   <xs:annotation>
+                      <xs:documentation>Exclude SavedTrips associated with a UniversalRecord.</xs:documentation>
+                   </xs:annotation>
+                </xs:attribute> 
+            </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+
+   <xs:element name="SavedTripSearchResult">
+      <xs:annotation>
+         <xs:documentation>Container for SavedTrp that match the search criteria
+            </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ProductInfo" minOccurs="0" maxOccurs="unbounded">
+               <xs:complexType>
+                  <xs:complexContent>
+                     <xs:extension base="typeSavedTripProductInfo">
+                        <xs:sequence>
+                           <xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                     </xs:extension>
+                  </xs:complexContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+        <xs:attribute name="EarliestTravelDate" type="xs:string" use="optional">
+           <xs:annotation>
+              <xs:documentation>The date on which the earliest travel can occur.</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CreatedDate" type="xs:string" use="optional">
+           <xs:annotation>
+              <xs:documentation>The date the SavedTrip was created.</xs:documentation>
+           </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="SavedTripName" type="xs:string" use="required"/>
+        <xs:attribute name="LocatorCode" type="common:typeLocatorCode" use="required"/>
+        <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+
+   <xs:complexType name="typeSavedTripProductInfo">
+      <xs:annotation>
+         <xs:documentation>Information on the product type and its provider
+            </xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ProductType" type="common:typeProduct" use="required">
+         <xs:annotation>
+            <xs:documentation>The type of product returned
+                </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="xs:string" use="required">
+         <xs:annotation>
+            <xs:documentation>The code of the vendor. For Air, Car and Hotel this will be an IATA vendor code.
+                </xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProviderCode" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:group name="SearchCriteriaGroup">
+        <xs:annotation>
+            <xs:documentation>Common search criteria for searching both UniversalRecord and SavedTrip.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="TravelerCriteria" minOccurs="0" />
+            <xs:element ref="SearchAgent" minOccurs="0" />
+            <xs:element ref="AirReservationCriteria" minOccurs="0" />
+            <xs:element ref="HotelReservationCriteria" minOccurs="0" />
+            <xs:element ref="VehicleReservationCriteria" minOccurs="0" />
+            <xs:element ref="RailReservationCriteria" minOccurs="0" />  
+        </xs:sequence>
+    </xs:group> 
+    
+    <xs:simpleType name="typeSavedTripRecordStatus">
+        <xs:annotation>
+            <xs:documentation>
+                Specifies the status of the Saved Trip record.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="All" />
+            <xs:enumeration value="Past" />
+            <xs:enumeration value="Current" />
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
+    <xs:element name="ProviderReservationDetails">
+        <xs:annotation>
+            <xs:documentation>Indicates the type of content in PNR,to retrieve the display only content use ProviderReservationDisplayDetailsReq</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="attrProviderReservationDetails"/>
+        </xs:complexType>
+   </xs:element>
+    
+    <xs:attributeGroup name="attrProviderReservationDetails">
+        <xs:attribute name="ProviderReservationDetail" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Provider Reservation data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CustomCheck" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Custom check data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ReviewBooking" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Review booking data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ProviderProfile" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Provider Profile data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="DivideDetails" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Divide Details data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="EnhancedItinModifiers" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Enhanced itinerary modifiers data exists</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="IntegratedContent" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Integrated content data exists</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Cruise" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Cruise data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="MCO" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>MCO data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="RailSegment" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Rail Segment data exists.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    
+     <xs:element name="ExternalReservationInfo">
+        <xs:annotation>
+            <xs:documentation>Contains the details of the External PNR from which current PNR has neen copied. External PNR may reside in other gds system.This is a specific JAL functionality. PROVIDER SUPPORTED: JAL.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="LocatorCode" type="common:typeLocatorCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>Locator Code of the External PNR.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Carrier" type="common:typeCarrier" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Carrier associated with the External PNR.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:simpleType name="typeDisplayDetailName">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="OwningAgencyPCC">
+            <xs:annotation>
+              <xs:documentation>
+                 The pseudo city code of the agency owning the PNR 
+             </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>   
+         <xs:enumeration value="CreatingAgentSignOn">
+            <xs:annotation>
+                <xs:documentation>
+                    Sign on code of the agent created the PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CreatingAgentDuty">
+            <xs:annotation>
+                <xs:documentation>
+                    Duty code of the agent created the PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="CreatingAgencyIATA">
+            <xs:annotation>
+                <xs:documentation>
+                    IATA number of the agency  created the PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="PrepaidTicketAdviceIndicator">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates whether Prepaid Ticket Advice is attached to PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="BFBorrowed">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates the current PNR as borrowed
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="GlobalPNR">
+            <xs:annotation>
+                <xs:documentation>
+                     Indicates whether current PNR is Global PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="ReadOnlyPNR">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates PNR as read only
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="PastDateQuickRetrievedPNR">
+            <xs:annotation>
+                <xs:documentation>
+                     Indicates PNR retrieved from offline archival process                 
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="SuperPNR">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates whether current PNR is Super PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="PNRPurgeDate">
+            <xs:annotation>
+                <xs:documentation>
+                    Purge date of the PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="OriginalReceivedFieldValue">
+            <xs:annotation>
+                <xs:documentation>
+                    The original data in the received field
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="DivPsgrName">
+            <xs:annotation>
+                <xs:documentation>
+                    Passenger Name in a divided PNR
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="TruncInd">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicator for Truncated names
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+         <xs:enumeration value="DivTypeInd">
+            <xs:annotation>
+                <xs:documentation>
+                    Divide Type Indicator if it pertains to child or parent booking
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="RLoc">
+            <xs:annotation>
+                <xs:documentation>
+                    Record Locator of parent or child booking
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="DivDt">
+            <xs:annotation>
+                <xs:documentation>
+                    Date of divide action
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+         <xs:enumeration value="DivTm">
+            <xs:annotation>
+                <xs:documentation>
+                    Time of day of divide action
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="TravelOrder">
+            <xs:annotation>
+                <xs:documentation>
+                    Travel order of the segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="SegmentStatus">
+            <xs:annotation>
+                <xs:documentation>
+                    Status of associated segment
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+         <xs:enumeration value="StartDate">
+            <xs:annotation>
+                <xs:documentation>
+                     Date of departure of the rail segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="DayChange">
+            <xs:annotation>
+                <xs:documentation>
+                    Indicates arrival date as number of days before or after departure date
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="Vendor">
+            <xs:annotation>
+                <xs:documentation>
+                        Vendor code of the segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="StartTime">
+            <xs:annotation>
+                <xs:documentation>
+                    Start Time of the segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="EndTime">
+            <xs:annotation>
+                <xs:documentation>
+                        End Time of the segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="BookingCode">
+            <xs:annotation>
+                <xs:documentation>
+                   The booking code of the rail segment seating area
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="TrainNumber">
+            <xs:annotation>
+                <xs:documentation>
+                    Denotes Train number
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="NumberOfSeats">
+            <xs:annotation>
+                <xs:documentation>
+                    Number of seats sold for the trip
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="SellType">
+            <xs:annotation>
+                <xs:documentation>
+                   The mode of selling the segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="TariffType">
+            <xs:annotation>
+                <xs:documentation>
+                     Type of Tariff for the segment
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+         <xs:enumeration value="ConfirmationNumber">
+            <xs:annotation>
+                <xs:documentation>
+                     The confirmation number of the segment
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+         <xs:enumeration value="BoardingInformation">
+            <xs:annotation>
+                <xs:documentation>
+                     Information related to boarding point of the segment
+                </xs:documentation>     
+             </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="ArrivalInformation">
+            <xs:annotation>
+                <xs:documentation>
+                   Information related to arrival point of the segment
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+         <xs:enumeration value="Text">
+            <xs:annotation>
+                <xs:documentation>
+                    Additional   information
+                </xs:documentation>     
+             </xs:annotation>            
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+    
+    <xs:element name="DisplayDetails">
+        <xs:annotation>
+            <xs:documentation>The container to display the contents of PNR in GDS format.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="DisplayDetail" maxOccurs="unbounded"/>
+                    <xs:element ref="DisplayContents"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attributeGroup ref="attrProviderReservationDetails"/>
+        </xs:complexType>
+   </xs:element>
+   <xs:element name="TravelerNameNum">
+        <xs:annotation>
+            <xs:documentation>Container for Host Passenger Details.Each TravelerNameNum represents a passenger present in the PNR. This is currently used by JAL(1J) only.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attributeGroup ref="common:attrBookingTravelerName" />
+            <xs:attribute name="PaxNum" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Passenger Name Number in host. Should be in the format SurNameNum.GivenNameNum</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+   
+    <xs:element name="DisplayContents" type="xs:string">
+        <xs:annotation>
+            <xs:documentation>Display the contents in GDS format</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+   
+    <xs:element name="DisplayDetail">
+        <xs:annotation>
+            <xs:documentation>Display the contents for requested MCO,Cruise etc. details</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Name" type="typeDisplayDetailName" use="required"/>
+            <xs:attribute name="Value" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="QueueNextModifiers">
+         <xs:annotation>
+                <xs:documentation>Can only be used when modifying an Universal Record in Queue mode.If not
+specified along with ReturnRecord as false then current PNR in queue context
+will be removed.</xs:documentation>
+         </xs:annotation>
+          <xs:complexType>
+               <xs:attribute name="NextOnQueue" type="xs:boolean">
+                 <xs:annotation>
+                            <xs:documentation>Set to true to retrieve the next PNR on Queue ,if not set or set to false system would return the current PNR.NextOnQueue cannot be combined with Provider Locator Code and ReturnRecord as true</xs:documentation>
+                      </xs:annotation>
+               </xs:attribute>       
+               <xs:attribute name="ProviderLocatorCode" type="common:typeLocatorCode" use="optional">
+                  <xs:annotation>
+                               <xs:documentation>If providerLocatorCode is specified then system would return the specified locator code in Queue mode .Provider Locator Code cannot be combined with NextOnQueue and ReturnRecord as true </xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ReQueueCurrent" type="xs:boolean">
+                      <xs:annotation>
+                            <xs:documentation>Set to true to place the current PNR back on Queue</xs:documentation>
+                      </xs:annotation>
+                </xs:attribute>
+                <!-- Added new attribute Queue Session Token for story 895  -->
+                <xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+                  		<xs:annotation>
+                     		<xs:documentation>Queue Session Token to hold session token for multiple queue</xs:documentation>
+                  		</xs:annotation>
+               			</xs:attribute>
+                     
+            </xs:complexType>
+     </xs:element>  
+     
+     <xs:element name="UniversalModifyFailureInfo">
+       <xs:annotation>
+           <xs:documentation>Container to return air segment sell failures.</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:sequence>
+               <xs:element ref="UniversalModifyCommandError" minOccurs="0" maxOccurs="unbounded"/>
+               <xs:element ref="air_v26_0:AirSegmentSellFailureInfo" minOccurs="0"/>
+           </xs:sequence>
+       </xs:complexType>
+   </xs:element>
+ 
+   <xs:element name="UniversalModifyCommandError">
+       <xs:annotation>
+           <xs:documentation>Container to return modify command failures.</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:simpleContent>
+               <xs:extension base="xs:string">
+                   <xs:attribute name="UniversalModifyCmdKey" type="common:typeRef" use="required"/>
+               </xs:extension>
+           </xs:simpleContent>
+       </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="UniversalModifyErrorInfo">
+        <xs:annotation>
+           <xs:documentation>Container to return modify command errors.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:typeErrorInfo">
+                    <xs:sequence>
+                        <xs:element ref="UniversalModifyCommandError" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="air_v26_0:AirSegmentError" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+   </xs:element>
+   
+   <xs:simpleType name="typeRetainReservation">
+        <xs:annotation>
+            <xs:documentation>Retain the Reservation (do not cancel) in the
+                the event of a schedule or price change</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None"/>
+            <xs:enumeration value="Schedule"/>
+            <xs:enumeration value="Price"/>
+            <xs:enumeration value="Both"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

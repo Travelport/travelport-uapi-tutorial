@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UniversalRecordServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/universal_v26_0"
+             xmlns:ns1="http://www.travelport.com/schema/universal_v26_0"
+             targetNamespace="http://www.travelport.com/service/universal_v26_0">
+
+    <import namespace="http://www.travelport.com/service/universal_v26_0"
+            location="UniversalRecordAbstract.wsdl"/>
+
+    <binding name="UniversalRecordRetrieveServiceBinding" type="tns:UniversalRecordRetrieveServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+            <fault name="UniversalRecordErrorInfoMsg">
+                <soap:fault name="UniversalRecordErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="UniversalRecordHistorySearchServiceBinding" type="tns:UniversalRecordHistorySearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordHistorySearchService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="UniversalRecordSearchServiceBinding" type="tns:UniversalRecordSearchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="AckScheduleChangeServiceBinding" type="tns:AckScheduleChangeServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ScheduleChangeService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="UniversalRecordImportServiceBinding" type="tns:UniversalRecordImportServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="UniversalRecordModifyServiceBinding" type="tns:UniversalRecordModifyServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+            <fault name="AvailabilityErrorInfoMsg">
+                <soap:fault name="AvailabilityErrorInfoMsg" use="literal"/>
+            </fault>
+            <fault name="UniversalModifyErrorInfoMsg">
+                <soap:fault name="UniversalModifyErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="UniversalRecordCancelServiceBinding" type="tns:UniversalRecordCancelServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <!--Imported from G2Pnr.wsdl-->
+
+    <binding name="ProviderReservationDisplayServiceBinding" type="tns:ProviderReservationDisplayServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProviderReservationDisplayService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="ProviderReservationDivideServiceBinding" type="tns:ProviderReservationDivideServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UniversalRecordService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="SavedTripCreateServiceBinding" type="tns:SavedTripCreateServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SavedTripCreateService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>    
+    <binding name="SavedTripModifyServiceBinding" type="tns:SavedTripModifyServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SavedTripModifyService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="SavedTripRetrieveServiceBinding" type="tns:SavedTripRetrieveServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SavedTripRetrieveService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="SavedTripDeleteServiceBinding" type="tns:SavedTripDeleteServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SavedTripDeleteService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="SavedTripSearchServiceBinding" type="tns:SavedTripSearchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SavedTripSearchService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="VehicleReservationServiceBinding" type="tns:VehicleReservationServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+
+    <binding name="VehicleCancelServiceBinding" type="tns:VehicleCancelServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="HotelReservationServiceBinding" type="tns:HotelReservationServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="HotelCancelServiceBinding" type="tns:HotelCancelServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="RailCreateReservationBinding" type="tns:RailCreateReservationPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/RailService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="RailExchangeCreateReservationBinding" type="tns:RailExchangeCreateReservationPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/RailService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="AirCreateReservationBinding"
+             type="tns:AirCreateReservationPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+                <fault name="AvailabilityErrorInfoMsg">
+                    <soap:fault name="AvailabilityErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="AirCancelBinding"
+             type="tns:AirCancelPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="AirMerchandisingFulfillmentBinding" type="tns:AirMerchandisingFulfillmentPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="PassiveReservationServiceBinding" type="tns:PassiveReservationServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/PassiveService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="PassiveCancelServiceBinding" type="tns:PassiveCancelServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/PassiveService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="UniversalRecordService">
+        <port name="UniversalRecordRetrieveServicePort" binding="tns:UniversalRecordRetrieveServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordService"/>
+        </port>
+    </service>
+
+    <service name="UniversalRecordHistorySearchService">
+        <port name="UniversalRecordHistorySearchServicePort" binding="tns:UniversalRecordHistorySearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordHistorySearchService"/>
+        </port>
+    </service>
+
+    <service name="UniversalRecordSearchService">
+        <port name="UniversalRecordSearchServicePort" binding="tns:UniversalRecordSearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordService"/>
+        </port>
+    </service>
+
+    <service name="ScheduleChangeService">
+        <port name="AckScheduleChangeServicePort" binding="tns:AckScheduleChangeServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/ScheduleChangeService"/>
+        </port>
+    </service>
+
+    <service name="UniversalRecordImportService">
+        <port name="UniversalRecordImportServicePort" binding="tns:UniversalRecordImportServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordService"/>
+        </port>
+    </service>
+
+    <service name="UniversalRecordModifyService">
+        <port name="UniversalRecordModifyServicePort" binding="tns:UniversalRecordModifyServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordService"/>
+        </port>
+    </service>
+
+    <service name="UniversalRecordCancelService">
+        <port name="UniversalRecordCancelServicePort" binding="tns:UniversalRecordCancelServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordService"/>
+        </port>
+    </service>
+
+    <service name="ProviderReservationDisplayService">
+        <port name="ProviderReservationDisplayServicePort" binding="tns:ProviderReservationDisplayServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/ProviderReservationDisplayService"/>
+        </port>
+    </service>
+
+    <service name="ProviderReservationDivideService">
+        <port name="ProviderReservationDivideServicePort" binding="tns:ProviderReservationDivideServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/UniversalRecordService"/>
+        </port>
+    </service>
+
+    <service name="SavedTripCreateService">
+        <port name="SavedTripCreateServicePort" binding="tns:SavedTripCreateServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/SavedTripCreateService"/>
+        </port>
+    </service>
+    
+    <service name="SavedTripModifyService">
+        <port name="SavedTripModifyServicePort" binding="tns:SavedTripModifyServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/SavedTripModifyService"/>
+        </port>
+    </service>
+    
+    <service name="SavedTripRetrieveService">
+        <port name="SavedTripRetrieveServicePort" binding="tns:SavedTripRetrieveServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/SavedTripRetrieveService"/>
+        </port>
+    </service>
+    
+    <service name="SavedTripDeleteService">
+        <port name="SavedTripDeleteServicePort" binding="tns:SavedTripDeleteServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/SavedTripDeleteService"/>
+        </port>
+    </service>
+    
+    <service name="SavedTripSearchService">
+        <port name="SavedTripSearchServicePort" binding="tns:SavedTripSearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/SavedTripSearchService"/>
+        </port>
+    </service>    
+    
+    <service name="VehicleService">        
+        <port name="VehicleReservationServicePort" binding="tns:VehicleReservationServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+        <port name="VehicleCancelServicePort" binding="tns:VehicleCancelServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+    </service>
+    
+    <service name="HotelService">        
+        <port name="HotelReservationServicePort" binding="tns:HotelReservationServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        <port name="HotelCancelServicePort" binding="tns:HotelCancelServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+    </service>
+    
+    <service name="RailService">
+        <port name="RailCreateReservationPort" binding="tns:RailCreateReservationBinding">
+            <soap:address location="http://localhost:8080/kestrel/RailService" />
+        </port>
+        <port name="RailExchangeCreateReservationPort" binding="tns:RailExchangeCreateReservationBinding">
+            <soap:address location="http://localhost:8080/kestrel/RailService" />
+        </port>
+    </service>
+    
+    <service name="AirService">
+        <port name="AirCreateReservationPort" binding="tns:AirCreateReservationBinding">
+            <soap:address location="http://localhost:8080/kestrel/AirService"/>
+        </port>
+        <port name="AirCancelPort" binding="tns:AirCancelBinding">
+            <soap:address location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        <port name="AirMerchandisingFulfillmentPort" binding="tns:AirMerchandisingFulfillmentBinding">
+            <soap:address location="http://localhost:8080/kestrel/AirService" />
+        </port>
+    </service>
+    
+    <service name="PassiveService">
+        <port name="PassiveReservationServicePort" binding="tns:PassiveReservationServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/PassiveService"/>
+        </port>
+        <port name="PassiveCancelServicePort" binding="tns:PassiveCancelServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/PassiveService"/>
+        </port>
+    </service>
+</definitions>

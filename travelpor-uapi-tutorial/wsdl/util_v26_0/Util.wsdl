@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UtilService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/util_v26_0"
+             xmlns:ns1="http://www.travelport.com/schema/util_v26_0"
+             targetNamespace="http://www.travelport.com/service/util_v26_0">
+
+    <import namespace="http://www.travelport.com/service/util_v26_0"
+            location="UtilAbstract.wsdl"/>
+
+    <binding name="UtilCreditCardAuthBinding" type="tns:UtilCreditCardAuthPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/CreditCardAuthorizationService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+
+    <binding name="DocumentTransmissionBinding" type="tns:DocumentTransmissionPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="McoCreateAgencyFeeBinding" type="tns:McoCreateAgencyFeePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="McoVoidBinding" type="tns:McoVoidPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="ReportRetrieveBinding" type="tns:ReportRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="McoSearchBinding" type="tns:McoSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="MctCountBinding" type="tns:MctCountPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="MctLookupBinding" type="tns:MctLookupPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="CalculateTaxBinding" type="tns:CalculateTaxPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="ContentProviderRetrieveBinding" type="tns:ContentProviderRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="UtilCurrencyConversionBinding" type="tns:UtilCurrencyConversionPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/CurrencyConversionService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ReferenceDataRetrieveBinding" type="tns:ReferenceDataRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="ReferenceDataLookupBinding" type="tns:ReferenceDataLookupPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ReferenceDataLookupService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ReferenceDataUpdateBinding" type="tns:ReferenceDataUpdatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UtilService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    
+    <binding name="UpsellAdminBinding" type="tns:UpsellAdminPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UpsellAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="BrandedFareAdminBinding" type="tns:BrandedFareAdminPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/BrandedFareService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="UpsellAdminSearchBinding" type="tns:UpsellAdminSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/UpsellAdminSearchService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="BrandedFareSearchBinding" type="tns:BrandedFareSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/BrandedFareService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    
+     <binding name="AgencyCreateServiceFeeBinding" type="tns:AgencyCreateServiceFeePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AgencyFeeService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="FindEmployeesOnFlightServiceBinding" type="tns:FindEmployeesOnFlightServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FindEmployeesOnFlightService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <!--  Service -->
+    <service name="UtilCreditCardAuthService">
+        <port name="UtilCreditCardAuthPort" binding="tns:UtilCreditCardAuthBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/CreditCardAuthorizationService" />
+        </port>
+    </service>
+
+    <service name="DocumentTransmissionService">
+        <port name="DocumentTransmissionPort" binding="tns:DocumentTransmissionBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+
+    <service name="McoService">
+        <port name="McoCreateAgencyFeePort" binding="tns:McoCreateAgencyFeeBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+        <port name="McoVoidPort" binding="tns:McoVoidBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+        <port name="McoSearchPort" binding="tns:McoSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+
+    <service name="ReportingService">
+        <port name="ReportRetrievePort" binding="tns:ReportRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+
+    <service name="MctService">
+        <port name="MctCountPort" binding="tns:MctCountBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+        <port name="MctLookupPort" binding="tns:MctLookupBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+
+    <service name="CalculateTaxService">
+        <port name="CalculateTaxPort" binding="tns:CalculateTaxBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+    
+    <service name="UpsellAdminService">
+        <port name="UpsellAdminPort" binding="tns:UpsellAdminBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UpsellAdminService" />
+        </port>
+    </service>
+    
+    <service name="BrandedFareService">
+        <port name="BrandedFareAdminPort" binding="tns:BrandedFareAdminBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/BrandedFareService" />
+        </port>
+        
+        <port name="BrandedFareSearchPort" binding="tns:BrandedFareSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/BrandedFareService" />
+        </port>
+    </service>
+    
+    <service name="UpsellAdminSearchService">
+        <port name="UpsellAdminSearchPort" binding="tns:UpsellAdminSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UpsellAdminSearchService" />
+        </port>
+    </service>
+    
+    <service name="ContentProviderRetrieveService">
+        <port name="ContentProviderRetrievePort" binding="tns:ContentProviderRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+
+    <service name="UtilCurrencyConversionService">
+        <port name="UtilCurrencyConversionPort" binding="tns:UtilCurrencyConversionBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/CurrencyConversionService" />
+        </port>
+    </service>
+    
+    
+    <service name="ReferenceDataRetrieveService">
+        <port name="ReferenceDataRetrievePort" binding="tns:ReferenceDataRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+
+    <service name="ReferenceDataLookupService">
+        <port name="ReferenceDataLookupPort" binding="tns:ReferenceDataLookupBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ReferenceDataLookupService" />
+        </port>
+    </service>
+    
+    <service name="ReferenceDataUpdateService">
+        <port name="ReferenceDataUpdatePort" binding="tns:ReferenceDataUpdateBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/UtilService" />
+        </port>
+    </service>
+    
+    <service name="AgencyFeeService">
+        <port name="TravelAgencyFeePort" binding="tns:AgencyCreateServiceFeeBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AgencyFeeService" />
+        </port>
+    </service>
+
+    <service name="FindEmployeesOnFlightService">
+        <port name="FindEmployeesOnFlightServicePort" binding="tns:FindEmployeesOnFlightServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/FindEmployeesOnFlightService"/>
+        </port>
+    </service>
+    
+</definitions>
+
+

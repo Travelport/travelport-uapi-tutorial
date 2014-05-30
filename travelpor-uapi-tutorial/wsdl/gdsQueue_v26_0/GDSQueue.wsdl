@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="GdsQueueServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/gdsQueue_v26_0"
+             xmlns:ns1="http://www.travelport.com/schema/gdsQueue_v26_0"
+             targetNamespace="http://www.travelport.com/service/gdsQueue_v26_0">
+
+    <import namespace="http://www.travelport.com/service/gdsQueue_v26_0"
+            location="GDSQueueAbstract.wsdl"/>
+
+    <binding name="GdsQueueCountServiceBinding" type="tns:GdsQueueCountServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="GdsQueueListServiceBinding" type="tns:GdsQueueListServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="GdsQueuePlaceServiceBinding" type="tns:GdsQueuePlaceServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:header use="literal" part="supportedVersions" message="tns:UniversalRecordSupportedVersions" />
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="GdsEnterQueueServiceBinding" type="tns:GdsEnterQueueServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="GdsExitQueueServiceBinding" type="tns:GdsExitQueueServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="GdsNextOnQueueServiceBinding" type="tns:GdsNextOnQueueServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="GdsClearQueueServiceBinding" type="tns:GdsClearQueueServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+	 <binding name="GdsQueueAgentListServiceBinding" type="tns:GdsQueueAgentListServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/GdsQueueAgentListService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <service name="GdsQueueService">
+        <port name="GdsQueueCountServicePort" binding="tns:GdsQueueCountServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsQueueListServicePort" binding="tns:GdsQueueListServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsQueuePlaceServicePort" binding="tns:GdsQueuePlaceServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsEnterQueueServicePort" binding="tns:GdsEnterQueueServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsExitQueueServicePort" binding="tns:GdsExitQueueServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsNextOnQueueServicePort" binding="tns:GdsNextOnQueueServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsClearQueueServicePort" binding="tns:GdsClearQueueServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueService"/>
+        </port>
+        <port name="GdsQueueAgentListServicePort" binding="tns:GdsQueueAgentListServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/GdsQueueAgentListService"/>
+        </port>
+    </service>
+
+</definitions>

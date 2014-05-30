@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Anuraag (Travelport) -->
+<xs:schema xmlns="http://www.travelport.com/schema/gdsQueue_v26_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v26_0" xmlns:universal="http://www.travelport.com/schema/universal_v26_0" targetNamespace="http://www.travelport.com/schema/gdsQueue_v26_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.travelport.com/schema/common_v26_0" schemaLocation="../common_v26_0/CommonReqRsp.xsd"/>
+	<xs:import namespace="http://www.travelport.com/schema/universal_v26_0" schemaLocation="../universal_v26_0/UniversalRecord.xsd"/>
+	<!--*** Request Types ***-->
+	<xs:element name="GdsQueueCountReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to get the number of pnrs on a queue.</xs:documentation>
+			<xs:documentation>If no queue is given, all queues for the pcc will be returned</xs:documentation>
+			<xs:documentation>If no pseudocitycode is</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="QueuePseudoCitySelector" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="ProviderCode" type="common:typeProviderCode" use="required">
+						<xs:annotation>
+							<xs:documentation>The IATA assigned airline/GDS code.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsQueueCountRsp">
+		<xs:annotation>
+			<xs:documentation>The response from the host for a queue count</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="QueueInfo" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsQueueListReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to list the pnrs on a queue.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element name="QueueSelector" type="QueueSelectorType"/>
+					</xs:sequence>
+					<xs:attribute name="ProviderCode" type="common:typeProviderCode" use="required">
+						<xs:annotation>
+							<xs:documentation>The IATA assigned airline/GDS code.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="PseudoCityCode" type="common:typePCC" use="optional"/>
+					<xs:attribute name="RetrieveAll" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>Set to true to retrieve all PNRs ,if not set or set to false system would display PNRs as returned from GDS .</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Queue Session Token to hold session token for
+					multiple queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+				<!-- Added new attribute Queue Session Token for story 895 -->
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsQueueListRsp">
+		<xs:annotation>
+			<xs:documentation>The response from the host for a queue list</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="QueueElement" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="MorePNRExists" type="xs:boolean" use="optional">
+						<xs:annotation>
+							<xs:documentation>This is an indicator which indicates there are more PNRs in queue than what is returned. If true means more PNRs exist in the Queue. If false or not present means all PNRs are already returned in response from the queue.
+                     </xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Queue Session Token to hold session token for
+					multiple queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+				<!-- Added new attribute Queue Session Token for story 895 -->
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsQueuePlaceReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to place a UR on a queue.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="QueueSelector" minOccurs="1" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Identifies the Queue Information to be selected for placing the UR</xs:documentation>
+								<xs:documentation>An UR can be placed into multiple Queues</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="PseudoCityCode" type="common:typePCC" use="optional">
+						<xs:annotation>
+							<xs:documentation>Input PCC optional value for placing the UR into Queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="universal:providerReservation">
+						<xs:annotation>
+							<xs:documentation>References to Provider Reservation</xs:documentation>
+						</xs:annotation>
+					</xs:attributeGroup>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsQueuePlaceRsp">
+		<xs:annotation>
+			<xs:documentation>An empty response indicates success</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="universal:UniversalRecord" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation>The Queue Place Response will return the UR Record</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsEnterQueueReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to enter a GDS queue</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="QueueSelector"/>
+					</xs:sequence>
+					<xs:attribute name="PseudoCityCode" type="common:typePCC" use="optional"/>
+					<xs:attribute name="ProviderCode" type="common:typeProviderCode" use="required">
+						<xs:annotation>
+							<xs:documentation>The IATA assigned airline/GDS code.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="ProviderLocatorCode" type="common:typeLocatorCode" use="optional">
+						<xs:annotation>
+							<xs:documentation>If providerLocatorCode is not specified then the first PNR on the Queue will be retrieved.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsEnterQueueRsp">
+		<xs:annotation>
+			<xs:documentation>The response containing the Universal Record</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="universal:UniversalRecord" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation>Refers to the Universal Record , system would automatically import a PNR if it doesn't exist in the sytem otherwise will display existing Universal Record.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="Title" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Title of the queue.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Queue Session Token to hold session token for
+						multiple queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+				<!-- Added new attribute Queue Session Token for story 895 -->
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsExitQueueReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to close a session you no longer need.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attributeGroup ref="attrQueueRemove"/>
+					<xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Queue Session Token to hold session token for
+					multiple queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+				<!-- Added new attribute Queue Session Token for story 895 -->
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsExitQueueRsp">
+		<xs:annotation>
+			<xs:documentation>An empty response indicates success</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsNextOnQueueReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to get the 'next' pnr on queue.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attributeGroup ref="attrQueueRemove"/>
+					<xs:attribute name="ProviderLocatorCode" type="common:typeLocatorCode" use="optional">
+						<xs:annotation>
+							<xs:documentation>If providerLocatorCode is not specified then the next PNR on the Queue will be retrieved.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Queue Session Token to hold session token for multiple queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+				<!-- Added new attribute Queue Session Token for story 895 -->
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsNextOnQueueRsp">
+		<xs:annotation>
+			<xs:documentation>The response from the host for a NextOnQueueReq</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="universal:UniversalRecord" minOccurs="0" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation>Refers to the Universal Record , system would automatically import a PNR if it doesn't exist exist in the sytem otherwise would display existing Universal Record.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+						<xs:annotation>
+							<xs:documentation>Queue Session Token to hold session token for
+					multiple queue</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+				<!-- Added new attribute Queue Session Token for story 895 -->
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsClearQueueReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to Clear a GDS queue</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Host" type="common:typeProviderToken" use="optional"/>
+					<xs:attribute name="Queue" type="xs:string" use="required"/>
+					<xs:attribute name="PseudoCityCode" type="common:typePCC" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsClearQueueRsp">
+		<xs:annotation>
+			<xs:documentation>An empty response indicates success</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Shared Elements ***-->
+	<xs:element name="QueueInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CategoryInfo" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Queue" type="xs:string" use="required"/>
+			<xs:attribute name="PseudoCityCode" type="common:typePCC" use="required"/>
+			<xs:attribute name="TotalPNRCount" type="xs:int" use="required"/>
+			<xs:attribute name="PNRCount" type="xs:int" use="required"/>
+			<xs:attribute name="Title" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Title of a queue.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QueueElement">
+		<xs:complexType>
+			<xs:attributeGroup ref="universal:providerReservation"/>
+			<xs:attribute name="DepartureDate" type="xs:string" use="optional"/>
+			<xs:attribute name="QueueDate" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Denotes the GDS formatted Date a PNR is placed in queue.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="QueueTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>Time a PNR placed in queue.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Name" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Name as in queue</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode" use="optional">
+				<xs:annotation>
+					<xs:documentation>Present if there is an associated UR</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CreatedByAgentCode" type="common:typeAgentCode" use="optional">
+				<xs:annotation>
+					<xs:documentation>Agent who created UR - Present if there is an associated UR</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ModifiedByAgentCode" type="common:typeAgentCode" use="optional">
+				<xs:annotation>
+					<xs:documentation>Agent who modified UR - Present if there is an associated UR with modifications</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QueueSelector">
+		<xs:annotation>
+			<xs:documentation>Identifies the Queue with Queue Number , Category and Date Range.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="attrQueueInfo"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="attrQueueInfo">
+		<xs:annotation>
+			<xs:documentation>Attributes related to queue information</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="Queue" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Queue Number . Possible values are 01, AA , A1 etc.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Category" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Queue Category Number. 2 Character Alpha or Numeric Number.</xs:documentation>
+				<xs:documentation>Either Alpha or Numeric Number is allowed.</xs:documentation>
+				<xs:documentation>If using for Sabre is mandatory and is Prefatory Instruction Code value of 0-999.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DateRange" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Date range number where the PNR should be queued. Possible values are 1,2,1-4 etc.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="PseudoCityCode">
+		<xs:complexType>
+			<xs:attribute name="Value" type="common:typePCC" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QueuePseudoCitySelector">
+		<xs:annotation>
+			<xs:documentation>Need to specify the PseudoCityCode and Queue details.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QueueSelector" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="PseudoCityCode" type="common:typePCC" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CategoryInfo">
+		<xs:annotation>
+			<xs:documentation>The information related to a particular category.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateRangeInfo" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Title" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Title of a particular category.</xs:documentation>
+	            </xs:annotation>
+	         </xs:attribute>
+	         <xs:attribute name="Category" type="xs:string" use="required">
+	            <xs:annotation>
+	               <xs:documentation>Queue Category Number. 2 Character Alpha or Numeric Number.</xs:documentation>
+	               <xs:documentation>Either Alpha or Numeric Number is allowed.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Count" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The PNR count of a particular category. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TotalCount" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The PNR count of a all categories. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateRangeInfo">
+		<xs:annotation>
+			<xs:documentation>The information related to date range .</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+	         <xs:attribute name="DateRange" type="xs:string" use="required">
+	            <xs:annotation>
+	               <xs:documentation>Date range number where the PNR should be queued. Possible values are 1,2,1-4 etc.</xs:documentation>
+	            </xs:annotation>
+	         </xs:attribute>
+			<xs:attribute name="Title" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Title of a date range. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Count" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>The PNR count of date range. </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="attrQueueRemove">
+		<xs:annotation>
+			<xs:documentation>Attributes related to Queue Remove .</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="RemoveCurrent" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>If specified and set to true, the pnr currently in context will be removed, if set to false then the current PNR will be placed back on the Queue.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:complexType name="QueueSelectorType">
+		<xs:attributeGroup ref="attrQueueInfo"/>
+		<xs:attribute name="Surname" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Surname as in queue ,supports alpha characters only.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- added new elements for Story 895 - Multiple Queues -->
+	<xs:element name="GdsQueueAgentListReq">
+		<xs:annotation>
+			<xs:documentation>Use this request to list items stuck on the Queue.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="AgentID" use="required">
+						<xs:annotation>
+							<xs:documentation>
+							The Agent ID for the applicable supplier/vendor
+						</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+								<xs:maxLength value="32"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GdsQueueAgentListRsp">
+		<xs:annotation>
+			<xs:documentation>Use this request to list items stuck on the Queue.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="QueueAgentRecord"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QueueAgentRecord">
+		<xs:annotation>
+			<xs:documentation>The information related to a particular category.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="UniversalRecordLocatorCode" type="common:typeLocatorCode"/>
+			</xs:sequence>
+			<xs:attribute name="PseudoCityCode" type="common:typePCC" use="required"/>
+			<xs:attribute name="QueueSessionToken" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Queue Session Token to hold session token for
+							multiple queue</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="QueueNumber" type="xs:string" use="required"/>
+			<xs:attribute name="Lastupdated" type="common:typeDate" use="required"/>
+			<xs:attribute name="TargetBranch" type="common:typeBranchCode" use="required"/>
+			<xs:attribute name="Category" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Queue Category Number. 2 Character Alpha or Numeric Number.</xs:documentation>
+					<xs:documentation>Either Alpha or Numeric Number is allowed.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateRange" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Date range number where the PNR should be queued. Possible values are 1,2,1-4 etc.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

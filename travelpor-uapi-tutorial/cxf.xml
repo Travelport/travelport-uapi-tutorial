@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xsi:schemaLocation="http://cxf.apache.org/transports/http/configuration
+           http://cxf.apache.org/schemas/configuration/http-conf.xsd
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+    
+  <http-conf:conduit name="{http://www.travelport.com/service/air_v18_0}AirLowFareSearchAsynchPort.http-conduit">
+      <http-conf:client AllowChunking="false" ConnectionTimeout="0" ReceiveTimeout="0"/>
+  </http-conf:conduit>
+ 
+-->
+    
+</beans>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="ProvisioningService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/provisioning_v18_0"
+             xmlns:ns1="http://www.travelport.com/schema/provisioning_v18_0"
+             targetNamespace="http://www.travelport.com/service/provisioning_v18_0">
+
+    <import namespace="http://www.travelport.com/service/provisioning_v18_0"
+          location="ProvisioningAbstract.wsdl" />  
+
+    <binding name="ProvisioningRetrieveByAgentBinding"
+             type="tns:ProvisioningRetrieveByAgentPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>   
+    
+     <binding name="ProvisioningModifyBinding"
+             type="tns:ProvisioningModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProvisioningRetrieveBinding"
+             type="tns:ProvisioningRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProvisioningCreateBinding"
+             type="tns:ProvisioningCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProvisioningSearchBinding" type="tns:ProvisioningSearchPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="CustomerContractInfoModifyBinding" type="tns:CustomerContractInfoModifyPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding> 
+    
+    <binding name="CustomerContractInfoCreateBinding" type="tns:CustomerContractInfoCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+
+    <binding name="CustomerContractInfoRetrieveBinding" type="tns:CustomerContractInfoRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ThirdPartyCredentialCreateBinding" type="tns:ThirdPartyCredentialCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ThirdPartyCredentialDeleteBinding" type="tns:ThirdPartyCredentialDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ThirdPartyCredentialSearchBinding" type="tns:ThirdPartyCredentialSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ThirdPartyCredentialModifyBinding" type="tns:ThirdPartyCredentialModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="AgencyConfigureBinding" type="tns:AgencyConfigurePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ProvisioningService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+
+    <service name="ProvisioningService">       
+        <port name="ProvisioningRetrieveByAgentPort"
+              binding="tns:ProvisioningRetrieveByAgentBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>       
+        <port name="ProvisioningModifyPort"
+              binding="tns:ProvisioningModifyBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ProvisioningRetrievePort"
+              binding="tns:ProvisioningRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ProvisioningCreatePort"
+              binding="tns:ProvisioningCreateBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ProvisioningSearchPort" binding="tns:ProvisioningSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        
+        <port name="CustomerContractInfoModifyPort" binding="tns:CustomerContractInfoModifyBinding">
+            <soap:address location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="CustomerContractInfoCreatePort"
+              binding="tns:CustomerContractInfoCreateBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="CustomerContractInfoRetrievePort"
+              binding="tns:CustomerContractInfoRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ThirdPartyCredentialCreatePort"
+              binding="tns:ThirdPartyCredentialCreateBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ThirdPartyCredentialDeletePort"
+              binding="tns:ThirdPartyCredentialDeleteBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ThirdPartyCredentialSearchPort"
+              binding="tns:ThirdPartyCredentialSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+        <port name="ThirdPartyCredentialModifyPort"
+              binding="tns:ThirdPartyCredentialModifyBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+         <port name="AgencyConfigurePort"
+              binding="tns:AgencyConfigureBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/ProvisioningService" />
+        </port>
+    </service>
+
+</definitions>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AirService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/air_v26_0"
+             xmlns:ns1="http://www.travelport.com/schema/air_v26_0"
+             xmlns:common="http://www.travelport.com/schema/common_v26_0"
+             targetNamespace="http://www.travelport.com/service/air_v26_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/air_v26_0">
+            <include schemaLocation="AirReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="AirLowFareSearchReq">
+        <part name="parameters" element="ns1:LowFareSearchReq" />
+    </message>
+    
+    <message name="AirPrePayReq">
+        <part name="parameters" element="ns1:AirPrePayReq" />
+    </message>
+
+    <message name="AirPrePayRsp">
+        <part name="result" element="ns1:AirPrePayRsp" />
+    </message>     
+
+    <message name="AirLowFareSearchRsp">
+        <part name="result" element="ns1:LowFareSearchRsp" />
+    </message>
+
+    <message name="AirRetrieveLowFareSearchReq">
+        <part name="parameters" element="ns1:RetrieveLowFareSearchReq" />
+    </message>
+
+    <message name="AirRetrieveLowFareSearchRsp">
+        <part name="result" element="ns1:RetrieveLowFareSearchRsp" />
+    </message>
+
+   <message name="AirScheduleSearchReq">
+        <part name="parameters" element="ns1:ScheduleSearchReq" />
+    </message>
+
+    <message name="AirScheduleSearchRsp">
+        <part name="result" element="ns1:ScheduleSearchRsp" />
+    </message>
+
+    <message name="AirAvailabilitySearchReq">
+        <part name="parameters" element="ns1:AvailabilitySearchReq" />
+    </message>
+
+    <message name="AirAvailabilitySearchRsp">
+        <part name="result" element="ns1:AvailabilitySearchRsp" />
+    </message>
+
+    <message name="AirPriceReq">
+        <part name="parameters" element="ns1:AirPriceReq" />
+    </message>
+
+    <message name="AirPriceRsp">
+        <part name="result" element="ns1:AirPriceRsp" />
+    </message>
+
+    <message name="AirRepriceSearchReq">
+        <part name="parameters" element="ns1:AirRepriceReq" />
+    </message>
+
+    <message name="AirRepriceSearchRsp">
+        <part name="result" element="ns1:AirRepriceRsp" />
+    </message>
+
+    <message name="AirTicketingRequest">
+        <part name="parameters" element="ns1:AirTicketingReq" />
+    </message>
+
+    <message name="AirTicketingResponse">
+        <part name="result" element="ns1:AirTicketingRsp" />
+    </message>
+
+    <message name="AirExchangeQuoteRequest">
+        <part name="parameters" element="ns1:AirExchangeQuoteReq" />
+    </message>
+
+    <message name="AirExchangeQuoteResponse">
+        <part name="result" element="ns1:AirExchangeQuoteRsp" />
+    </message>
+
+    <message name="AirExchangeProcessRequest">
+        <part name="parameters" element="ns1:AirExchangeReq" />
+    </message>
+
+    <message name="AirExchangeProcessResponse">
+        <part name="result" element="ns1:AirExchangeRsp" />
+    </message>
+
+    <message name="AirExchangeTicketingRequest">
+        <part name="parameters" element="ns1:AirExchangeTicketingReq" />
+    </message>
+
+    <message name="AirExchangeTicketingResponse">
+        <part name="result" element="ns1:AirExchangeTicketingRsp" />
+    </message>
+
+    <message name="AirRefundQuoteRequest">
+        <part name="parameters" element="ns1:AirRefundQuoteReq" />
+    </message>
+
+    <message name="AirRefundQuoteResponse">
+        <part name="result" element="ns1:AirRefundQuoteRsp" />
+    </message>
+
+  
+    <message name="AirRefundTicketRequest">
+        <part name="parameters" element="ns1:AirRefundReq" />
+    </message>
+
+    <message name="AirRefundTicketResponse">
+        <part name="result" element="ns1:AirRefundRsp" />
+    </message>
+
+    <message name="AirFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+
+    <message name="AvailabilityFaultMessage">
+        <part name="fault" element="ns1:AvailabilityErrorInfo" />
+    </message>
+
+    <message name="AirFareDisplayRequest">
+        <part name="parameters" element="ns1:AirFareDisplayReq" />
+    </message>
+
+    <message name="AirFareDisplayResponse">
+        <part name="result" element="ns1:AirFareDisplayRsp" />
+    </message>
+
+    <message name="AirFareRulesRequest">
+        <part name="parameters" element="ns1:AirFareRulesReq" />
+    </message>
+
+    <message name="AirFareRulesResponse">
+        <part name="result" element="ns1:AirFareRulesRsp" />
+    </message>
+
+    <message name="SeatMapRequest">
+        <part name="parameters" element="ns1:SeatMapReq" />
+    </message>
+
+    <message name="SeatMapResponse">
+        <part name="result" element="ns1:SeatMapRsp" />
+    </message>
+
+    <!-- messages for imported data-->
+
+    <message name="AirVoidDocumentRequest">
+        <part name="parameters" element="ns1:AirVoidDocumentReq" />
+    </message>
+    <message name="AirVoidDocumentResponse">
+        <part name="result" element="ns1:AirVoidDocumentRsp" />
+    </message>
+
+    <message name="EMDRetrieveRequest">
+        <part name="parameters" element="ns1:EMDRetrieveReq" />
+    </message>
+    <message name="EMDRetrieveResponse">
+        <part name="result" element="ns1:EMDRetrieveRsp" />
+    </message>
+
+    <message name="AirRetrieveDocumentRequest">
+        <part name="parameters" element="ns1:AirRetrieveDocumentReq" />
+    </message>
+
+    <message name="AirRetrieveDocumentResponse">
+        <part name="result" element="ns1:AirRetrieveDocumentRsp" />
+    </message>
+
+    <message name="AirMerchandisingOfferAvailabilityRequest">
+        <part name="parameters" element="ns1:AirMerchandisingOfferAvailabilityReq" />
+    </message>
+    
+    <message name="AirMerchandisingOfferAvailabilityResponse">
+        <part name="result" element="ns1:AirMerchandisingOfferAvailabilityRsp" />
+    </message>
+
+    <message name="LowFareSearchAsynchRequest">
+        <part name="parameters" element="ns1:LowFareSearchAsynchReq" />
+    </message>
+
+    <message name="LowFareSearchAsynchResponse">
+        <part name="result" element="ns1:LowFareSearchAsynchRsp" />
+    </message>
+
+    <message name="FlightDetailsRequest">
+        <part name="parameters" element="ns1:FlightDetailsReq" />
+    </message>
+
+    <message name="FlightDetailsResponse">
+        <part name="result" element="ns1:FlightDetailsRsp" />
+    </message>
+    
+    <message name="AirUpsellSearchReq">
+        <part name="parameters" element="ns1:AirUpsellSearchReq" />
+    </message>
+
+    <message name="AirUpsellSearchRsp">
+        <part name="result" element="ns1:AirUpsellSearchRsp" />
+    </message>
+    
+    <message name="FlightInformationReq">
+         <part name="parameters" element="ns1:FlightInformationReq" />
+    </message>
+    
+    <message name="FlightInformationRsp">
+         <part name="result" element="ns1:FlightInformationRsp" />
+    </message>
+
+    <message name="FlightTimeTableReq">
+         <part name="parameters" element="ns1:FlightTimeTableReq" />
+    </message>
+    
+    <message name="FlightTimeTableRsp">
+         <part name="result" element="ns1:FlightTimeTableRsp" />
+    </message>
+    
+    <message name="EMDIssuanceReq">
+         <part name="parameters" element="ns1:EMDIssuanceReq" />
+    </message>
+    
+    <message name="EMDIssuanceRsp">
+         <part name="result" element="ns1:EMDIssuanceRsp" />
+    </message>    
+     
+    <message name="AirMerchandisingDetailsRequest">
+        <part name="parameters" element="ns1:AirMerchandisingDetailsReq" />
+    </message>
+    
+    <message name="AirMerchandisingDetailsResponse">
+        <part name="result" element="ns1:AirMerchandisingDetailsRsp" />
+    </message>
+    
+    <!-- Port Types -->
+
+    <portType name="FlightDetailsPortType">
+        <operation name="service">
+            <input message="tns:FlightDetailsRequest" />
+            <output message="tns:FlightDetailsResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="AirLowFareSearchPortType">
+        <operation name="service">
+            <input message="tns:AirLowFareSearchReq" />
+            <output message="tns:AirLowFareSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirLowFareSearchAsynchPortType">
+        <operation name="service">
+            <input message="tns:LowFareSearchAsynchRequest" />
+            <output message="tns:LowFareSearchAsynchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+
+    <portType name="AirRetrieveLowFareSearchPortType">
+        <operation name="service">
+            <input message="tns:AirRetrieveLowFareSearchReq" />
+            <output message="tns:AirRetrieveLowFareSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+    
+
+    <portType name="AirScheduleSearchPortType">
+        <operation name="service">
+            <input message="tns:AirScheduleSearchReq" />
+            <output message="tns:AirScheduleSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirAvailabilitySearchPortType">
+        <operation name="service">
+            <input message="tns:AirAvailabilitySearchReq" />
+            <output message="tns:AirAvailabilitySearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirPricePortType">
+        <operation name="service">
+            <input message="tns:AirPriceReq" />
+            <output message="tns:AirPriceRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirRepriceSearchPortType">
+        <operation name="service">
+            <input message="tns:AirRepriceSearchReq" />
+            <output message="tns:AirRepriceSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirTicketingPortType">
+        <operation name="service">
+            <input message="tns:AirTicketingRequest" />
+            <output message="tns:AirTicketingResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirExchangeQuotePortType">
+        <operation name="service">
+            <input message="tns:AirExchangeQuoteRequest" />
+            <output message="tns:AirExchangeQuoteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirExchangeProcessPortType">
+        <operation name="service">
+            <input message="tns:AirExchangeProcessRequest" />
+            <output message="tns:AirExchangeProcessResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirExchangeTicketingPortType">
+        <operation name="service">
+            <input message="tns:AirExchangeTicketingRequest" />
+            <output message="tns:AirExchangeTicketingResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirRefundQuotePortType">
+        <operation name="service">
+            <input message="tns:AirRefundQuoteRequest" />
+            <output message="tns:AirRefundQuoteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+   
+    <portType name="AirRefundTicketPortType">
+        <operation name="service">
+            <input message="tns:AirRefundTicketRequest" />
+            <output message="tns:AirRefundTicketResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirFareDisplayPortType">
+        <operation name="service">
+            <input message="tns:AirFareDisplayRequest" />
+            <output message="tns:AirFareDisplayResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirFareRulesPortType">
+        <operation name="service">
+            <input message="tns:AirFareRulesRequest" />
+            <output message="tns:AirFareRulesResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="SeatMapPortType">
+        <operation name="service">
+            <input message="tns:SeatMapRequest" />
+            <output message="tns:SeatMapResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirVoidDocumentPortType">
+        <operation name="service">
+            <input message="tns:AirVoidDocumentRequest" />
+            <output message="tns:AirVoidDocumentResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="EMDRetrievePortType">
+        <operation name="service">
+            <input message="tns:EMDRetrieveRequest" />
+            <output message="tns:EMDRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirRetrieveDocumentPortType">
+        <operation name="service">
+            <input message="tns:AirRetrieveDocumentRequest" />
+            <output message="tns:AirRetrieveDocumentResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="AirMerchandisingOfferAvailabilityPortType">
+        <operation name="service">
+            <input message="tns:AirMerchandisingOfferAvailabilityRequest" />
+            <output message="tns:AirMerchandisingOfferAvailabilityResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="AirUpsellSearchPortType">
+        <operation name="service">
+            <input message="tns:AirUpsellSearchReq" />
+            <output message="tns:AirUpsellSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="FlightInfoPortType">
+        <operation name="service">
+            <input message="tns:FlightInformationReq" />
+            <output message="tns:FlightInformationRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="FlightTimeTablePortType">
+        <operation name="service">
+            <input message="tns:FlightTimeTableReq" />
+            <output message="tns:FlightTimeTableRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="AirPrePayPortType">
+        <operation name="service">
+            <input message="tns:AirPrePayReq" />
+            <output message="tns:AirPrePayRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>  
+    
+    <portType name="EMDIssuancePortType">
+        <operation name="service">
+            <input message="tns:EMDIssuanceReq" />
+            <output message="tns:EMDIssuanceRsp" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+    </portType>     
+    
+     <portType name="AirMerchandisingDetailsPortType">
+        <operation name="service">
+            <input message="tns:AirMerchandisingDetailsRequest" />
+            <output message="tns:AirMerchandisingDetailsResponse" />
+            <fault name="ErrorInfoMsg" message="tns:AirFaultMessage" />
+        </operation>
+      </portType>   
+    
+</definitions>

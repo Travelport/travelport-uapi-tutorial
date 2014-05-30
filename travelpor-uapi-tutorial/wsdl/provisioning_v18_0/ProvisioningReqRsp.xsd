@@ -1,0 +1,596 @@
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by XMLSpy 2008 Enterprise Ed. Release 2, Concurrent for 20 users (with SMP from 2009-01-22 to 2009-12-11) (WORLDSPAN) -->
+<xs:schema xmlns="http://www.travelport.com/schema/provisioning_v18_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v26_0" targetNamespace="http://www.travelport.com/schema/provisioning_v18_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.travelport.com/schema/common_v26_0" schemaLocation="../common_v26_0/CommonReqRsp.xsd"/>
+    <xs:include schemaLocation="Provisioning.xsd"></xs:include>
+<!--*** Retrieve Messages ***-->
+	<xs:element name="ProvisioningRetrieveByAgentReq">
+		<xs:annotation>
+			<xs:documentation>Request to retrieve a specific agent.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="AgentCode" type="common:typeAgentCode" use="required">
+						<xs:annotation>
+							<xs:documentation>The unique identifier of an agent.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProvisioningRetrieveByAgentRsp">
+		<xs:annotation>
+			<xs:documentation>Response with all the provisioning info for the given agents.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ProviderSummary" minOccurs="0"/>
+						<xs:element ref="SubscriberInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Describes attributes of the Subscriber at any level in agency hierarch.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="Feature" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Generic Retrieve Messages ***-->
+	<xs:element name="ProvisioningRetrieveReq">
+		<xs:annotation>
+			<xs:documentation>Generic Retrieve request, returns data unmerged with all provisioning IDs. Input requires either a ProvisioningID or ProfileReference under Owner to retrieve the ProvisioningInfo. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="Owner" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="ProvisioningID" type="typeAutoID"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProvisioningRetrieveRsp">
+		<xs:annotation>
+			<xs:documentation>May return multiple ProvisioningInfo (if asked
+				for inheritance). Sets are NOT merged.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:annotation>
+							<xs:documentation>It is possible that no provisioning data is
+								set up for the actual entity, in which case there may be no
+								ProvisioningInfo.
+							</xs:documentation>
+						</xs:annotation>
+						<xs:element ref="ProvisioningInfo" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Generic Create Messages ***-->
+	<xs:element name="ProvisioningCreateReq">
+	   <xs:annotation>
+	      <xs:documentation>Generic Request to create provisioning data, can be used for all Agency levels</xs:documentation>
+	   </xs:annotation>
+	   <xs:complexType>
+	      <xs:complexContent>
+	         <xs:extension base="common:BaseReq">
+	            <xs:sequence>
+	               <xs:element ref="ProviderInfo" minOccurs="0" maxOccurs="unbounded"/>
+	               <xs:element ref="SubscriberInfo" minOccurs="0"/>
+	               <xs:element ref="ContractInfo" minOccurs="0"/>
+	            </xs:sequence>
+	            <xs:attribute name="ProfileID" type="typeAutoID" use="required"/>
+	            <xs:attribute name="ProfileLevel" type="common:typeAgencyProfileLevel" use="required"/>
+	         </xs:extension>
+	      </xs:complexContent>
+	   </xs:complexType>
+	</xs:element>
+	<xs:element name="ProvisioningCreateRsp">
+		<xs:annotation>
+			<xs:documentation>Response with created provisioning.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ProvisioningInfo"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Modify Messages ***-->
+	<xs:element name="ProvisioningModifyReq">
+	   <xs:annotation>
+	      <xs:documentation>This service supports the modifcation of the set of provisioning data. </xs:documentation>
+	   </xs:annotation>
+	   <xs:complexType>
+	      <xs:complexContent>
+	         <xs:extension base="common:BaseReq">
+	            <xs:choice>
+	               <xs:element ref="AddProvider"/>
+	               <xs:element ref="ActivateProvider"/>
+	               <xs:element ref="DeactivateProvider"/>
+	               <xs:element ref="ModifyProvider">
+	                  <xs:annotation>
+	                     <xs:documentation>When Modifiying a Provider,  Select one of the actios at the next level.</xs:documentation>
+	                  </xs:annotation>
+	               </xs:element>
+	               <xs:element ref="DeleteProvider"/>
+	               <xs:element ref="ModifySubscriberInfo"/>
+	               <xs:element ref="ModifyContractInfo"/>
+	            </xs:choice>
+	            <xs:attribute name="ID" use="required">
+	               <xs:annotation>
+	                  <xs:documentation>To get the ProvisioningID, do a retrieve by Agent, Branch or Agent.</xs:documentation>
+	               </xs:annotation>
+	            </xs:attribute>
+	            <xs:attribute name="Version" use="required">
+	               <xs:annotation>
+	                  <xs:documentation>Version of parent ProvisioningInfo, must match the version on file. Used to prevent simultaneous changes. Can also be used for caching purposes by client.</xs:documentation>
+	               </xs:annotation>
+	            </xs:attribute>
+	         </xs:extension>
+	      </xs:complexContent>
+	   </xs:complexType>
+	</xs:element>
+	<xs:element name="ProvisioningModifyRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ProvisioningInfo"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+    <!--               Added For CustomerInfo   Start             -->
+    
+    <xs:element name="CustomerContractInfoCreateReq">
+        <xs:annotation>
+            <xs:documentation>Request to add customer Info</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:choice>
+                            <xs:element name="Profile" type="common:typeProfileRef"/>
+                            <xs:element ref="Provisioning"/>
+                        </xs:choice>
+                        <xs:element ref="CustomerContractInfo"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="CustomerContractInfoCreateRsp">
+        <xs:annotation>
+            <xs:documentation>Request to add customer Info</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="CustomerContractInfoModifyReq">
+	<xs:annotation>
+		<xs:documentation>Allows to modify existing Customer info</xs:documentation>
+	</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:choice>
+							<xs:element ref="ModifyCustomerContractInfo" />
+							<xs:element ref="DeleteCustomerContractInfo" />
+						</xs:choice>
+						<xs:choice>
+							<xs:element name="Profile" type="common:typeProfileRef" />
+							<xs:element ref="Provisioning" />
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element> 
+    
+    <xs:element name="CustomerContractInfoModifyRsp">
+        <xs:annotation>
+            <xs:documentation>Retrieves customer information mapped to specified customerProvisionID</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="CustomerContractInfo"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <xs:element name="CustomerContractInfoRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Request to add customer Info</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:choice>
+                        <xs:element name="Profile" type="common:typeProfileRef"/>
+                        <xs:element ref="Provisioning"/>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="CustomerContractInfoRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Retrieves customer information mapped to specified customerProvisionID</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="CustomerContractInfo"/>
+                    </xs:sequence>
+                    <xs:attribute name="ProvisioningID" type="typeAutoID" use="required"/>
+                    <xs:attribute name="ProfileID" type="common:typeProfileID" use="required">
+                        <xs:annotation>
+                            <xs:documentation>ID should be Branch id.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <!--               Added For CustomerInfo   End             -->
+    <!-- Added For Provisioning Search Service -->
+	    <xs:element name="ProvisioningSearchReq">
+		<xs:annotation>
+			<xs:documentation>Generic Search request, returns data depending on search criteria. At least 3 parameters are required out of  Profile Type, Provider Code, Supplier Code, Profile ID, Description </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element name="SearchCriteria" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="Provisioned" type="xs:boolean"
+									default="true">
+									<xs:annotation>
+										<xs:documentation>Used to search for profiles which are provisioned or not. </xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="ManagingEntityID" type="common:typeProfileID">
+									<xs:annotation>
+										<xs:documentation>Used to search for profiles having a particular managing support organization.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="PseudoCityCode" type="common:typePCC">
+									<xs:annotation>
+										<xs:documentation>Used to search for profiles on a PCC.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="IATACode" type="common:typeIATA">
+									<xs:annotation>
+										<xs:documentation>Used to search for profiles having a particular IATA code.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						<xs:element ref="BillingInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>String that can be passed to billing system to identify the source of the transaction. 
+	              Will only be set for the Work Area Branch or the Agent. Non Inheritable.
+	                        </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="SearchModifiers" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Used to search for large number of profiles in a paginated manner.                   </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="typePaginationModifiers">
+										<xs:attribute name="MoreDetails" type="xs:boolean">
+											<xs:annotation>
+												<xs:documentation> Used to see detailed provisioning information.</xs:documentation>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="ProviderCode" type="common:typeProviderCode">
+						<xs:annotation>
+							<xs:documentation>Used to search for profiles with a provider code.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="SupplierCode" type="common:typeSupplierCode">
+						<xs:annotation>
+							<xs:documentation>Used to search for profiles with a supplier code.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="ProfileID" type="common:typeProfileID">
+						<xs:annotation>
+							<xs:documentation>Agency Profile ID</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="ProfileType" type="common:typeAgencyProfileLevel">
+						<xs:annotation>
+							<xs:documentation>Used to search for provisioning information for a profile type.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Description" type="typeDescription">
+						<xs:annotation>
+							<xs:documentation>Used to search for profiles which do not have a description.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	 <xs:element name="ProvisioningSearchRsp">
+		<xs:annotation>
+			<xs:documentation>Shows the searched provisionings for the given criteria.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ProvisioningResult" minOccurs="0"
+							maxOccurs="200" />
+					</xs:sequence>
+					<xs:attribute name="MoreResults" type="xs:boolean" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+    <!-- Added For Provisioning Search Service End-->
+    
+    <!-- Added For third party credential create Service Start-->
+	<xs:element name="ThirdPartyCredentialCreateReq">
+		<xs:annotation>
+			<xs:documentation>Generic Request to create third party credential data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="UnEncryptedCredentialInfo"/>
+					</xs:sequence>
+					<xs:attribute name="ProfileId" type="common:typeProfileID" use="required">
+						<xs:annotation>
+							<xs:documentation>profile id under which the third party credential will be created.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="attrCommonCredentialInfo"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ThirdPartyCredentialCreateRsp">
+		<xs:annotation>
+			<xs:documentation>Response with created third party credential data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="EncryptedCredentialInfo"/>
+					</xs:sequence>
+					<xs:attribute name="ProfileId" type="common:typeProfileID" use="required">
+						<xs:annotation>
+							<xs:documentation>profile id under which the third party credential has been created.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				    <xs:attribute name="ProfileType" type="common:typeProfileLevelWithCredential" use="required">
+					    <xs:annotation>
+					     <xs:documentation>Profile type of associated proifle id</xs:documentation>
+					    </xs:annotation>
+				   </xs:attribute>
+				   <xs:attribute name="Version" type="common:typeVersion" use="required">
+					    <xs:annotation>
+					     <xs:documentation>Version of credential.</xs:documentation>
+					    </xs:annotation>
+					</xs:attribute>    
+					<xs:attribute name="CredentialId" type="typeAutoID" use="required">
+						<xs:annotation>
+							<xs:documentation>Unique id for a third party credential record, autogenerated from db sequence.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attributeGroup ref="attrCommonCredentialInfo"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	 <xs:element name="ThirdPartyCredentialSearchReq">
+	  <xs:annotation>
+	   <xs:documentation>Request to search third party credential data.</xs:documentation>
+	  </xs:annotation>
+	  <xs:complexType>
+	   <xs:complexContent>
+	    <xs:extension base="common:BaseReq">
+	     <xs:attribute name="ProfileId" type="common:typeProfileID" use="required">
+	      <xs:annotation>
+	       <xs:documentation>profile id under which the third party credential has been created.</xs:documentation>
+	      </xs:annotation>
+	     </xs:attribute>
+	     <xs:attribute name="ReturnHierarchy" type="xs:boolean" default="false">
+	      <xs:annotation>
+	       <xs:documentation>uAPI will return all hierarchical credentials if ReturnHierarchy=true.</xs:documentation>
+	      </xs:annotation>
+	     </xs:attribute>
+	    </xs:extension>
+	   </xs:complexContent>
+	  </xs:complexType>
+	 </xs:element>	
+		
+	 <xs:element name="ThirdPartyCredentialSearchRsp">
+	  <xs:annotation>
+	   <xs:documentation>Response of search third party credential request.</xs:documentation>
+	  </xs:annotation>
+	  <xs:complexType>
+	   <xs:complexContent>
+	    <xs:extension base="common:BaseRsp">
+	     <xs:sequence>
+	      <xs:element ref="ThirdPartyCredential" minOccurs="0" maxOccurs="unbounded"/>
+	     </xs:sequence>
+	    </xs:extension>
+	   </xs:complexContent>
+	  </xs:complexType>
+	 </xs:element>
+	 
+      <xs:element name="ThirdPartyCredentialModifyReq">
+         <xs:annotation>
+                     <xs:documentation>Request to modify third party credential data.</xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+              <xs:complexContent>
+                  <xs:extension base="common:BaseReq">
+                      <xs:sequence>
+                                  <xs:element ref="UnEncryptedCredentialInfo">
+                                              <xs:annotation>
+                                                          <xs:documentation>All data should be plain text. If AccessCode, UserId, Password and Unique Credential Data value is * then existing data remains unchanged.</xs:documentation>
+                                              </xs:annotation>
+                                  </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="ProfileId" type="common:typeProfileID" use="required">
+                                  <xs:annotation>
+                                              <xs:documentation>profile id under which the third party credential has been created.</xs:documentation>
+                                  </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="CredentialId" type="typeAutoID" use="required">
+                                  <xs:annotation>
+                                              <xs:documentation>Unique id for a third party credential record, autogenerated from db sequence.</xs:documentation>
+                                  </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="Version" type="common:typeVersion" use="required">
+                                  <xs:annotation>
+                                              <xs:documentation>Version of credential.</xs:documentation>
+                                  </xs:annotation>
+                      </xs:attribute>
+                      <xs:attributeGroup ref="attrCommonCredentialInfo"/>
+                  </xs:extension>
+              </xs:complexContent>
+         </xs:complexType>
+     </xs:element>
+     <xs:element name="ThirdPartyCredentialModifyRsp">
+        <xs:annotation>
+                    <xs:documentation>Response of modify third party credential request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+             <xs:extension base="common:BaseRsp">
+                <xs:sequence>
+                            <xs:element ref="EncryptedCredentialInfo"/>
+                </xs:sequence>
+                <xs:attribute name="ProfileId" type="common:typeProfileID" use="required">
+                            <xs:annotation>
+                                        <xs:documentation>profile id under which the third party credential has been created.</xs:documentation>
+                            </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ProfileType" type="common:typeProfileLevelWithCredential" use="required">
+                            <xs:annotation>
+                                        <xs:documentation>Profile type of associated proifle id</xs:documentation>
+                            </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="CredentialId" type="typeAutoID" use="required">
+                            <xs:annotation>
+                                        <xs:documentation>Unique id for a third party credential record, autogenerated from db sequence.</xs:documentation>
+                            </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="Version" type="common:typeVersion" use="required">
+                            <xs:annotation>
+                                        <xs:documentation>Version of credential.</xs:documentation>
+                            </xs:annotation>
+                </xs:attribute>
+                <xs:attributeGroup ref="attrCommonCredentialInfo"/>
+             </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+     </xs:element>
+
+    <xs:element name="ThirdPartyCredentialDeleteReq">
+        <xs:annotation>
+                    <xs:documentation>Request to delete a particular third party credential  The CredentialId is mandatory. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+           <xs:complexContent>
+              <xs:extension base="common:BaseReq">
+                 <xs:attribute name="CredentialId" type="typeAutoID" use="required">
+                             <xs:annotation>
+                                         <xs:documentation>Unique id for a third party credential record, autogenerated from db sequence.</xs:documentation>
+                             </xs:annotation>
+                 </xs:attribute>
+              </xs:extension>
+           </xs:complexContent>
+        </xs:complexType>
+     </xs:element>
+     <xs:element name="ThirdPartyCredentialDeleteRsp">
+        <xs:annotation>
+                    <xs:documentation>Response will only include success message.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+           <xs:complexContent>
+                       <xs:extension base="common:BaseRsp"/>
+           </xs:complexContent>
+        </xs:complexType>
+     </xs:element>		
+	
+	<!-- Added For third party credential create Service End-->
+	
+    <xs:element name="AgencyConfigureReq">
+        <xs:annotation>
+                    <xs:documentation>All existing CANNED workflows should be associated to the categories for the newly created agency.  </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+           <xs:complexContent>
+              <xs:extension base="common:BaseReq">
+                  <xs:attribute name="AgencyID" type="common:typeProfileID" use="required">
+                             <xs:annotation>
+                                         <xs:documentation>Agency id for which association of CANNED WF and category takes place.</xs:documentation>
+                             </xs:annotation>
+                 </xs:attribute>
+              </xs:extension>
+           </xs:complexContent>
+        </xs:complexType>
+     </xs:element>
+     
+     <xs:element name="AgencyConfigureRsp">
+        <xs:annotation>
+                    <xs:documentation>Response will only include success message.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+           <xs:complexContent>
+                        <xs:extension base="common:BaseRsp"/>
+           </xs:complexContent>
+        </xs:complexType>
+     </xs:element>
+</xs:schema>

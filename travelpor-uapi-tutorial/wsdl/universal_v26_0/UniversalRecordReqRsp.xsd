@@ -1,0 +1,1328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/universal_v26_0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/universal_v26_0"
+    xmlns:common="http://www.travelport.com/schema/common_v26_0"    
+    xmlns:air_v26_0="http://www.travelport.com/schema/air_v26_0"
+    xmlns:vehicle="http://www.travelport.com/schema/vehicle_v26_0"
+    xmlns:hotel="http://www.travelport.com/schema/hotel_v26_0"
+    xmlns:rail="http://www.travelport.com/schema/rail_v26_0"
+    xmlns:passive="http://www.travelport.com/schema/passive_v26_0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>
+            (c) Travelport GDS 2008 All rights reserved. Proprietary
+            Information of Travelport GDS.
+        </xs:documentation>
+    </xs:annotation>
+    <xs:import schemaLocation="../common_v26_0/CommonReqRsp.xsd"
+        namespace="http://www.travelport.com/schema/common_v26_0" />    
+    <xs:import schemaLocation="../air_v26_0/Air.xsd" namespace="http://www.travelport.com/schema/air_v26_0" />
+    <xs:import schemaLocation="../vehicle_v26_0/Vehicle.xsd" namespace="http://www.travelport.com/schema/vehicle_v26_0" /> 
+    <xs:import schemaLocation="../hotel_v26_0/Hotel.xsd" namespace="http://www.travelport.com/schema/hotel_v26_0" />
+    <xs:import schemaLocation="../rail_v26_0/Rail.xsd" namespace="http://www.travelport.com/schema/rail_v26_0" />
+    <xs:import schemaLocation="../passive_v26_0/Passive.xsd" namespace="http://www.travelport.com/schema/passive_v26_0"/>
+    <xs:include schemaLocation="UniversalRecord.xsd" />
+
+    <!--*** Request Types ***-->
+    <xs:element name="UniversalRecordRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to retrieve a summary information for
+                reservations under a Universal Record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:choice>
+                        <xs:element name="UniversalRecordLocatorCode" type="common:typeLocatorCode" minOccurs="1" maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>Represents a valid Universal Recordlocator code</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ProviderReservationInfo">
+                            <xs:annotation>
+                                <xs:documentation>Represents a valid Provider Reservation/PNR.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:attributeGroup ref="common:ProviderReservation" />
+                                <xs:attribute name="TravelerLastName" type="common:typeTravelerLastName" use="optional">
+                                    <xs:annotation>
+                                        <xs:documentation>Traveler Last Name.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="ViewOnlyInd" type="xs:boolean" use="optional" default="false">
+                        <xs:annotation>
+                            <xs:documentation>True-Retrieves the PNR in UR Format, but doesn't create an actual UR in UAPI.
+                                              False-Creates and Retrieves an actual UR. Default false.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Return a Universal Record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" />
+                    </xs:sequence>
+                    <xs:attribute name="Updated" type="xs:boolean" use="optional"
+                        default="false">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Returns true if the underlying
+                                reservation has changed since it was
+                                last accessed
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProviderReservationDivideReq">
+        <xs:annotation>
+            <xs:documentation>
+            Request to split a PNR containing atleast 1 air reservation .
+         </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element name="BookingTravelerRef" minOccurs="1"
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Reference Element for Booking Traveler</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:attribute name="Key" type="common:typeRef" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode"
+                        use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Represents a valid Universal Record
+                                locator code
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attributeGroup ref="providerReservation" />
+                    <xs:attribute name="CreateChildUniversalRecord" use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Represents the options given to the user to store the Child PNR inside existing  UR or in new UR after split.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="Existing"/>
+                                <xs:enumeration value="New"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProviderReservationDivideRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ParentProviderReservationInfo"
+                            minOccurs="1" maxOccurs="1"></xs:element>
+                        <xs:element ref="ChildProviderReservationInfo"
+                            minOccurs="1" maxOccurs="1"></xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ParentProviderReservationInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="PNRDivideInfo">
+                    <xs:attribute name="UniversalLocatorCode" type="common:typeLocatorCode"
+                        use="required" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ChildProviderReservationInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="PNRDivideInfo">
+                    <xs:attribute name="UniversalLocatorCode" type="common:typeLocatorCode"
+                        use="optional" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="PNRDivideInfo">
+        <xs:sequence>
+            <xs:element ref="common:BookingTravelerName" minOccurs="1"
+                maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attributeGroup ref="providerReservation" />
+    </xs:complexType>
+    <xs:element name="UniversalRecordCancelReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to Cancel an Universal Record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:FileFinishingInfo" minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode"
+                        use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Represents a valid Universal Record
+                                locator code
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Version" type="common:typeURVersion"
+                        use="required" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordCancelRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Return status for each provider reservation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ProviderReservationStatus" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AckScheduleChangeReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to acknowledge you have received the schedule
+                change notification
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="UniversalRecordLocatorCode" type="xs:string"
+                        use="required" />
+                    <xs:attributeGroup ref="optionalProviderReservation" />
+                    <xs:attribute name="ReservationLocatorCode" type="xs:string"
+                        use="optional" />
+                    <xs:attribute name="Version" type="common:typeURVersion"
+                        use="required" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AckScheduleChangeRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Return the updated air portion of the Universal Record
+                when accepting the Schedule Change
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordImportReq">
+        <xs:annotation>
+            <xs:documentation>
+                Imports a external reservation into a G2 Universal
+                Record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:FileFinishingInfo" minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attributeGroup ref="providerReservation" />
+                    <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode"
+                        use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Required if to be imported in existing UniversalRecord.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordImportRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Return the new Universal Record that was created from an
+                external reservation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordModifyReq">
+        <xs:annotation>
+            <xs:documentation>
+                Update the universal record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:ContinuityCheckOverride"
+                            minOccurs="0" maxOccurs="1" />
+                        <xs:element ref="RecordIdentifier" />
+                        <xs:element ref="UniversalModifyCmd" maxOccurs="unbounded" />
+                        <xs:element ref="common:FileFinishingInfo" minOccurs="0" />
+                        <xs:element ref="QueueNextModifiers" minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attribute name="ReturnRecord" type="xs:boolean"
+                        use="optional" default="false">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Either the updated UniversalRecord or
+                                Universal Record for next on queue
+                                should be returned in the response
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Version" type="common:typeURVersion"
+                        use="required" />
+                    <xs:attribute name="OverrideMCT" type="xs:boolean" use="optional" default="false" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordModifyRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Return a Universal Record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" minOccurs="0" />                        
+                        <xs:element ref="air_v26_0:AirSolutionChangedInfo"
+                            minOccurs="0" maxOccurs="unbounded" />                            
+                        <xs:element ref="UniversalModifyFailureInfo" minOccurs="0"/>
+                    </xs:sequence>
+                   <!-- Added new attribute Queue Session Token for story 895  -->
+                    <xs:attribute name="QueueSessionToken" type="xs:string" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>Queue Session Token to hold session token for multiple queue</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Imported from G2Pnr.xsd-->
+    <xs:element name="UniversalRecordHistorySearchReq">
+        <xs:annotation>
+            <xs:documentation>
+                Search the history of a Universal Record.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecordHistorySearchModifiers"
+                            minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode"
+                        use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Represents a valid Universal Record
+                                locator code
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordHistorySearchRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecordHistorySearchResult"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="LastResult" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Indicate when the search query reached
+                                the last result.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+   
+    <!-- UR search -->
+    <xs:element name="UniversalRecordSearchReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to retrieve a summary information for reservations under a Universal Record
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecordSearchModifiers"
+                            minOccurs="0" />
+                        <xs:group ref="SearchCriteriaGroup" />
+                        <xs:element ref="SearchAccount" minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attribute name="ActionDate" type="xs:date" />
+                    <xs:attribute name="RecordStatus" type="common:typeRecordStatus" />
+                    <xs:attribute name="ClientId" type="xs:string" />
+                    <xs:attribute name="ProviderCode" type="xs:string" />
+                    <xs:attribute name="ProviderLocatorCode" type="xs:string" />
+                    <xs:attribute name="ExternalSearchIndex" type="typeExternalSearchIndex" />
+                    <xs:attribute name="RestrictToProfileId">
+                      <xs:annotation>
+                       <xs:documentation>Used to restrict the search to a specific Branch, Branch Group or Agency</xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="PassiveOnly" type="xs:boolean"
+                        use="optional" default="false">
+                        <xs:annotation>
+                            <xs:documentation>Search for Passives Only</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="TicketStatus" type="common:URTicketStatus" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Search universal record with Ticket Status </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordSearchRsp">
+        <xs:annotation>
+            <xs:documentation> Response containing summary information for reservations under a Universal Record </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecordSearchResult"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="MoreResults" type="common:typeMoreResults"
+                        use="required" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- end UR search -->
+    <xs:element name="SavedTripDeleteReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to delete saved Trip
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="LocatorCode" type="common:typeLocatorCode"
+                        use="optional">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Represents a valid Saved Trip locator code
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripDeleteRsp">
+        <xs:annotation>
+            <xs:documentation>
+            Response to delete saved Trip
+         </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp" />
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProviderReservationDisplayDetailsReq">
+        <xs:annotation>
+            <xs:documentation>
+            Request to display the addtional details of provider reservation information .
+         </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attributeGroup ref="providerReservation" />
+                    <xs:attributeGroup ref="attrProviderReservationDetails" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProviderReservationDisplayDetailsRsp">
+        <xs:annotation>
+            <xs:documentation>
+            Response to display the addtional details of provider reservation information  .
+         </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="DisplayDetails" maxOccurs="unbounded" />
+                        <xs:element ref="TravelerNameNum" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+   
+   <!--  Saved Trip Request Response -->
+    <xs:element name="SavedTripCreateReq">
+        <xs:annotation>
+            <xs:documentation>Request to create a SavedTrip.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="SavedTrip" minOccurs="0" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripCreateRsp">
+        <xs:annotation>
+            <xs:documentation>Response to SavedTripCreateReq. Contains the SavedTrip successfully created.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="SavedTrip" minOccurs="0" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripModifyReq">
+        <xs:annotation>
+            <xs:documentation>Request to modify an existing SavedTrip using the LocatorCode of the SavedTrip as the SavedTrip identifier.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="SavedTrip" minOccurs="0" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripModifyRsp">
+        <xs:annotation>
+            <xs:documentation>Response to SavedTripModifyReq. Contains the SavedTrip successfully modified.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="SavedTrip" minOccurs="0" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Request to Retrieve saved Trip based on locatorcode</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="LocatorCode" type="common:typeLocatorCode"
+                        use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Represents a valid Saved Trip locatorcode.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response to SavedTripRetrieveReq. Contains the SavedTrip successfully Retrieved.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="SavedTrip" minOccurs="0" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripSearchReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to retrieve a summary information for reservations under a SavedTrip
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="SavedTripSearchModifiers" minOccurs="0" />
+                        <xs:group ref="SearchCriteriaGroup" />
+                    </xs:sequence>
+                    <xs:attribute name="RecordStatus" type="typeSavedTripRecordStatus" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SavedTripSearchRsp">
+        <xs:annotation>
+            <xs:documentation> Response containing summary information of savedTrip </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="SavedTripSearchResult" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordErrorInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:typeErrorInfo">
+                    <xs:sequence>
+                        <xs:element name="LocatorCode" type="common:typeLocatorCode">
+                            <xs:annotation>
+                                <xs:documentation>Universal Record Locator Code.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Version" type="common:typeURVersion">
+                            <xs:annotation>
+                                <xs:documentation>Version of Universal Record.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="VehicleCreateReservationReq">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseCreateReservationReq">
+                    <xs:sequence>
+                        <xs:element ref="vehicle:VehicleDateLocation"/>
+                        <xs:element ref="vehicle:Vehicle"/>
+                        <xs:element ref="common:SpecialEquipment" minOccurs="0" maxOccurs="5"/>
+                        <xs:element ref="vehicle:VehicleSpecialRequest" minOccurs="0"/>
+                        <xs:element ref="vehicle:PaymentInformation" minOccurs="0"/>
+                        <xs:element ref="common:PointOfSale" minOccurs="0"/>
+                        <xs:element ref="vehicle:DeliveryAddress" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>An address to which a rental car should be delivered and a phone number associated with the address.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="vehicle:CollectionAddress" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>An address from which a rental car should be picked up at the end of a rental period and a phone number associated with the address.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="vehicle:FlightArrivalInformation" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    The flight arrival information 
+                                    (airline code and flight number) for the 
+                                    airport/city at which the rental car will
+                                    be picked up
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:Guarantee" minOccurs="0"/>
+                        <xs:element ref="vehicle:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="common:BookingSource" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Specify alternate booking source</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:ReservationName" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>If specified then it will be used for GDS reservation otherwise first booking traveler will be used. </xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:ThirdPartyInformation" minOccurs="0"/>
+                        <xs:element ref="common:ActionStatus" minOccurs="0"/>
+                        <xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded" >
+                        <xs:annotation>
+                                <xs:documentation>Review Booking or Queue Minders is to add the reminders in the Provider Reservation along with the date time and Queue details. On the date time defined in reminders, the message along with the PNR goes to the desired Queue. </xs:documentation>
+                        </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleCreateReservationRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" minOccurs="0"/>
+                    </xs:sequence>    
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="VehicleCancelReq">
+        <xs:annotation>
+            <xs:documentation>PNR Cancel request for a vehicle booking. Given a provider code and a provider locator code.</xs:documentation>
+            <xs:documentation>This will cancel one or more vehicle segments based on the criteria given.  If more than one</xs:documentation>
+            <xs:documentation>segment matches, then all matching will be removed.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="vehicle:VehicleDateLocation" minOccurs="0"/>
+                        <xs:element ref="vehicle:Vehicle" minOccurs="0"/>
+                        <xs:element ref="common:FileFinishingInfo" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="SupplierCode" type="xs:string" use="optional"/>
+                    <xs:attribute name="SupplierLocatorCode" type="xs:string" use="optional"/>
+                    <xs:attributeGroup ref="providerReservation"/>
+                    <xs:attribute name="Version" type="common:typeURVersion" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleCancelRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a VehicleCancelReq. PNR returned reflects the requested modifications.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>                        
+                        <xs:element ref="UniversalRecord" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+        <xs:element name="HotelCreateReservationReq">
+        <xs:annotation>
+            <xs:documentation>Request to create a hotel reservation</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseCreateReservationReq">
+                    <xs:sequence>
+                        <xs:element ref="hotel:HotelRateDetail"/>
+                        <xs:element ref="hotel:HotelProperty"/>
+                        <xs:element ref="common:ThirdPartyInformation" minOccurs="0"/>
+                        <xs:element ref="hotel:HotelStay"/>
+                        <xs:element ref="common:Guarantee" minOccurs="0"/>
+                        <xs:element ref="hotel:HotelSpecialRequest" minOccurs="0"/>                        
+                        <xs:element ref="common:PointOfSale" minOccurs="0" />
+                        <xs:element ref="hotel:PromotionCode" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Used to specify promotional code include in the booking</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                                    <!-- NEW Booking Source -->
+                        <xs:element ref="common:BookingSource" minOccurs="0">
+                            <xs:annotation>
+                               <xs:documentation>Specify alternate booking source</xs:documentation>
+                            </xs:annotation>
+                        </xs:element> 
+                        <xs:element ref="hotel:HotelBedding"  minOccurs="0" maxOccurs="4"/>
+                        <xs:element ref="hotel:GuestInformation" minOccurs="0"/>
+                        <xs:element ref="hotel:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="common:ReservationName" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>If specified then it will be used for GDS reservation otherwise first booking traveler will be used. </xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:ActionStatus" minOccurs="0"/>
+                        <xs:element ref="common:HostToken" minOccurs="0"/>
+                        <xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded" >
+                        <xs:annotation>
+                                <xs:documentation>Review Booking or Queue Minders is to add the reminders in the Provider Reservation along with the date time and Queue details. On the date time defined in reminders, the message along with the PNR goes to the desired Queue. </xs:documentation>
+                        </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="hotel:HotelCommission" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>This element indicates hotel commission applied during hotel booking.  Provider supported 1P and 1J.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                     <xs:attribute name="UserAcceptance" type="xs:boolean" use="optional"  default="false">
+                        <xs:annotation>
+                            <xs:documentation>If true, traveler has reviewed and accepted all policies, restrictions, and terms and conditions prior to booking. Default, false.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelCreateReservationRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="HotelCancelReq">
+        <xs:annotation>
+            <xs:documentation>Cancel request for a hotel booking. Given a provider code and a provider locator code.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="hotel:HotelProperty" minOccurs="0"/>
+                        <xs:element ref="hotel:HotelStay" minOccurs="0"/>
+                         <xs:element ref="common:FileFinishingInfo" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="SupplierCode" type="xs:string" use="optional"/>
+                    <xs:attribute name="SupplierLocatorCode" type="xs:string" use="optional"/>                    
+                    <xs:attributeGroup ref="common:providerReservation"/>                    
+                    <xs:attribute name="Version" type="common:typeURVersion" use="required" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelCancelRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="UniversalRecord" minOccurs="0" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RailCreateReservationReq">
+        <xs:annotation>
+            <xs:documentation>Creates a rail reservation with the host.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseCreateReservationReq">
+                    <xs:sequence>
+                        <xs:element ref="rail:RailPricingSolution" />
+                        <xs:element ref="common:FormOfPayment" minOccurs="0" />
+                        <xs:element ref="common:Payment" minOccurs="0" />
+                        <xs:element ref="rail:RailFareNoteList" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>List of RailFareNote(s) that is referenced by key in RailFare.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                    
+                        <xs:element ref="common:HostTokenList" minOccurs="0" />
+                        <xs:element ref="rail:RailAutoSeatAssignment" minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="typeRailReservationRsp" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+                <xs:sequence>
+                    <xs:element ref="UniversalRecord" minOccurs="0" />
+                </xs:sequence> 
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="typeRailCreateReservationRsp" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+                <xs:sequence>
+                    <xs:element ref="UniversalRecord" minOccurs="0" />
+                    <xs:element ref="rail:RailSolutionChangedInfo" minOccurs="0" maxOccurs="unbounded"/>     
+                </xs:sequence> 
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="RailCreateReservationRsp">
+        <xs:annotation>
+            <xs:documentation>Returns rail reservation information with ticketing info etc..</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="typeRailCreateReservationRsp" /> 
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RailExchangeReq">
+        <xs:annotation>
+            <xs:documentation>Creates a rail exchange reservation request with the host.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseCreateReservationReq">
+                    <xs:sequence>
+                        <xs:element ref="rail:RailExchangeSolution" minOccurs="0" maxOccurs="1"/> 
+                        <xs:element ref="common:FormOfPayment" minOccurs="0" />
+                        <xs:element ref="common:Payment" minOccurs="0" />
+                        <xs:element ref="rail:RailFareNoteList" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>List of RailFareNote(s) that is referenced by key in RailFare.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element> 
+                        <xs:element ref="common:HostTokenList" minOccurs="0" />
+                       <xs:element ref="rail:RailAutoSeatAssignment" minOccurs="0" maxOccurs="unbounded"/> 
+                    </xs:sequence>
+                    <xs:attribute name="LocatorCode" type="common:typeLocatorCode" use="required">
+                        <xs:annotation>
+                        <xs:documentation>The unique identifier for this rail reservation</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>     
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RailExchangeRsp">
+        <xs:annotation>
+            <xs:documentation>Returns rail exchange reservation information with ticketing/refund info etc..</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="typeRailReservationRsp"/>                    
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirCreateReservationReq">
+        <xs:annotation>
+            <xs:documentation>Request to store an air itinerary and create initial PNR.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseCreateReservationReq">
+                    <xs:sequence>
+                        <xs:element ref="common:SupplierLocator" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH,SDK.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: SDK.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                       
+                        <xs:element ref="common:PointOfSale" minOccurs="0" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="air_v26_0:AirPricingSolution" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH,SDK.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="common:ActionStatus" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH,SDK.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                         
+                        <xs:element ref="common:FormOfPayment" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH,SDK.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="common:Payment" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="common:DeliveryInfo" minOccurs="0" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:AutoSeatAssignment" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="air_v26_0:SpecificSeatAssignment" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="air_v26_0:AssociatedRemark" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH,SDK.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="air_v26_0:PocketItineraryRemark" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1P,1J.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded" >
+                        <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V-Review Booking or Queue Minders is to add the reminders in the Provider Reservation along with the date time and Queue details. On the date time defined in reminders, the message along with the PNR goes to the desired Queue. </xs:documentation>
+                        </xs:annotation>
+                        </xs:element>
+                        
+                    </xs:sequence>
+                    <xs:attribute name="RetainReservation" type="typeRetainReservation" use="optional" default="None" >
+                        <xs:annotation>
+                            <xs:documentation>Provider: 1G,1V,ACH.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Source" use="optional">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="50" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="OverrideMCT" type="xs:boolean" use="optional" default="false" >
+                        <xs:annotation>
+                            <xs:documentation>Provider: 1G,1V.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirCreateReservationRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:annotation>
+                           <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                        </xs:annotation>
+                        <xs:element ref="UniversalRecord" minOccurs="0" />
+                        <xs:element ref="air_v26_0:AirSolutionChangedInfo" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:AirSegmentSellFailureInfo" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirCancelReq">
+        <xs:annotation>
+            <xs:documentation>Air Cancel request is used to cancel all or part of an AirReservation. Given only a locator code, everything within the AirReservation would be canceled. If particular segments are specified, then only those segments will be canceled.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:ContinuityCheckOverride" minOccurs="0" maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:AirReservationLocatorCode" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:AirSegment" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:AirSegmentRef" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:FileFinishingInfo" minOccurs="0" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="Version" type="common:typeURVersion" use="required" >
+                        <xs:annotation>
+                            <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirCancelRsp">
+        <xs:annotation>
+            <xs:documentation>Response to an AirCancelReq. AirReservation returned reflects the requested modifications.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+	                    <xs:element ref="UniversalRecord" minOccurs="0" maxOccurs="1" >
+	                        <xs:annotation>
+	                            <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+	                        </xs:annotation>
+	                    </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirMerchandisingFulfillmentReq">
+        <xs:annotation>
+            <xs:documentation>This will fulfill the merchandised items as specified in the request. The host PNR will be updated with the services and any required charges will be added.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:HostToken" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Provider: ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                        
+                        <xs:element ref="air_v26_0:HostReservation" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:AgencySellInfo" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:AirSolution" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:CreditCard" minOccurs="0" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:OptionalService" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="air_v26_0:SpecificSeatAssignment" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:GeneralRemark" minOccurs="0" maxOccurs="unbounded" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ConfirmationEmail" type="xs:string" minOccurs="0" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirMerchandisingFulfillmentRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                         <xs:element ref="UniversalRecord" minOccurs="0" >
+                            <xs:annotation>
+                                <xs:documentation>Provider: 1G,1V,1P,1J,ACH.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="PassiveCreateReservationReq">
+		<xs:annotation>
+			<xs:documentation>
+				Request to create a passive reservation
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseCreateReservationReq">
+					<xs:sequence>
+						<xs:element ref="common:SupplierLocator" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="passive:PassiveSegment" maxOccurs="unbounded" />
+						<xs:element ref="passive:PassiveRemark" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="passive:AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="common:ActionStatus" minOccurs="0"/>
+						<xs:element ref="common:ReviewBooking" minOccurs="0" maxOccurs="unbounded" >
+                        <xs:annotation>
+                                <xs:documentation>Review Booking or Queue Minders is to add the reminders in the Provider Reservation along with the date time and Queue details. On the date time defined in reminders, the message along with the PNR goes to the desired Queue. </xs:documentation>
+                        </xs:annotation>
+                        </xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="PassiveCreateReservationRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="UniversalRecord" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="PassiveCancelReq">
+        <xs:annotation>
+            <xs:documentation>Request for cancellation of Passive reservation/segment.</xs:documentation>
+            <xs:documentation>Given the ProviderReservationInfo and PassiveReservationLocatorCode , it will cancel the Passive Reservation</xs:documentation>
+            <xs:documentation>An optional attribute of 'Key' will enable cancellation of a particular PassiveSegment in the Passive Reservation</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="passive:PassiveSegmentRef" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    PassiveSegmentRef element refers the Key of the PassiveSegment to be canceled.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:FileFinishingInfo" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="PassiveReservationLocatorCode" type="xs:string" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Locator Code of the passive reservation to be canceled.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attributeGroup ref="providerReservation">
+                        <xs:annotation>
+                            <xs:documentation>Host ProviderCode and Locator Code of the passive reservation to be canceled</xs:documentation>
+                        </xs:annotation>
+                    </xs:attributeGroup>
+                    <xs:attribute name="Version" type="common:typeURVersion" use="required" />                                        
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="PassiveCancelRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a PassiveCancelReq. The UniversalRecord returned reflects the requested modifications.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+	                <xs:sequence>
+                        <xs:element ref="UniversalRecord" minOccurs="0" maxOccurs="1"/>
+    	            </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
