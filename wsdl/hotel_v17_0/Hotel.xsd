@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/hotel_v17_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/hotel_v17_0"
+           xmlns:ur_v16_0="http://www.travelport.com/schema/universal_v16_0"
+           xmlns:common="http://www.travelport.com/schema/common_v15_0"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    <xs:import schemaLocation="../common_v15_0/Common.xsd" namespace="http://www.travelport.com/schema/common_v15_0"/>
+    <xs:import schemaLocation="../universal_v16_0/UniversalRecord.xsd" namespace="http://www.travelport.com/schema/universal_v16_0"/>
+    <xs:element name="HotelReservation">
+        <xs:annotation>
+            <xs:documentation>The complete Hotel Reservation</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReservation">
+                    <xs:sequence>
+                        <xs:element ref="common:BookingTravelerRef" minOccurs="1" maxOccurs="unbounded"/>
+                        <xs:element ref="common:ReservationName" minOccurs="0"/>
+                        <xs:element ref="common:ThirdPartyInformation" minOccurs="0"/>
+                        <xs:element ref="HotelProperty"/>
+                        <xs:element ref="HotelRateDetail"/>
+                        <xs:element ref="HotelStay"/>
+                        <xs:element ref="HotelSpecialRequest" minOccurs="0"/>
+                        <xs:element ref="common:Guarantee" minOccurs="0"/>                  
+                        <xs:element ref="PromotionCode" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Specifies promotional code used in hotel booking</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                                     <!-- NEW Booking Source -->
+                        <xs:element ref="common:BookingSource" minOccurs="0">
+                            <xs:annotation>
+                               <xs:documentation>Specify alternate booking source</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>                          
+                        <xs:element ref="HotelBedding" minOccurs="0" maxOccurs="4"/>
+                        <xs:element ref="GuestInformation" minOccurs="0"/>
+                        <xs:element ref="AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="common:SellMessage" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>                                        
+                    <xs:attribute name="Status" type="xs:string" use="required"/>
+                    <xs:attribute name="BookingConfirmation" type="xs:string" use="optional"/>
+                    <xs:attribute name="CancelConfirmation" type="xs:string" use="optional"/>
+                    <xs:attribute name="ProviderReservationInfoRef" type="common:typeRef" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Provider reservation reference key.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="TravelOrder" type="xs:integer" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>To identify the appropriate sequence for Air/Car/Hotel segments based on travel dates.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="PassiveProviderReservationInfoRef"
+						type="common:typeRef" use="optional">
+						<xs:annotation>
+							<xs:documentation>Passive Provider reservation reference
+								key.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelProperty">
+        <xs:annotation>
+            <xs:documentation>The hotel property</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PropertyAddress" type="typeUnstructuredAddress" minOccurs="0"/>
+                <xs:element ref="common:PhoneNumber" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:CoordinateLocation" minOccurs="0"/>
+                <xs:element ref="common:Distance" minOccurs="0"/>
+                <xs:element ref="HotelRating" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="Amenities" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="HotelChain" type="common:typeHotelChainCode" use="required"/>
+			<xs:attribute name="HotelCode" type="common:typeHotelCode" use="required"/>
+            <xs:attribute name="HotelLocation" type="common:typeIATACode" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The IATA location code for this entity.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Name" type="xs:string" use="optional"/>
+            <xs:attribute name="VendorLocationKey" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The VendorLocationKey for this HotelProperty.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="HotelTransportation" type="typeTransportationType" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Transportation available to hotel</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ReserveRequirement" type="common:typeReserveRequirement" use="optional"/>
+            <xs:attribute name="ParticipationLevel" type="xs:string" use="optional" >
+                <xs:annotation>
+                    <xs:documentation>Hotel Vendor Participation Level </xs:documentation>
+                    <xs:documentation>Varies by provider </xs:documentation>
+                    <xs:documentation>e.g. Best Available Rate Participant, Hotel Shopper Participant</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Availability" type="typeHotelAvailability" use="optional"/>
+            <xs:attribute name="FeaturedProperty" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>When true, this is a featured property participant.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>            
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelRateDetail">
+        <xs:annotation>
+            <xs:documentation>Rate Details</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RoomRateDescription" type="typeHotelRateDescription" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="HotelRateByDate" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="2"/>
+				<xs:element ref="RateMatchIndicator" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Returns "Match" Indicators for certain request parameters for Hotel Rate returned in response.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="TaxDetails" minOccurs="0"/>
+            </xs:sequence>
+			<xs:attribute name="RatePlanType" type="common:typeRatePlanType" use="required"/>
+            <xs:attributeGroup ref="attrHotelRate"/>            
+            <xs:attribute name="DepositRequired" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Represents whether this particular rate requires any deposit at the time of booking.</xs:documentation>
+                </xs:annotation>   
+            </xs:attribute>
+            <xs:attribute name="RateGuaranteed" type="xs:boolean" use="optional"/>            
+            <xs:attribute name="RateCategory" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The category of this rate (Best, Standard etc.)</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>            
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="TaxDetails">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Tax" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Tax">
+	<xs:complexType>
+		<xs:choice>
+			<xs:element name="Amount" type="common:typeMoney" minOccurs="1" />
+			<xs:element name="Percentage" type="xs:float" minOccurs="1" />
+		</xs:choice>
+		<xs:attribute name="Code" type="xs:string" use="required" />
+		<xs:attribute name="EffectiveDate" type="xs:date" use="optional" />
+		<xs:attribute name="ExpirationDate" type="xs:date" use="optional" />
+		<xs:attribute name="Term" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Indicates how the tax is applied. Values can be PerPerson, PerNight and PerStay</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="CollectionFreq" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>Indicates how often the tax is collected. Values can be Once or Daily</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+    </xs:element>
+    <xs:element name="GuestInformation">
+		<xs:annotation>
+			<xs:documentation>The information like number of rooms ,number of adults,children to be provided while booking the  hotel</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="NumberOfAdults" minOccurs="0"/>
+				<xs:element ref="NumberOfChildren" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NumberOfRooms" type="xs:int" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumberOfAdults">
+		<xs:annotation>
+			<xs:documentation>Number of Adults</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+		   <xs:simpleContent>
+		   	 <xs:extension base="xs:string">
+				<xs:attribute name="ExtraAdults" type="xs:int" use="optional">
+					<xs:annotation>
+						<xs:documentation>The number of extra adults in the room ,use '0' to delete the extra adults</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>	
+		   </xs:simpleContent>		
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="HotelRateByDate">
+        <xs:annotation>
+            <xs:documentation>The daily rate details</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="EffectiveDate" type="xs:string" use="required"/>
+            <xs:attribute name="ExpireDate" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="attrHotelRate"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:attributeGroup name="attrHotelRate">
+        <xs:annotation>
+            <xs:documentation>Attributes used to describe Hotel Rates</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="Base" type="common:typeMoney" use="optional">
+            <xs:annotation>
+                <xs:documentation>This attribute used describe Hotel Base Rate</xs:documentation>
+            </xs:annotation>   
+        </xs:attribute>
+        <xs:attribute name="Tax" type="common:typeMoney" use="optional">
+            <xs:annotation>
+                <xs:documentation>This attribute used to describe Tax associated with the room</xs:documentation>
+            </xs:annotation>   
+        </xs:attribute>
+        <xs:attribute name="Total" type="common:typeMoney" use="optional">
+            <xs:annotation>
+                <xs:documentation>This attribute used to describe Hotel Total Rate</xs:documentation>
+            </xs:annotation>   
+        </xs:attribute>
+        <xs:attribute name="Surcharge" type="common:typeMoney" use="optional">
+            <xs:annotation>
+                <xs:documentation>This attribute used to describe Surcharge associated with the room</xs:documentation>
+            </xs:annotation>   
+        </xs:attribute>
+    </xs:attributeGroup>    
+    
+    <xs:element name="HotelSpecialRequest" type="common:typeGeneralText"/>
+
+    <xs:element name="HotelStay">
+            <xs:annotation>
+                <xs:documentation>Arrival and Departure dates</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CheckinDate" type="typeDate"/>
+                <xs:element name="CheckoutDate" type="typeDate"/>
+            </xs:sequence>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            </xs:complexType>
+    </xs:element>
+
+    <!--*** Shared reference elements ***-->
+    <xs:element name="HotelChain">
+        <xs:annotation>
+            <xs:documentation>The hotel chain code</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Code" type="common:typeHotelChainCode" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelLocation">
+        <xs:annotation>
+            <xs:documentation>Date and Location information for the Hotel. Location can be optional if a Reference Point is provided.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:VendorLocation" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="Location" type="common:typeIATACode" use="optional"/>
+            <xs:attribute name="LocationType" type="typeHotelLocation" default="Airport"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelDetailItem">
+        <xs:annotation>
+            <xs:documentation>Textual information about the hotel</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Text" type="xs:string" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="Name" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelDetailsModifiers">
+      <xs:annotation>
+         <xs:documentation>Controls and switches for the Hotel Details request</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="common:LoyaltyCard" minOccurs="0" maxOccurs="4"/>
+            <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="4"/>
+            <xs:element ref="HotelStay"/>
+            <xs:element ref="NumberOfChildren" minOccurs="0"/>
+            <xs:element ref="HotelBedding" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="RateCategory" type="typeHotelRateCategory" minOccurs="0" maxOccurs="8">
+               <xs:annotation>
+                  <xs:documentation>Specify Rate Category</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="NumberOfAdults" type="xs:int" use="optional">
+            <xs:annotation>
+               <xs:documentation>Defaults to 1 if not specified</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="RateRuleDetail" type="typeRateRuleDetail" default="None">
+            <xs:annotation>
+               <xs:documentation>None returns hotel property descriptive information, CompleteRateDetails returns the complete hotel and room information.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="NumberOfRooms" type="xs:int" use="optional" default="1">
+            <xs:annotation>
+               <xs:documentation>The numbers of rooms,defaults to 1 if not specified</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelSearchModifiers">
+      <xs:annotation>
+         <xs:documentation>Controls and switches for the Hotel Search request</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="PermittedChains" minOccurs="0">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element ref="HotelChain" maxOccurs="unbounded"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="ProhibitedChains" minOccurs="0">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element ref="HotelChain" maxOccurs="unbounded"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element ref="common:LoyaltyCard" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="HotelName" type="xs:string" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>There can be at most one Hotel Name to be requested</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="4"/>
+            <xs:element ref="common:Distance" minOccurs="0"/>
+            <xs:element name="RateCategory" type="typeHotelRateCategory" minOccurs="0" maxOccurs="8">
+               <xs:annotation>
+                  <xs:documentation>Search for specific rate categories</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element ref="HotelRating" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="SearchPriority" minOccurs="0"/>
+            <xs:element name="HotelAddress" type="common:typeStructuredAddress" minOccurs="0">
+               	<xs:annotation>
+                   	<xs:documentation>Search Hotel by specified address or zip code</xs:documentation>
+               	</xs:annotation>
+           	</xs:element>
+           	<xs:element ref="common:ReferencePoint" minOccurs="0">
+     			<xs:annotation>
+      				<xs:documentation>Search Hotel by reference point</xs:documentation>
+     			</xs:annotation>
+    		</xs:element>   
+    		<xs:element ref="HotelBedding" minOccurs="0" maxOccurs="4"/>
+    		<xs:element ref="Amenities" minOccurs="0"/>        	
+         </xs:sequence>
+         <xs:attribute name="NumberOfAdults" type="xs:int" use="optional">
+            <xs:annotation>
+               <xs:documentation>Defaults to 1 if not specified</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="NumberOfRooms" type="xs:int" use="optional">
+            <xs:annotation>
+               <xs:documentation>Optional search criteria No. of rooms.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="IsRelaxed" type="xs:boolean" use="optional">
+            <xs:annotation>
+               <xs:documentation>Default is true. If false, only the results matching all the criteria returned.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+    
+    <xs:element name="SearchPriority">
+        <xs:annotation>
+            <xs:documentation>Override the search order for hotel availability request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Criteria" maxOccurs="7">
+                    <xs:complexType>
+                        <xs:attribute name="Order" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Criteria order for hotel search</xs:documentation>
+                                <xs:documentation>Highest Priority=1  Lowest Priority=7</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:int">
+                                    <xs:minInclusive value="1"/>
+                                    <xs:maxInclusive value="7"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="Type" use="required">
+                            <xs:annotation>
+                                <xs:documentation>Search type</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="CorporateDiscountID"/>
+                                    <xs:enumeration value="PermittedChains"/>
+                                    <xs:enumeration value="HotelName"/>
+                                    <xs:enumeration value="Distance"/>
+                                    <xs:enumeration value="RateCategory"/>
+                                    <xs:enumeration value="HotelRating"/>
+                                    <xs:enumeration value="Amenities"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="HotelSearchResult">
+        <xs:annotation>
+            <xs:documentation>A single hotel availabilty result.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelProperty"/>
+                <xs:element name="HotelSearchError" type="common:typeResultMessage" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="unbounded"/>             
+            </xs:sequence>
+            <xs:attribute name="MinimumAmount" type="common:typeMoney" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The low end of the price range</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MinAmountRateChanged" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Indicates the low end price range changes over the requested stay</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MaximumAmount" type="common:typeMoney" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The high end of the price range</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MaxAmountRateChanged" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Indicates the high end price range changes over the requested stay</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelPropertyWithMediaItems">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelProperty"/>
+                <xs:element ref="common:MediaItem" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Photos and other media urls for the item referenced above.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="MediaResultMessage" type="common:typeResultMessage" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Errors, Warnings and informational messages for the property referenced above.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="typeAllImageSize">
+        <xs:annotation>
+            <xs:documentation>All image sizes</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="A"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeRequestedImageSize">
+        <xs:union memberTypes="common:typeImageSize typeAllImageSize"/>
+    </xs:simpleType>
+
+    <xs:annotation>
+        <xs:documentation>*** Hotel specific types ***</xs:documentation>
+    </xs:annotation>
+
+    <xs:simpleType name="typeHotelLocation">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="City"/>
+            <xs:enumeration value="Airport"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeHotelRateCategory">
+        <xs:annotation>
+            <xs:documentation>Hotel specific rate categories (e.g. Standard, Military)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Standard"/>
+            <xs:enumeration value="Corporate"/>
+            <xs:enumeration value="Government"/>
+            <xs:enumeration value="Military"/>
+            <xs:enumeration value="SeniorCitizen"/>
+            <xs:enumeration value="Special"/>
+            <xs:enumeration value="Weekend"/>
+            <xs:enumeration value="Package"/>
+            <xs:enumeration value="FamilyPlan"/>
+            <xs:enumeration value="Association"/>
+            <xs:enumeration value="Tour"/>
+            <xs:enumeration value="Convention"/>
+            <xs:enumeration value="Industry"/>
+            <xs:enumeration value="Club"/>
+            <xs:enumeration value="Negotiated"/>
+            <xs:enumeration value="All"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeTransportationType">
+        <xs:annotation>
+            <xs:documentation>Transportation Type</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="20"/>
+            <xs:enumeration value="CourtesyBus"/>
+            <xs:enumeration value="Limo"/>
+            <xs:enumeration value="Public"/>
+            <xs:enumeration value="SubwayRail"/>
+            <xs:enumeration value="Bus"/>
+            <xs:enumeration value="Taxi"/>
+            <xs:enumeration value="RentalCar"/>
+            <xs:enumeration value="Walk"/>
+            <xs:enumeration value="Other"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeRateRuleDetail">
+        <xs:annotation>
+            <xs:documentation>"None' returns hotel property descriptive information, Complete returns the complete hotel and room rate information.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="None"/>
+            <xs:enumeration value="Complete"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeHotelAvailability">
+        <xs:annotation>
+            <xs:documentation>Availability status of hotel</xs:documentation>
+            <xs:documentation> Hotel is Available</xs:documentation>
+            <xs:documentation> NotAvailable</xs:documentation>
+            <xs:documentation> Available, but not for the rates requested</xs:documentation>
+            <xs:documentation> On request</xs:documentation>
+            <xs:documentation> Unknown</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Available"/>
+            <xs:enumeration value="NotAvailable"/>
+            <xs:enumeration value="AvailableForOtherRates"/>
+            <xs:enumeration value="OnRequest"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeDate">
+        <xs:annotation>
+            <xs:documentation>Date without time zones YYYY-MM-DD</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:date">
+            <xs:pattern value="[^:Z].*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="typeUnstructuredAddress">
+        <xs:annotation>
+            <xs:documentation>A simple unstructured address (e.g. 123 South State Avenue, Chicago, IL 60612)</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Address" maxOccurs="6">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="0"/>
+                        <xs:maxLength value="50"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="typeHotelRateDescription">
+        <xs:sequence>
+            <xs:element name="Text" maxOccurs="unbounded">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"/>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Optional context name of the text block being returned i.e. Room details</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>   
+    
+    <xs:element name="HotelRating">
+        <xs:annotation>
+            <xs:documentation>Hotel rating information</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Rating" type="typeSimpleHotelRating" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Hotel rating value </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="RatingRange">
+                    <xs:annotation>
+                        <xs:documentation>Search for a range of ratings</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="RatingProvider" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Rating providers, ie AAA, NTM</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>    
+    <xs:simpleType name="typeSimpleHotelRating">
+        <xs:annotation>
+            <xs:documentation>Numeric hotel rating </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+    <xs:simpleType name="typeAmenityLevel">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Property"/>
+            <xs:enumeration value="Room"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="RatingRange">
+         <xs:complexType>
+             <xs:annotation>
+                 <xs:documentation>Search for a range of rating</xs:documentation>
+             </xs:annotation>
+             <xs:attribute name="MinimumRating" type="typeSimpleHotelRating" use="optional"/>
+             <xs:attribute name="MaximumRating" type="typeSimpleHotelRating" use="optional"/>
+         </xs:complexType>
+    </xs:element> 
+    <xs:element name="HotelRuleItem">
+       <xs:annotation>
+           <xs:documentation>Textual information about the hotel rule
+           </xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:sequence>
+               <xs:element name="Text" type="xs:string" maxOccurs="unbounded" />
+           </xs:sequence>
+           <xs:attribute name="Name" type="xs:string" use="required" />
+       </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="typeAmenityCode">
+        <xs:restriction base="xs:nonNegativeInteger">
+            <xs:totalDigits value="3"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="HotelAmenity">
+        <xs:complexType>
+            <xs:attribute name="Level" type="typeAmenityLevel" use="required">
+                <xs:annotation>
+                    <xs:documentation>Property or Room amenity</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="AmenityCode" type="typeAmenityCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>OTA amenity code</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelRulesModifiers">
+        <xs:annotation>
+            <xs:documentation>Controls and switches for the Hotel Rules
+                request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="NumberOfChildren" minOccurs="0"/>
+            <xs:element ref="HotelBedding" minOccurs="0" maxOccurs="4"/>
+         </xs:sequence>
+         <xs:attribute name="NumberOfAdults" type="xs:int" use="optional">
+            <xs:annotation>
+               <xs:documentation>Defaults to 1 if not specified
+                    </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="NumberOfRooms" type="xs:int" use="optional" default="1">
+            <xs:annotation>
+               <xs:documentation>The numbers of rooms,defaults to 1 if not specified</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="NumberOfChildren">
+        <xs:annotation>
+             <xs:documentation>Number of Children</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Age" type="xs:int" minOccurs="0" maxOccurs="5"/>
+            </xs:sequence>
+            <xs:attribute name="Count" type="xs:int" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="typeBedding">
+        <xs:annotation>
+            <xs:documentation>Bedding types</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Twin"/>
+            <xs:enumeration value="Double"/>
+            <xs:enumeration value="Queen"/>
+            <xs:enumeration value="King"/>
+            <xs:enumeration value="SofaBed"/>
+            <xs:enumeration value="MurphyBed"/>
+            <xs:enumeration value="TatamiMats"/>
+            <xs:enumeration value="Futon"/>
+            <xs:enumeration value="RollawayAdult"/>
+            <xs:enumeration value="RollawayChild"/>
+            <xs:enumeration value="Crib"/>
+        </xs:restriction>
+    </xs:simpleType>   
+    <xs:element name="HotelBedding">
+        <xs:annotation>
+            <xs:documentation>Specify desired bedding</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Type" type="typeBedding" use="required">
+                <xs:annotation>
+                    <xs:documentation>Queen, King, double, etc</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="NumberOfBeds" type="xs:int" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Number of beds of desired Type in room</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PromotionCode">
+        <xs:complexType>
+        <xs:simpleContent>
+            <xs:extension base="typePromoCodeString">
+                <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="typePromoCodeString">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="RequestedHotelDetails">
+ 	<xs:complexType>
+   		<xs:annotation>
+    		<xs:documentation>Returns Hotel rate details for requested hotel property.</xs:documentation>
+   	</xs:annotation>
+   	<xs:sequence>
+	    <xs:element ref="HotelProperty"/>
+	    <xs:element ref="HotelDetailItem" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element ref="HotelRateDetail" minOccurs="0" maxOccurs="unbounded">
+	    	<xs:annotation>
+      			<xs:documentation>Returns hotel rate details during the stay if rates are available for requested property</xs:documentation>
+     		</xs:annotation>
+    	</xs:element>
+   	</xs:sequence>
+  	</xs:complexType>
+ 	</xs:element>
+ 	<xs:element name="HotelAlternateProperties">
+    	<xs:annotation>
+    		<xs:documentation>Alternate Properties returned by some Vendors if the requested property is not available</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    	<xs:sequence>
+    		<xs:element ref="HotelProperty" maxOccurs="unbounded"/>
+    	</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="RateMatchIndicator">
+		<xs:annotation>
+			<xs:documentation>"Match" Indicators for certain request parameters, e.g. Child Count, Bed Type, Extra Adults etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="RateCategory" />
+						<xs:enumeration value="RoomCount" />
+						<xs:enumeration value="BedType" />
+						<xs:enumeration value="AdultCount" />
+						<xs:enumeration value="ChildCount" />
+						<xs:enumeration value="AdultRollaway" />
+						<xs:enumeration value="ChildRollaway" />
+						<xs:enumeration value="Crib" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Status" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Available">
+							<xs:annotation>
+								<xs:documentation>Number of items requested for the	IndicatorType is available</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="NotAvailable">
+							<xs:annotation>
+								<xs:documentation>Number of items requested for the IndicatorType is not available. The actual number available is provided against Value</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SubstituteOffered">
+							<xs:annotation>
+								<xs:documentation>A substitute has been offered for the originally requested number and/or type. The substituted available is provided in against Value</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MaximumExceeded">
+							<xs:annotation>
+								<xs:documentation>Number of items requested for the IndicatorType exceeds the maximum applicable value. The substituted available is provided in against Value</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Value" type="xs:string" use="optional" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AssociatedRemark">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:typeAssociatedRemark"/>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+
+	<xs:element name="Amenities">
+		<xs:annotation>
+			<xs:documentation>Amenity information</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Amenity" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="Code" type="typeAmenity" use="required" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="typeAmenity">
+		<xs:annotation>
+			<xs:documentation>Type defination of Amenity</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:length value="4" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:element name="HotelRateInfo">
+      <xs:annotation>
+         <xs:documentation>This is a wrapper element for updating Rate Modifiers</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="RatePlanType" type="common:typeRatePlanType" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="FileFinishingService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/filefinishing_v8_0"
+             xmlns:ns1="http://www.travelport.com/schema/filefinishing_v8_0"
+             targetNamespace="http://www.travelport.com/service/filefinishing_v8_0">
+
+    <import namespace="http://www.travelport.com/service/filefinishing_v8_0"
+            location="FileFinishingAbstract.wsdl"/>
+
+     <binding name="FFAdminCreateBinding" type="tns:FFAdminCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>    
+    </binding> 
+       
+     <binding name="FFAdminModifyBinding" type="tns:FFAdminModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="FFAdminDeleteBinding" type="tns:FFAdminDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="FFAdminRetrieveBinding" type="tns:FFAdminRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="FFAdminSearchBinding" type="tns:FFAdminSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="FFAdminMasterDataRetrieveBinding" type="tns:FFAdminMasterDataRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>    
+    </binding>
+    
+    <binding name="FFAdminProfileSearchBinding" type="tns:FFAdminProfileSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>    
+    </binding>
+    
+    <binding name="FFAdminUnassignedFFSearchBinding" type="tns:FFAdminUnassignedFFSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FileFinishingAdminService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>    
+    </binding>
+        
+   	<!--  Service -->
+
+    <service name="FFAdminService">
+        <port name="FFAdminCreatePort" binding="tns:FFAdminCreateBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminDeletePort" binding="tns:FFAdminDeleteBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminModifyPort" binding="tns:FFAdminModifyBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminRetrievePort" binding="tns:FFAdminRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminSearchPort" binding="tns:FFAdminSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminMasterDataRetrievePort" binding="tns:FFAdminMasterDataRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminProfileSearchPort" binding="tns:FFAdminProfileSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+        
+        <port name="FFAdminUnassignedFFSearchPort" binding="tns:FFAdminUnassignedFFSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/FileFinishingAdminService" />
+        </port>
+    </service>
+    
+</definitions>
+
+
