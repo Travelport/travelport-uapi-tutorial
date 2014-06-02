@@ -55,7 +55,7 @@ In terms of the actual search parameters, the primary ones are
 
 For each of the above, we've provided a helper function in lesson 4's code to make it easy to create these objects.
 
-The return value, `BaseHotelSearchRsp  is substantially simpler than the return value for air travel searches, but in a similar form.  The critical elements of the returned object are the returned collection of `HotelSearchResult` objects and the children of these objects, the `HotelProperty` and `RateInfo` object object. The `RateInfo` provides information about the pricing of the hotel and the `HotelProperty` object provides some details about the specific property such as the address and amenities etc.
+The return value, `BaseHotelSearchRsp`  is substantially simpler than the return value for air travel searches, but in a similar form.  The critical elements of the returned object are the returned collection of `HotelSearchResult` objects and the children of these objects, the `HotelProperty` and `RateInfo` object object. The `RateInfo` provides information about the pricing of the hotel and the `HotelProperty` object provides some details about the specific property such as the address and amenities etc.
 
 
 #### XML For A Hotel Search
@@ -167,11 +167,13 @@ do {
      NextResultReference next = null;
      VendorLocMap NOT_USED = new VendorLocMap();
 
+    
     // run the request, possibly from some middle point
     rsp = port.service(req);            
     // merge everyone into the map
     NOT_USED.mergeAll(rsp.getHotelSearchResult());
 
+    
     List<HotelSearchResult> results = rsp.getHotelSearchResult();
     for (Iterator<HotelSearchResult> iterator = results.iterator(); iterator.hasNext();) {
     HotelSearchResult r = (HotelSearchResult) iterator.next();
@@ -184,37 +186,38 @@ do {
        }
        //we don't want to have to use a credit card or cash to guarantee resv
 	if (noDepositOrGuarantee) {
-if(p.getReserveRequirement() != null){		                                                                                                                                             
-if(!p.getReserveRequirement().equals(TypeReserveRequirement.OTHER)){
-continue;
-	         }
-	       }
+		if(p.getReserveRequirement() != null){		                                                                                                                                             
+			if(!p.getReserveRequirement().equals(TypeReserveRequirement.OTHER)){
+				continue;
+	         	}
+	        }
 	}
 	                
 	// check for closest
 	if(p.getDistance() != null){
 	       int dist = p.getDistance().getValue().intValue();	                
-	       if (dist < lowestDistance) {	  							//setProviderCode(NOT_USED.get(p.getVendorLocationKey()).getProviderCode());
-		      setClosestHotelCode(p.getHotelCode());
-		      closest = r;
-		      lowestDistance = dist;
+	       if (dist < lowestDistance) {	  							
+		       //setProviderCode(NOT_USED.get(p.getVendorLocationKey()).getProviderCode());
+	      	       setClosestHotelCode(p.getHotelCode());
+		       closest = r;
+		       lowestDistance = dist;
 		}
        }
 		            
       // get the price, check for lowest...
       List<RateInfo> ri = r.getRateInfo();
-	Iterator<RateInfo> rateInfo = ri.iterator();
-	while(rateInfo.hasNext()){
-RateInfo info = rateInfo.next();
+      Iterator<RateInfo> rateInfo = ri.iterator();
+      while(rateInfo.hasNext()){
+                RateInfo info = rateInfo.next();
 		double min = 0.0;
 		if(info.getMinimumAmount() != null){
 			min = Helper.parseNumberWithCurrency(info.getMinimumAmount());
 		}
 		else if(info.getApproximateMinimumStayAmount() != null){
-min = Helper.parseNumberWithCurrency(info.getApproximateMinimumStayAmount());
+			min = Helper.parseNumberWithCurrency(info.getApproximateMinimumStayAmount());
 	      	}
 		else if(info.getApproximateMinimumAmount() != null){
-       min = Helper.parseNumberWithCurrency(info.getApproximateMinimumAmount());
+       			min = Helper.parseNumberWithCurrency(info.getApproximateMinimumAmount());
 		}
 		//some places offer a min price of ZERO which is clearly not
 		//available so we use half max price just to make the output
@@ -225,13 +228,13 @@ min = Helper.parseNumberWithCurrency(info.getApproximateMinimumStayAmount());
 		   }
 		   else if(info.getApproximateAverageMinimumAmount() != null){
 		      min =              Helper.parseNumberWithCurrency(info.getApproximateAverageMinimumAmount())/2;
-                }
+                   }
 		   else if(info.getApproximateMaximumAmount() != null){
 		      min = Helper.parseNumberWithCurrency(info.getApproximateMaximumAmount())/2;
 		   }
 		}
 		if (min < lowestPrice) {
-//setProviderCode(NOT_USED.get(p.getVendorLocationKey()).getProviderCode());
+	           //setProviderCode(NOT_USED.get(p.getVendorLocationKey()).getProviderCode());
 	      	   setCheapestHotelCode(p.getHotelCode());
 		   cheapest = r;
 		   lowestPrice = min;
@@ -240,12 +243,11 @@ min = Helper.parseNumberWithCurrency(info.getApproximateMinimumStayAmount());
 		   }
 		}
 	   }
-}
-	                
+	   
+	   
+	   
 
-	                
-
-    }
+   
     // is there more?
     if(rsp.getHostToken() != null){
      	setHostTokenRef(rsp.getHostToken());
