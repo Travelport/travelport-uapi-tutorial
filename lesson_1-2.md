@@ -134,15 +134,10 @@ In the case of the first item, the objective in uAPI terms is construct an Avail
 At the beginning of `main()` in the `Lesson2` class are these lines:
 
 {% highlight java %}
-
 //make the request... paris to chattanooga TN USA
-
 String from ="CDG",to="CHA";
-
 //staying a week ... two months from now.. roundtrip
-
 AvailabilitySearchRsp rsp = search(from, to, Helper.daysInFuture(60), Helper.daysInFuture(67));
-	
 {% endhighlight %}
 
 The two calls to the helper method Helper.daysInFuture() should be fairly self explanatory.
