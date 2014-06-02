@@ -42,6 +42,7 @@ In this specific case, the set of reachable types includes classes describing th
 The class [Lesson2](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson2.java) can output itineraries for a given city pair, in this case Paris to Chattanooga Tennessee, USA, in a form like this:
 
 {% highlight console %}
+
 Price:GBP941.70 [BasePrice EUR760.00, Taxes GBP315.70]
 AF#682 from CDG to ATL at 2012-06-22T10:55:00.000+02:00
 AF#8468 from ATL to CHA at 2012-06-22T16:05:00.000-04:00
@@ -53,6 +54,7 @@ UA#2331 from CDG to CLT at 2012-06-22T11:10:00.000+02:00
 US#3568 from CLT to CHA at 2012-06-22T16:25:00.000-04:00
 DL#5023 from CHA to ATL at 2012-06-29T16:06:00.000-04:00
 DL#8517 from ATL to CDG at 2012-06-29T17:55:00.000-04:00
+
 {% endhighlight %}
 
 
@@ -121,6 +123,7 @@ In the case of the first item, the objective in uAPI terms is construct an Avail
       </air:AvailabilitySearchReq>
    </soapenv:Body>
 </soapenv:Envelope>
+
 {% endhighlight %}
 
 ### Preparing the Search
@@ -128,11 +131,13 @@ In the case of the first item, the objective in uAPI terms is construct an Avail
 At the beginning of `main()` in the `Lesson2` class are these lines:
 
 {% highlight java %}
+
 //make the request... paris to chattanooga TN USA
 String from ="CDG",to="CHA";
 //staying a week ... two months from now.. roundtrip
 AvailabilitySearchRsp rsp = search(from, to, 
 	Helper.daysInFuture(60), Helper.daysInFuture(67));
+	
 {% endhighlight %}
 
 The two calls to the helper method Helper.daysInFuture() should be fairly self explanatory.
@@ -571,6 +576,7 @@ In our XML example above, we displayed exactly two AirItinerarySolution objects.
 
 
 {% highlight java %}
+
 //Each "solution" is for a particular part of the journey... on		
 //a round trip there will be two of thes
 List<AirItinerarySolution> solutions = rsp.getAirItinerarySolution();
@@ -585,6 +591,7 @@ AirItinerarySolution inboundSolution = solutions.get(1);
 A “routing” is a set a flights, in some order, that get the traveller from an origin to a destination. This set has one element in the case of a direct flight, otherwise it has one or more “connections”. The code for building the final “routings” is quite short in main() for Lesson2:
 
 {% highlight java %}
+
 //bound the routings by using the connections
 List<AirItinerary> out = buildRoutings(outboundSolution, 0, allSegments, allDetails);
 List<AirItinerary> in = buildRoutings(inboundSolution, 1, allSegments, allDetails);	
@@ -636,6 +643,7 @@ The first air connection object indicates that index 0 of the list above, the ai
 
 
 {% highlight xml %}
+
 <air:AirSegment Key="BghDFrDORxOeDtSVTR55qw==" Group="0" Carrier="US" FlightNumber="787" Origin="CDG" Destination="CLT" DepartureTime="2014-06-19T11:00:00.000+02:00" ArrivalTime="2014-06-19T14:20:00.000-04:00" FlightTime="560" TravelTime="728" ETicketability="Yes" Equipment="333" ChangeOfPlane="false" ParticipantLevel="Secure Sell" LinkAvailability="true" PolledAvailabilityOption="Polled avail used" OptionalServicesIndicator="false" AvailabilitySource="Seamless">
 <air:AirAvailInfo ProviderCode="1G">
   <air:BookingCodeInfo CabinClass="Business" BookingCounts="C9|D9|Z9"/>
@@ -649,6 +657,7 @@ The first air connection object indicates that index 0 of the list above, the ai
 </air:AirAvailInfo>
 <air:FlightDetailsRef Key="7VqUUrr7RnanR/eFSV5Syw=="/>
 </air:AirSegment>
+
 {% endhighlight %}
 
 
@@ -669,6 +678,7 @@ This is the critical part of the function displayItineraryPrice that does the wo
 
 	
 {% highlight java %}
+
 public static void displayItineraryPrice(AirItinerary itin) throws AirFaultMessage {
 	AirPriceRsp priceRsp = priceItinerary(itin);
 
@@ -728,6 +738,7 @@ public static AirPriceRsp priceItinerary(AirItinerary itin) throws AirFaultMessa
 One of the most crucial functions of the uAPI is its ability to accurately price a given itinerary and display not only the total price to be paid, but also to break down all the pricing components as well. In addition, there is the complex issue of which taxes and from what jurisdiction should be applied. Here is an example AirPricingReq in XML as sent from Lesson 2 to Travelport:
 
 {% highlight xml %}
+
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header/>
    <soapenv:Body>
@@ -765,6 +776,7 @@ The particular details of understanding all the aspects of this response are bey
 
 
 {% highlight xml %}
+
 <SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
    <SOAP:Body>
       <air:AirPriceRsp TraceId="trace" TransactionId="D78AC8530A07761F653540775EFAB8E1" ResponseTime="2219" xmlns:air="http://www.travelport.com/schema/air_v26_0" xmlns:common_v26_0="http://www.travelport.com/schema/common_v26_0">      
