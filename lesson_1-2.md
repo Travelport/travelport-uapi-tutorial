@@ -48,7 +48,8 @@ AF#682 from CDG to ATL at 2012-06-22T10:55:00.000+02:00
 AF#8468 from ATL to CHA at 2012-06-22T16:05:00.000-04:00
 DL#5023 from CHA to ATL at 2012-06-29T16:06:00.000-04:00
 DL#8517 from ATL to CDG at 2012-06-29T17:55:00.000-04:00
------------
+
+
 Price:GBP3594.70 [BasePrice EUR3998.00, Taxes GBP301.70]
 UA#2331 from CDG to CLT at 2012-06-22T11:10:00.000+02:00
 US#3568 from CLT to CHA at 2012-06-22T16:25:00.000-04:00
@@ -82,6 +83,8 @@ As we shall see, the first and third items require particular care, and can be m
 #### Purely uAPI
 
 In the case of the first item, the objective in uAPI terms is construct an AvailabilitySearchReq which is primarily composed of two SearchAirLeg components plus one or more AirSearchModifiers. One SearchAirLeg is for the outbound and one is for the return journey. All these parts can be seen in this XML request, sampled from Lesson2. As before, the origin point is Paris, France (airport is ‘CDG’) and the destination is ‘CHA’ or Chattanooga, Tennessee in the US.
+
+{% highlight xml %}
  
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">   <soapenv:Header/>
    <soapenv:Body>
