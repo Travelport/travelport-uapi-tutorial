@@ -20,6 +20,7 @@ After deciding when, where, and how to travel (the subjects of [Unit 1](lesson1)
 Hotels are the most common target in searching for accommodation.  When this lesson is completed you'll have a program that can output information like this:
 
 {% highlight console %}
+
 EXTENDED STAY AMERICA-BLOOMINGTON [EA:92802]
            BLOOMINTON MN
            USD59.84   to USD107.99  
@@ -65,7 +66,8 @@ If you using another programming language, or just curious, you may want to see 
 *Hotel Search Request*
 
 {% highlight xml %}
- <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header/>
    <soapenv:Body>
       <hot:HotelSearchAvailabilityReq TargetBranch="TRGT_BRCH" xmlns:hot="http://www.travelport.com/schema/hotel_v26_0">
@@ -91,6 +93,7 @@ If you using another programming language, or just curious, you may want to see 
 *Subset of Search Response To Above, With Amenities List Shortened*
 
 {% highlight xml %}
+
 <SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
    <SOAP:Body>
       <hotel:HotelSearchAvailabilityRsp TransactionId="D7FCCB3B0A07761F65354077AFE8D8C4" ResponseTime="7172" xmlns:hotel="http://www.travelport.com/schema/hotel_v26_0" xmlns:common_v26_0="http://www.travelport.com/schema/common_v26_0">
@@ -163,6 +166,7 @@ The Universal API&trade; will signal in its responses if more results are availa
 The typical construction in code for pulling multiple screens of information from a search request looks something like the following Java code.  We are using a hotel search here, but it applies to other searches.
 
 {% highlight java %}
+
 do {
      NextResultReference next = null;
      VendorLocMap NOT_USED = new VendorLocMap();
@@ -284,6 +288,7 @@ A few things are worth talking about from this snippet.
 The XML used to request "more information", aka "next screen", looks like this for a follow-up to the response shown in the previous XML listing:
 
 {% highlight xml %}
+
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header/>
    <soapenv:Body>
@@ -305,6 +310,7 @@ The XML used to request "more information", aka "next screen", looks like this f
       </hot:HotelSearchAvailabilityReq>
    </soapenv:Body>
 </soapenv:Envelope>
+
 {% endhighlight %}
 
 As was explained in the previous section concerning the Java code, the request parameters should be the same as the original request, with the only difference between the initial and follow-up requests being the `NextResultReference` tag.
