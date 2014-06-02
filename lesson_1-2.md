@@ -136,10 +136,12 @@ At the beginning of `main()` in the `Lesson2` class are these lines:
 {% highlight java %}
 
 //make the request... paris to chattanooga TN USA
+
 String from ="CDG",to="CHA";
+
 //staying a week ... two months from now.. roundtrip
-AvailabilitySearchRsp rsp = search(from, to, 
-	Helper.daysInFuture(60), Helper.daysInFuture(67));
+
+AvailabilitySearchRsp rsp = search(from, to, Helper.daysInFuture(60), Helper.daysInFuture(67));
 	
 {% endhighlight %}
 
