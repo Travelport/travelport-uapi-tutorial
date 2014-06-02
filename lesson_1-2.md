@@ -11,7 +11,7 @@ description: "Making requests to find schedules and prices."
 
 After this lesson is completed, you should know how to search for available flights, and price itineraries using the Travelport Universal API&trade;.   
 
-    If you are using "test" credentials you should be aware that the test environment is based on a "copy" of activity on the primary (non-test) system at Travelport.  For this reason, there are sometimes situations where specific data/requests cannot be served from the test environment, since data must have been "recently" seen in the production environment to be visible in test.  It's a good idea to try a request that has a timeout, for example, again in a minute or two.
+If you are using "test" credentials you should be aware that the test environment is based on a "copy" of activity on the primary (non-test) system at Travelport.  For this reason, there are sometimes situations where specific data/requests cannot be served from the test environment, since data must have been "recently" seen in the production environment to be visible in test.  It's a good idea to try a request that has a timeout, for example, again in a minute or two.
 
 ### Workflow
 
@@ -682,6 +682,8 @@ This is the critical part of the function displayItineraryPrice that does the wo
 	
 {% highlight java %}
 
+
+
 public static void displayItineraryPrice(AirItinerary itin) throws AirFaultMessage {
 	AirPriceRsp priceRsp = priceItinerary(itin);
 
@@ -733,6 +735,9 @@ public static AirPriceRsp priceItinerary(AirItinerary itin) throws AirFaultMessa
 	//WSDLService.airPrice.showXML(true);
 	return WSDLService.airPrice.get().service(priceReq);
 } 
+
+
+
 
 {% endhighlight %}
 
