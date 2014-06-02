@@ -168,6 +168,8 @@ The typical construction in code for pulling multiple screens of information fro
 {% highlight java %}
 
 do {
+     
+     
      NextResultReference next = null;
      VendorLocMap NOT_USED = new VendorLocMap();
 
