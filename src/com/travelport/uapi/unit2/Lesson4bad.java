@@ -1,16 +1,46 @@
 package com.travelport.uapi.unit2;
 
-import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.travelport.schema.air_v18_0.*;
-import com.travelport.service.air_v18_0.AirFaultMessage;
+import javax.xml.datatype.DatatypeConfigurationException;
+
+import com.travelport.schema.air_v26_0.AirItinerary;
+import com.travelport.schema.air_v26_0.AirItinerarySolution;
+import com.travelport.schema.air_v26_0.AirPriceResult;
+import com.travelport.schema.air_v26_0.AirPriceRsp;
+import com.travelport.schema.air_v26_0.AirPricingSolution;
+import com.travelport.schema.air_v26_0.AirSegmentRef;
+import com.travelport.schema.air_v26_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v26_0.FlightDetails;
+import com.travelport.schema.air_v26_0.TypeBaseAirSegment;
+import com.travelport.service.air_v26_0.AirFaultMessage;
+import com.travelport.service.universal_v26_0.AvailabilityFaultMessage;
 import com.travelport.uapi.unit1.Helper;
 import com.travelport.uapi.unit1.Lesson2;
 
 public class Lesson4bad {
+	
+	
+	
+	
+	private static AirItinerary itinerary;
+
+	public static void main(String[] args){
+		CreateResvSvcTest resv = new CreateResvSvcTest();
+		try {
+			resv.createCancelTest();
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			System.err.println("unable to parse Air request: " + e.getMessage());
+		} catch (AirFaultMessage e) {
+			// TODO Auto-generated catch block
+			System.err.println("Error reading Air Data: " + e.getMessage());
+		} catch (AvailabilityFaultMessage e) {
+			// TODO Auto-generated catch block
+			System.err.println("error in service: " + e.getMessage());
+		}
+	}
 
 	/**
 	 * Walk through all the available search results and pick the one with the
@@ -45,9 +75,9 @@ public class Lesson4bad {
 			AirItinerary itin = (AirItinerary) candIter.next();
 			long total = 0l;
 
-			List<AirSegment> segmentsInItin = itin.getAirSegment();
-			for (Iterator<AirSegment> segIter = segmentsInItin.iterator(); segIter.hasNext();) {
-				AirSegment seg = (AirSegment) segIter.next();
+			List<TypeBaseAirSegment> segmentsInItin = itin.getAirSegment();
+			for (Iterator<TypeBaseAirSegment> segIter = segmentsInItin.iterator(); segIter.hasNext();) {
+				TypeBaseAirSegment seg = (TypeBaseAirSegment) segIter.next();
 				
 				//Flight details are already converted from refs to real details
 				List<FlightDetails> detailsInItin = seg.getFlightDetails();
@@ -89,9 +119,12 @@ public class Lesson4bad {
 		
 		for (Iterator<AirPriceResult> resultIter = r.iterator(); resultIter.hasNext();) {
 			AirPriceResult airPriceResult = (AirPriceResult) resultIter.next();
-			if (airPriceResult.getAirPricingSolution()!=null) {
-				soln=airPriceResult.getAirPricingSolution();
-				break;
+			List<AirPricingSolution> priceSoln = airPriceResult.getAirPricingSolution();
+			for(Iterator<AirPricingSolution> solunIter = priceSoln.iterator(); solunIter.hasNext();){
+				while(solunIter.hasNext()) {
+					soln=solunIter.next();
+					break;
+				}
 			}
 		}
 		if (soln==null) {
@@ -128,10 +161,11 @@ public class Lesson4bad {
 	public static AirPricingSolution searchPriceWorkflow(String origin, String dest,
 			int depInFutureDays, int retInFutureDays) throws AirFaultMessage {
 		
-		AvailabilitySearchRsp availRsp=  Lesson2.search("CDG", "SFO",
+		AvailabilitySearchRsp availRsp=  Lesson2.search("DEN", "SFO",
 				Helper.daysInFuture(67), Helper.daysInFuture(81));
 		AirItinerary itin = Lesson4bad.pickShortestItinerary(availRsp);
 		AirPriceRsp priceRsp = Lesson2.priceItinerary(itin);
+		setItinerary(itin);
 		return stripNonXmitSections(Lesson4bad.getPriceSolution(priceRsp));
 	}
 	
@@ -162,24 +196,45 @@ public class Lesson4bad {
 	     TravelOrder="0"/>
 
 	     */
-	    long travelOrder = 1;
-	    for (Iterator<AirSegment> iterator = soln.getAirSegment().iterator(); iterator.hasNext();) {
-            AirSegment seg = (AirSegment) iterator.next();
+	    @SuppressWarnings("unused")
+		long travelOrder = 1;
+	    for (Iterator<TypeBaseAirSegment> iterator = soln.getAirSegment().iterator(); iterator.hasNext();) {
+	    	TypeBaseAirSegment seg = (TypeBaseAirSegment) iterator.next();
             //seg.setTravelOrder(BigInteger.valueOf(travelOrder));
             seg.getFlightDetails().clear();
-            //travelOrder++;
-            seg.setETicketability(TypeEticketability.YES);
-            seg.setEquipment("738");
-            //seg.setParticipantLevel_0020("Secure Sell");
-            seg.setGuaranteedPaymentCarrier("No");
-            seg.setAvailabilitySource(TypeAvailabilitySource.STATUS_OVERLAID);
-            seg.setLinkAvailability(Boolean.TRUE);
-            seg.setPolledAvailabilityOption("Polled avail exists");
+            //travelOrder++;            
+            List<TypeBaseAirSegment> itinList = getItinerary().getAirSegment();
+            Iterator<TypeBaseAirSegment> itinIte = itinList.iterator();
+            if(itinIte.hasNext()){
+            	TypeBaseAirSegment airSeg = itinIte.next();
+            	seg.setETicketability(airSeg.getETicketability());
+            	seg.setEquipment(airSeg.getEquipment());
+                //seg.setParticipantLevel_0020("Secure Sell");
+                seg.setGuaranteedPaymentCarrier(airSeg.getGuaranteedPaymentCarrier());
+                seg.setAvailabilitySource(airSeg.getAvailabilitySource());
+                seg.setLinkAvailability(Boolean.TRUE);
+                seg.setPolledAvailabilityOption(airSeg.getPolledAvailabilityOption());
+                itinList.remove(airSeg);
+            }            
         }
 	    soln.getAirPricingInfo().clear();
 	    soln.getFareNote().clear();
 	    soln.setOptionalServices(null);
 	    return soln;
+	}
+
+	/**
+	 * @return the itinerary
+	 */
+	public static AirItinerary getItinerary() {
+		return itinerary;
+	}
+
+	/**
+	 * @param itinerary the itinerary to set
+	 */
+	public static void setItinerary(AirItinerary itinerary) {
+		Lesson4bad.itinerary = itinerary;
 	}
 	 
 }

@@ -4,13 +4,33 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.travelport.schema.air_v18_0.*;
-import com.travelport.schema.common_v15_0.*;
-import com.travelport.service.air_v18_0.AirFaultMessage;
+import com.travelport.schema.air_v26_0.AirItinerary;
+import com.travelport.schema.air_v26_0.AirItinerarySolution;
+import com.travelport.schema.air_v26_0.AirPriceReq;
+import com.travelport.schema.air_v26_0.AirPriceResult;
+import com.travelport.schema.air_v26_0.AirPriceRsp;
+import com.travelport.schema.air_v26_0.AirPricingCommand;
+import com.travelport.schema.air_v26_0.AirPricingSolution;
+import com.travelport.schema.air_v26_0.AirSearchModifiers;
+import com.travelport.schema.air_v26_0.AirSegmentRef;
+import com.travelport.schema.air_v26_0.AvailabilitySearchReq;
+import com.travelport.schema.air_v26_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v26_0.Connection;
+import com.travelport.schema.air_v26_0.FlightDetails;
+import com.travelport.schema.air_v26_0.FlightDetailsRef;
+import com.travelport.schema.air_v26_0.SearchAirLeg;
+import com.travelport.schema.air_v26_0.TypeBaseAirSegment;
+import com.travelport.schema.common_v26_0.ResponseMessage;
+import com.travelport.schema.common_v26_0.SearchPassenger;
+import com.travelport.schema.common_v26_0.TypeCabinClass;
+import com.travelport.schema.common_v26_0.TypeResultMessage;
+import com.travelport.service.air_v26_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 
 public class Lesson2 {
+	private static final String travelerRef = "gr8AVWGCR064r57Jt0+8bA==";
+
 	//
 	// PROGRAM ENTRY POINT
 	//
@@ -52,9 +72,9 @@ public class Lesson2 {
 				} catch (AirFaultMessage e) {
 					System.err.println("*** Unable to price itinerary:"+e.getMessage());
 				}
-				List<AirSegment> segments = itin.getAirSegment();
-				for (Iterator<AirSegment> iter = segments.iterator(); iter.hasNext();) {
-					AirSegment airSegment = (AirSegment) iter.next();
+				List<TypeBaseAirSegment> segments = itin.getAirSegment();
+				for (Iterator<TypeBaseAirSegment> iter = segments.iterator(); iter.hasNext();) {
+					TypeBaseAirSegment airSegment = (TypeBaseAirSegment) iter.next();
 					String carrier="??";
 					String flightNum="???";
 					if (airSegment!=null) {
@@ -113,13 +133,13 @@ public class Lesson2 {
 		for (Iterator<AirItinerary> initer = in.iterator(); initer.hasNext();) {
 			AirItinerary inItin = (AirItinerary) initer.next();
 
-			List<AirSegment> inSegs = inItin.getAirSegment();
+			List<TypeBaseAirSegment> inSegs = inItin.getAirSegment();
 			
 			//each of the outbounds
 			for (Iterator<AirItinerary> iterator = out.iterator(); iterator.hasNext();) {
 				AirItinerary outItin = (AirItinerary) iterator.next();
 				
-				List<AirSegment> outSegs = outItin.getAirSegment();
+				List<TypeBaseAirSegment> outSegs = outItin.getAirSegment();
 				
 				//create a new merged itin with the in + out segmens
 				AirItinerary merged = new AirItinerary();
@@ -148,12 +168,12 @@ public class Lesson2 {
 		//walk the list of segments in this itinerary... but convert them from
 		//references to real segments for use in pricing
 		List<AirSegmentRef> legs = soln.getAirSegmentRef();
-		ArrayList<AirSegment> segs = new ArrayList<AirSegment>();
+		ArrayList<TypeBaseAirSegment> segs = new ArrayList<TypeBaseAirSegment>();
 		//when this loop is done, we have a list of segments that are good to
 		//go for use in a pricing request... 
 		for (Iterator<AirSegmentRef> segIter = legs.iterator(); segIter.hasNext();) {
 			AirSegmentRef ref = segIter.next();
-			AirSegment realSegment = segmentMap.getByRef(ref);
+			TypeBaseAirSegment realSegment = segmentMap.getByRef(ref);
 			segs.add(cloneAndFixFlightDetails(realSegment, resultingGroupNumber, detailMap));
 		}
 		
@@ -175,7 +195,7 @@ public class Lesson2 {
 		
 		//those that are left are direct flights (no connections)
 		for (int i=0; i<segs.size();++i) {
-			AirSegment segment = segs.get(i);
+			TypeBaseAirSegment segment = segs.get(i);
 			if (segment!=null) {
 				AirItinerary itin = new AirItinerary();
 				itin.getAirSegment().add(segment);
@@ -193,9 +213,9 @@ public class Lesson2 {
 	 * @return a clone of the input segment, with any reference to flight
 	 * details adjusted to be the actual details
 	 */
-	public static AirSegment cloneAndFixFlightDetails(AirSegment orig, 
+	public static TypeBaseAirSegment cloneAndFixFlightDetails(TypeBaseAirSegment orig, 
 			int resultingGroupNumber, Helper.FlightDetailsMap detailMap) {
-		AirSegment result = new AirSegment();
+		TypeBaseAirSegment result = new TypeBaseAirSegment();
 		result.setCarrier(orig.getCarrier());
 		result.setClassOfService(orig.getClassOfService());
 		result.setFlightNumber(orig.getFlightNumber());
@@ -236,10 +256,14 @@ public class Lesson2 {
 				System.err.println("Error during pricing operation:"+
 						msg.getType()+":"+msg.getValue());
 			} else {
-				AirPricingSolution soln = result.getAirPricingSolution();
-				System.out.print("Price:"+ soln.getTotalPrice());
-				System.out.print(" [BasePrice "+soln.getBasePrice() +", ");
-				System.out.println("Taxes "+soln.getTaxes()+"]");
+				List<AirPricingSolution> priceingSolns = result.getAirPricingSolution();
+				Iterator<AirPricingSolution> aps = priceingSolns.iterator();
+				while(aps.hasNext()){
+					AirPricingSolution soln = aps.next();
+					System.out.print("Price:"+ soln.getTotalPrice());
+					System.out.print(" [BasePrice "+soln.getBasePrice() +", ");
+					System.out.println("Taxes "+soln.getTaxes()+"]");
+				}
 			}
 		}
 	}
@@ -268,10 +292,11 @@ public class Lesson2 {
 		//one adult passenger
 		SearchPassenger adult = new SearchPassenger();
 		adult.setCode("ADT");
+		adult.setBookingTravelerRef(travelerRef);
 		priceReq.getSearchPassenger().add(adult);
 		
 		//add point of sale (v18_0)
-		AirReq.addPointOfSale(priceReq, "tutorial-unit1-lesson2");
+		AirReq.addPointOfSale(priceReq, "UAPI");
 		
 		//make the request to tport
 		//WSDLService.airPrice.showXML(true);
@@ -295,22 +320,22 @@ public class Lesson2 {
 		request.setTargetBranch(System.getProperty("travelport.targetBranch"));
 		
 		//set POS
-		AirReq.addPointOfSale(request, "tutorial-unit1-lesson2");
+		AirReq.addPointOfSale(request, "UAPI");
 		
 		//set the GDS via a search modifier
 		AirSearchModifiers modifiers = AirReq.createModifiersWithProviders(System.getProperty("travelport.gds"));
 		request.setAirSearchModifiers(modifiers);
 
 		//R/T journey
-		SearchAirLeg outbound = AirReq.createLeg(origin, dest);
-		AirReq.addDepartureDate(outbound, dateOut);
-		AirReq.addEconomyPreferred(outbound);
+		SearchAirLeg outbound = AirReq.createSearchLeg(origin, dest);
+		AirReq.addSearchDepartureDate(outbound, dateOut);
+		AirReq.addSearchEconomyPreferred(outbound);
 
 		//coming back
-		SearchAirLeg ret = AirReq.createLeg(dest, origin);
-		AirReq.addDepartureDate(ret, dateBack);
+		SearchAirLeg ret = AirReq.createSearchLeg(dest, origin);
+		AirReq.addSearchDepartureDate(ret, dateBack);
 		//put traveller in econ
-		AirReq.addEconomyPreferred(ret);
+		AirReq.addSearchEconomyPreferred(ret);
 
 		//put the legs in the request
 		List<SearchAirLeg> legs = request.getSearchAirLeg();

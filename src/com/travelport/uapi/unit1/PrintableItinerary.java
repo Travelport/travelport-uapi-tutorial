@@ -1,12 +1,19 @@
 package com.travelport.uapi.unit1;
 
-import java.util.*;
+import java.util.Date;
+import java.util.Formatter;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
 
-import com.travelport.schema.air_v18_0.AirPricingSolution;
-import com.travelport.schema.air_v18_0.AirSegment;
-import com.travelport.schema.air_v18_0.AirSegmentRef;
-import com.travelport.schema.rail_v12_0.*;
-import com.travelport.uapi.unit1.Helper.AirSegmentMap;
+import com.travelport.schema.air_v26_0.AirPricingSolution;
+import com.travelport.schema.air_v26_0.AirSegmentRef;
+import com.travelport.schema.air_v26_0.TypeBaseAirSegment;
+import com.travelport.schema.rail_v26_0.RailJourney;
+import com.travelport.schema.rail_v26_0.RailJourneyRef;
+import com.travelport.schema.rail_v26_0.RailPricingSolution;
+import com.travelport.schema.rail_v26_0.RailSegment;
+import com.travelport.schema.rail_v26_0.RailSegmentRef;
 
 /**
  * Utility class for making a decent-looking display out of an itinerary.
@@ -84,7 +91,7 @@ public class PrintableItinerary {
 		for (Iterator<AirSegmentRef> iterator = segKeys.iterator(); iterator.hasNext();) {
 			AirSegmentRef airSegmentRef = (AirSegmentRef) iterator.next();
 			//looking the leg by its key
-			AirSegment leg = airSegs.getByRef(airSegmentRef);
+			TypeBaseAirSegment leg = airSegs.getByRef(airSegmentRef);
 			printLeg(leg, fmt);
 			if (leg.getDestination().equals(roundTripTurnaround)) {
 				fmt.format("%s","\n\n");
@@ -103,7 +110,7 @@ public class PrintableItinerary {
 	 * @param segment the segment to be displayed
 	 * @param fmt the formatter to use to display the data
 	 */
-	public void printLeg(AirSegment segment, Formatter fmt) {
+	public void printLeg(TypeBaseAirSegment segment, Formatter fmt) {
 		Date dep = Helper.dateFromISO8601(segment.getDepartureTime());
 		fmt.format("AIR Departing from %3s to %3s on %Tc\n",
 				segment.getOrigin(), 

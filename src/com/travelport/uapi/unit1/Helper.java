@@ -4,31 +4,37 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.travelport.schema.air_v18_0.*;
-import com.travelport.schema.common_v15_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v15_0.VendorLocation;
-import com.travelport.schema.rail_v12_0.RailJourney;
-import com.travelport.schema.rail_v12_0.RailJourneyRef;
-import com.travelport.schema.rail_v12_0.RailSegment;
-import com.travelport.schema.universal_v16_0.SavedTripActivity.VendorLocationRef;
+import com.travelport.schema.air_v26_0.*;
+import com.travelport.schema.common_v26_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v26_0.VendorLocation;
+import com.travelport.schema.hotel_v26_0.HotelSearchResult;
+import com.travelport.schema.rail_v26_0.RailJourney;
+import com.travelport.schema.rail_v26_0.RailJourneyRef;
+import com.travelport.schema.rail_v26_0.RailSegment;
+import com.travelport.schema.universal_v26_0.SavedTripActivity.VendorLocationRef;
 
 public class Helper {
     /**
      * Utility class for building a map that knows about all the segments in the
      * response.
      */
-    public static class AirSegmentMap extends HashMap<String, AirSegment> {
-        public void add(AirSegment segment) {
+    public static class AirSegmentMap extends HashMap<String, TypeBaseAirSegment> {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void add(TypeBaseAirSegment segment) {
             put(segment.getKey(), segment);
         }
 
         @Override
-        public AirSegment get(Object wontWork) {
+        public TypeBaseAirSegment get(Object wontWork) {
             throw new RuntimeException("This is disallowed because it was a " + "common mistake to pass a AirSegmentRef here instead "
                     + "of the string contained in the AirSegmentRef");
         }
 
-        public AirSegment getByRef(AirSegmentRef ref) {
+        public TypeBaseAirSegment getByRef(AirSegmentRef ref) {
             return super.get(ref.getKey());
         }
     }
@@ -38,7 +44,12 @@ public class Helper {
      * objects and can look them up by their key.
      */
     public static class FlightDetailsMap extends HashMap<String, FlightDetails> {
-        public void add(FlightDetails detail) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void add(FlightDetails detail) {
             put(detail.getKey(), detail);
         }
 
@@ -84,12 +95,12 @@ public class Helper {
      * Take a air segment list and construct a map of all the segments into a
      * segment map. This makes other parts of the work easier.
      */
-    public static AirSegmentMap createAirSegmentMap(List<AirSegment> segments) {
+    public static AirSegmentMap createAirSegmentMap(List<TypeBaseAirSegment> segments) {
         // construct a map with all the segments and their keys
         AirSegmentMap segmentMap = new AirSegmentMap();
 
-        for (Iterator<AirSegment> iterator = segments.iterator(); iterator.hasNext();) {
-            AirSegment airSegment = (AirSegment) iterator.next();
+        for (Iterator<TypeBaseAirSegment> iterator = segments.iterator(); iterator.hasNext();) {
+        	TypeBaseAirSegment airSegment = (TypeBaseAirSegment) iterator.next();
             segmentMap.add(airSegment);
         }
 
@@ -106,7 +117,12 @@ public class Helper {
      * 
      */
     public static class RailJourneyMap extends HashMap<String, RailJourney> {
-        public void add(RailJourney j) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void add(RailJourney j) {
             put(j.getKey(), j);
         }
 
@@ -144,7 +160,12 @@ public class Helper {
      * 
      */
     public static class RailSegmentMap extends HashMap<String, RailSegment> {
-        public void add(RailSegment j) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void add(RailSegment j) {
             put(j.getKey(), j);
         }
     }
@@ -186,15 +207,19 @@ public class Helper {
      * Map from a key to an actual Vendor location
      */
     public static class VendorLocMap extends HashMap<String, VendorLocation> {
-        public void add(VendorLocation location) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		public void add(VendorLocation location) {
             put(location.getKey(),location);
         }
 
-        @Override
+        /*@Override
         public VendorLocation get(Object wontWork) {
             throw new RuntimeException("This is disallowed because it was a " + "common mistake to pass a AirSegmentRef here instead "
                     + "of the string contained in the VendorLocationRef");
-        }
+        }*/
 
         /**
          * Much more type safe than the get above
@@ -205,19 +230,25 @@ public class Helper {
         public VendorLocation getByLocationRef(VendorLocationRef ref) {
             return super.get(ref.getKey());
         }
+        
+   
+      
         /**
          * Merge all the locations into this object.A non-zero return is probably
          * very bad.
          */
-        public int mergeAll(List<VendorLocation> source) {
+        public int mergeAll(List<HotelSearchResult> list) {
             int result = 0;
-            for (Iterator<VendorLocation> sourceIter = source.iterator(); sourceIter.hasNext();) {
-                VendorLocation loc = (VendorLocation) sourceIter.next();
-
-                if (super.get(loc.getKey())!=null) {
+            for (Iterator<HotelSearchResult> sourceIter = list.iterator(); sourceIter.hasNext();) {
+                HotelSearchResult loc = (HotelSearchResult) sourceIter.next();
+                
+                Iterator<VendorLocation> it = loc.getVendorLocation().iterator();                         
+                while(it.hasNext()) {
                     ++result;
+                    VendorLocation vl = it.next();
+                    add(vl);
                 }
-                add(loc);
+                
             }
             
             return result;
@@ -230,7 +261,7 @@ public class Helper {
      */
     public static BillingPointOfSaleInfo tutorialBPOSInfo(int lesson, int unit) {
         BillingPointOfSaleInfo info = new BillingPointOfSaleInfo();
-        info.setOriginApplication("tutuorial-unit"+unit+"-lesson"+lesson);
+        info.setOriginApplication("UAPI");
         return info;
     }
     /**

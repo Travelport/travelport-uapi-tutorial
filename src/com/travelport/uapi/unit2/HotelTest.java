@@ -1,19 +1,20 @@
 package com.travelport.uapi.unit2;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
-import java.math.BigInteger;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.junit.Test;
 
-import com.travelport.schema.common_v15_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v15_0.Distance;
-import com.travelport.schema.hotel_v17_0.*;
-import com.travelport.service.hotel_v17_0.HotelFaultMessage;
-import com.travelport.service.hotel_v17_0.HotelSearchServicePortType;
+import com.travelport.schema.hotel_v26_0.BaseHotelSearchRsp;
+import com.travelport.schema.hotel_v26_0.HotelLocation;
+import com.travelport.schema.hotel_v26_0.HotelSearchAvailabilityReq;
+import com.travelport.schema.hotel_v26_0.HotelSearchModifiers;
+import com.travelport.schema.hotel_v26_0.HotelStay;
+import com.travelport.service.hotel_v26_0.HotelFaultMessage;
+import com.travelport.service.hotel_v26_0.HotelSearchServicePortType;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
 
@@ -50,12 +51,12 @@ public class HotelTest {
         
         //where we store results
         Helper.VendorLocMap locMap = new Helper.VendorLocMap();
-        HotelSearchAvailabilityRsp rsp=null;
+        BaseHotelSearchRsp rsp=null;
         int screens = 0;
         
         do {
             rsp = port.service(req);
-            assertThat(locMap.mergeAll(rsp.getVendorLocation()), is(0));
+            assertThat(locMap.mergeAll(rsp.getHotelSearchResult()), is(0));
             if (rsp.getNextResultReference().size()>1) {
                 fail("not sure what it means to have more than 1 next result ref!");
             }

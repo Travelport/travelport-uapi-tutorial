@@ -1,12 +1,50 @@
 package com.travelport.uapi.unit2;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-import com.travelport.schema.common_v15_0.*;
-import com.travelport.schema.hotel_v17_0.*;
-import com.travelport.schema.universal_v16_0.UniversalRecord;
-import com.travelport.service.hotel_v17_0.*;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.travelport.schema.common_v26_0.BookingTraveler;
+import com.travelport.schema.common_v26_0.BookingTravelerName;
+import com.travelport.schema.common_v26_0.CreditCard;
+import com.travelport.schema.common_v26_0.Email;
+import com.travelport.schema.common_v26_0.Guarantee;
+import com.travelport.schema.common_v26_0.HostToken;
+import com.travelport.schema.common_v26_0.PermittedProviders;
+import com.travelport.schema.common_v26_0.PhoneNumber;
+import com.travelport.schema.common_v26_0.Provider;
+import com.travelport.schema.common_v26_0.State;
+import com.travelport.schema.common_v26_0.TypeStructuredAddress;
+import com.travelport.schema.hotel_v26_0.GuestInformation;
+import com.travelport.schema.hotel_v26_0.HotelDetailsModifiers;
+import com.travelport.schema.hotel_v26_0.HotelDetailsReq;
+import com.travelport.schema.hotel_v26_0.HotelDetailsRsp;
+import com.travelport.schema.hotel_v26_0.HotelProperty;
+import com.travelport.schema.hotel_v26_0.HotelRateDetail;
+import com.travelport.schema.hotel_v26_0.HotelReservation;
+import com.travelport.schema.hotel_v26_0.HotelSearchResult;
+import com.travelport.schema.hotel_v26_0.HotelStay;
+import com.travelport.schema.hotel_v26_0.NumberOfAdults;
+import com.travelport.schema.hotel_v26_0.TypeHotelRateDescription;
+import com.travelport.schema.hotel_v26_0.TypeRateRuleDetail;
+import com.travelport.schema.universal_v26_0.HotelCreateReservationReq;
+import com.travelport.schema.universal_v26_0.HotelCreateReservationRsp;
+import com.travelport.schema.universal_v26_0.UniversalRecord;
+import com.travelport.service.hotel_v26_0.HotelDetailsServicePortType;
+import com.travelport.service.hotel_v26_0.HotelFaultMessage;
+import com.travelport.service.hotel_v26_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v26_0.HotelSearchServicePortType;
+import com.travelport.service.hotel_v26_0.HotelService;
+import com.travelport.service.universal_v26_0.HotelReservationServicePortType;
 import com.travelport.tutorial.support.ServiceWrapper;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
@@ -22,14 +60,16 @@ public class Lesson5 {
 
     public static void main(String[] argv) {
         //the hotel search parametrs
-        int numAdults=1, numRooms=1, distanceInKm=25, maxScreens=4;
+        int numAdults=2, numRooms=1, distanceInKm=25, maxScreens=4;
         int daysToCheckin = 7, daysToDeparture = 9;
         String pointOfInterestName="GOLDEN GATE BRIDGE";
+        String city = "SFO";
 
         //again, normally this is hidden inside the WSDLService code, this is 
         //just to show how it works
         HotelSearchServicePortType port = WSDLService.hotelShop.get();
-        HotelDetailsServicePortType det = WSDLService.hotelDetails.get();
+        @SuppressWarnings("unused")
+		HotelDetailsServicePortType det = WSDLService.hotelDetails.get();
         WSDLService.hotelDetails.showXML(true);
         
         HotelReservationServicePortType resv = WSDLService.hotelReserve.get();
@@ -41,7 +81,7 @@ public class Lesson5 {
             
             HotelSearchResult[] result= 
                 Lesson4.findLowestPriceAndClosestToAttraction(port, 
-                        pointOfInterestName, distanceInKm,
+                        pointOfInterestName, city, distanceInKm,
                         maxScreens, numAdults, numRooms, daysToCheckin, 
                         daysToDeparture, true/*no deposit!*/);
         
@@ -63,8 +103,18 @@ public class Lesson5 {
             //rate details... this actually more detailed than the search
             //modes used before
             HotelDetailsModifiers mods = new HotelDetailsModifiers();
-            mods.setNumberOfAdults(1);
-            mods.setNumberOfRooms(1);
+            mods.setNumberOfAdults(numAdults);
+            mods.setNumberOfRooms(numRooms);            
+            /*
+             * Permitted provider os optional modifier and may be 
+             * needed to add in certain conditions
+             */
+            PermittedProviders permitted = new PermittedProviders();
+            Provider provider = new Provider();
+            provider.setCode(System.getProperty("travelport.gds"));
+            permitted.setProvider(provider);
+            mods.setPermittedProviders(permitted);
+            
             
             //we will re-use this again in the booking request
             HotelStay stay = Lesson4.createCheckInAndOut(
@@ -81,6 +131,9 @@ public class Lesson5 {
             
             
             mods.setRateRuleDetail(TypeRateRuleDetail.COMPLETE);
+            if(Lesson4.getRateSupplier() != null){
+            	mods.setRateSupplier(Lesson4.getRateSupplier());
+            }
             
             //put the modifiers in place
             deetReq.setHotelDetailsModifiers(mods);
@@ -92,8 +145,24 @@ public class Lesson5 {
 
             //we put the hotel property back that we got from the shop request
             //no need to tweak with it
-            deetReq.setHotelProperty(cheapest.getHotelProperty());
-      
+            List<HotelProperty> hotelProperty = cheapest.getHotelProperty();
+            Iterator<HotelProperty> hp = hotelProperty.iterator();
+            while(hp.hasNext()){
+            	HotelProperty p = hp.next();
+            	if(p.getHotelCode().equals(Lesson4.getCheapestHotelCode())){
+            		deetReq.setHotelProperty(p);
+            		break;
+            	}
+            }
+            
+            if(Lesson4.getHostTokenRef() != null){
+            	HostToken ht =  new HostToken();
+            	ht.setHost(Lesson4.getHostTokenRef().getHost());
+            	ht.setValue(Lesson4.getHostTokenRef().getValue());
+            	deetReq.setHostToken(ht);
+            }
+            
+            //System.out.println(deetReq);
             //pull apart the details of the response
             HotelDetailsRsp rsp = WSDLService.hotelDetails.get().service(deetReq);
             
@@ -131,8 +200,13 @@ public class Lesson5 {
                 if (rateDetail.getTotal() != null) {
                     min = Helper.parseNumberWithCurrency(rateDetail.getTotal());
                 } else if (rateDetail.getBase()!=null) {
-                    min =  Helper.parseNumberWithCurrency(rateDetail.getTotal());
-                } else {
+                    min =  Helper.parseNumberWithCurrency(rateDetail.getBase());
+                } else if(rateDetail.getApproximateBase() != null){
+                	min =  Helper.parseNumberWithCurrency(rateDetail.getApproximateBase());                	
+                } else if(rateDetail.getRatePlanType() != null){
+                	System.out.println("This is a worldspan hotel booking.");
+                }
+                else {
                     System.err.println("Unable to find a price for this hotel!");
                     return;
                 }
@@ -143,10 +217,15 @@ public class Lesson5 {
 
                 String description = getDescriptiveText(rateDetail);
                 //has to be the lowest that includes NON-SMOKING  
-                if ((min<lowest) && (isNonSmoking(description)) /*&& (!g)*/) {
+                if ((min<lowest) && (isNonSmoking(description)) && !System.getProperty("travelport.gds").equals("1P")) {
                     lowestRate = rateDetail;
                     lowest = min;
                     lowestDescription = description;
+                }
+                
+                if(System.getProperty("travelport.gds").equals("1P")){
+                	lowestRate = rateDetail;
+                	lowestDescription = description;
                 }
             }
             
@@ -158,34 +237,147 @@ public class Lesson5 {
             
             //print out some info for the user to see what we are doing
             System.out.println(lowestDescription);
-            System.out.println("Total Price: "+ lowestRate.getTotal());
+            //System.out.println("Total Price: "+ lowestRate.getTotal());
             
             //now do a booking
             HotelCreateReservationReq req = new HotelCreateReservationReq();
             
             //only the name and phone are required, but really should be 
             //supplying more data
+            //adding traveler 1
             BookingTraveler traveler = new BookingTraveler();
             BookingTravelerName name = new BookingTravelerName();
             name.setFirst("Hugh");
             name.setLast("Capet");
+            name.setPrefix("MR");
             PhoneNumber number = new PhoneNumber();
             number.setLocation("home");
             number.setCountryCode("1");
             number.setAreaCode("212");
             number.setNumber("555-1212");
+            
+            GregorianCalendar c = new GregorianCalendar();
+            String dob = "1967-11-23";
+            Date date = new Date();
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				 System.err.println("unable to parse Date: " + e1.getMessage());
+			}
+            c.setTime(date);
+            XMLGregorianCalendar xgc = null;
+			try {
+				xgc = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED);
+			} catch (DatatypeConfigurationException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Date type configuration error : " + e.getMessage());
+			}            
+            traveler.setDOB(xgc);
+            traveler.setNationality("FR");
+            
+            TypeStructuredAddress addrs = new TypeStructuredAddress();
+            addrs.setAddressName("Home");
+            addrs.setAddressName("Hugh Capet");
+            addrs.setCity("Montpellier");
+            State vt = new State();
+            vt.setValue("VT");            
+            addrs.setState(vt);
+            
+            addrs.getStreet().add("1 louvre street");
+            
+            addrs.setCountry("US");
+            addrs.setPostalCode("05602");
+
+            
             traveler.setTravelerType("ADT");
             traveler.setBookingTravelerName(name);
             traveler.getPhoneNumber().add(number);
+            
+            Email email = new Email();
+            email.setEmailID("test@travelport.com");
+            email.setType("Home");
+            
+            traveler.getEmail().add(email);
+
+            traveler.getAddress().add(addrs);
             req.getBookingTraveler().add(traveler);
+            
+            
+            //adding traveler 2
+            BookingTraveler traveler1 = new BookingTraveler();
+            BookingTravelerName name1 = new BookingTravelerName();
+            name1.setFirst("Lara");
+            name1.setLast("Capet");
+            name1.setPrefix("MRS");
+            PhoneNumber number1 = new PhoneNumber();
+            number1.setLocation("MON");
+            number1.setCountryCode("1");
+            number1.setAreaCode("212");
+            number1.setNumber("555-1214");
+            
+            GregorianCalendar c1 = new GregorianCalendar();
+            String dob1 = "1969-06-15";
+            Date date1 = new Date();
+			try {
+				date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob1);
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				 System.err.println("unable to parse Date: " + e1.getMessage());
+			}
+            c1.setTime(date);
+            XMLGregorianCalendar xgc1 = null;
+			try {
+				xgc1 = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED);
+			} catch (DatatypeConfigurationException e) {
+				// TODO Auto-generated catch block
+				System.err.println("Date type configuration error : " + e.getMessage());
+			}            
+            traveler.setDOB(xgc1);
+            traveler.setNationality("FR");
+            
+            TypeStructuredAddress addrs1 = new TypeStructuredAddress();
+            addrs1.setAddressName("Home");
+            addrs1.setAddressName("Hugh Capet");
+            addrs1.setCity("Montpellier");
+            State vt1 = new State();
+            vt1.setValue("VT");            
+            addrs1.setState(vt1);
+            
+            addrs1.getStreet().add("1 louvre street");
+            
+            addrs1.setCountry("US");
+            addrs1.setPostalCode("05602");
+
+            
+            traveler1.setTravelerType("ADT");
+            traveler1.setBookingTravelerName(name1);
+            traveler1.getPhoneNumber().add(number1);
+            
+            Email email1 = new Email();
+            email1.setEmailID("test@travelport.com");
+            email1.setType("Home");
+            
+            traveler1.getEmail().add(email1);
+
+            traveler1.getAddress().add(addrs1);
+            req.getBookingTraveler().add(traveler1);
+                   
             
             //many rates require a guarantee... we put this in just case but it
             //really should be done in coordination with the values returned
             Guarantee g = new Guarantee();
-            g.setType("Deposit");
+            g.setType("Guarantee");
             CreditCard ccard = Lesson4.getFakeCreditCard(false);
             g.setCreditCard(ccard);
             req.setGuarantee(g);
+            
+            GuestInformation gi = new GuestInformation();
+            gi.setNumberOfRooms(numRooms);
+            NumberOfAdults na = new NumberOfAdults();
+            na.setValue(String.valueOf(numAdults));
+            gi.setNumberOfAdults(na);
+            req.setGuestInformation(gi);
             
             
             //put the rate in that we found was the lowest (from result of details request)
@@ -197,12 +389,23 @@ public class Lesson5 {
             //put in the dates of stay (from request to get details)
             req.setHotelStay(stay);
             
+            if(Lesson4.getHostTokenRef() != null){
+            	HostToken ht =  new HostToken();
+            	ht.setHost(Lesson4.getHostTokenRef().getHost());
+            	ht.setValue(Lesson4.getHostTokenRef().getValue());
+            	req.setHostToken(ht);
+            }
+            
             WSDLService.hotelReserve.showXML(true);
             
             //always need the billing POS and target branch
             req.setBillingPointOfSaleInfo(Helper.tutorialBPOSInfo(2, 5));
             req.setTargetBranch(System.getProperty("travelport.targetBranch"));
-
+            req.setProviderCode(System.getProperty("travelport.gds"));
+            req.setUserAcceptance(Boolean.TRUE);
+            
+            //System.out.println("HotelReservationCreateReq :  " +req);
+            
             HotelCreateReservationRsp createRsp = resv.service(req, null);
             UniversalRecord rec = createRsp.getUniversalRecord();
             System.out.println("Universal Record Locator: "+rec.getLocatorCode());
@@ -218,7 +421,10 @@ public class Lesson5 {
             System.err.println("unable to parse hotel price: " + e.getMessage());
         } catch (HotelFaultMessage e) {
             System.err.println("error reading hotel data: " + e.getMessage());
-        }
+        } catch (com.travelport.service.universal_v26_0.HotelFaultMessage e) {
+			// TODO Auto-generated catch block
+        	System.err.println("error in service: " + e.getMessage());
+		}
 
     }
     
