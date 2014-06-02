@@ -21,6 +21,8 @@ public class Lesson1 {
 		
 		try {
 			//run the ping request
+	        WSDLService.sysPing.showXML(true);
+
 			PingRsp rsp = WSDLService.sysPing.get().service(req);
 			//print results.. payload and trace ID are echoed back in response
 			System.out.println(rsp.getPayload());

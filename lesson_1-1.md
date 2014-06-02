@@ -48,7 +48,7 @@ For the rest of the tutorial we'll assume that you have created a Java (or web s
 
 Apache's CXF is the critical glue for connecting Travelport's web services to our Java tutorial code. There are plenty of other choices for interacting with web services in Java, but CXF is just a very popular one.
 
-You'll need to [download and install](http://cxf.apache.org/download.html) the Apache CXF code. This tutorial expects you to be using at least version 2.6.0.
+You'll need to [download and install](http://cxf.apache.org/download.html) the Apache CXF code. This tutorial expects you to be using at least version 2.7.10.
 
 #### Using Eclipse
 
@@ -76,6 +76,8 @@ One critical thing about creating a project inside Eclipse that is each "type" o
 ##### Juno v. Indigo
 
 On [June 27, 2012](http://www.eclipse.org/org/press-release/20120627_junorelease.php), the [Eclipse project](http://www.eclipse.org/eclipse/) released [version 4.2](http://www.eclipse.org/downloads/) of Eclipse, named ['Juno'](http://www.eclipse.org/juno/).  If you are using this version of Eclipse, you  want to use the [Java for J2EE Developers Bundle](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/junor) and then verify that you have enabled the WTP, or [Web Tools Platform](http://www.eclipse.org/webtools/), version 3.4.
+
+You can also use Eclipse ‘Kepler’.
 
 ### Generating a Java Client for the uAPI
 
@@ -129,7 +131,7 @@ Referring back to the diagram for `SystemService` above, you'll see that there a
 
 ### The Other Services In Unit 1
 
-We'll be using a number of services in Unit 1, and this is a good time to generate all the necessary code for them.  You'll need to repeat the process of generating client code explained above with the "Air" service in `src/wsdl/air_v18_0/Air.wsdl`, the "Hotel" service in `src/wsdl/hotel_v17_0/Hotel.wsdl` and the "Vehicle" service in `src/wsdl/vehicle_v17_0/Vehicle.wsdl`.
+We’ll be using a number of services in Unit 1, and this is a good time to generate all the necessary code for them. You’ll need to repeat the process of generating client code explained above with the “Air” service in src/wsdl/air_v26_0/Air.wsdl, the “Hotel” service in src/wsdl/hotel_v26_0/Hotel.wsdl , the “Vehicle” service in src/wsdl/vehicle_v26_0/Vehicle.wsdl, the “Universal” service in src/wsdl/universal_v26_0/UniversalRecord.wsdl.
 
 ### The Programming Model
 

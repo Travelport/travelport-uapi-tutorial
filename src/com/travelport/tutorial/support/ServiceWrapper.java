@@ -2,15 +2,7 @@ package com.travelport.tutorial.support;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
-
-import org.apache.cxf.endpoint.Client;
-import org.apache.cxf.frontend.ClientProxy;
-import org.apache.cxf.interceptor.LoggingInInterceptor;
-import org.apache.cxf.interceptor.LoggingOutInterceptor;
-
-import com.travelport.service.hotel_v17_0.HotelService;
 
 
 /**
@@ -67,17 +59,23 @@ public class ServiceWrapper<S> {
             service = constructor.newInstance(url);
 
         } catch (SecurityException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad *service*/port pair (Security):"+
+                    e.getMessage());
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad *service*/port pair (NoSuchMethod):"+
+                    e.getMessage());
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad *service*/port pair (IllegalArgument):"+
+                    e.getMessage());
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad *service*/port pair (IllegalAccess):"+
+                    e.getMessage());
         } catch (InvocationTargetException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad *service*/port pair (InvocationTarget):"+
+                    e.getMessage());
         } catch (InstantiationException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad *service*/port pair (Instantiation):"+
+                    e.getMessage());
         }
         
     }

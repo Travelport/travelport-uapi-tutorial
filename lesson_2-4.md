@@ -20,23 +20,28 @@ After deciding when, where, and how to travel (the subjects of [Unit 1](lesson1)
 Hotels are the most common target in searching for accommodation.  When this lesson is completed you'll have a program that can output information like this:
 
 {% highlight console %}
-BW HOTEL MONTGOMERY            [BW:25754]
-           PONTORSON FR
-           EUR95.00   to EUR179.00  
-           10KM from Mont St Michel
-           RESERVATION REQUIREMENT IS GUARANTEE
-IBIS AVRANCHES MONT ST MICHEL  [RT:23750]
-           SAINT QUENTIN SUR L
-           EUR72.00   to EUR72.00   
-           13KM from Mont St Michel
+EXTENDED STAY AMERICA-BLOOMINGTON [EA:92802]
+           BLOOMINTON MN
+           USD59.84   to USD107.99  
+           5KM from Mall of America
+           AAA says 2 NTM says 2 
            RESERVATION REQUIREMENT IS OTHER
+       http://maps.google.com/?q=44.858501,-93.288498
+BW PLUS BLOOMINGTON HOTEL      [BW:03174]
+           BLOOMINGTON MN
+           USD139.99  to USD249.99  
+           0KM from Mall of America
+           AAA says 3 NTM says 3 
+           RESERVATION REQUIREMENT IS OTHER   
+	   http://maps.google.com/?q=44.851898,-93.245300
+
 {% endhighlight %}
 
 ### WSDL for hotel search
 
-You probably should have done so already, but you'll need to go through the process of generating the client-side code for the Hotel Service if you haven't done that yet.  Building the Air and Vehicle support is also recommended to avoid linker problems. The `HotelService` has a number of ports, as did the `AirService` we covered before.
+You probably should have done so already, but you’ll need to go through the process of generating the client-side code for the Hotel Service if you haven’t done that yet. Building the Air and Vehicle support is also recommended to avoid linker problems. The `HotelService` has a number of ports, as did the `AirService` we covered before.
 
-Once you have the client code from `Hotel.wsdl` (in the directory `wsdl/hotel_v17_0` in the provided code), you may want to examine the `HotelAvailabiltySearchReq` and `HotelAvailabilitySearchRsp` as these are the request/response pair of primary importance to the task ahead.
+Once you have the client code from `Hotel.wsdl` (in the directory `wsdl/hotel_v26_0` in the provided code), you may want to examine the `HotelAvailabiltySearchReq` and `BaseHotelSearchRsp(Base Type of HotelAvailabiltySearchRsp)` as these are the request/response pair of primary importance to the task ahead.
 
 When we work with the hotel availability search request, as with any request, there is the requirement for the `BillingPointOfSaleInfo` to be set to inform the uAPI what application is using the api; we have provided the method `Helper.tutorialBPOSInfo()` to create this object for you.   Similarly, one must always set the target branch and we do so based on the system property `travelport.targetBranch` (or the environment variable `TPTARGETBRANCH`).  
 
@@ -50,7 +55,7 @@ In terms of the actual search parameters, the primary ones are
 
 For each of the above, we've provided a helper function in lesson 4's code to make it easy to create these objects.
 
-The return value, `HotelAvailabilitySearchRsp` is substantially simpler than the return value for air travel searches, but in a similar form.  The critical elements of the returned object are the returned collection of `HotelSearchResult` objects and the children of these objects, the `HotelProperty` object.  The search result provides information about the pricing of the hotel and the latter object provides some details about the specific property such as the address and amenities.
+The return value, `BaseHotelSearchRsp  is substantially simpler than the return value for air travel searches, but in a similar form.  The critical elements of the returned object are the returned collection of `HotelSearchResult` objects and the children of these objects, the `HotelProperty` and `RateInfo` object object. The `RateInfo` provides information about the pricing of the hotel and the `HotelProperty` object provides some details about the specific property such as the address and amenities etc.
 
 
 #### XML For A Hotel Search
@@ -60,147 +65,85 @@ If you using another programming language, or just curious, you may want to see 
 *Hotel Search Request*
 
 {% highlight xml %}
- <?xml version="1.0" encoding="UTF-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <ns2:HotelSearchAvailabilityReq xmlns="http://www.travelport.com/schema/common_v15_0" xmlns:ns2="http://www.travelport.com/schema/hotel_v17_0" xmlns:ns3="http://www.travelport.com/schema/vehicle_v17_0" xmlns:ns4="http://www.travelport.com/schema/passive_v14_0" xmlns:ns5="http://www.travelport.com/schema/air_v18_0" xmlns:ns6="http://www.travelport.com/schema/rail_v12_0" xmlns:ns7="http://www.travelport.com/schema/universal_v16_0" TargetBranch="P105110">
-      <BillingPointOfSaleInfo OriginApplication="UAPI"/>
-      <ns2:HotelSearchModifiers NumberOfAdults="2" NumberOfRooms="2">
-        <Distance Units="KM" Value="25"/>
-        <ReferencePoint>Mall of America</ReferencePoint>
-      </ns2:HotelSearchModifiers>
-      <ns2:HotelStay>
-        <ns2:CheckinDate>2012-08-13</ns2:CheckinDate>
-        <ns2:CheckoutDate>2012-08-15</ns2:CheckoutDate>
-      </ns2:HotelStay>
-    </ns2:HotelSearchAvailabilityReq>
-  </soap:Body>
-</soap:Envelope>
+ <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hot:HotelSearchAvailabilityReq TargetBranch="TRGT_BRCH" xmlns:hot="http://www.travelport.com/schema/hotel_v26_0">
+         <com:BillingPointOfSaleInfo OriginApplication="UAPI" xmlns:com="http://www.travelport.com/schema/common_v26_0"/>
+         <hot:HotelLocation Location="MSP"/>
+         <hot:HotelSearchModifiers NumberOfAdults="2" NumberOfRooms="2">
+            <com:PermittedProviders xmlns:com="http://www.travelport.com/schema/common_v26_0">
+              <com:Provider Code="1G"/>
+            </com:PermittedProviders>
+            <com:Distance Units="KM" Value="25" xmlns:com="http://www.travelport.com/schema/common_v26_0"/>
+            <com:ReferencePoint xmlns:com="http://www.travelport.com/schema/common_v26_0">Mall of America</com:ReferencePoint>
+         </hot:HotelSearchModifiers>
+         <hot:HotelStay>
+            <hot:CheckinDate>2014-06-19</hot:CheckinDate>
+            <hot:CheckoutDate>2014-06-28</hot:CheckoutDate>
+         </hot:HotelStay>
+      </hot:HotelSearchAvailabilityReq>
+   </soapenv:Body>
+</soapenv:Envelope> 
+
 {% endhighlight %}
 
 *Subset of Search Response To Above, With Amenities List Shortened*
 
 {% highlight xml %}
-<?xml version="1.0" encoding="UTF-8"?><SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
-  <SOAP:Body>
-    <hotel:HotelSearchAvailabilityRsp xmlns:hotel="http://www.travelport.com/schema/hotel_v17_0" xmlns:common_v15_0="http://www.travelport.com/schema/common_v15_0" TransactionId="375924880A07611201EC28B7A0F1087D" ResponseTime="2004">
-      <common_v15_0:NextResultReference ProviderCode="1V">k2UqRqGv/uGTZSpGoa/+4XFUHxaT56Vv+TQNVk6nh9vs5DAVQD2dUzEZbeAcrKSIAUUYScOi8pcQeLU1Xww207/30A1eaXfw</common_v15_0:NextResultReference>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="HI" VendorLocationID="31732" Key="1"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="HH" VendorLocationID="05192" Key="2"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="CP" VendorLocationID="03121" Key="3"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="CX" VendorLocationID="47694" Key="4"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="CI" VendorLocationID="27592" Key="5"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="WV" VendorLocationID="54357" Key="6"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="HX" VendorLocationID="03114" Key="7"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="MX" VendorLocationID="58227" Key="8"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="HY" VendorLocationID="84192" Key="9"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="AA" VendorLocationID="34361" Key="10"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="ES" VendorLocationID="67637" Key="11"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="MC" VendorLocationID="01108" Key="12"/>
-      <common_v15_0:VendorLocation ProviderCode="1V" VendorCode="RC" VendorLocationID="92978" Key="13"/>
-      <hotel:HotelSearchResult MinimumAmount="USD138.99" MinAmountRateChanged="false" MaximumAmount="USD204.00" MaxAmountRateChanged="false">
-        <hotel:HotelProperty HotelChain="HI" HotelCode="31732" HotelLocation="MSP" Name="HOLIDAY INN EXP STES AIRPORT" VendorLocationKey="1" HotelTransportation="Public" ReserveRequirement="Other" ParticipationLevel="Enhanced Best Available Rate participant" Availability="Available" FeaturedProperty="true">
-          <hotel:PropertyAddress>
-            <hotel:Address>BLOOMINGTON MN</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.8598" longitude="-93.2515"/>
-          <common_v15_0:Distance Units="KM" Value="2" Direction="NW"/>
-          <hotel:HotelRating RatingProvider="AAA">
-            <hotel:Rating>3</hotel:Rating>
-          </hotel:HotelRating>
-          <hotel:Amenities>
-          ....
-          </hotel:Amenities>
-        </hotel:HotelProperty>
-      </hotel:HotelSearchResult>
-      <hotel:HotelSearchResult MinimumAmount="USD199.00" MaximumAmount="USD304.00">
-        <hotel:HotelProperty HotelChain="HH" HotelCode="05192" HotelLocation="MSP" Name="HILTON MINNEAPOLIS ARPT M-OF- A" VendorLocationKey="2" HotelTransportation="Walk" ReserveRequirement="Guarantee" ParticipationLevel="Best Available Rate and Inside Shopper participant" Availability="Available" FeaturedProperty="true">
-          <hotel:PropertyAddress>
-            <hotel:Address>3800 E 80TH STREET</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.8607" longitude="-93.2186"/>
-          <common_v15_0:Distance Units="KM" Value="3" Direction="NE"/>
-          <hotel:HotelRating RatingProvider="AAA">
-            <hotel:Rating>3</hotel:Rating>
-          </hotel:HotelRating>
-          <hotel:Amenities>
-          ...
-          </hotel:Amenities>
-        </hotel:HotelProperty>
-      </hotel:HotelSearchResult>
-      <hotel:HotelSearchResult>
-        <hotel:HotelProperty HotelChain="CP" HotelCode="03121" HotelLocation="MSP" Name="CROWNE PLAZA MSP AIRPORT MALL" VendorLocationKey="3" HotelTransportation="Walk" ReserveRequirement="Guarantee" ParticipationLevel="Enhanced Best Available Rate participant" Availability="NotAvailable" FeaturedProperty="true">
-          <hotel:PropertyAddress>
-            <hotel:Address>BLOOMINGTON MN</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.8583" longitude="-93.2224"/>
-          <common_v15_0:Distance Units="KM" Value="2" Direction="NE"/>
-          <hotel:HotelRating RatingProvider="AAA">
-            <hotel:Rating>3</hotel:Rating>
-          </hotel:HotelRating>
-          <hotel:Amenities>
-		 ...
-        </hotel:Amenities>
-        </hotel:HotelProperty>
-        <hotel:HotelSearchError Code="5000" Type="Warning">0601 NOT AVAILABLE FOR DATES REQUESTED</hotel:HotelSearchError>
-      </hotel:HotelSearchResult>
-      <hotel:HotelSearchResult MinimumAmount="USD139.00" MinAmountRateChanged="false" MaximumAmount="USD139.00" MaxAmountRateChanged="false">
-        <hotel:HotelProperty HotelChain="CX" HotelCode="47694" HotelLocation="MSP" Name="CNTRY INN-STES MALL OF AMERICA" VendorLocationKey="4" HotelTransportation="Other" ReserveRequirement="Deposit" ParticipationLevel="Best Available Rate and Inside Shopper participant" Availability="Available">
-          <hotel:PropertyAddress>
-            <hotel:Address>BLOOMINGTON MN</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.852" longitude="-93.2408"/>
-          <common_v15_0:Distance Units="KM" Value="0" Direction="N"/>
-          <hotel:HotelRating RatingProvider="AAA">
-            <hotel:Rating>3</hotel:Rating>
-          </hotel:HotelRating>
-          <hotel:Amenities>
-          ...
-          </hotel:Amenities>
-        </hotel:HotelProperty>
-      </hotel:HotelSearchResult>
-      <hotel:HotelSearchResult>
-        <hotel:HotelProperty HotelChain="CI" HotelCode="27592" HotelLocation="MSP" Name="COMFORT INN AIRPORT" VendorLocationKey="5" HotelTransportation="Walk" ReserveRequirement="Guarantee" ParticipationLevel="Best Available Rate and Inside Shopper participant">
-          <hotel:PropertyAddress>
-            <hotel:Address>BLOOMINGTON  MN</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.8617" longitude="-93.2559"/>
-          <common_v15_0:Distance Units="KM" Value="2" Direction="NW"/>
-          <hotel:HotelRating RatingProvider="AAA">
-            <hotel:Rating>3</hotel:Rating>
-          </hotel:HotelRating>
-          <hotel:Amenities>
-            ...
-          </hotel:Amenities>
-        </hotel:HotelProperty>
-        <hotel:HotelSearchError Code="5000" Type="Warning">0606 REQUEST HOC FOR RATES</hotel:HotelSearchError>
-      </hotel:HotelSearchResult>
-      <hotel:HotelSearchResult>
-        <hotel:HotelProperty HotelChain="WV" HotelCode="54357" HotelLocation="MSP" Name="HOSPITALITY INN AND SUITES" VendorLocationKey="6" HotelTransportation="Other" ReserveRequirement="Guarantee" ParticipationLevel="Inside Shopper participant">
-          <hotel:PropertyAddress>
-            <hotel:Address>BLOOMINGTON MN</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.8598" longitude="-93.2515"/>
-          <common_v15_0:Distance Units="KM" Value="2" Direction="NW"/>
-          <hotel:Amenities>
-            ...
-        </hotel:HotelProperty>
-        <hotel:HotelSearchError Code="5000" Type="Warning">0606 REQUEST HOC FOR RATES</hotel:HotelSearchError>
-      </hotel:HotelSearchResult>
-      <hotel:HotelSearchResult MinimumAmount="USD154.00" MaximumAmount="USD179.00">
-        <hotel:HotelProperty HotelChain="HX" HotelCode="03114" HotelLocation="MSP" Name="HAMPTON STE MINNEAPOLIS ST PAUL" VendorLocationKey="7" HotelTransportation="Other" ReserveRequirement="Guarantee" ParticipationLevel="Best Available Rate and Inside Shopper participant" Availability="Available">
-          <hotel:PropertyAddress>
-            <hotel:Address>BLOOMINGTON MN</hotel:Address>
-          </hotel:PropertyAddress>
-          <common_v15_0:CoordinateLocation latitude="44.8588" longitude="-93.2309"/>
-          <common_v15_0:Distance Units="KM" Value="2" Direction="NE"/>
-          <hotel:HotelRating RatingProvider="AAA">
-            <hotel:Rating>3</hotel:Rating>
-          </hotel:HotelRating>
-          <hotel:Amenities>
-            ...
-          </hotel:Amenities>
-        </hotel:HotelProperty>
-      </hotel:HotelSearchResult>
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP:Body>
+      <hotel:HotelSearchAvailabilityRsp TransactionId="D7FCCB3B0A07761F65354077AFE8D8C4" ResponseTime="7172" xmlns:hotel="http://www.travelport.com/schema/hotel_v26_0" xmlns:common_v26_0="http://www.travelport.com/schema/common_v26_0">
+         <common_v26_0:NextResultReference ProviderCode="1G">2OUR+4LUgs/Y5RH7gtSCz5dqVnro2EWMWFuGa1O3qZznXXAmkuC73JtLiE/HH5vpg/HcXdIteLwCKuu98ybn17Lm4mgxMfRJOQbGN2K2pSA=</common_v26_0:NextResultReference>
+         <hotel:HotelSearchResult>
+            <common_v26_0:VendorLocation ProviderCode="1G" VendorCode="CP" VendorLocationID="03121" Key="7rmNk2LVT6CV2H0ctX/bXQ=="/>
+            <hotel:HotelProperty HotelChain="CP" HotelCode="03121" HotelLocation="MSP" Name="CROWNE PLAZA MSP AIRPORT MALL" VendorLocationKey="7rmNk2LVT6CV2H0ctX/bXQ==" HotelTransportation="Walk" ReserveRequirement="Guarantee" ParticipationLevel="Lowest Public Rate" Availability="Available" FeaturedProperty="true" NetTransCommissionInd="A">
+               <hotel:PropertyAddress>
+                  <hotel:Address>BLOOMINGTON MN</hotel:Address>
+               </hotel:PropertyAddress>
+               <common_v26_0:CoordinateLocation latitude="44.8583" longitude="-93.2224"/>
+              <common_v26_0:Distance Units="KM" Value="2" Direction="NE"/>
+               <hotel:HotelRating RatingProvider="AAA">
+                  <hotel:Rating>3</hotel:Rating>
+               </hotel:HotelRating>
+               <hotel:HotelRating RatingProvider="NTM">
+                  <hotel:Rating>3</hotel:Rating>
+               </hotel:HotelRating>
+               <hotel:Amenities>
+                  <hotel:Amenity Code="AICO"/>
+                  <hotel:Amenity Code="CHCA"/>
+                  <hotel:Amenity Code="BRFT"/>
+                  <hotel:Amenity Code="CARE"/>
+                  <hotel:Amenity Code="COSH"/>
+                  <hotel:Amenity Code="CODE"/>
+                  <hotel:Amenity Code="ELEV"/>
+                  <hotel:Amenity Code="FRTR"/>
+                  <hotel:Amenity Code="GARO"/>
+                  <hotel:Amenity Code="GISH"/>
+                  <hotel:Amenity Code="HAFA"/>
+                  <hotel:Amenity Code="LAVA"/>
+                  <hotel:Amenity Code="MEPL"/>
+                  <hotel:Amenity Code="MEFA"/>
+                  <hotel:Amenity Code="MIBA"/>
+                  <hotel:Amenity Code="MOIR"/>
+                  <hotel:Amenity Code="NSMR"/>
+                  <hotel:Amenity Code="PARK"/>
+                  <hotel:Amenity Code="FPRK"/>
+                  <hotel:Amenity Code="SPAL"/>
+                  <hotel:Amenity Code="PHSV"/>
+                  <hotel:Amenity Code="INPL"/>
+                  <hotel:Amenity Code="OUPL"/>
+                  <hotel:Amenity Code="ROSE"/>
+                  <hotel:Amenity Code="WTKI"/>
+                  <hotel:Amenity Code="SPAA"/>
+                  <hotel:Amenity Code="A220"/>
+                  <hotel:Amenity Code="D220"/>
+                  <hotel:Amenity Code="JGTK"/>
+               </hotel:Amenities>
+            </hotel:HotelProperty>
+            <hotel:RateInfo MinimumAmount="USD141.99" MinAmountRateChanged="false" MaximumAmount="USD224.99" MaxAmountRateChanged="false"/>
+         </hotel:HotelSearchResult>
+
 {% endhighlight %}
 
 The amenities list, omitted above, is a sequence of four-letter codes that indicate features of the hotel.  For example
@@ -213,7 +156,7 @@ is air-conditioning.
 
 In the interest of simplicity, we did not discuss in the previous lesson exactly how many search results were expected to be returned, and, perhaps most importantly, how to request more results if the provider of search results can deliver them.
 
-The Universal API&trade; will signal in its responses if more results are available for any kind of search.  At the Java level, you use the method `getNextResultReference` to get access to a "token" that you can use later to tell Travelport what data you have already been returned.  You can see the token in the `common_v15_0:NextResultReference` tag at the top of the XML response.
+The Universal API&trade; will signal in its responses if more results are available for any kind of search.  At the Java level, you use the method `getNextResultReference` to get access to a "token" that you can use later to tell Travelport what data you have already been returned.  You can see the token in the `common_v26_0:NextResultReference` tag at the top of the XML response.
 
 ![Warning](images/warning.png)  Historically, the GDSes provided data on "green-screen", character-based terminals. These systems had the notion of a screenful of information--the number of lines of text that the user could see before the top lines scrolled off-screen.  Some APIs to various GDSes have also used, or perhaps "kept", the notion of a "screenful" of information to represent a partial list of results.  In homage to this tradition, we will keep the nomenclature of "a screen" to indicate one _burst_ of information returned.
 
@@ -221,30 +164,109 @@ The typical construction in code for pulling multiple screens of information fro
 
 {% highlight java %}
 do {
-	NextResultReference next = null;
-    
-	//... prepare a request and get the response...
-	
-    List<HotelSearchResult> results = response.getHotelSearchResult();
-	
-	//... process this screenful of results...
-	
+     NextResultReference next = null;
+     VendorLocMap NOT_USED = new VendorLocMap();
+
+    // run the request, possibly from some middle point
+    rsp = port.service(req);            
+    // merge everyone into the map
+    NOT_USED.mergeAll(rsp.getHotelSearchResult());
+
+    List<HotelSearchResult> results = rsp.getHotelSearchResult();
+    for (Iterator<HotelSearchResult> iterator = results.iterator(); iterator.hasNext();) {
+    HotelSearchResult r = (HotelSearchResult) iterator.next();
+    List<HotelProperty> hp = r.getHotelProperty();
+    Iterator<HotelProperty> hl = hp.iterator();
+    while(hl.hasNext()){                	               	
+       HotelProperty p = hl.next();
+	if ((p.getAvailability() == null) || (!p.getAvailability().equals(TypeHotelAvailability.AVAILABLE))) {
+             continue;
+       }
+       //we don't want to have to use a credit card or cash to guarantee resv
+	if (noDepositOrGuarantee) {
+if(p.getReserveRequirement() != null){		                                                                                                                                             
+if(!p.getReserveRequirement().equals(TypeReserveRequirement.OTHER)){
+continue;
+	         }
+	       }
+	}
+	                
+	// check for closest
+	if(p.getDistance() != null){
+	       int dist = p.getDistance().getValue().intValue();	                
+	       if (dist < lowestDistance) {	  							//setProviderCode(NOT_USED.get(p.getVendorLocationKey()).getProviderCode());
+		      setClosestHotelCode(p.getHotelCode());
+		      closest = r;
+		      lowestDistance = dist;
+		}
+       }
+		            
+      // get the price, check for lowest...
+      List<RateInfo> ri = r.getRateInfo();
+	Iterator<RateInfo> rateInfo = ri.iterator();
+	while(rateInfo.hasNext()){
+RateInfo info = rateInfo.next();
+		double min = 0.0;
+		if(info.getMinimumAmount() != null){
+			min = Helper.parseNumberWithCurrency(info.getMinimumAmount());
+		}
+		else if(info.getApproximateMinimumStayAmount() != null){
+min = Helper.parseNumberWithCurrency(info.getApproximateMinimumStayAmount());
+	      	}
+		else if(info.getApproximateMinimumAmount() != null){
+       min = Helper.parseNumberWithCurrency(info.getApproximateMinimumAmount());
+		}
+		//some places offer a min price of ZERO which is clearly not
+		//available so we use half max price just to make the output
+		//halfway meaningful
+		if (min==0.0) {
+		   if(info.getMaximumAmount() != null){
+			min = Helper.parseNumberWithCurrency(info.getMaximumAmount())/2;
+		   }
+		   else if(info.getApproximateAverageMinimumAmount() != null){
+		      min =              Helper.parseNumberWithCurrency(info.getApproximateAverageMinimumAmount())/2;
+                }
+		   else if(info.getApproximateMaximumAmount() != null){
+		      min = Helper.parseNumberWithCurrency(info.getApproximateMaximumAmount())/2;
+		   }
+		}
+		if (min < lowestPrice) {
+//setProviderCode(NOT_USED.get(p.getVendorLocationKey()).getProviderCode());
+	      	   setCheapestHotelCode(p.getHotelCode());
+		   cheapest = r;
+		   lowestPrice = min;
+		   if(info.getRateSupplier() != null){
+		      	setRateSupplier(info.getRateSupplier());
+		   }
+		}
+	   }
+}
+	                
+
+	                
+
+    }
     // is there more?
+    if(rsp.getHostToken() != null){
+     	setHostTokenRef(rsp.getHostToken());
+    }
+            
     if (rsp.getNextResultReference().size() > 0) {
-        // there is, so prepare for it
-        next = rsp.getNextResultReference().get(0);
+       // there is, so prepare for it
+       next = rsp.getNextResultReference().get(0);
     }
     // keep track of number of times we've hit the server
     ++screens;
     if (next == null) {
-        // no more data
-        break;
+       // no more data
+       break;
     }
-    // prepare for next round by setting the next value into the same request
+    // prepare for next round by setting the next value into this
+    // request
     req.getNextResultReference().clear();
     req.getNextResultReference().add(next);
+} while (screens != maxScreens); 
 
-} while (screens != MAX_SCREENS);
 {% endhighlight %}
 
 A few things are worth talking about from this snippet.
@@ -260,22 +282,27 @@ A few things are worth talking about from this snippet.
 The XML used to request "more information", aka "next screen", looks like this for a follow-up to the response shown in the previous XML listing:
 
 {% highlight xml %}
-<?xml version="1.0" encoding="UTF-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <ns2:HotelSearchAvailabilityReq xmlns="http://www.travelport.com/schema/common_v15_0" xmlns:ns2="http://www.travelport.com/schema/hotel_v17_0" xmlns:ns3="http://www.travelport.com/schema/vehicle_v17_0" xmlns:ns4="http://www.travelport.com/schema/passive_v14_0" xmlns:ns5="http://www.travelport.com/schema/air_v18_0" xmlns:ns6="http://www.travelport.com/schema/rail_v12_0" xmlns:ns7="http://www.travelport.com/schema/universal_v16_0" TargetBranch="P105110">
-      <BillingPointOfSaleInfo OriginApplication="UAPI"/>
-      <NextResultReference ProviderCode="1V">k2UqRqGv/uGTZSpGoa/+4XFUHxaT56Vv+TQNVk6nh9vs5DAVQD2dUzEZbeAcrKSIAUUYScOi8pcQeLU1Xww207/30A1eaXfw</NextResultReference>
-      <ns2:HotelSearchModifiers NumberOfAdults="2" NumberOfRooms="2">
-        <Distance Units="KM" Value="25"/>
-        <ReferencePoint>Mall of America</ReferencePoint>
-      </ns2:HotelSearchModifiers>
-      <ns2:HotelStay>
-        <ns2:CheckinDate>2012-08-13</ns2:CheckinDate>
-        <ns2:CheckoutDate>2012-08-15</ns2:CheckoutDate>
-      </ns2:HotelStay>
-    </ns2:HotelSearchAvailabilityReq>
-  </soap:Body>
-</soap:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <hot:HotelSearchAvailabilityReq TargetBranch="TRGT_BRCH" xmlns:hot="http://www.travelport.com/schema/hotel_v26_0">
+         <com:BillingPointOfSaleInfo OriginApplication="UAPI" xmlns:com="http://www.travelport.com/schema/common_v26_0"/>
+         <com:NextResultReference ProviderCode="1G" xmlns:com="http://www.travelport.com/schema/common_v26_0">2OUR+4LUgs/Y5RH7gtSCz5dqVnro2EWMWFuGa1O3qZznXXAmkuC73JtLiE/HH5vpg/HcXdIteLwCKuu98ybn17Lm4mgxMfRJOQbGN2K2pSA=</com:NextResultReference>
+         <hot:HotelLocation Location="MSP"/>
+         <hot:HotelSearchModifiers NumberOfAdults="2" NumberOfRooms="2">
+            <com:PermittedProviders xmlns:com="http://www.travelport.com/schema/common_v26_0">
+               <com:Provider Code="1G"/>
+            </com:PermittedProviders>
+            <com:Distance Units="KM" Value="25" xmlns:com="http://www.travelport.com/schema/common_v26_0"/>
+            <com:ReferencePoint xmlns:com="http://www.travelport.com/schema/common_v26_0">Mall of America</com:ReferencePoint>
+         </hot:HotelSearchModifiers>
+         <hot:HotelStay>
+            <hot:CheckinDate>2014-06-19</hot:CheckinDate>
+            <hot:CheckoutDate>2014-06-28</hot:CheckoutDate>
+         </hot:HotelStay>
+      </hot:HotelSearchAvailabilityReq>
+   </soapenv:Body>
+</soapenv:Envelope>
 {% endhighlight %}
 
 As was explained in the previous section concerning the Java code, the request parameters should be the same as the original request, with the only difference between the initial and follow-up requests being the `NextResultReference` tag.
@@ -291,18 +318,16 @@ For those unfamiliar with Paris' geography, Disneyland Paris _neé EuroDisney_, 
 The key idea for doing a location of search is to use a search modifier with the location's name contained in it.  You do that with Java code like this example from `Lesson4`:
 
 {% highlight java %}
-HotelSearchModifiers mods = Lesson4.createModifiers(2, 2);
+HotelSearchModifiers mods = Lesson4.createModifiers(numAdults, numRooms);
 //...
-String ATTRACTION = "EuroDisney";
-mods.setReferencePoint(ATTRACTION);
-Lesson4.addDistanceModifier(mods, 25);
-req.setHotelSearchModifiers(mods);
-
+String pointOfInterest = "EuroDisney";
+mods.setReferencePoint(pointOfInterest);
+Lesson4.addDistanceModifier(mods, searchRadiusInKM); req.setHotelSearchModifiers(mods);
 {% endhighlight %}
 
 The first line creates a search modifier object, and the parameters represent the need for two rooms with two adults in the party.
 
-Next, we add the attraction to the search modifiers and we _do not_ add anything to the hotel location property of the request of object.  We can also add a distance object, created by the helper function, that represents a distance of twenty-five kilometers.  This is required to tell the geography searching engine of the uAPI how far away from the attraction to consider.
+Next, we add the attraction to the search modifiers and we do not add anything to the hotel location property of the request of object. We can also add a distance object, created by the helper function, that represents a distance of searchRadiusInKM which can be 5 or 25 or any long value. This is required to tell the geography searching engine of the uAPI how far away from the attraction to consider.
 
 ### Full validation of XML schemas
 
@@ -311,6 +336,7 @@ If you look at the Java code, you'll notice this when we set the distance from o
 {% highlight java %}
 Distance distance = new Distance();
 distance.setUnits("KM");
+distance.setValue(BigInteger.valueOf(km));
 {% endhighlight %}
 
 This a good time for a warning about XML schema validation.  Although it appears that "any old string will do" for the units in the `setUnits` call above, actually only two are valid, "KM" and "MI" in uppercase letters. The XML schemas provided by Travelport for the uAPI correctly list the valid values, but the transformation to Java code has chosen to allow you to supply this value as a string.  
@@ -340,7 +366,7 @@ It may be that renting a car in the area near Disneyland Paris is a useful optio
 
 For this small enhancement, we'll make sure we look for a mini-van with air-conditioning and an automatic transmission from the _airport_. We'll expect the family to keep the vehicle for the whole of their trip.
 
-For this exercise, as before, you'll need to generate the client side code for the WSDL in `wsdl/vehicle_v17_0/vehicle.wsdl` if you have not done so already.  You can follow the same "recipe" we have used in all the lessons so far:
+For this exercise, as before, you'll need to generate the client side code for the WSDL in `wsdl/vehicle_v26_0/vehicle.wsdl` if you have not done so already.  You can follow the same "recipe" we have used in all the lessons so far:
 
 * create a request object
 * get the port object representing the functionality
@@ -349,20 +375,19 @@ For this exercise, as before, you'll need to generate the client side code for t
 
 We won't detail too much about how to add this feature to the code for lesson 4 but only point on some potential "gotchas":
 
-* You need to supply a date _and_ time for pickup and delivery.  These, unlike hotel search, are not using the XML objects but just raw strings in the format "2012-08-20T11:59:00".
+* You need to supply a date _and_ time for pickup and delivery.  These, unlike hotel search, are not using the XML objects but just raw strings in the format "2014-08-20T09:00:00".
 
 
-You should be able to print out the results of the search with the name of the vendor (`VendorCode` field), the location to pick up the vehicle, the type of vehicle (`Description`), and the price (`EstimatedTotalAmount`) like this:
+You should be able to print out the results of the search with the type of `vehicleRate`,  name of the vendor (`VendorCode` field)  and the price (`RateForPeriod`) like this:
 
 {% highlight console %}
-FORD ESCAPE OR SIMILAR  [Vendor: ZR]
-         EUR905.27
+STANDARD                       [ZL:EUR45.00] 
 {% endhighlight %}
 
 
 ### Further exercises for the reader
 
-* Similarly to the last exercise where we used a different service for a vehicle search, try to convert each price to Thai Bhat. To do this, you can use the `UtilCurrencyConversionPortType` in the `wsdl/Util_v17_0/Util.wsdl` definition.  Naturally, the classes to use are `CurrencyConversionReq` and `CurrencyConversionRsp` who contain `CurrencyConversion` objects.
+* Similarly to the last exercise where we used a different service for a vehicle search, try to convert each price to Thai Bhat. To do this, you can use the `UtilCurrencyConversionPortType` in the `wsdl/Util_v26_0/Util.wsdl` definition.  Naturally, the classes to use are `CurrencyConversionReq` and `CurrencyConversionRsp` who contain `CurrencyConversion` objects.
 
 * There is a large list of amenties that are provided for each hotel.  Decode this list and display them to the user.  Each amenity is represented by a [four letter code](http://support.travelport.com/webhelp/uapi/Content/Hotel/Shared_Hotel_Topics/Hotel%20Amenities.htm). You should create a table to print these out in a nice way for the user.  The "translation" of each of these amenities is farther down on that same page of documentation.
 

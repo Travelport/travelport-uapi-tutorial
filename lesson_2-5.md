@@ -50,48 +50,79 @@ Let's look "under the hood" to see part of the XML result that is passed back to
 
 {% highlight xml %}
 <hotel:RequestedHotelDetails>
-  <hotel:HotelProperty HotelChain="HJ" HotelCode="29993" HotelLocation="LAX" Name="HOWARD JOHNSON LOS ANGELES">
-    <hotel:PropertyAddress>
-      <hotel:Address>603 S. New Hampshire Ave. </hotel:Address>
-      <hotel:Address>Los Angeles CA 90005 US </hotel:Address>
-    </hotel:PropertyAddress>
-    <common_v15_0:PhoneNumber Type="Business" Number="1 213-3854444"/>
-    <common_v15_0:PhoneNumber Type="Fax" Number="1 213-3805413"/>
-    <common_v15_0:Distance Value="3" Direction="SW"/>
-  </hotel:HotelProperty>
-  <hotel:HotelDetailItem Name="Marketing Message">
-    <hotel:Text>THANK YOU FOR CHOOSING HOWARD JOHNSO</hotel:Text>
-  </hotel:HotelDetailItem>
-  <hotel:HotelRateDetail RatePlanType="NDD1SDI" Base="USD148.84" Tax="USD23.07" Total="USD171.90">
-    <hotel:RoomRateDescription Name="Total Includes">
-      <hotel:Text>The Total includes taxes, surcharges, fees.</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:RoomRateDescription Name="Description">
-      <hotel:Text>STAY 2  SAVE 15 PERCENT -.2 DOUBLE BEDS NON SMOKING ROOM WITH.FREE CONTINENTAL BREAKFAST  FREE.</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:RoomRateDescription Name="Commission">
-      <hotel:Text>Yes</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:RoomRateDescription Name="Guarantee">
-      <hotel:Text>Guarantee Required</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:HotelRateByDate EffectiveDate="2012-06-20" ExpireDate="2012-06-22" Base="USD74.42"/>
-  </hotel:HotelRateDetail>
-  <hotel:HotelRateDetail RatePlanType="DD1SDI" Base="USD148.84" Tax="USD23.07" Total="USD171.90">
-    <hotel:RoomRateDescription Name="Total Includes">
-      <hotel:Text>The Total includes taxes, surcharges, fees.</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:RoomRateDescription Name="Description">
-      <hotel:Text>STAY 2  SAVE 15 PERCENT -.2 DOUBLE BEDS SMOKING ROOM WITH FREE.CONTINENTAL BREAKFAST  FREE WI-FI.</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:RoomRateDescription Name="Commission">
-      <hotel:Text>Yes</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:RoomRateDescription Name="Guarantee">
-      <hotel:Text>Guarantee Required</hotel:Text>
-    </hotel:RoomRateDescription>
-    <hotel:HotelRateByDate EffectiveDate="2012-06-20" ExpireDate="2012-06-22" Base="USD74.42"/>
-  </hotel:HotelRateDetail>
+	<hotel:HotelProperty HotelChain="BW" HotelCode="03174" HotelLocation="MSP" Name="BW PLUS BLOOMINGTON HOTEL" ParticipationLevel="Best Available Rate and Inside Shopper participant">
+	   <hotel:PropertyAddress>
+		  <hotel:Address>1901 Killebrew Dr</hotel:Address>
+		  <hotel:Address>Bloomington MN 55425 US</hotel:Address>
+	   </hotel:PropertyAddress>
+	   <common_v26_0:PhoneNumber Type="Business" Number="1 952-8548200"/>
+	   <common_v26_0:PhoneNumber Type="Fax" Number="1 952-8546940"/>
+	   <common_v26_0:Distance Units="MI" Value="3" Direction="SW"/>
+	   <hotel:HotelRating RatingProvider="AAA">
+		  <hotel:Rating>3</hotel:Rating>
+	   </hotel:HotelRating>
+	</hotel:HotelProperty>
+	<hotel:HotelDetailItem Name="CheckInTime">
+	   <hotel:Text>3PM</hotel:Text>            
+</hotel:HotelDetailItem>
+	<hotel:HotelDetailItem Name="CheckOutTime">
+	   <hotel:Text>11AM</hotel:Text>
+	</hotel:HotelDetailItem>
+	<hotel:HotelDetailItem Name="Marketing Message">
+	   <hotel:Text>THE WORLDS BIGGEST HOTEL FAMILY</hotel:Text>
+	</hotel:HotelDetailItem>
+	<hotel:HotelRateDetail RatePlanType="C1KRACD" Base="USD1209.91" Total="USD1382.63">
+	   <hotel:RoomRateDescription Name="Total Includes">
+		  <hotel:Text>The Total includes taxes, surcharges, fees.</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Description">
+		  <hotel:Text>FLEXIBLE RATE*BEST LEAST RESTRICTIVE RATE.1 KING BED NSMK MICRFG 42IN LCD TV PILLOWTOP.CONTINENTAL BREAKFAST.</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Include in Rate">
+		  <hotel:Text>Breakfast Included</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Commission">
+		  <hotel:Text>Yes</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Rate Change Indicator">
+		  <hotel:Text>Yes</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Guarantee">
+		  <hotel:Text>Guarantee Required</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:HotelRateByDate EffectiveDate="2014-06-20" ExpireDate="2014-06-29" Base="USD139.99"/>
+	   <hotel:MealPlans>
+		  <hotel:MealPlan Code="6"/>
+	   </hotel:MealPlans>
+	   <hotel:CancelInfo/>
+	   <hotel:GuaranteeInfo GuaranteeType="Guarantee"/>
+	</hotel:HotelRateDetail>
+	<hotel:HotelRateDetail RatePlanType="C2QRACD" Base="USD1209.91" Total="USD1382.63">
+	   <hotel:RoomRateDescription Name="Total Includes">
+		  <hotel:Text>The Total includes taxes, surcharges, fees.</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Description">
+		  <hotel:Text>FLEXIBLE RATE*BEST LEAST RESTRICTIVE RATE.2 QUEEN BEDS NSMK MICRFG 42IN LCD TV PILLOWTOP.CONTINENTAL BREAKFAST.</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Include in Rate">
+		  <hotel:Text>Breakfast Included</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Commission">
+		  <hotel:Text>Yes</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Rate Change Indicator">
+		  <hotel:Text>Yes</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:RoomRateDescription Name="Guarantee">
+		  <hotel:Text>Guarantee Required</hotel:Text>
+	   </hotel:RoomRateDescription>
+	   <hotel:HotelRateByDate EffectiveDate="2014-06-20" ExpireDate="2014-06-29" Base="USD139.99"/>
+	   <hotel:MealPlans>
+		  <hotel:MealPlan Code="6"/>
+	   </hotel:MealPlans>
+	   <hotel:CancelInfo/>
+	   <hotel:GuaranteeInfo GuaranteeType="Guarantee"/>
+	</hotel:HotelRateDetail>
 
 {% endhighlight %}
 
@@ -99,20 +130,33 @@ This is far from all the `hotel:HotelRateDetail` entities encoded in this single
 
 The early part of this snippet shows some of the detailed data about the property, and the marketing message sent from the hotel's owner.  Further, there are many possible _rates_ that can be identified by the `RatePlanType` attribute.  The prices are shown with descriptive text about each option.  As we shall see, the `Name="Guarantee"` attribute of a `RoomRateDescription` element (child of a `HotelRateDetail` object), will be critical at a later stage in booking, as such a rate typically requires a credit card to hold the reservation.
 
-The output of the code for `lesson5` is to show the user the selected hotel, some details about it, and the information about room rates.  The search result above and the result below are done based on the point of interest "Staples Center" (a multi-purpose event center in downtown Los Angeles, California).  We have selected the cheapest hotel from our shopping search, then asked for details, and chosen the lowest rate found in the details (2 nights in LA for about 170 USD!), for a non-smoking room, with a queen-sized bed.
+The output of the code for `lesson5` is to show the user the selected hotel, some details about it, and the information about room rates.  The search result above and the result below are done based on the point of interest "Golden Gate Bridge" (a famous Bridge in San Francisco, California).  We have selected the cheapest hotel from our shopping search, then asked for details, and chosen the lowest rate found in the details (2 nights in SFO for about 321 USD!), for a non-smoking room, with a King-sized bed.
 
 {% highlight console %}
-HOWARD JOHNSON LOS ANGELES
-              603 S. New Hampshire Ave. 
-              Los Angeles CA 90005 US 
-              Business 1 213-3854444
-              Fax 1 213-3805413
+SUPER 8 SAN FRANCISCO FISHERMA [OZ:46314]
+           SAN FRANCISCO CA
+           USD155.00  to USD195.00  
+           3KM from GOLDEN GATE BRIDGE
+           AAA says 2 NTM says 1 
+           RESERVATION REQUIREMENT IS OTHER
+      http://maps.google.com/?q=37.799198,-122.441597
 
+SUPER 8 SAN FRANCISCO FISHERMA
+              Hwy 101 on Lombard 
+              San Francisco CA 94123 US 
+              Business 1 415-9220244
+              Fax 1 415-9228887
 
-[The Total includes taxes, surcharges, fees.]
-[STAY 2  SAVE 15 PERCENT -.2 DOUBLE BEDS NON SMOKING ROOM WITH.FREE CONTINENTAL BREAKFAST  FREE.]
+			  
+looking for non-smoking:[Total includes taxes, surcharges and fees.]
+[BEST AVAILABLE RATE.1 KING BED NON-SMOKING ROOM WITH.FREE  BREAKFAST AND FREE.]
 
-Total Price: USD171.90
+looking for non-smoking:[Total includes taxes, surcharges and fees.]
+[AAA DISCOUNT.1 KING BED NON-SMOKING ROOM WITH.FREE  BREAKFAST AND FREE.]
+
+[Total includes taxes, surcharges and fees.]
+[AAA DISCOUNT.1 KING BED NON-SMOKING ROOM WITH.FREE  BREAKFAST AND FREE.]
+
 {% endhighlight %}
 
 ### Reserving the room
@@ -125,19 +169,125 @@ Since we are now making the reservation, we need to put in details about who the
 
 {% highlight java %}
 
-BookingTraveler traveler = new BookingTraveler();
-BookingTravelerName name = new BookingTravelerName();
-name.setFirst("Hugh");
-name.setLast("Capet");
-PhoneNumber number = new PhoneNumber();
-number.setLocation("home");
-number.setCountryCode("1");
-number.setAreaCode("212");
-number.setNumber("555-1212");
-traveler.setTravelerType("ADT");
-traveler.setBookingTravelerName(name);
-traveler.getPhoneNumber().add(number);
-req.getBookingTraveler().add(traveler);
+	//adding traveler 1
+    BookingTraveler traveler = new BookingTraveler();
+    BookingTravelerName name = new BookingTravelerName();
+    name.setFirst("Hugh");
+    name.setLast("Capet");
+    name.setPrefix("MR");
+    PhoneNumber number = new PhoneNumber();
+    number.setLocation("home");
+    number.setCountryCode("1");
+    number.setAreaCode("212");
+    number.setNumber("555-1212");
+            
+    GregorianCalendar c = new GregorianCalendar();
+    String dob = "1967-11-23";
+    Date date = new Date();
+    try {
+	date = new SimpleDateFormat("yyyy-MM-dd").parse(dob);
+    }catch (ParseException e1) {
+	// TODO Auto-generated catch block
+	System.err.println("unable to parse Date: " + e1.getMessage());
+    }
+    c.setTime(date);
+    XMLGregorianCalendar xgc = null;
+    try {
+		xgc = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED);
+   }catch (DatatypeConfigurationException e) {
+		// TODO Auto-generated catch block
+		System.err.println("Date type configuration error : " + e.getMessage());
+   }            
+   traveler.setDOB(xgc);
+   traveler.setNationality("FR");
+            
+   TypeStructuredAddress addrs = new TypeStructuredAddress();
+   addrs.setAddressName("Home");
+   addrs.setAddressName("Hugh Capet");
+   addrs.setCity("Montpellier");
+   State vt = new State();
+   vt.setValue("VT");            
+   addrs.setState(vt);
+            
+   addrs.getStreet().add("1 louvre street");
+            
+   addrs.setCountry("US");
+   addrs.setPostalCode("05602");
+
+            
+   traveler.setTravelerType("ADT");
+   traveler.setBookingTravelerName(name);
+   traveler.getPhoneNumber().add(number);
+            
+   Email email = new Email();
+   email.setEmailID("test@travelport.com");
+   email.setType("Home");
+            
+   traveler.getEmail().add(email);
+
+   traveler.getAddress().add(addrs);
+   req.getBookingTraveler().add(traveler);
+            
+            
+   //adding traveler 2
+   BookingTraveler traveler1 = new BookingTraveler();
+   BookingTravelerName name1 = new BookingTravelerName();
+   name1.setFirst("Lara");
+   name1.setLast("Capet");
+   name1.setPrefix("MRS");
+   PhoneNumber number1 = new PhoneNumber();
+   number1.setLocation("home");
+   number1.setCountryCode("1");
+   number1.setAreaCode("212");
+   number1.setNumber("555-1214");
+            
+   GregorianCalendar c1 = new GregorianCalendar();
+   String dob1 = "1969-06-15";
+   Date date1 = new Date();
+   try {
+	date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob1);
+   } catch (ParseException e1) {
+	// TODO Auto-generated catch block
+	System.err.println("unable to parse Date: " + e1.getMessage());
+   }
+   c1.setTime(date);
+   XMLGregorianCalendar xgc1 = null;
+   try {
+xgc1 = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH), DatatypeConstants.FIELD_UNDEFINED);
+	} catch (DatatypeConfigurationException e) {
+		// TODO Auto-generated catch block
+		System.err.println("Date type configuration error : " + e.getMessage());
+	}            
+   traveler.setDOB(xgc1);
+   traveler.setNationality("FR");
+		
+   TypeStructuredAddress addrs1 = new TypeStructuredAddress();
+   addrs1.setAddressName("Home");
+   addrs1.setAddressName("Hugh Capet");
+   addrs1.setCity("Montpellier");
+   State vt1 = new State();
+   vt1.setValue("VT");            
+   addrs1.setState(vt1);
+		
+   addrs1.getStreet().add("1 louvre street");
+		
+   addrs1.setCountry("US");
+   addrs1.setPostalCode("05602");
+
+		
+   traveler1.setTravelerType("ADT");
+   traveler1.setBookingTravelerName(name1);
+   traveler1.getPhoneNumber().add(number1);
+		
+   Email email1 = new Email();
+   email1.setEmailID("test@travelport.com");
+   email1.setType("Home");
+	   
+   traveler1.getEmail().add(email1);
+
+   traveler1.getAddress().add(addrs1);
+   req.getBookingTraveler().add(traveler1);
+
 
 {% endhighlight %}
 
@@ -153,8 +303,12 @@ This is convenient, since we can be sure that we are sending all the details we 
 
 {% highlight java %}
 
+//put the rate in that we found was the lowest (from result of details request)
 req.setHotelRateDetail(lowestRate);
+            
+//put in the hotel we wanted (from result of details request)
 req.setHotelProperty(property);
+
 
 {% endhighlight %}
 
@@ -171,31 +325,34 @@ In `lesson4` we have a helper routine called `getFakeCreditCard()` that will ret
 {% highlight java %}
 
 public static CreditCard getFakeCreditCard(boolean withAddress) {
-    CreditCard cc = new CreditCard();
-    TypeStructuredAddress addr = new TypeStructuredAddress();
-    
-    cc.setType("VI");
-    cc.setNumber("4012888888881881");
-    //dec 2014
-    cc.setExpDate(getFactory().newXMLGregorianCalendarDate(2014, 12,
-            DatatypeConstants.FIELD_UNDEFINED, 
-            DatatypeConstants.FIELD_UNDEFINED));
-    cc.setName("JOAN TEST");
-    cc.setCVV("111");
-    addr.setAddressName("Hugh Capet");
-    addr.setCity("Montpellier");
-    State vt = new State();
-    vt.setValue("VT");
-    addr.setState(vt);
-    addr.setCountry("US");
-    addr.setPostalCode("05602");
-    addr.setAddressName("1 louvre street");
-    
-    if (withAddress) {
-        cc.setBillingAddress(addr);
-    }
-    return cc;
+     CreditCard cc = new CreditCard();
+     TypeStructuredAddress addr = new TypeStructuredAddress();
+        
+     cc.setType("VI");
+     cc.setNumber("4123456789001111");
+     cc.setBankCountryCode("US");
+     //dec 2014
+     cc.setExpDate(getFactory().newXMLGregorianCalendarDate(2016, 06,
+              DatatypeConstants.FIELD_UNDEFINED, 
+              DatatypeConstants.FIELD_UNDEFINED));
+     cc.setName("JOAN TEST");
+     cc.setCVV("256");
+     addr.setAddressName("Hugh Capet");
+     addr.setCity("Montpellier");
+     State vt = new State();
+     vt.setValue("VT");
+     addr.setState(vt);
+     addr.setCountry("US");
+     addr.setPostalCode("05602");
+     addr.setAddressName("1 louvre street");       
+        
+        
+     if (withAddress) {
+         cc.setBillingAddress(addr);
+     }
+     return cc;
 }
+
 {% endhighlight %}
 
 If you are implementing this tutorial using "testing" credentials issued by Travelport, the actual values in the credit card fields will not be validated.
@@ -207,139 +364,187 @@ In a real application, many checks will be made to verify with the credit card p
 As has been the case in most of the lessons, we use a request/response pair to actually make the reservation.  This results in the following request and response to be transmitted to and received from Travelport. (This example is for a hotel that is near the 'GOLDEN GATE BRIDGE' attraction in San Francisco, California):
 
 {% highlight xml %}
-<?xml version="1.0" encoding="UTF-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <ns2:HotelCreateReservationReq xmlns="http://www.travelport.com/schema/common_v15_0" xmlns:ns2="http://www.travelport.com/schema/hotel_v17_0" xmlns:ns3="http://www.travelport.com/schema/vehicle_v17_0" xmlns:ns4="http://www.travelport.com/schema/passive_v14_0" xmlns:ns5="http://www.travelport.com/schema/air_v18_0" xmlns:ns6="http://www.travelport.com/schema/universal_v16_0" xmlns:ns7="http://www.travelport.com/schema/rail_v12_0" TargetBranch="P105110">
-      <BillingPointOfSaleInfo OriginApplication="UAPI"/>
-      <BookingTraveler TravelerType="ADT">
-        <BookingTravelerName First="Hugh" Last="Capet"/>
-        <PhoneNumber Location="home" CountryCode="1" AreaCode="212" Number="555-1212"/>
-      </BookingTraveler>
-      <ns2:HotelRateDetail RatePlanType="TLGT78B" DepositRequired="true" Base="USD519.76" Total="USD519.76">
-        <ns2:RoomRateDescription Name="Total Includes">
-          <ns2:Text>The Total includes taxes, surcharges, fees.</ns2:Text>
-        </ns2:RoomRateDescription>
-        <ns2:RoomRateDescription Name="Description">
-          <ns2:Text>ADVANCE PURCHASE NO REFUNDS.2 DOUBLE BEDS CLASSIC VIEW CLASSIC VIEW DOUBLE.BED ROOMS ARE 330 SQ FT IN SIZE AND LOCATED.</ns2:Text>
-        </ns2:RoomRateDescription>
-        <ns2:RoomRateDescription Name="Rate Change Indicator">
-          <ns2:Text>No</ns2:Text>
-        </ns2:RoomRateDescription>
-        <ns2:RoomRateDescription Name="Guarantee">
-          <ns2:Text>Deposit Required</ns2:Text>
-        </ns2:RoomRateDescription>
-        <ns2:HotelRateByDate EffectiveDate="2012-08-13" ExpireDate="2012-08-15" Base="USD225.00"/>
-      </ns2:HotelRateDetail>
-      <ns2:HotelProperty HotelChain="IC" HotelCode="12753" HotelLocation="SFO" Name="INTERCONTINENTAL">
-        <ns2:PropertyAddress>
-          <ns2:Address>888 HOWARD STREET </ns2:Address>
-          <ns2:Address>SAN FRANCISCO CA 94103 US </ns2:Address>
-        </ns2:PropertyAddress>
-        <PhoneNumber Type="Business" Number="1 415-616-6500"/>
-        <PhoneNumber Type="Fax" Number="1 415-616-6621"/>
-        <Distance Value="1" Direction="SW"/>
-        <ns2:HotelRating RatingProvider="AAA">
-          <ns2:Rating>4</ns2:Rating>
-        </ns2:HotelRating>
-      </ns2:HotelProperty>
-      <ns2:HotelStay>
-        <ns2:CheckinDate>2012-08-13</ns2:CheckinDate>
-        <ns2:CheckoutDate>2012-08-15</ns2:CheckoutDate>
-      </ns2:HotelStay>
-      <Guarantee Type="Deposit">
-        <CreditCard Type="VI" Number="4012888888881881" ExpDate="2014-12" Name="JOAN TEST" CVV="111"/>
-      </Guarantee>
-    </ns2:HotelCreateReservationReq>
-  </soap:Body>
-</soap:Envelope>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <univ:HotelCreateReservationReq AuthorizedBy="user" TargetBranch="TRGT_BRCH" TraceId="trace" UserAcceptance="true" ProviderCode="1G" xmlns:univ="http://www.travelport.com/schema/universal_v26_0">
+         <com:BillingPointOfSaleInfo OriginApplication="UAPI" xmlns:com="http://www.travelport.com/schema/common_v26_0"/>
+         <com:BookingTraveler Age="46" DOB="1967-11-23" Gender="F" Key="0dKhKpmwTMKMaovg6xTrlQ==" Nationality="FR" TravelerType="ADT" xmlns:com="http://www.travelport.com/schema/common_v26_0">
+            <com:BookingTravelerName First="Hugh" Last="Capet" Prefix="Mr"/>
+            <com:PhoneNumber AreaCode="212" CountryCode="1" Location="MON" Number="555-1212" Type="Home"/>
+            <com:Email EmailID="test@travelport.com" Type="Home"/>
+            <com:Address>
+               <com:AddressName>Hugh Capet</com:AddressName>
+               <com:Street>1 louvre street</com:Street>
+               <com:City>Montpellier</com:City>
+               <com:State>VT</com:State>
+               <com:PostalCode>05602</com:PostalCode>
+               <com:Country>US</com:Country>
+            </com:Address>
+         </com:BookingTraveler>
+         <com:BookingTraveler Age="44" DOB="1969-06-15" Gender="F" Key="0dKhKpmwTMKMaovg7xTrlQ==" Nationality="FR" TravelerType="ADT" xmlns:com="http://www.travelport.com/schema/common_v26_0">
+            <com:BookingTravelerName First="Lara" Last="Capet" Prefix="Mrs"/>
+            <com:PhoneNumber AreaCode="212" CountryCode="1" Location="MON" Number="555-1214" Type="Home"/>
+            <com:Email EmailID="test@travelport.com" Type="Home"/>
+            <com:Address>
+               <com:AddressName>Hugh Capet</com:AddressName>
+               <com:Street>1 louvre street</com:Street>
+               <com:City>Montpellier</com:City>
+               <com:State>VT</com:State>
+               <com:PostalCode>05602</com:PostalCode>
+               <com:Country>US</com:Country>
+            </com:Address>
+         </com:BookingTraveler>
+         <hot:HotelRateDetail RatePlanType="NK1RAC" Base="USD1363.00" Tax="USD208.71" Total="USD1571.71" xmlns:hot="http://www.travelport.com/schema/hotel_v26_0"/>
+         <hot:HotelProperty HotelChain="OZ" HotelCode="46314" HotelLocation="SFO" Name="SUPER 8 SAN FRANCISCO FISHERMA" ParticipationLevel="Best Available Rate and Inside Shopper participant" xmlns:hot="http://www.travelport.com/schema/hotel_v26_0">
+            <hotel:PropertyAddress xmlns:hotel="http://www.travelport.com/schema/hotel_v26_0">
+               <hotel:Address>Hwy 101 on Lombard</hotel:Address>
+               <hotel:Address>San Francisco CA 94123 US</hotel:Address>
+            </hotel:PropertyAddress>
+         </hot:HotelProperty>
+         <hot:HotelStay xmlns:hot="http://www.travelport.com/schema/hotel_v26_0">
+            <hot:CheckinDate>2014-06-20</hot:CheckinDate>
+            <hot:CheckoutDate>2014-06-29</hot:CheckoutDate>
+         </hot:HotelStay>
+         <com:Guarantee Type="Guarantee" xmlns:com="http://www.travelport.com/schema/common_v26_0">
+            <com:CreditCard BankCountryCode="US" BankName="USB" ExpDate="2016-06" CVV=”256” Number="4123456789001111" Type="VI"/>
+         </com:Guarantee>
+         <hot:GuestInformation NumberOfRooms="1" xmlns:hot="http://www.travelport.com/schema/hotel_v26_0">
+            <hot:NumberOfAdults>2</hot:NumberOfAdults>
+         </hot:GuestInformation>
+         <com:HostToken xmlns:com="http://www.travelport.com/schema/common_v26_0"/>
+      </univ:HotelCreateReservationReq>
+   </soapenv:Body>
+</soapenv:Envelope>
+
 {% endhighlight %}
 
 {% highlight xml %}
-<?xml version="1.0" encoding="UTF-8"?><SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
-  <SOAP:Body>
-    <hotel:HotelCreateReservationRsp xmlns:hotel="http://www.travelport.com/schema/hotel_v17_0" xmlns:common_v15_0="http://www.travelport.com/schema/common_v15_0" TransactionId="3882E10D0A076114004561A6ED3C9786" ResponseTime="4756">
-<universal:UniversalRecord xmlns:universal="http://www.travelport.com/schema/universal_v16_0" LocatorCode="H9M6J6" Version="0" Status="Active">
-        <common_v15_0:BookingTraveler Key="86293" TravelerType="ADT">
-          <common_v15_0:BookingTravelerName First="Hugh" Last="Capet"/>
-          <common_v15_0:PhoneNumber Key="86603" Type="None" Location="home" CountryCode="1" Number="555-1212" AreaCode="212"/>
-          <common_v15_0:PhoneNumber Key="86604" Type="None" Location="HOM" Number="1 212 555-1212">
-            <common_v15_0:ProviderReservationInfoRef Key="60521"/>
-          </common_v15_0:PhoneNumber>
-        </common_v15_0:BookingTraveler>
-        <common_v15_0:OSI Key="22934" Carrier="1V" Text="-IC12753ARR13AUG CXL:ADVANCE PURCHASE ENTIRE STAY NONREFUNDABLE" ProviderReservationInfoRef="60521"/>
-        <universal:ProviderReservationInfo Key="60521" ProviderCode="1V" LocatorCode="S79ZZY" CreateDate="2012-06-29T13:51:43.350+00:00" ModifiedDate="2012-06-29T13:51:43.367+00:00" HostCreateDate="2012-06-29"/>
-<hotel:HotelReservation Status="HK" BookingConfirmation="66541697" LocatorCode="00LGSRYL" CreateDate="2012-06-29T13:51:43.169+00:00" ModifiedDate="2012-06-29T13:51:43.367+00:00" ProviderReservationInfoRef="60521" TravelOrder="1">
-          <common_v15_0:BookingTravelerRef Key="86293"/>
-          <common_v15_0:ReservationName>
-            <common_v15_0:BookingTravelerRef Key="86293"/>
-          </common_v15_0:ReservationName>
-          <hotel:HotelProperty HotelChain="IC" HotelCode="12753" HotelLocation="SFO" Name="INTERCONTINENTAL">
-            <hotel:PropertyAddress>
-              <hotel:Address>888 HOWARD STREET</hotel:Address>
-              <hotel:Address>SAN FRANCISCO US 94103 CA</hotel:Address>
-            </hotel:PropertyAddress>
-            <common_v15_0:PhoneNumber Type="Hotel" Number="1-1-1"/>
-            <common_v15_0:PhoneNumber Type="Fax" Number="1-1-1"/>
-            <common_v15_0:Distance Value="1" Direction="SW"/>
-            <hotel:HotelRating RatingProvider="AAA">
-              <hotel:Rating>4</hotel:Rating>
-            </hotel:HotelRating>
-          </hotel:HotelProperty>
-          <hotel:HotelRateDetail RatePlanType="TLGT78B" Base="USD450.00" Total="USD519.76" RateGuaranteed="true">
-            <hotel:RoomRateDescription Name="Total Includes">
-              <hotel:Text>Total includes taxes, surcharges and fees</hotel:Text>
-            </hotel:RoomRateDescription>
-            <hotel:HotelRateByDate EffectiveDate="2012-08-13" ExpireDate="2012-08-15" Base="USD225.00"/>
-          </hotel:HotelRateDetail>
-          <hotel:HotelStay>
-            <hotel:CheckinDate>2012-08-13</hotel:CheckinDate>
-            <hotel:CheckoutDate>2012-08-15</hotel:CheckoutDate>
-          </hotel:HotelStay>
-          <common_v15_0:Guarantee Type="Deposit" Key="48488" Reusable="true">
-            <common_v15_0:CreditCard Type="VI" Number="************1881" ExpDate="2014-12" Name="JOAN TEST" CVV="***"/>
-          </common_v15_0:Guarantee>
-          <common_v15_0:BookingSource Type="IataNumber" Code="00000000"/>
-          <hotel:GuestInformation NumberOfRooms="1">
-            <hotel:NumberOfAdults>1</hotel:NumberOfAdults>
-          </hotel:GuestInformation>
-          <common_v15_0:SellMessage>EFFECTIVE DATE:13AUG</common_v15_0:SellMessage>
-          <common_v15_0:SellMessage>GUARANTEE REQUIREMENTS:ENTIRE STAY NONREFUNDABLE DPST DUE AT</common_v15_0:SellMessage>
-          <common_v15_0:SellMessage>BKNG</common_v15_0:SellMessage>
-          <common_v15_0:SellMessage>CXL:ADVANCE PURCHASE ENTIRE STAY NONREFUNDABLE</common_v15_0:SellMessage>
-          <common_v15_0:SellMessage>THANK YOU FOR BOOKING INTERCONTINENTAL *</common_v15_0:SellMessage>
-        </hotel:HotelReservation>
-        <common_v15_0:AgencyInfo>
-          <common_v15_0:AgentAction ActionType="Created" AgentCode="UAPI4438208500" BranchCode="P105110" AgencyCode="S30276" EventTime="2012-06-29T13:51:38.723+00:00"/>
-        </common_v15_0:AgencyInfo>
-      </universal:UniversalRecord>
-    </hotel:HotelCreateReservationRsp>
-  </SOAP:Body>
+<SOAP:Envelope xmlns:SOAP="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP:Body>
+      <universal:HotelCreateReservationRsp TraceId="trace" TransactionId="DD16BD840A07761E3F0A3B5EF9902206" ResponseTime="5728" xmlns:universal="http://www.travelport.com/schema/universal_v26_0" xmlns:common_v26_0="http://www.travelport.com/schema/common_v26_0" xmlns:hotel="http://www.travelport.com/schema/hotel_v26_0">
+         <common_v26_0:ResponseMessage Code="3715" Type="Warning" ProviderCode="1G">Host only allows one Address/Delivery Address. Only one sent in request.</common_v26_0:ResponseMessage>
+         <universal:UniversalRecord LocatorCode="DWV1V1" Version="0" Status="Active">
+            <common_v26_0:BookingTraveler Key="0dKhKpmwTMKMaovg6xTrlQ==" TravelerType="ADT" Age="46" DOB="1967-11-23" Gender="F" Nationality="FR" ElStat="A">
+               <common_v26_0:BookingTravelerName Prefix="Mr" First="Hugh" Last="Capet"/>
+               <common_v26_0:PhoneNumber Key="BvmZPU1xRAaR9j9EaZOXTQ==" Type="Home" Location="MON" CountryCode="1" Number="555-1212" AreaCode="212" ElStat="A">
+                  <common_v26_0:ProviderReservationInfoRef Key="gXDg/odHSoe3auG2Cvy64w=="/>
+               </common_v26_0:PhoneNumber>
+               <common_v26_0:Email Key="QcY4T9jfRJet6jlmmidP/Q==" Type="Home" EmailID="test@travelport.com" ElStat="A">
+                  <common_v26_0:ProviderReservationInfoRef Key="gXDg/odHSoe3auG2Cvy64w=="/>
+               </common_v26_0:Email>
+               <common_v26_0:Address Key="DGb7KNz2SDOWDAYGWAYdYw==" ElStat="A">
+                  <common_v26_0:AddressName>Hugh Capet</common_v26_0:AddressName>
+                  <common_v26_0:Street>1 louvre street</common_v26_0:Street>
+                  <common_v26_0:City>Montpellier</common_v26_0:City>
+                  <common_v26_0:State>VT</common_v26_0:State>
+                  <common_v26_0:PostalCode>05602</common_v26_0:PostalCode>
+                  <common_v26_0:Country>US</common_v26_0:Country>
+                  <common_v26_0:ProviderReservationInfoRef Key="gXDg/odHSoe3auG2Cvy64w=="/>
+               </common_v26_0:Address>
+            </common_v26_0:BookingTraveler>
+            <common_v26_0:BookingTraveler Key="0dKhKpmwTMKMaovg7xTrlQ==" TravelerType="ADT" Age="44" DOB="1969-06-15" Gender="F" Nationality="FR" ElStat="A">
+               <common_v26_0:BookingTravelerName Prefix="Mrs" First="Lara" Last="Capet"/>
+               <common_v26_0:PhoneNumber Key="6m9jDVdRR9GBgjD1jmwmDA==" Type="Home" Location="MON" CountryCode="1" Number="555-1214" AreaCode="212" ElStat="A">
+                  <common_v26_0:ProviderReservationInfoRef Key="gXDg/odHSoe3auG2Cvy64w=="/>
+               </common_v26_0:PhoneNumber>
+               <common_v26_0:Email Key="7rev9Z00SpK5Dk/EDPekgA==" Type="Home" EmailID="test@travelport.com" ElStat="A">
+                  <common_v26_0:ProviderReservationInfoRef Key="gXDg/odHSoe3auG2Cvy64w=="/>
+               </common_v26_0:Email>
+               <common_v26_0:Address Key="muVZDegARjyFXDgXMXwhig==" ElStat="A">
+                  <common_v26_0:AddressName>Hugh Capet</common_v26_0:AddressName>
+                  <common_v26_0:Street>1 louvre street</common_v26_0:Street>
+                  <common_v26_0:City>Montpellier</common_v26_0:City>
+                  <common_v26_0:State>VT</common_v26_0:State>
+                  <common_v26_0:PostalCode>05602</common_v26_0:PostalCode>
+                  <common_v26_0:Country>US</common_v26_0:Country>
+               </common_v26_0:Address>
+            </common_v26_0:BookingTraveler>
+            <common_v26_0:OSI Key="rjuofEYhQVCf0AHzuxI+UA==" Carrier="1G" Text="OZ46314ARR20JUN CXL:TO AVOID BEING BILLED CANCEL BY 6:00 PM 20-JU" ElStat="A" ProviderReservationInfoRef="gXDg/odHSoe3auG2Cvy64w=="/>
+            <universal:ProviderReservationInfo Key="gXDg/odHSoe3auG2Cvy64w==" ProviderCode="1G" LocatorCode="XSMX6E" CreateDate="2014-05-08T18:27:11.882+00:00" ModifiedDate="2014-05-08T18:27:11.909+00:00" HostCreateDate="2014-05-08" OwningPCC="5TY2"/>
+            <hotel:HotelReservation Status="HK" BookingConfirmation="69069310" LocatorCode="00014SDY" CreateDate="2014-05-08T18:27:11.850+00:00" ModifiedDate="2014-05-08T18:27:11.909+00:00" ProviderReservationInfoRef="gXDg/odHSoe3auG2Cvy64w==" TravelOrder="1">
+               <common_v26_0:BookingTravelerRef Key="0dKhKpmwTMKMaovg6xTrlQ=="/>
+               <common_v26_0:BookingTravelerRef Key="0dKhKpmwTMKMaovg7xTrlQ=="/>
+               <common_v26_0:ReservationName>
+                  <common_v26_0:BookingTravelerRef Key="0dKhKpmwTMKMaovg6xTrlQ=="/>
+               </common_v26_0:ReservationName>
+               <hotel:HotelProperty HotelChain="OZ" HotelCode="46314" HotelLocation="SFO" Name="SUPER 8 SAN FRANCIS" ParticipationLevel="Best Available Rate and Inside Shopper participant">
+                  <hotel:PropertyAddress>
+                     <hotel:Address>HWY 101 ON LOMBARD</hotel:Address>
+                     <hotel:Address>SAN FRANCISCO CA 94123</hotel:Address>
+                  </hotel:PropertyAddress>
+                  <common_v26_0:PhoneNumber Type="Hotel" Number="415-922-0244"/>
+                  <common_v26_0:PhoneNumber Type="Fax" Number="415-922-8887"/>
+               </hotel:HotelProperty>
+               <hotel:HotelRateDetail RatePlanType="NK1RAC" Base="USD1363.00" Tax="USD208.71" Total="USD1571.71" RateGuaranteed="true">
+                  <hotel:RoomRateDescription Name="Total Includes">
+                     <hotel:Text>Total includes taxes, surcharges and fees</hotel:Text>
+                  </hotel:RoomRateDescription>
+                  <hotel:HotelRateByDate EffectiveDate="2014-06-20" ExpireDate="2014-06-22" Base="USD165.00"/>
+                  <hotel:HotelRateByDate EffectiveDate="2014-06-22" ExpireDate="2014-06-27" Base="USD155.00"/>
+                  <hotel:HotelRateByDate EffectiveDate="2014-06-27" ExpireDate="2014-06-29" Base="USD129.00"/>
+                  <hotel:TaxDetails>
+                     <hotel:Tax Code="SATX">
+                        <hotel:Amount>USD21.20</hotel:Amount>
+                     </hotel:Tax>
+                     <hotel:Tax Code="SRCH">
+                        <hotel:Amount>USD1.51</hotel:Amount>
+                     </hotel:Tax>
+                     <hotel:Tax Code="OCTX">
+                        <hotel:Amount>USD0.47</hotel:Amount>
+                     </hotel:Tax>
+                  </hotel:TaxDetails>
+                  <hotel:GuaranteeInfo GuaranteeType="Guarantee"/>
+               </hotel:HotelRateDetail>
+               <hotel:HotelStay>
+                  <hotel:CheckinDate>2014-06-20</hotel:CheckinDate>
+                  <hotel:CheckoutDate>2014-06-29</hotel:CheckoutDate>
+               </hotel:HotelStay>
+               <common_v26_0:Guarantee Type="Guarantee" Key="iuod0lMyQBCskHtRXhG5ew==" Reusable="true" ElStat="A">
+                  <common_v26_0:CreditCard Type="VI" Number="************1111" ExpDate="2016-06" BankName="USB" BankCountryCode="US"/>
+               </common_v26_0:Guarantee>
+               <common_v26_0:BookingSource Type="IataNumber" Code="99999992"/>
+               <hotel:GuestInformation NumberOfRooms="1">
+                  <hotel:NumberOfAdults>2</hotel:NumberOfAdults>
+               </hotel:GuestInformation>
+               <common_v26_0:SellMessage>GTD:HOLD ROOM UNTIL 6PM</common_v26_0:SellMessage>
+               <common_v26_0:SellMessage>CXL:TO AVOID BEING BILLED CANCEL BY 6:00 PM 20-JU</common_v26_0:SellMessage>
+               <common_v26_0:SellMessage>N-14; PENALTY AMOUNT 165.00 USD PER ROOM PLUS</common_v26_0:SellMessage>
+               <common_v26_0:SellMessage>TAXES</common_v26_0:SellMessage>
+               <common_v26_0:SellMessage>THANK YOU FOR BOOKING SUPER 8.   *</common_v26_0:SellMessage>
+            </hotel:HotelReservation>
+            <common_v26_0:AgencyInfo>
+               <common_v26_0:AgentAction ActionType="Created" AgentCode="AGNT_CODE" BranchCode="TRGT_BRCH" AgencyCode="AGCY_CODE" EventTime="2014-05-08T18:27:06.576+00:00"/>
+            </common_v26_0:AgencyInfo>
+         </universal:UniversalRecord>
+      </universal:HotelCreateReservationRsp>
+   </SOAP:Body>
 </SOAP:Envelope>
 {% endhighlight %}
 
 And our program (lesson5.java) prints out a few fields for people who don't want to dig around in the XML:
 
 {% highlight console %}
-Universal Record Locator: H9M6J6
-Hotel reservation Code  : 00LGSRYL
-Hotel Total Cost        : USD519.76
-                        : EFFECTIVE DATE:13AUG
-                        : GUARANTEE REQUIREMENTS:ENTIRE STAY NONREFUNDABLE DPST DUE AT
-                        : BKNG
-                        : CXL:ADVANCE PURCHASE ENTIRE STAY NONREFUNDABLE
-                        : THANK YOU FOR BOOKING INTERCONTINENTAL *
+Universal Record Locator: DWTMD8
+Hotel reservation Code  : 00014QMG
+Hotel Total Cost        : USD321.72
+                        : GTD:CREDIT CARD GUARANTEE
+                        : CXL:TO AVOID BEING BILLED CANCEL BY 4:00 PM 21-JU
+                        : N-14; PENALTY AMOUNT 139.50 USD PER ROOM PLUS
+                        : TAXES
+                        : THANK YOU FOR BOOKING SUPER 8.   *
 
 {% endhighlight %}
 
-A few things to note about the request and response above.  First, the credit card information is obviously something that most real applications will need to improve. Be sure that you verify any of your practices with this sensitive data with your credit card company.  For example, it is normally not recommended for a website to "hold onto" credit card information but rather utilize it (once) for communication with Travelport and then discard it.  
+A few things to note about the request and response above. First, the credit card information is obviously something that most real applications will need to improve. Be sure that you verify any of your practices with this sensitive data with your credit card company. For example, it is normally not recommended for a website to "hold onto" credit card information but rather utilize it (once) for communication with Travelport and then discard it.
 
-There are a number of "human readable" segments to the response.  Some of these are displayed in our program's output but there are many text "blobs" that may be interesting to users.  The number of these to display depends on what level of detail your application is working with.  For application's that target travel agents or other professionals, it is recommended to err on the side of too much detail rather than too little.
+There are a number of "human readable" segments to the response. Some of these are displayed in our program's output but there are many text "blobs" that may be interesting to users. The number of these to display depends on what level of detail your application is working with. For application's that target travel agents or other professionals, it is recommended to err on the side of too much detail rather than too little.
 
 ### Universal Record
 
-There are two record locators show in the output.  The first one is for the Travelport concept of the Universal Record and the second one for the Hotel reservation system.  A Universal Record is created for you anytime you book travel, a hotel, or a car through the Universal API&trade;.  There are additional APIs provided to allow various types of changes to be made to Universal Records.
+There are two record locators show in the output. The first one is for the Travelport concept of the Universal Record and the second one for the Hotel reservation system. A Universal Record is created for you anytime you book travel, a hotel, or a car through the Universal API™. There are additional APIs provided to allow various types of changes to be made to Universal Records.
 
-A Universal Record can be thought of as a wrapper around other records.  A single Universal Record can have air travel, a vehicle reservation, a hotel reservation, and even tours or other activities associated with it.  The objective is to have all the details about a single journey for a specific customer in one place.  The details of the Universal Record API is beyond the scope of this tutorial, but suffice it to say that this "container" should be used by application's that wish to have all of a traveler's data together... and this means almost all of them!
+A Universal Record can be thought of as a wrapper around other records. A single Universal Record can have air travel, a vehicle reservation, a hotel reservation, and even tours or other activities associated with it. The objective is to have all the details about a single journey for a specific customer in one place. The details of the Universal Record API is beyond the scope of this tutorial, but suffice it to say that this "container" should be used by application’s that wish to have all of a traveler's data together… and this means almost all of them!
+
 
 ### Thanks
 

@@ -18,31 +18,21 @@ package com.travelport.uapi.unit1;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.xml.ws.BindingProvider;
-
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.travelport.schema.system_v8_0.PingReq;
 import com.travelport.schema.system_v8_0.PingRsp;
 import com.travelport.schema.system_v8_0.SystemInfoReq;
-import com.travelport.schema.system_v8_0.SystemInfoRsp;
 import com.travelport.schema.system_v8_0.TimeReq;
 import com.travelport.schema.system_v8_0.TimeRsp;
 import com.travelport.service.system_v8_0.SystemFaultMessage;
-import com.travelport.service.system_v8_0.SystemInfoPortType;
-import com.travelport.service.system_v8_0.SystemPingPortType;
-import com.travelport.service.system_v8_0.SystemService;
-import com.travelport.service.system_v8_0.SystemTimePortType;
 import com.travelport.tutorial.support.WSDLService;
 
 

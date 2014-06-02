@@ -9,13 +9,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v18_0.*;
-import com.travelport.service.air_v18_0.AirFaultMessage;
+import com.travelport.schema.air_v26_0.*;
+import com.travelport.service.air_v26_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class AirSvcTest {
 
-	public static String MY_APP_NAME="tutorial_tests";
+	public static String MY_APP_NAME="UAPI";
 	
 	@Test
 	public void availability() throws AirFaultMessage {
@@ -32,6 +32,30 @@ public class AirSvcTest {
 
 
 	
+	private void setupRequestForSearch(AvailabilitySearchReq request) {
+		// TODO Auto-generated method stub
+		
+		//add in the tport branch code
+	    request.setTargetBranch(System.getProperty("travelport.targetBranch"));
+	    
+		//set the GDS via a search modifier
+		AirSearchModifiers modifiers = AirReq.createModifiersWithProviders(System.getProperty("travelport.gds"));
+		
+		AirReq.addPointOfSale(request, MY_APP_NAME);
+		
+		//try to limit the size of the return... not supported by 1G!
+		modifiers.setMaxSolutions(BigInteger.valueOf(25));
+		request.setAirSearchModifiers(modifiers);
+		
+		//travel is for paris to portland 2 months from now, one week trip
+		SearchAirLeg outbound = AirReq.createSearchLeg("CDG", "PDX");
+		AirReq.addSearchDepartureDate(outbound, Helper.daysInFuture(60));
+		AirReq.addSearchEconomyPreferred(outbound);
+
+	}
+
+
+
 	@Test
 	public void lowFareSearch() throws ParseException, AirFaultMessage {
 		LowFareSearchReq request = new LowFareSearchReq();
@@ -62,7 +86,7 @@ public class AirSvcTest {
 	}
 
 	//different search request types use this different ways
-	public void setupRequestForSearch(AirSearchReq request) {
+	public void setupRequestForSearch(LowFareSearchReq request) {
 		
 		//add in the tport branch code
 		request.setTargetBranch(System.getProperty("travelport.targetBranch"));
@@ -77,17 +101,17 @@ public class AirSvcTest {
 		request.setAirSearchModifiers(modifiers);
 		
 		//travel is for paris to portland 2 months from now, one week trip
-		SearchAirLeg outbound = AirReq.createLeg("CDG", "PDX");
+		TypeSearchAirLeg outbound = AirReq.createLeg("CDG", "PDX");
 		AirReq.addDepartureDate(outbound, Helper.daysInFuture(60));
 		AirReq.addEconomyPreferred(outbound);
 
 		//coming back
-		SearchAirLeg ret = AirReq.createLeg("PDX", "CDG");
+		TypeSearchAirLeg ret = AirReq.createLeg("PDX", "CDG");
 		AirReq.addDepartureDate(ret, Helper.daysInFuture(67));
 		AirReq.addEconomyPreferred(ret);
 
 		//put them in the request
-		List<SearchAirLeg> legs = request.getSearchAirLeg();
+		List<TypeSearchAirLeg> legs = request.getSearchAirLeg();
 		legs.add(outbound);
 		legs.add(ret);
 	}

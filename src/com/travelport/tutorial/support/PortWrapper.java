@@ -41,10 +41,16 @@ public class PortWrapper<P,S> {
      */
     public PortWrapper(ServiceWrapper<S> svc, Class<P> clazzP, String endpoint) {
         serviceWrapper = svc;
-        getterName = "get" + clazzP.getSimpleName();
+        //System.out.println("getter is: get"+clazzP.getSimpleName());
+        String n = clazzP.getSimpleName();
+        //THIS IS HORRIBLE
+        if (n.equals("SystemTimePortType")) {
+            n="SystemtimePortType";
+        }
+        getterName = "get" + n;
         this.endpoint = endpoint;
         
-        if (!this.getterName.endsWith("Type")) {
+        if ((!getterName.endsWith("Type")) &&(!getterName.startsWith("getSystem"))) {
             throw new RuntimeException("You supplied a 'port type' that does "
                     +"end in 'type' like alll the others!");
         }
@@ -69,7 +75,8 @@ public class PortWrapper<P,S> {
     
     /**
      * Add the necessary gunk to the BindingProvider to make it work right
-     * with an authenticated SOAP service.
+     * with an authenticated SOAP service.  Also turns on the schema 
+     * validation which you probably want since this is a tutorial.
      * 
      * @param provider
      *            the provider (usually this a port object also)
@@ -82,10 +89,23 @@ public class PortWrapper<P,S> {
             String endpoint) {
         provider.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, 
                 endpoint);
+        
+        String user = System.getProperty("travelport.username");
+        if ((user==null) || (user.trim().length()==0)) {
+            user = System.getenv(WSDLService.USERNAME_ENV);
+        }
+        String pwd =System.getProperty("travelport.password");
+        if ((pwd==null) || (pwd.trim().length()==0)) {
+            pwd = System.getenv(WSDLService.PASSWORD_ENV);
+        }
+        
         provider.getRequestContext().put(BindingProvider.USERNAME_PROPERTY,
-                System.getProperty("travelport.username"));
+                user);
         provider.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY,
-                System.getProperty("travelport.password"));
+                pwd);
+        
+        provider.getRequestContext().put("schema-validation-enabled", "true"); 
+
     }
 
     /**
@@ -102,6 +122,8 @@ public class PortWrapper<P,S> {
         Client cl = ClientProxy.getClient(port);
         if (show) {
             if (!currentlyShown) {
+                //System.out.println("ADDED INTERCEPTORS:"+cl.getClass());
+
                 cl.getInInterceptors().add(in);
                 cl.getOutInterceptors().add(out);
                 currentlyShown=true;
@@ -129,6 +151,8 @@ public class PortWrapper<P,S> {
         try {
             Object service = serviceWrapper.get();
 
+            //System.out.print("service object is of type:"+service.getClass().getSimpleName());
+            //System.out.println(",getter is:"+getterName);
             Method getter = service.getClass().getMethod(getterName, (Class<Object>[]) null);
             Object result = getter.invoke(service);
             
@@ -139,15 +163,19 @@ public class PortWrapper<P,S> {
             out.setPrettyLogging(true);
 
         } catch (SecurityException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad service/*port* pair:"+
+                    e.getMessage());
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad service/*port* pair:"+
+                    e.getMessage());
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad service/*port* pair:"+
+                    e.getMessage());
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException("You supplied a bad service/*port* pair:"+
+                    e.getMessage());
         } catch (InvocationTargetException e) {
-            throw new RuntimeException("You supplied a bad service/port pair!");
+            throw new RuntimeException(e.getTargetException());
         }
     }
     
