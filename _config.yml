@@ -7,7 +7,7 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 server: true
 auto: true
 pygments: true
-markdown: maruku
+markdown: kramdown
 safe: true
 
 
