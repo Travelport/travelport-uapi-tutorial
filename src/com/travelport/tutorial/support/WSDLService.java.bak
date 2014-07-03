@@ -20,8 +20,6 @@ import com.travelport.service.system_v8_0.SystemTimePortType;
 import com.travelport.service.universal_v26_0.AirCreateReservationPortType;
 import com.travelport.service.universal_v26_0.HotelCancelServicePortType;
 import com.travelport.service.universal_v26_0.HotelReservationServicePortType;
-import com.travelport.service.universal_v26_0.UniversalRecordCancelService;
-import com.travelport.service.universal_v26_0.UniversalRecordCancelServicePortType;
 import com.travelport.service.vehicle_v26_0.VehicleSearchServicePortType;
 import com.travelport.service.vehicle_v26_0.VehicleService;
 
@@ -54,7 +52,6 @@ public class WSDLService {
 	static public String AIR_ENDPOINT = ENDPOINT_PREFIX + "AirService";
 	static public String HOTEL_ENDPOINT = ENDPOINT_PREFIX + "HotelService";
 	static public String VEHICLE_ENDPOINT = ENDPOINT_PREFIX + "VehicleService";
-	static public String UNIVERSAL_ENDPOINT = ENDPOINT_PREFIX + "UniversalRecordService";
 
 	// the services... these are not normally useful to most developers
 	public static ServiceWrapper<HotelService> hotel = new ServiceWrapper<HotelService>(
@@ -70,9 +67,6 @@ public class WSDLService {
 	
 	public static ServiceWrapper<com.travelport.service.universal_v26_0.AirService> universalAir = new ServiceWrapper<com.travelport.service.universal_v26_0.AirService>(
 			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v26_0.AirService.class);
-	
-	public static ServiceWrapper<com.travelport.service.universal_v26_0.UniversalRecordCancelService> universalCancel = new ServiceWrapper<com.travelport.service.universal_v26_0.UniversalRecordCancelService>(
-			WSDLService.UNIVERSAL_WSDL, UniversalRecordCancelService.class);
 
 	// air ports
 	public static PortWrapper<AirLowFareSearchPortType, AirService> airShop = new PortWrapper<AirLowFareSearchPortType, AirService>(
@@ -111,9 +105,6 @@ public class WSDLService {
 	// vehicle ports
 	public static PortWrapper<VehicleSearchServicePortType, VehicleService> vehicleSearch = new PortWrapper<VehicleSearchServicePortType, VehicleService>(
 			vehicle, VehicleSearchServicePortType.class, VEHICLE_ENDPOINT);
-	
-	public static PortWrapper<UniversalRecordCancelServicePortType, UniversalRecordCancelService> univCancel = new PortWrapper<UniversalRecordCancelServicePortType, UniversalRecordCancelService>(
-			universalCancel, UniversalRecordCancelServicePortType.class, UNIVERSAL_ENDPOINT);
 
 	// names of the environment properties
 	static protected String USERNAME_PROP = "travelport.username";
