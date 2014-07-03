@@ -1,5 +1,6 @@
 package com.travelport.uapi.unit2;
 
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
@@ -38,13 +40,19 @@ import com.travelport.schema.hotel_v26_0.TypeHotelRateDescription;
 import com.travelport.schema.hotel_v26_0.TypeRateRuleDetail;
 import com.travelport.schema.universal_v26_0.HotelCreateReservationReq;
 import com.travelport.schema.universal_v26_0.HotelCreateReservationRsp;
+import com.travelport.schema.universal_v26_0.ProviderReservationStatus;
 import com.travelport.schema.universal_v26_0.UniversalRecord;
+import com.travelport.schema.universal_v26_0.UniversalRecordCancelReq;
+import com.travelport.schema.universal_v26_0.UniversalRecordCancelRsp;
 import com.travelport.service.hotel_v26_0.HotelDetailsServicePortType;
 import com.travelport.service.hotel_v26_0.HotelFaultMessage;
 import com.travelport.service.hotel_v26_0.HotelMediaLinksServicePortType;
 import com.travelport.service.hotel_v26_0.HotelSearchServicePortType;
 import com.travelport.service.hotel_v26_0.HotelService;
 import com.travelport.service.universal_v26_0.HotelReservationServicePortType;
+import com.travelport.service.universal_v26_0.UniversalRecordCancelService;
+import com.travelport.service.universal_v26_0.UniversalRecordCancelServicePortType;
+import com.travelport.service.universal_v26_0.UniversalRecordFaultMessage;
 import com.travelport.tutorial.support.ServiceWrapper;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
@@ -57,6 +65,7 @@ public class Lesson5 {
      * itself.
      */
     public static ServiceWrapper<HotelService> svc = new ServiceWrapper<HotelService>(WSDLService.HOTEL_WSDL, HotelService.class);
+    public static ServiceWrapper<UniversalRecordCancelService> svc1 = new ServiceWrapper<UniversalRecordCancelService>(WSDLService.UNIVERSAL_WSDL, UniversalRecordCancelService.class);
 
     public static void main(String[] argv) {
         //the hotel search parametrs
@@ -70,11 +79,15 @@ public class Lesson5 {
         HotelSearchServicePortType port = WSDLService.hotelShop.get();
         @SuppressWarnings("unused")
 		HotelDetailsServicePortType det = WSDLService.hotelDetails.get();
-        WSDLService.hotelDetails.showXML(true);
+        WSDLService.hotelDetails.showXML(true);       
+        
         
         HotelReservationServicePortType resv = WSDLService.hotelReserve.get();
         HotelMediaLinksServicePortType media = WSDLService.hotelMedia.get();
         WSDLService.hotelReserve.showXML(true);
+        
+        UniversalRecordCancelServicePortType uniPort = WSDLService.univCancel.get();
+        WSDLService.univCancel.showXML(true);
         
         //now for the real code...
         try {
@@ -417,6 +430,8 @@ public class Lesson5 {
                 System.out.println("                        : "+msg);
 
             }
+            
+            cancelReservation(uniPort, rec.getLocatorCode(), rec.getVersion());
         } catch (NumberFormatException e) {
             System.err.println("unable to parse hotel price: " + e.getMessage());
         } catch (HotelFaultMessage e) {
@@ -428,7 +443,30 @@ public class Lesson5 {
 
     }
     
-    public static String getDescriptiveText(HotelRateDetail rateDetail) {
+    private static void cancelReservation(
+			UniversalRecordCancelServicePortType uniPort, String locatorCode,
+			BigInteger version) {
+		// TODO Auto-generated method stub
+		UniversalRecordCancelReq uniCancelReq = new UniversalRecordCancelReq();
+		uniCancelReq.setBillingPointOfSaleInfo(Helper.tutorialBPOSInfo(2, 5));
+		uniCancelReq.setTargetBranch(System.getProperty("travelport.targetBranch"));
+		uniCancelReq.setUniversalRecordLocatorCode(locatorCode);
+		uniCancelReq.setVersion(version);
+		try {
+			UniversalRecordCancelRsp createRsp = uniPort.service(uniCancelReq);
+			List<ProviderReservationStatus> prs = createRsp.getProviderReservationStatus();
+			ListIterator<ProviderReservationStatus> prsIterator = prs.listIterator();
+			while(prsIterator.hasNext()){
+				ProviderReservationStatus cancelInfo = prsIterator.next();
+				System.out.println("PNR :"+cancelInfo.getLocatorCode() +"Cancelled Successfully ?" + cancelInfo.isCancelled());
+			}
+		} catch (UniversalRecordFaultMessage e) {
+			// TODO Auto-generated catch block
+			System.err.println("error in Universal Cancel: " + e.getMessage());
+		}
+	}
+
+	public static String getDescriptiveText(HotelRateDetail rateDetail) {
         StringBuilder description = new StringBuilder();
         List<TypeHotelRateDescription> descList = rateDetail.getRoomRateDescription();
         for (Iterator<TypeHotelRateDescription> descIter = descList.iterator(); descIter.hasNext();) {
