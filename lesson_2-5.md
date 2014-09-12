@@ -556,8 +556,7 @@ Thanks for working through all of Unit 2 and our discussion of hotel reservation
 
 ----------------------
 
-[< Return to Unit 2, Lesson 4](lesson_2-4.html) |
-[Proceed to Unit 3, Lesson 6 >](lesson_3-6.html) 
+[< Return to Unit 2, Lesson 4](lesson_2-4.html)
 
 [Table of Contents](index.html)
 <hr>
