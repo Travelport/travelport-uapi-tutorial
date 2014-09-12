@@ -25,9 +25,9 @@ The tutorial is broken into three sections, or "units", each of which has a sepa
 
 ### Unit 1
 
-The first unit will teach you how to setup and configure the Travelport Universal Api&trade; (uAPI) and how to make some basic requests through that API.  With this section complete, you can ask Travelport for information about rail and air travel, such as schedules and availability, and of course get the prices associated with that travel.
+The first unit will teach you how to setup and configure the Travelport Universal Api; (uAPI) and how to make some basic requests through that API.  With this section complete, you can ask Travelport for information about rail and air travel, such as schedules and availability, and of course get the prices associated with that travel.
 
-Lesson 1: [Setting up to work with the Travelport Universal API&trade;](lesson_1-1.html)
+Lesson 1: [Setting up to work with the Travelport Universal API;](lesson_1-1.html)
 	
 Lesson 2: [Basic air travel requests](lesson_1-2.html)
 	
@@ -47,7 +47,7 @@ Lesson 5: [Making an Air or Hotel booking](lesson_2-5.html)
 
 ## Get started
 
-Proceed to Unit 1, Lesson 1: [Setting up to work with the Travelport Universal API&trade; ](lesson_1-1.html)
+Proceed to Unit 1, Lesson 1: [Setting up to work with the Travelport Universal API; ](lesson_1-1.html)
 
 <!-- 
 ## Blog Posts
