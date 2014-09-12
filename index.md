@@ -41,19 +41,8 @@ The second unit is about finding accommodation in an area, using city and geocod
 Lesson 4: [Hotel search, searching by landmark](lesson_2-4.html)
 
 Lesson 5: [Making an Air or Hotel booking](lesson_2-5.html)
-	
 
-### Unit 3
 
-The final unit will help you build a working [Facebook](http://www.facebook.com) application that uses the uAPI to determine things like, "How much would it cost for me to visit my friend Joe on his birthday next month?".
-
-Lesson 6: [Travelport E-volve Facebook app](lesson_3-6.html)
-
-Lesson 7: [Building a travel app for Facebook](lesson_3-7.html)
-	
-Lesson 8: [Universal API&trade; from inside a Facebook app](lesson_3-8.html)
-	
-Lesson 9: [Better mapping integration in Facebook](lesson_3-9.html)
 
 
 ## Get started
