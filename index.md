@@ -65,11 +65,3 @@ This website is part of a larger system, [GitHub](http://www.github.com), that a
 -->
 {% include JB/comments %}
 {% include JB/analytics %}
-
-
-Travelport provides this document for information purposes only and does not guarantee that the information contained in this document is accurate, current or complete.
-
-This document and the products listed herein are subject to change without notice.
-
-© 2014 Travelport. All rights reserved. All other trademarks are the property of their respective owners.
-
