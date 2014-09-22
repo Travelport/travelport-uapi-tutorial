@@ -21,7 +21,7 @@ Once installation is done we are ready to go.
 
 ##Coding
 
-You can start with just creating a blank php page by writing <?php          ?> in a blank txt file and saving it as php_SampleAir.php
+You can start with just creating a blank php page by writing {%highlight php %} <?php          ?> {% endhighlight %} in a blank txt file and saving it as php_SampleAir.php
 You are ready with your first php page. Now to call an uAPI service from php you first need to initialize all the required variables like TargetBranch,
 Username, password and provider. Let us first create a simple air availability search with php.
 
@@ -38,7 +38,7 @@ Now you are ready to run the request using curl_exec. We used another variable t
 
 So, we just finished a simple air availability request with php. In the next lesson we will play with Hotel in php.
 
-{% endhighlight %}
+
 
 ### The Future
 
