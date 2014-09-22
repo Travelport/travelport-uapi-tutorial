@@ -47,7 +47,7 @@ On our way from index to hotelBook we saved all the request and response xml tra
 
 So, we are just finished a complete hotel booking flow using Php.
 
-{% endhighlight %}
+
 
 ----------------------
 
