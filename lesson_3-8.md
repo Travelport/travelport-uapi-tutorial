@@ -19,7 +19,6 @@ Again as we have already covered in previous lessons how the Air and Hotel work 
 endpoint and xml request message change. We have done the same just changed the curl_init to use the vehicleService and changed the xml request to vehicle search
 request and we are done. Your vehicle search request is ready.
 
-{% endhighlight %}
 
 ### The Future
 
