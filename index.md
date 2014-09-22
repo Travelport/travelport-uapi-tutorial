@@ -1,33 +1,35 @@
 ---
 layout: page
-title: Welcome To The uAPI
+title: Travelport Universal API
 tagline: Making it easy to build travel applications
 ---
 {% include JB/setup %}
 
-## The goal of this tutorial
+## Universal API is...
 
-Travelport Universal API is the world's first global GDS API to aggregate content from multiple sources including GDS, low cost-carriers and high speed rail operators.
+An API that aggregates content from multiple sources including GDS, low cost-carriers and high speed rail operators.
 
-For developers, it means an end to managing and maintaining multiple APIs. You'll have less code to write and more time to spend on your other responsibilities.
+For developers, Universal API means an end to managing and maintaining multiple APIs. You'll have less code to write and more time to spend on your other responsibilities.
 
-This tutorial helps developers understanding how to use the uAPI step by step, from connecting to the uAPI to coding a cool Facebook travel application. 
+## The goal…
+
+These tutorials provided step-by-step instructions to help you connect to the universal API and code a standard workflow in Java and PHP.
 
 <p align="center">
 <br/>
-<img src="images/TP-facebook-app.jpg"/>
+<img src="images/TP-new-logo.jpg"/>
 <br/>
 </p>
 
 ## Table of contents
 
-The tutorial is broken into three sections, or "units", each of which has a separate objective; each unit is broken into three "lessons" that take you part of the way towards the goal of the unit.
+Each tutorial has different sections with separate objectives;
 
 ### Unit 1
 
-The first unit will teach you how to setup and configure the Travelport Universal Api; (uAPI) and how to make some basic requests through that API.  With this section complete, you can ask Travelport for information about rail and air travel, such as schedules and availability, and of course get the prices associated with that travel.
+Unit1 teaches you how to setup and configure Travelport Universal API and how to send basic requests.  After you complete this section, you can request Air and Rail travel information such as schedules, availability and pricing.
 
-Lesson 1: [Setting up to work with the Travelport Universal API;](lesson_1-1.html)
+Lesson 1: [Setting up Travelport Universal API;](lesson_1-1.html)
 	
 Lesson 2: [Basic air travel requests](lesson_1-2.html)
 	
@@ -36,13 +38,31 @@ Lesson 3: [Advanced travel shopping](lesson_1-3.html)
 
 ### Unit 2
 
-The second unit is about finding accommodation in an area, using city and geocodes to refine search options, and completing a booking for a passenger. With this section complete, you can build a complete flight and hotel booking application.
+Unit 2 searches for a hotel using city and reference points and complete a booking for a passenger. After finishing Unit 2, you have the building blocks for a flight and hotel booking application.
 
-Lesson 4: [Hotel search, searching by landmark](lesson_2-4.html)
+Lesson 4: [Searching for Hotels](lesson_2-4.html)
 
-Lesson 5: [Making an Air or Hotel booking](lesson_2-5.html)
+Lesson 5: [Booking Air Or Hotels](lesson_2-5.html)
 
+##PHP Tutorial
 
+#Air
+
+The Air unit teaches you how to setup and configure Travelport Universal API and how to send basic requests. After you complete this section, you can request air travel information, such as schedules, availability, and pricing.
+
+Lesson 6: [Searching for Flights](lesson_3-6.html)
+
+#Hotel
+
+The Hotel unit teaches you how to send basic requests for hotel information, such as availability and pricing, and how to book a hotel.
+
+Lesson 7: [Searching for Hotels, Booking Hotels](lesson_3-7.html)
+
+#Vehicle
+
+The Vehicle unit teaches you how to send basic requests for vehicle information, such as availability, vehicle type, and pricing.
+
+Lesson 6: [Searching for Vehicle](lesson_3-8.html)
 
 
 ## Get started

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Making an Air or Hotel booking"
-description: "Understanding how to create a booking for air, hotel, or both with the Universal API&trade;."
+description: "Understanding how to create a booking for air, hotel, or both with the Universal API;."
 ---
 {% include JB/setup %}
 

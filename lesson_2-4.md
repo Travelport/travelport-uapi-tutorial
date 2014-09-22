@@ -11,7 +11,7 @@ description: "Understanding hotel searches and how to search based on a point of
 
 After you have worked your way through this unit, you'll be able to do searching for multiple types of travel-related items (hotels and cars) in addition to the transportation we covered in the last unit.
 
-In addition, we are going to focus on creating bookings for hotels, air travel, etc. so you can complete the entire purchase cycle.  We'll finish by putting it all together with a "Universal Record" --- a part of the Universal API&trade; that pulls together all the information about trips and travelers.
+In addition, we are going to focus on creating bookings for hotels, air travel, etc. so you can complete the entire purchase cycle.  We'll finish by putting it all together with a "Universal Record" --- a part of the Universal API; that pulls together all the information about trips and travelers.
 
 ### The goal of Lesson 4
 
@@ -159,7 +159,7 @@ is air-conditioning.
 
 In the interest of simplicity, we did not discuss in the previous lesson exactly how many search results were expected to be returned, and, perhaps most importantly, how to request more results if the provider of search results can deliver them.
 
-The Universal API&trade; will signal in its responses if more results are available for any kind of search.  At the Java level, you use the method `getNextResultReference` to get access to a "token" that you can use later to tell Travelport what data you have already been returned.  You can see the token in the `common_v26_0:NextResultReference` tag at the top of the XML response.
+The Universal API; will signal in its responses if more results are available for any kind of search.  At the Java level, you use the method `getNextResultReference` to get access to a "token" that you can use later to tell Travelport what data you have already been returned.  You can see the token in the `common_v26_0:NextResultReference` tag at the top of the XML response.
 
 ![Warning](images/warning.png)  Historically, the GDSes provided data on "green-screen", character-based terminals. These systems had the notion of a screenful of information--the number of lines of text that the user could see before the top lines scrolled off-screen.  Some APIs to various GDSes have also used, or perhaps "kept", the notion of a "screenful" of information to represent a partial list of results.  In homage to this tradition, we will keep the nomenclature of "a screen" to indicate one _burst_ of information returned.
 

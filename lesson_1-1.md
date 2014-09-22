@@ -10,11 +10,11 @@ description: "Understanding how to configure your Java development environment t
 
 ### Objective of Unit 1
 
-After working through the three lessons of Unit 1, you should be able to work with the Travelport Universal API&trade; to make requests for services and understand the responses.  You will become familiar with *web services* if you are not already.
+After working through the three lessons of Unit 1, you should be able to work with the Travelport Universal API; to make requests for services and understand the responses.  You will become familiar with *web services* if you are not already.
 
 ### Programming language agnostic and WSDL
 
-Although these lessons are using Java, the lessons' concepts apply to pretty much any programming language.  The _interface_ to the Universal API&trade; (uAPI) is defined with [WSDL](http://en.wikipedia.org/wiki/Web_Services_Description_Language) or Web Services Definition Language, pronounced "whiz-dul".
+Although these lessons are using Java, the lessons' concepts apply to pretty much any programming language.  The _interface_ to the Universal API; (uAPI) is defined with [WSDL](http://en.wikipedia.org/wiki/Web_Services_Description_Language) or Web Services Definition Language, pronounced "whiz-dul".
 
 This means that any programming language that knows how to use *web services* can access the APIs and get useful things done.  In practice, this means that you need a _generator_ that can take a file "foo.wsdl" and spit out "foo_client.Java", or whatever, in your favorite language.
 
@@ -24,7 +24,7 @@ Important note: different generators have slightly different behaviors. WSDL is 
 
 You must first create an account on [Travelport Developer Network](http://developer.travelport.com).
 
-* Once you have an account, you can find the link to *Request Test Access* via the navigation menus on the [Universal API&trade; Resource Centre](http://developer.travelport.com/app/developer-network/resource-centre-uapi).
+* Once you have an account, you can find the link to *Request Test Access* via the navigation menus on the [Universal API; Resource Centre](http://developer.travelport.com/app/developer-network/resource-centre-uapi).
 
 * When you request test credentials, you should choose *Galileo* as your preferred GDS.
 
