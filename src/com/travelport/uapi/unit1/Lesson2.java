@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.travelport.schema.air_v26_0.AirItinerary;
-import com.travelport.schema.air_v26_0.AirItinerarySolution;
-import com.travelport.schema.air_v26_0.AirPriceReq;
-import com.travelport.schema.air_v26_0.AirPriceResult;
-import com.travelport.schema.air_v26_0.AirPriceRsp;
-import com.travelport.schema.air_v26_0.AirPricingCommand;
-import com.travelport.schema.air_v26_0.AirPricingSolution;
-import com.travelport.schema.air_v26_0.AirSearchModifiers;
-import com.travelport.schema.air_v26_0.AirSegmentRef;
-import com.travelport.schema.air_v26_0.AvailabilitySearchReq;
-import com.travelport.schema.air_v26_0.AvailabilitySearchRsp;
-import com.travelport.schema.air_v26_0.Connection;
-import com.travelport.schema.air_v26_0.FlightDetails;
-import com.travelport.schema.air_v26_0.FlightDetailsRef;
-import com.travelport.schema.air_v26_0.SearchAirLeg;
-import com.travelport.schema.air_v26_0.TypeBaseAirSegment;
-import com.travelport.schema.common_v26_0.ResponseMessage;
-import com.travelport.schema.common_v26_0.SearchPassenger;
-import com.travelport.schema.common_v26_0.TypeCabinClass;
-import com.travelport.schema.common_v26_0.TypeResultMessage;
-import com.travelport.service.air_v26_0.AirFaultMessage;
+import com.travelport.schema.air_v29_0.AirItinerary;
+import com.travelport.schema.air_v29_0.AirItinerarySolution;
+import com.travelport.schema.air_v29_0.AirPriceReq;
+import com.travelport.schema.air_v29_0.AirPriceResult;
+import com.travelport.schema.air_v29_0.AirPriceRsp;
+import com.travelport.schema.air_v29_0.AirPricingCommand;
+import com.travelport.schema.air_v29_0.AirPricingSolution;
+import com.travelport.schema.air_v29_0.AirSearchModifiers;
+import com.travelport.schema.air_v29_0.AirSegmentRef;
+import com.travelport.schema.air_v29_0.AvailabilitySearchReq;
+import com.travelport.schema.air_v29_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v29_0.Connection;
+import com.travelport.schema.air_v29_0.FlightDetails;
+import com.travelport.schema.air_v29_0.FlightDetailsRef;
+import com.travelport.schema.air_v29_0.SearchAirLeg;
+import com.travelport.schema.air_v29_0.TypeBaseAirSegment;
+import com.travelport.schema.common_v29_0.ResponseMessage;
+import com.travelport.schema.common_v29_0.SearchPassenger;
+import com.travelport.schema.common_v29_0.CabinClass;
+import com.travelport.schema.common_v29_0.TypeResultMessage;
+import com.travelport.service.air_v29_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 
@@ -284,7 +284,7 @@ public class Lesson2 {
 		
 		//set cabin
 		AirPricingCommand command = new AirPricingCommand();
-		command.setCabinClass(TypeCabinClass.ECONOMY);
+		command.setCabinClass("Economy");
 		priceReq.getAirPricingCommand().add(command);
 		
 		//our branch

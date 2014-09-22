@@ -8,13 +8,14 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.junit.Test;
 
-import com.travelport.schema.hotel_v26_0.BaseHotelSearchRsp;
-import com.travelport.schema.hotel_v26_0.HotelLocation;
-import com.travelport.schema.hotel_v26_0.HotelSearchAvailabilityReq;
-import com.travelport.schema.hotel_v26_0.HotelSearchModifiers;
-import com.travelport.schema.hotel_v26_0.HotelStay;
-import com.travelport.service.hotel_v26_0.HotelFaultMessage;
-import com.travelport.service.hotel_v26_0.HotelSearchServicePortType;
+import com.travelport.schema.hotel_v29_0.BaseHotelSearchRsp;
+import com.travelport.schema.hotel_v29_0.HotelLocation;
+import com.travelport.schema.hotel_v29_0.HotelSearchAvailabilityReq;
+import com.travelport.schema.hotel_v29_0.HotelSearchModifiers;
+import com.travelport.schema.hotel_v29_0.HotelStay;
+import com.travelport.schema.hotel_v29_0.TypeHotelReferencePoint;
+import com.travelport.service.hotel_v29_0.HotelFaultMessage;
+import com.travelport.service.hotel_v29_0.HotelSearchServicePortType;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
 
@@ -34,12 +35,16 @@ public class HotelTest {
         //hotel location is paris france
         HotelLocation location = Lesson4.createCityLocation("PAR");
         
+        TypeHotelReferencePoint refPoint = new TypeHotelReferencePoint();
+        refPoint.setValue("EIFFEL TOWER");
+        
         //near the eiffel tower
-        req.setHotelLocation(location);
-        mods.setReferencePoint("EIFFEL TOWER");
+        req.getHotelSearchLocation().setHotelLocation(location);
+        req.getHotelSearchLocation().setReferencePoint(refPoint);
         
         //within 1000m of the tower?
-        Lesson4.addDistanceModifier(mods, 1);
+        Lesson4.addDistanceModifier(req.getHotelSearchLocation(), 1);
+        req.setHotelSearchModifiers(mods);
         
         //when staying?
         HotelStay stay = Lesson4.createCheckInAndOut(Lesson4.futureDateAsXML(45),

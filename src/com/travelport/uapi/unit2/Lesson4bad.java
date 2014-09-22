@@ -5,17 +5,17 @@ import java.util.List;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 
-import com.travelport.schema.air_v26_0.AirItinerary;
-import com.travelport.schema.air_v26_0.AirItinerarySolution;
-import com.travelport.schema.air_v26_0.AirPriceResult;
-import com.travelport.schema.air_v26_0.AirPriceRsp;
-import com.travelport.schema.air_v26_0.AirPricingSolution;
-import com.travelport.schema.air_v26_0.AirSegmentRef;
-import com.travelport.schema.air_v26_0.AvailabilitySearchRsp;
-import com.travelport.schema.air_v26_0.FlightDetails;
-import com.travelport.schema.air_v26_0.TypeBaseAirSegment;
-import com.travelport.service.air_v26_0.AirFaultMessage;
-import com.travelport.service.universal_v26_0.AvailabilityFaultMessage;
+import com.travelport.schema.air_v29_0.AirItinerary;
+import com.travelport.schema.air_v29_0.AirItinerarySolution;
+import com.travelport.schema.air_v29_0.AirPriceResult;
+import com.travelport.schema.air_v29_0.AirPriceRsp;
+import com.travelport.schema.air_v29_0.AirPricingSolution;
+import com.travelport.schema.air_v29_0.AirSegmentRef;
+import com.travelport.schema.air_v29_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v29_0.FlightDetails;
+import com.travelport.schema.air_v29_0.TypeBaseAirSegment;
+import com.travelport.service.air_v29_0.AirFaultMessage;
+import com.travelport.service.universal_v29_0.AvailabilityFaultMessage;
 import com.travelport.uapi.unit1.Helper;
 import com.travelport.uapi.unit1.Lesson2;
 

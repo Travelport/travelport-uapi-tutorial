@@ -6,19 +6,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
-import com.travelport.schema.air_v26_0.AirPricingSolution;
-import com.travelport.schema.air_v26_0.AirSearchModifiers;
-import com.travelport.schema.air_v26_0.AirSearchRsp;
-import com.travelport.schema.air_v26_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v26_0.LowFareSearchAsynchReq;
-import com.travelport.schema.air_v26_0.LowFareSearchAsynchRsp;
-import com.travelport.schema.air_v26_0.RetrieveLowFareSearchReq;
-import com.travelport.schema.air_v26_0.TypeSearchAirLeg;
-import com.travelport.schema.common_v26_0.BaseAsyncProviderSpecificResponse;
-import com.travelport.schema.common_v26_0.PointOfSale;
-import com.travelport.schema.common_v26_0.ResponseMessage;
-import com.travelport.schema.rail_v26_0.RailPricingSolution;
-import com.travelport.service.air_v26_0.AirFaultMessage;
+import com.travelport.schema.air_v29_0.AirPricingSolution;
+import com.travelport.schema.air_v29_0.AirSearchModifiers;
+import com.travelport.schema.air_v29_0.AirSearchRsp;
+import com.travelport.schema.air_v29_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v29_0.LowFareSearchAsynchReq;
+import com.travelport.schema.air_v29_0.LowFareSearchAsynchRsp;
+import com.travelport.schema.air_v29_0.PCC;
+import com.travelport.schema.air_v29_0.RetrieveLowFareSearchReq;
+import com.travelport.schema.air_v29_0.SearchAirLeg;
+import com.travelport.schema.common_v29_0.BaseAsyncProviderSpecificResponse;
+import com.travelport.schema.common_v29_0.PointOfSale;
+import com.travelport.schema.common_v29_0.ResponseMessage;
+import com.travelport.schema.rail_v29_0.RailPricingSolution;
+import com.travelport.service.air_v29_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson3 {
@@ -277,19 +278,19 @@ public class Lesson3 {
 
 		// we need to create a search leg but we do with some slack plus we use
 		// the city code for london
-		TypeSearchAirLeg outbound = AirReq.createLeg(originAirportcode, destAirportCode);
+		SearchAirLeg outbound = AirReq.createLeg(originAirportcode, destAirportCode);
 
 		AirReq.addDepartureDate(outbound,
 				Helper.daysInFuture(departureDaysInFuture));
 		AirReq.addEconomyPreferred(outbound);
 
 		// coming back, again something near these...
-		TypeSearchAirLeg ret = AirReq.createLeg(destAirportCode, originAirportcode);
+		SearchAirLeg ret = AirReq.createLeg(destAirportCode, originAirportcode);
 		AirReq.addDepartureDate(ret, Helper.daysInFuture(returnDaysInFuture));
 		AirReq.addEconomyPreferred(ret);
 
 		// put them in the request
-		List<TypeSearchAirLeg> legs = request.getSearchAirLeg();
+		List<SearchAirLeg> legs = request.getSearchAirLeg();
 		legs.add(outbound);
 		legs.add(ret);
 
@@ -309,8 +310,12 @@ public class Lesson3 {
 		lccPOS.setProviderCode(Helper.LOW_COST_PROVIDER);
 		lccPOS.setPseudoCityCode(originAirportcode);
 		
-		request.getPointOfSale().add(gdsPOS);
-		request.getPointOfSale().add(railPOS);
-		request.getPointOfSale().add(lccPOS);
+		PCC pcc =  new PCC();
+		request.setPCC(pcc);
+		
+		request.getPCC().getPointOfSale().add(gdsPOS);
+		request.getPCC().getPointOfSale().add(railPOS);
+		request.getPCC().getPointOfSale().add(lccPOS);
+
 	}
 }

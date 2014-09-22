@@ -9,8 +9,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v26_0.*;
-import com.travelport.service.air_v26_0.AirFaultMessage;
+import com.travelport.schema.air_v29_0.*;
+import com.travelport.schema.common_v29_0.BaseReq;
+import com.travelport.service.air_v29_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class AirSvcTest {
@@ -59,6 +60,7 @@ public class AirSvcTest {
 	@Test
 	public void lowFareSearch() throws ParseException, AirFaultMessage {
 		LowFareSearchReq request = new LowFareSearchReq();
+		BaseReq req = new BaseReq();
 		LowFareSearchRsp response;
 		String myTraceId = "ltk-007";
 		
@@ -101,17 +103,17 @@ public class AirSvcTest {
 		request.setAirSearchModifiers(modifiers);
 		
 		//travel is for paris to portland 2 months from now, one week trip
-		TypeSearchAirLeg outbound = AirReq.createLeg("CDG", "PDX");
+		SearchAirLeg outbound = AirReq.createLeg("CDG", "PDX");
 		AirReq.addDepartureDate(outbound, Helper.daysInFuture(60));
 		AirReq.addEconomyPreferred(outbound);
 
 		//coming back
-		TypeSearchAirLeg ret = AirReq.createLeg("PDX", "CDG");
+		SearchAirLeg ret = AirReq.createLeg("PDX", "CDG");
 		AirReq.addDepartureDate(ret, Helper.daysInFuture(67));
 		AirReq.addEconomyPreferred(ret);
 
 		//put them in the request
-		List<TypeSearchAirLeg> legs = request.getSearchAirLeg();
+		List<SearchAirLeg> legs = request.getSearchAirLeg();
 		legs.add(outbound);
 		legs.add(ret);
 	}

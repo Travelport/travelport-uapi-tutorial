@@ -1,8 +1,10 @@
 package com.travelport.uapi.unit1;
 
-import com.travelport.schema.system_v8_0.PingReq;
-import com.travelport.schema.system_v8_0.PingRsp;
-import com.travelport.service.system_v8_0.SystemFaultMessage;
+import com.sun.tools.xjc.reader.xmlschema.bindinfo.BIInlineBinaryData;
+import com.travelport.schema.common_v28_0.BillingPointOfSaleInfo;
+import com.travelport.schema.system_v9_0.PingReq;
+import com.travelport.schema.system_v9_0.PingRsp;
+import com.travelport.service.system_v9_0.SystemFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson1 {
@@ -13,11 +15,18 @@ public class Lesson1 {
 		//
 		String payload= "this my payload; there are many like it but this one is mine";
 		String someTraceId = "doesntmatter-8176";
+		String originApp = "UAPI";
 		
 		//set up the request parameters into a PingReq object
 		PingReq req = new PingReq();
 		req.setPayload(payload);
 		req.setTraceId(someTraceId);
+		
+		BillingPointOfSaleInfo billSetInfo = new BillingPointOfSaleInfo();
+		billSetInfo.setOriginApplication(originApp);
+		
+		req.setBillingPointOfSaleInfo(billSetInfo);
+		
 		
 		try {
 			//run the ping request

@@ -27,12 +27,13 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import com.travelport.schema.system_v8_0.PingReq;
-import com.travelport.schema.system_v8_0.PingRsp;
-import com.travelport.schema.system_v8_0.SystemInfoReq;
-import com.travelport.schema.system_v8_0.TimeReq;
-import com.travelport.schema.system_v8_0.TimeRsp;
-import com.travelport.service.system_v8_0.SystemFaultMessage;
+import com.travelport.schema.common_v28_0.BillingPointOfSaleInfo;
+import com.travelport.schema.system_v9_0.PingReq;
+import com.travelport.schema.system_v9_0.PingRsp;
+import com.travelport.schema.system_v9_0.SystemInfoReq;
+import com.travelport.schema.system_v9_0.TimeReq;
+import com.travelport.schema.system_v9_0.TimeRsp;
+import com.travelport.service.system_v9_0.SystemFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 
@@ -110,6 +111,11 @@ public class SystemSvcTest {
 		//set request params
 		request.setPayload(myPayload);
 		request.setTraceId(myTraceId);
+		
+		BillingPointOfSaleInfo billSetInfo = new BillingPointOfSaleInfo();
+		billSetInfo.setOriginApplication("UAPI");
+		
+		request.setBillingPointOfSaleInfo(billSetInfo);
 		
 		//run request through ping service
 		response = WSDLService.sysPing.get().service(request);

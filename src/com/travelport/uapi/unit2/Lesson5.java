@@ -1,6 +1,5 @@
 package com.travelport.uapi.unit2;
 
-import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -8,51 +7,45 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.travelport.schema.common_v26_0.BookingTraveler;
-import com.travelport.schema.common_v26_0.BookingTravelerName;
-import com.travelport.schema.common_v26_0.CreditCard;
-import com.travelport.schema.common_v26_0.Email;
-import com.travelport.schema.common_v26_0.Guarantee;
-import com.travelport.schema.common_v26_0.HostToken;
-import com.travelport.schema.common_v26_0.PermittedProviders;
-import com.travelport.schema.common_v26_0.PhoneNumber;
-import com.travelport.schema.common_v26_0.Provider;
-import com.travelport.schema.common_v26_0.State;
-import com.travelport.schema.common_v26_0.TypeStructuredAddress;
-import com.travelport.schema.hotel_v26_0.GuestInformation;
-import com.travelport.schema.hotel_v26_0.HotelDetailsModifiers;
-import com.travelport.schema.hotel_v26_0.HotelDetailsReq;
-import com.travelport.schema.hotel_v26_0.HotelDetailsRsp;
-import com.travelport.schema.hotel_v26_0.HotelProperty;
-import com.travelport.schema.hotel_v26_0.HotelRateDetail;
-import com.travelport.schema.hotel_v26_0.HotelReservation;
-import com.travelport.schema.hotel_v26_0.HotelSearchResult;
-import com.travelport.schema.hotel_v26_0.HotelStay;
-import com.travelport.schema.hotel_v26_0.NumberOfAdults;
-import com.travelport.schema.hotel_v26_0.TypeHotelRateDescription;
-import com.travelport.schema.hotel_v26_0.TypeRateRuleDetail;
-import com.travelport.schema.universal_v26_0.HotelCreateReservationReq;
-import com.travelport.schema.universal_v26_0.HotelCreateReservationRsp;
-import com.travelport.schema.universal_v26_0.ProviderReservationStatus;
-import com.travelport.schema.universal_v26_0.UniversalRecord;
-import com.travelport.schema.universal_v26_0.UniversalRecordCancelReq;
-import com.travelport.schema.universal_v26_0.UniversalRecordCancelRsp;
-import com.travelport.service.hotel_v26_0.HotelDetailsServicePortType;
-import com.travelport.service.hotel_v26_0.HotelFaultMessage;
-import com.travelport.service.hotel_v26_0.HotelMediaLinksServicePortType;
-import com.travelport.service.hotel_v26_0.HotelSearchServicePortType;
-import com.travelport.service.hotel_v26_0.HotelService;
-import com.travelport.service.universal_v26_0.HotelReservationServicePortType;
-import com.travelport.service.universal_v26_0.UniversalRecordCancelService;
-import com.travelport.service.universal_v26_0.UniversalRecordCancelServicePortType;
-import com.travelport.service.universal_v26_0.UniversalRecordFaultMessage;
+import com.travelport.schema.common_v29_0.BookingTraveler;
+import com.travelport.schema.common_v29_0.BookingTravelerName;
+import com.travelport.schema.common_v29_0.CreditCard;
+import com.travelport.schema.common_v29_0.Email;
+import com.travelport.schema.common_v29_0.Guarantee;
+import com.travelport.schema.common_v29_0.HostToken;
+import com.travelport.schema.common_v29_0.PermittedProviders;
+import com.travelport.schema.common_v29_0.PhoneNumber;
+import com.travelport.schema.common_v29_0.Provider;
+import com.travelport.schema.common_v29_0.State;
+import com.travelport.schema.common_v29_0.TypeStructuredAddress;
+import com.travelport.schema.hotel_v29_0.GuestInformation;
+import com.travelport.schema.hotel_v29_0.HotelDetailsModifiers;
+import com.travelport.schema.hotel_v29_0.HotelDetailsReq;
+import com.travelport.schema.hotel_v29_0.HotelDetailsRsp;
+import com.travelport.schema.hotel_v29_0.HotelProperty;
+import com.travelport.schema.hotel_v29_0.HotelRateDetail;
+import com.travelport.schema.hotel_v29_0.HotelReservation;
+import com.travelport.schema.hotel_v29_0.HotelSearchResult;
+import com.travelport.schema.hotel_v29_0.HotelStay;
+import com.travelport.schema.hotel_v29_0.NumberOfAdults;
+import com.travelport.schema.hotel_v29_0.TypeHotelRateDescription;
+import com.travelport.schema.hotel_v29_0.TypeHotelReferencePoint;
+import com.travelport.schema.hotel_v29_0.TypeRateRuleDetail;
+import com.travelport.schema.universal_v29_0.HotelCreateReservationReq;
+import com.travelport.schema.universal_v29_0.HotelCreateReservationRsp;
+import com.travelport.schema.universal_v29_0.UniversalRecord;
+import com.travelport.service.hotel_v29_0.HotelDetailsServicePortType;
+import com.travelport.service.hotel_v29_0.HotelFaultMessage;
+import com.travelport.service.hotel_v29_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v29_0.HotelSearchServicePortType;
+import com.travelport.service.hotel_v29_0.HotelService;
+import com.travelport.service.universal_v29_0.HotelReservationServicePortType;
 import com.travelport.tutorial.support.ServiceWrapper;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
@@ -65,13 +58,13 @@ public class Lesson5 {
      * itself.
      */
     public static ServiceWrapper<HotelService> svc = new ServiceWrapper<HotelService>(WSDLService.HOTEL_WSDL, HotelService.class);
-    public static ServiceWrapper<UniversalRecordCancelService> svc1 = new ServiceWrapper<UniversalRecordCancelService>(WSDLService.UNIVERSAL_WSDL, UniversalRecordCancelService.class);
 
     public static void main(String[] argv) {
         //the hotel search parametrs
         int numAdults=2, numRooms=1, distanceInKm=25, maxScreens=4;
         int daysToCheckin = 7, daysToDeparture = 9;
-        String pointOfInterestName="GOLDEN GATE BRIDGE";
+        TypeHotelReferencePoint pointOfInterestName=new TypeHotelReferencePoint();
+        pointOfInterestName.setValue("GOLDEN GATE BRIDGE");
         String city = "SFO";
 
         //again, normally this is hidden inside the WSDLService code, this is 
@@ -79,15 +72,11 @@ public class Lesson5 {
         HotelSearchServicePortType port = WSDLService.hotelShop.get();
         @SuppressWarnings("unused")
 		HotelDetailsServicePortType det = WSDLService.hotelDetails.get();
-        WSDLService.hotelDetails.showXML(true);       
-        
+        WSDLService.hotelDetails.showXML(true);
         
         HotelReservationServicePortType resv = WSDLService.hotelReserve.get();
         HotelMediaLinksServicePortType media = WSDLService.hotelMedia.get();
         WSDLService.hotelReserve.showXML(true);
-        
-        UniversalRecordCancelServicePortType uniPort = WSDLService.univCancel.get();
-        WSDLService.univCancel.showXML(true);
         
         //now for the real code...
         try {
@@ -430,43 +419,18 @@ public class Lesson5 {
                 System.out.println("                        : "+msg);
 
             }
-            
-            cancelReservation(uniPort, rec.getLocatorCode(), rec.getVersion());
         } catch (NumberFormatException e) {
             System.err.println("unable to parse hotel price: " + e.getMessage());
         } catch (HotelFaultMessage e) {
             System.err.println("error reading hotel data: " + e.getMessage());
-        } catch (com.travelport.service.universal_v26_0.HotelFaultMessage e) {
+        } catch (com.travelport.service.universal_v29_0.HotelFaultMessage e) {
 			// TODO Auto-generated catch block
         	System.err.println("error in service: " + e.getMessage());
 		}
 
     }
     
-    private static void cancelReservation(
-			UniversalRecordCancelServicePortType uniPort, String locatorCode,
-			BigInteger version) {
-		// TODO Auto-generated method stub
-		UniversalRecordCancelReq uniCancelReq = new UniversalRecordCancelReq();
-		uniCancelReq.setBillingPointOfSaleInfo(Helper.tutorialBPOSInfo(2, 5));
-		uniCancelReq.setTargetBranch(System.getProperty("travelport.targetBranch"));
-		uniCancelReq.setUniversalRecordLocatorCode(locatorCode);
-		uniCancelReq.setVersion(version);
-		try {
-			UniversalRecordCancelRsp createRsp = uniPort.service(uniCancelReq);
-			List<ProviderReservationStatus> prs = createRsp.getProviderReservationStatus();
-			ListIterator<ProviderReservationStatus> prsIterator = prs.listIterator();
-			while(prsIterator.hasNext()){
-				ProviderReservationStatus cancelInfo = prsIterator.next();
-				System.out.println("PNR :"+cancelInfo.getLocatorCode() +"Cancelled Successfully ?" + cancelInfo.isCancelled());
-			}
-		} catch (UniversalRecordFaultMessage e) {
-			// TODO Auto-generated catch block
-			System.err.println("error in Universal Cancel: " + e.getMessage());
-		}
-	}
-
-	public static String getDescriptiveText(HotelRateDetail rateDetail) {
+    public static String getDescriptiveText(HotelRateDetail rateDetail) {
         StringBuilder description = new StringBuilder();
         List<TypeHotelRateDescription> descList = rateDetail.getRoomRateDescription();
         for (Iterator<TypeHotelRateDescription> descIter = descList.iterator(); descIter.hasNext();) {

@@ -13,43 +13,45 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.travelport.schema.common_v26_0.CreditCard;
-import com.travelport.schema.common_v26_0.Distance;
-import com.travelport.schema.common_v26_0.HostToken;
-import com.travelport.schema.common_v26_0.NextResultReference;
-import com.travelport.schema.common_v26_0.PermittedProviders;
-import com.travelport.schema.common_v26_0.Provider;
-import com.travelport.schema.common_v26_0.State;
-import com.travelport.schema.common_v26_0.TypeReserveRequirement;
-import com.travelport.schema.common_v26_0.TypeStructuredAddress;
-import com.travelport.schema.common_v26_0.TypeVehicleClass;
-import com.travelport.schema.common_v26_0.TypeVehicleLocation;
-import com.travelport.schema.common_v26_0.TypeVehicleTransmission;
-import com.travelport.schema.hotel_v26_0.BaseHotelSearchRsp;
-import com.travelport.schema.hotel_v26_0.HotelLocation;
-import com.travelport.schema.hotel_v26_0.HotelMediaLinksReq;
-import com.travelport.schema.hotel_v26_0.HotelProperty;
-import com.travelport.schema.hotel_v26_0.HotelRating;
-import com.travelport.schema.hotel_v26_0.HotelSearchAvailabilityReq;
-import com.travelport.schema.hotel_v26_0.HotelSearchModifiers;
-import com.travelport.schema.hotel_v26_0.HotelSearchResult;
-import com.travelport.schema.hotel_v26_0.HotelStay;
-import com.travelport.schema.hotel_v26_0.RateInfo;
-import com.travelport.schema.hotel_v26_0.TypeHotelAvailability;
-import com.travelport.schema.hotel_v26_0.TypeHotelLocation;
-import com.travelport.schema.vehicle_v26_0.TypeRateAvailability;
-import com.travelport.schema.vehicle_v26_0.Vehicle;
-import com.travelport.schema.vehicle_v26_0.VehicleDateLocation;
-import com.travelport.schema.vehicle_v26_0.VehicleModifier;
-import com.travelport.schema.vehicle_v26_0.VehicleRate;
-import com.travelport.schema.vehicle_v26_0.VehicleSearchAvailabilityReq;
-import com.travelport.schema.vehicle_v26_0.VehicleSearchAvailabilityRsp;
-import com.travelport.schema.vehicle_v26_0.VehicleSearchModifiers;
-import com.travelport.service.hotel_v26_0.HotelFaultMessage;
-import com.travelport.service.hotel_v26_0.HotelMediaLinksServicePortType;
-import com.travelport.service.hotel_v26_0.HotelSearchServicePortType;
-import com.travelport.service.vehicle_v26_0.VehicleFaultMessage;
-import com.travelport.service.vehicle_v26_0.VehicleSearchServicePortType;
+import com.travelport.schema.common_v29_0.CreditCard;
+import com.travelport.schema.common_v29_0.Distance;
+import com.travelport.schema.common_v29_0.HostToken;
+import com.travelport.schema.common_v29_0.NextResultReference;
+import com.travelport.schema.common_v29_0.PermittedProviders;
+import com.travelport.schema.common_v29_0.Provider;
+import com.travelport.schema.common_v29_0.State;
+import com.travelport.schema.common_v29_0.TypeReserveRequirement;
+import com.travelport.schema.common_v29_0.TypeStructuredAddress;
+import com.travelport.schema.common_v29_0.TypeVehicleClass;
+import com.travelport.schema.common_v29_0.TypeVehicleLocation;
+import com.travelport.schema.common_v29_0.TypeVehicleTransmission;
+import com.travelport.schema.hotel_v29_0.BaseHotelSearchRsp;
+import com.travelport.schema.hotel_v29_0.HotelLocation;
+import com.travelport.schema.hotel_v29_0.HotelMediaLinksReq;
+import com.travelport.schema.hotel_v29_0.HotelProperty;
+import com.travelport.schema.hotel_v29_0.HotelRating;
+import com.travelport.schema.hotel_v29_0.HotelSearchAvailabilityReq;
+import com.travelport.schema.hotel_v29_0.HotelSearchLocation;
+import com.travelport.schema.hotel_v29_0.HotelSearchModifiers;
+import com.travelport.schema.hotel_v29_0.HotelSearchResult;
+import com.travelport.schema.hotel_v29_0.HotelStay;
+import com.travelport.schema.hotel_v29_0.RateInfo;
+import com.travelport.schema.hotel_v29_0.TypeHotelAvailability;
+import com.travelport.schema.hotel_v29_0.TypeHotelLocation;
+import com.travelport.schema.hotel_v29_0.TypeHotelReferencePoint;
+import com.travelport.schema.vehicle_v29_0.TypeRateAvailability;
+import com.travelport.schema.vehicle_v29_0.Vehicle;
+import com.travelport.schema.vehicle_v29_0.VehicleDateLocation;
+import com.travelport.schema.vehicle_v29_0.VehicleModifier;
+import com.travelport.schema.vehicle_v29_0.VehicleRate;
+import com.travelport.schema.vehicle_v29_0.VehicleSearchAvailabilityReq;
+import com.travelport.schema.vehicle_v29_0.VehicleSearchAvailabilityRsp;
+import com.travelport.schema.vehicle_v29_0.VehicleSearchModifiers;
+import com.travelport.service.hotel_v29_0.HotelFaultMessage;
+import com.travelport.service.hotel_v29_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v29_0.HotelSearchServicePortType;
+import com.travelport.service.vehicle_v29_0.VehicleFaultMessage;
+import com.travelport.service.vehicle_v29_0.VehicleSearchServicePortType;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
 import com.travelport.uapi.unit1.Helper.VendorLocMap;
@@ -85,7 +87,8 @@ public class Lesson4 {
         //the hotel search parametrs
         int numAdults=2, numRooms=2, distanceInKm=25, maxScreens=4;
         int daysToCheckin = 90, daysToDeparture = 97;
-        String pointOfInterestName="Mall of America";
+        TypeHotelReferencePoint pointOfInterestName= new TypeHotelReferencePoint();
+        pointOfInterestName.setValue("Mall Of America");
         String city = "MSP";
       
         try {
@@ -168,7 +171,7 @@ public class Lesson4 {
      * @throws HotelFaultMessage 
      */
     public static HotelSearchResult[] findLowestPriceAndClosestToAttraction(HotelSearchServicePortType port, 
-            String pointOfInterest, String city, int searchRadiusInKM, int maxScreens, 
+            TypeHotelReferencePoint pointOfInterest, String city, int searchRadiusInKM, int maxScreens, 
             int numAdults, int numRooms, int daysInFutureForCheckIn, 
             int daysInFutureForCheckOut, boolean noDepositOrGuarantee) throws HotelFaultMessage {
 
@@ -191,12 +194,17 @@ public class Lesson4 {
 
         // have to give our branch id
         req.setTargetBranch(System.getProperty("travelport.targetBranch"));
+        
+        HotelSearchLocation hotelLoc = new HotelSearchLocation();
+        hotelLoc.setReferencePoint(pointOfInterest);
+        hotelLoc.setHotelLocation(Lesson4.createCityLocation(city));
 
-        mods.setReferencePoint(pointOfInterest);
-        req.setHotelLocation(Lesson4.createCityLocation(city));
+
+        req.setHotelSearchLocation(hotelLoc);;
+        //req.getHotelSearchLocation().setHotelLocation(Lesson4.createCityLocation(city));
 
         // within certain radius of attraction
-        Lesson4.addDistanceModifier(mods, searchRadiusInKM);
+        Lesson4.addDistanceModifier(req.getHotelSearchLocation(), searchRadiusInKM);
         req.setHotelSearchModifiers(mods);
 
         // when staying?
@@ -389,7 +397,7 @@ public class Lesson4 {
      */
     @SuppressWarnings("resource")
 	public static void printHotel(HotelSearchResult r, 
-            String attractionName, HotelMediaLinksServicePortType media)
+            TypeHotelReferencePoint pointOfInterestName, HotelMediaLinksServicePortType media)
             throws HotelFaultMessage {
 
         
@@ -431,7 +439,7 @@ public class Lesson4 {
 		        }
 		        if(p.getDistance() != null){
 			        fmt.format("%10s %s%s from %s\n", "", p.getDistance().getValue(), 
-			                p.getDistance().getUnits(), attractionName);
+			                p.getDistance().getUnits(), pointOfInterestName);
 		        }
 		        if (!ratingsText.equals("")) {
 		            fmt.format("%10s %s\n", "", ratingsText);
@@ -528,7 +536,7 @@ public class Lesson4 {
         return location;
     }
 
-    public static void addDistanceModifier(HotelSearchModifiers mods, long km) {
+    public static void addDistanceModifier(HotelSearchLocation mods, long km) {
         Distance distance = new Distance();
         distance.setUnits("KM");
         distance.setValue(BigInteger.valueOf(km));
@@ -549,14 +557,14 @@ public class Lesson4 {
         TypeStructuredAddress addr = new TypeStructuredAddress();
         
         cc.setType("VI");
-        cc.setNumber("4123456789001111");
+        cc.setNumber("4111111111111111");
         cc.setBankCountryCode("US");
         //dec 2014
         cc.setExpDate(getFactory().newXMLGregorianCalendarDate(2016, 06,
                 DatatypeConstants.FIELD_UNDEFINED, 
                 DatatypeConstants.FIELD_UNDEFINED));
         cc.setName("JOAN TEST");
-        cc.setCVV("256");
+        cc.setCVV("737");
         addr.setAddressName("Hugh Capet");
         addr.setCity("Montpellier");
         State vt = new State();

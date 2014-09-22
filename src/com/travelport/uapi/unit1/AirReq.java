@@ -2,24 +2,26 @@ package com.travelport.uapi.unit1;
 
 import java.math.BigInteger;
 
-import com.travelport.schema.air_v26_0.AirLegModifiers;
-import com.travelport.schema.air_v26_0.AirLegModifiers.PreferredCabins;
-import com.travelport.schema.air_v26_0.AirSearchModifiers;
-import com.travelport.schema.air_v26_0.AirSearchModifiers.PreferredProviders;
-import com.travelport.schema.air_v26_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v26_0.SearchAirLeg;
-import com.travelport.schema.air_v26_0.TypeSearchAirLeg;
-import com.travelport.schema.common_v26_0.Airport;
-import com.travelport.schema.common_v26_0.BaseReq;
-import com.travelport.schema.common_v26_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v26_0.CabinClass;
-import com.travelport.schema.common_v26_0.CityOrAirport;
-import com.travelport.schema.common_v26_0.Distance;
-import com.travelport.schema.common_v26_0.Provider;
-import com.travelport.schema.common_v26_0.SearchPassenger;
-import com.travelport.schema.common_v26_0.TypeCabinClass;
-import com.travelport.schema.common_v26_0.TypeFlexibleTimeSpec;
-import com.travelport.schema.common_v26_0.TypeSearchLocation;
+import com.travelport.schema.air_v29_0.AirLegModifiers;
+import com.travelport.schema.air_v29_0.AirLegModifiers.PreferredCabins;
+import com.travelport.schema.air_v29_0.AirSearchModifiers;
+import com.travelport.schema.air_v29_0.AirSearchModifiers.PreferredProviders;
+import com.travelport.schema.air_v29_0.BaseAirSearchReq;
+import com.travelport.schema.air_v29_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v29_0.LowFareSearchReq;
+import com.travelport.schema.air_v29_0.SearchAirLeg;
+import com.travelport.schema.common_v29_0.Airport;
+import com.travelport.schema.common_v29_0.BaseCoreReq;
+import com.travelport.schema.common_v29_0.BaseReq;
+import com.travelport.schema.common_v29_0.BaseSearchReq;
+import com.travelport.schema.common_v29_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v29_0.CabinClass;
+import com.travelport.schema.common_v29_0.CityOrAirport;
+import com.travelport.schema.common_v29_0.Distance;
+import com.travelport.schema.common_v29_0.Provider;
+import com.travelport.schema.common_v29_0.SearchPassenger;
+import com.travelport.schema.common_v29_0.TypeFlexibleTimeSpec;
+import com.travelport.schema.common_v29_0.TypeSearchLocation;
 
 /**
  * Namespace for static functions that can manipulate an air request in
@@ -34,7 +36,13 @@ public class AirReq {
 	 * @param req the request to modify
 	 * @param appName the name to send as application name
 	 */
-	public static void addPointOfSale(BaseReq req, String appName ) {
+	public static void addPointOfSale(BaseSearchReq req, String appName ) {
+		BillingPointOfSaleInfo posInfo = new BillingPointOfSaleInfo();
+		posInfo.setOriginApplication(appName);
+		req.setBillingPointOfSaleInfo(posInfo);
+	}
+	
+	public static void addPointOfSale(BaseCoreReq req, String appName ) {
 		BillingPointOfSaleInfo posInfo = new BillingPointOfSaleInfo();
 		posInfo.setOriginApplication(appName);
 		req.setBillingPointOfSaleInfo(posInfo);
@@ -64,7 +72,7 @@ public class AirReq {
 	 * @param destAirportCode
 	 * @return  
 	 */
-	public static TypeSearchAirLeg createLeg(String originAirportCode,
+	public static SearchAirLeg createLeg(String originAirportCode,
 			String destAirportCode) {
 		TypeSearchLocation originLoc = new TypeSearchLocation();
 		TypeSearchLocation destLoc = new TypeSearchLocation();
@@ -89,9 +97,9 @@ public class AirReq {
 	 * @param destLoc endpoint of leg
 	 * @return
 	 */
-	public static TypeSearchAirLeg createLeg(TypeSearchLocation originLoc,
+	public static SearchAirLeg createLeg(TypeSearchLocation originLoc,
 			TypeSearchLocation destLoc) {
-		TypeSearchAirLeg leg = new TypeSearchAirLeg();
+		SearchAirLeg leg = new SearchAirLeg();
 
 		// add the origin and dest to the leg
 		leg.getSearchDestination().add(destLoc);
@@ -130,11 +138,11 @@ public class AirReq {
 	 * 
 	 * @param outbound the leg to modify
 	 */
-	public static void addEconomyPreferred(TypeSearchAirLeg outbound) {
+	public static void addEconomyPreferred(SearchAirLeg outbound) {
 		AirLegModifiers modifiers = new AirLegModifiers();
 		PreferredCabins cabins = new PreferredCabins();
 		CabinClass econ = new CabinClass();
-		econ.setType(TypeCabinClass.ECONOMY);
+		econ.setType("Economy");
 
 		cabins.setCabinClass(econ);
 		modifiers.setPreferredCabins(cabins);
@@ -147,7 +155,7 @@ public class AirReq {
 	 * @param outbound the leg to modify
 	 * @param departureDate the departure date in YYYY-MM-dd
 	 */
-	public static void addDepartureDate(TypeSearchAirLeg outbound, String departureDate) {
+	public static void addDepartureDate(SearchAirLeg outbound, String departureDate) {
 		// flexible time spec is flexible in that it allows you to say
 		// days before or days after
 		TypeFlexibleTimeSpec noFlex = new TypeFlexibleTimeSpec();
@@ -221,7 +229,7 @@ public class AirReq {
 		AirLegModifiers modifiers = new AirLegModifiers();
 		PreferredCabins cabins = new PreferredCabins();
 		CabinClass econ = new CabinClass();
-		econ.setType(TypeCabinClass.ECONOMY);
+		econ.setType("Economy");
 
 		cabins.setCabinClass(econ);
 		modifiers.setPreferredCabins(cabins);
