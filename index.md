@@ -25,6 +25,8 @@ These tutorials provided step-by-step instructions to help you connect to the un
 
 Each tutorial has different sections with separate objectives. We have Java and PHP tutorials which consumes the UAPI services.
 
+
+
 ##Java Tutorial
 
 ### Unit 1
@@ -45,6 +47,8 @@ Unit 2 searches for a hotel using city and reference points and complete a booki
 Lesson 4: [Searching for Hotels](lesson_2-4.html)
 
 Lesson 5: [Booking Air Or Hotels](lesson_2-5.html)
+
+
 
 ##PHP Tutorial
 
