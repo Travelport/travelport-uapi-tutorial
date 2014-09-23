@@ -23,7 +23,9 @@ These tutorials provided step-by-step instructions to help you connect to the un
 
 ## Table of contents
 
-Each tutorial has different sections with separate objectives;
+Each tutorial has different sections with separate objectives. We have Java and PHP tutorials which consumes the UAPI services.
+
+##Java Tutorial
 
 ### Unit 1
 
@@ -46,28 +48,29 @@ Lesson 5: [Booking Air Or Hotels](lesson_2-5.html)
 
 ##PHP Tutorial
 
-#Air
+###Air
 
 The Air unit teaches you how to setup and configure Travelport Universal API and how to send basic requests. After you complete this section, you can request air travel information, such as schedules, availability, and pricing.
 
-Lesson 6: [Searching for Flights](lesson_3-6.html)
+Lesson 1: [Searching for Flights](lesson_3-6.html)
 
-#Hotel
+###Hotel
 
 The Hotel unit teaches you how to send basic requests for hotel information, such as availability and pricing, and how to book a hotel.
 
-Lesson 7: [Searching for Hotels, Booking Hotels](lesson_3-7.html)
+Lesson 2: [Searching for Hotels, Booking Hotels](lesson_3-7.html)
 
-#Vehicle
+###Vehicle
 
 The Vehicle unit teaches you how to send basic requests for vehicle information, such as availability, vehicle type, and pricing.
 
-Lesson 6: [Searching for Vehicle](lesson_3-8.html)
+Lesson 3: [Searching for Vehicle](lesson_3-8.html)
 
 
+<!--
 ## Get started
-
 Proceed to Unit 1, Lesson 1: [Setting up to work with the Travelport Universal API; ](lesson_1-1.html)
+-->
 
 <!-- 
 ## Blog Posts
