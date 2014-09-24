@@ -26,7 +26,7 @@ To summarize what is coming up in the tutorial, We have vehicle details and book
 
 ----------------------
 
-[< Return to Unit 3, Lesson 7](lesson_3-7.html)
+[< Return to Lesson 2, Hotel](lesson_3-7.html)
 
 [Table of Contents](index.html)
 <hr>

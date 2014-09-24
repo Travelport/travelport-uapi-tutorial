@@ -5,9 +5,9 @@ description :
 ---
 {% include JB/setup %}
 
-## Unit 3, Lesson 7
+## Lesson 2, Hotel
 
-### Objective of Lesson 7
+### Objective of Lesson 2
 
 In this lesson, we'll document the how to send a basic PHP Air Search Request.
 
@@ -51,7 +51,7 @@ So, we are just finished a complete hotel booking flow using Php.
 
 ----------------------
 
-[< Return to Unit 3, Lesson 6](lesson_3-6.html) | [Proceed to Unit 3, Lesson 8 >](lesson_3-8.html)
+[< Return to Lesson 1, Air](lesson_3-6.html) | [Proceed to Lesson 3, Vehicle >](lesson_3-8.html)
 
 [Table of Contents](index.html)
 <hr>
