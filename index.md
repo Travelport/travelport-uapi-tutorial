@@ -21,12 +21,6 @@ These tutorials provided step-by-step instructions to help you connect to the un
 <br/>
 </p>
 
-## Table of contents
-
-Each tutorial has different sections with separate objectives. We have Java and PHP tutorials which consumes the UAPI services.
-
-
-
 ##Java Tutorial
 
 ### Unit 1
