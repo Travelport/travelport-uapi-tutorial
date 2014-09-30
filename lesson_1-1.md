@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Setting up to work with the Universal API"
+title: "Setting up to work with Universal API"
 tagline:
 description: "Understanding how to configure your Java development environment to work with the Travelport provided WSDL and make calls, via the internet with SOAP/XML, to their API."
 ---
@@ -10,29 +10,29 @@ description: "Understanding how to configure your Java development environment t
 
 ### Objective of Unit 1
 
-After working through the three lessons of Unit 1, you should be able to work with the Travelport Universal API; to make requests for services and understand the responses.  You will become familiar with *web services* if you are not already.
+After working through the three lessons of Unit 1, you can work with Travelport Universal API to make requests for services and understand the responses.
 
 ### Programming language agnostic and WSDL
 
-Although these lessons are using Java, the lessons' concepts apply to pretty much any programming language.  The _interface_ to the Universal API; (uAPI) is defined with [WSDL](http://en.wikipedia.org/wiki/Web_Services_Description_Language) or Web Services Definition Language, pronounced "whiz-dul".
+Although these lessons are using Java, the lessons' concepts apply to most programming languages.  The _interface_ to Universal API is defined with [WSDL](http://en.wikipedia.org/wiki/Web_Services_Description_Language) or Web Services Definition Language.
 
 This means that any programming language that knows how to use *web services* can access the APIs and get useful things done.  In practice, this means that you need a _generator_ that can take a file "foo.wsdl" and spit out "foo_client.Java", or whatever, in your favorite language.
 
-Important note: different generators have slightly different behaviors. WSDL is a standard, but some differences are a fact of life when dealing with multiple versions and different versions implemented by different vendors. In this tutorial, we'll be using [Apache's CXF](http://cxf.apache.org/) to work with the uAPI in Java. "CXF" is not an acronym, but is related to the project's origin.
+Note: different generators have slightly different behaviors. WSDL is a standard, but some differences occur when dealing with multiple versions and different versions implemented by different vendors. In this tutorial, [Apache's CXF](http://cxf.apache.org/) is used to work with the Universal API in Java. "CXF" is not an acronym, but is related to the project's origin.
 
 ### Requesting 30-day trial credentials
 
 You must first create an account on [Travelport Developer Network](http://developer.travelport.com).
 
-* Once you have an account, you can find the link to *Request Test Access* via the navigation menus on the [Universal API; Resource Centre](http://developer.travelport.com/app/developer-network/resource-centre-uapi).
+* Once you have an account, access the link to *Request Test Access* in the *Tools and Resources* menu on the [Universal API Resource Center](http://developer.travelport.com/app/developer-network/resource-centre-uapi).
 
-* When you request test credentials, you should choose *Galileo* as your preferred GDS.
+* When you request test credentials, select *Galileo* as your preferred GDS.
 
-* After you have filled out the form, in a few minutes you'll receive an email from *webmaster@travelport.com* with the relevant information.
+* After you complete the form, you'll receive an email from *webmaster@travelport.com* with the relevant information.
 
 ### Downloading the tutorial code
 
-You can download the tutorial code using *github* to clone the repository. You can use your favorite [git tool](https://git.wiki.kernel.org/articles/i/n/t/Interfaces,_frontends,_and_tools.html) or just use the command line like this:
+You can download the tutorial code using *github* to clone the repository. You can use your favorite [git tool](https://git.wiki.kernel.org/articles/i/n/t/Interfaces,_frontends,_and_tools.html) or use the command line like this:
 
 {% highlight console %}
 mkdir learn-tport
@@ -40,9 +40,9 @@ cd learn-tport
 git clone git@github.com:Travelport/travelport-uapi-tutorial.git
 {% endhighlight %}
 
-This last command will create the directory `travelport-uapi-tutorial`. Within that directory you will find the a few files that we will discuss later, plus the directories `src` and `wsdl`.  If you explore the `wsdl` directory, you'll see many WSDL files as well as a number of [XML schemas](http://en.wikipedia.org/wiki/XSD), as `xsd` files.  All of these files have been supplied by Travelport, and the latest version of the uAPI can be downloaded from [the developer site](http://developer.travelport.com).
+This last command creates the directory `travelport-uapi-tutorial`. Within that directory you can find the directories `src` and `wsdl` in addition to other files. In the `wsdl` directory, are many WSDL files as well as a number of [XML schemas](http://en.wikipedia.org/wiki/XSD), as `xsd` files.  All of these files are supplied by Travelport, and the latest version of Travelport Universal API can be downloaded from [the Travelport Developers site](http://developer.travelport.com).
 
-For the rest of the tutorial we'll assume that you have created a Java (or web services) project in Eclipse and have put all the  code provided by tutorial at the top level of the project.  You will see a `src` and a `wsdl` directory when you have done this correctly.
+For the rest of the tutorial we'll assume that you created a Java (or web services) project in Eclipse and put all the  code provided by tutorial at the top level of the project.  A `src` and a `wsdl` directory displays when you have done this correctly.
 
 ### Apache CXF
 
