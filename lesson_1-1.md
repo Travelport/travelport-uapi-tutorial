@@ -46,13 +46,13 @@ For the rest of the tutorial we'll assume that you created a Java (or web servic
 
 ### Apache CXF
 
-Apache's CXF is the critical glue for connecting Travelport's web services to our Java tutorial code. There are plenty of other choices for interacting with web services in Java, but CXF is just a very popular one.
+Apache's CXF is the critical glue for connecting Travelport's web services to the Java tutorial code. There are many other choices for interacting with web services in Java, but CXF is a very popular one.
 
-You'll need to [download and install](http://cxf.apache.org/download.html) the Apache CXF code. This tutorial expects you to be using at least version 2.7.10.
+You'll need to [download and install](http://cxf.apache.org/download.html) the Apache CXF code. This tutorial requires at least version 2.7.10.
 
 #### Using Eclipse
 
-If you are using [Eclipse](http://www.Eclipse.org) like most Java developers, you can install the CXF directly into Eclipse by going to "Preferences > WebServices".  If you don't have this preference option, you'll need to install the [Web Tools Platform](http://www.Eclipse.org/webtools/), or WTP, for Eclipse. The preferences screen where you add your installation of CXF should look something like this (with the preference choice highlight by the red box).  
+If you are using [Eclipse](http://www.Eclipse.org), you can install the CXF directly into Eclipse by going to "Preferences > WebServices". If you don't have this preference option, you need to install the [Web Tools Platform](http://www.Eclipse.org/webtools/), or WTP, for Eclipse. The preferences screen where you add your installation of CXF should look something like this (with the preference choice highlight by the red box).  
 
 <br/>
 <img src="images/preferences.png"/>
@@ -61,13 +61,13 @@ If you are using [Eclipse](http://www.Eclipse.org) like most Java developers, yo
 
 #### Not using Eclipse
 
-If you are not using Eclipse, you'll need to be sure that the CXF jar files are [in your classpath](http://docs.oracle.com/Javase/tutorial/essential/environment/paths.html) and that you can run the command 'cxf' from the command line.
+If you are not using Eclipse, you need to be sure that the CXF jar files are [in your classpath](http://docs.oracle.com/Javase/tutorial/essential/environment/paths.html) and that you can run the command 'cxf' from the command line.
 
-Be aware that there many Java libraries that are "subsumed" by CXF, so you'll end up with about 75 libraries in your classpath!
+Be aware that there many Java libraries that are "subsumed" by CXF, so you'll end up with about 75 libraries in your classpath.
 
-### Creating A Project
+### Creating a Project
 
-One critical thing about creating a project inside Eclipse that is each "type" of project has what Eclipse calls a _nature_.  A nature controls what functions are available for a given project.  A C++ project has different capabilities/functions than a Ruby project, for example.  You need to be sure to create a "Dynamic Web" services project from the "New > Project" menu.
+One critical thing about creating a project inside Eclipse that is each type of project has what Eclipse calls a _nature_. A nature controls what functions are available for a given project. For example, a C++ project has different capabilities/functions than a Ruby project. You must create a "Dynamic Web" services project from the "New > Project" menu.
 
 <br/>
 <img src="images/newproject.png"/>
@@ -75,21 +75,21 @@ One critical thing about creating a project inside Eclipse that is each "type" o
 
 ##### Juno v. Indigo
 
-On [June 27, 2012](http://www.eclipse.org/org/press-release/20120627_junorelease.php), the [Eclipse project](http://www.eclipse.org/eclipse/) released [version 4.2](http://www.eclipse.org/downloads/) of Eclipse, named ['Juno'](http://www.eclipse.org/juno/).  If you are using this version of Eclipse, you  want to use the [Java for J2EE Developers Bundle](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/junor) and then verify that you have enabled the WTP, or [Web Tools Platform](http://www.eclipse.org/webtools/), version 3.4.
+On [June 27, 2012](http://www.eclipse.org/org/press-release/20120627_junorelease.php), the [Eclipse project](http://www.eclipse.org/eclipse/) released [version 4.2](http://www.eclipse.org/downloads/) of Eclipse, named ['Juno'](http://www.eclipse.org/juno/). If you are using this version of Eclipse, you  want to use the [Java for J2EE Developers Bundle](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/junor) and then verify that you have enabled the WTP, or [Web Tools Platform](http://www.eclipse.org/webtools/), version 3.4.
 
-You can also use Eclipse ‘Kepler’.
+You can also use Eclipse Kepler.
 
-### Generating a Java Client for the uAPI
+### Generating a Java Client for Travelport Universal API
 
-We now need to generate Java code from the WSDL and XSD files supplied by Travelport's uAPI.
+We now need to generate Java code from the WSDL and XSD files supplied by Travelport's Universal API.
 
-Let's start by generating the Java code for the `System` service.  In Eclipse, you can do this by selecting the WSDL file `System.wsdl` in the directory `wsdl/system_v8_0` and then using the context-menu in Eclipse to choose "Generate Client", as is shown here:
+Begin by generating the Java code for the `System` service. In Eclipse, you do this by selecting the WSDL file `System.wsdl` in the directory `wsdl/system_v8_0` and then using the context-menu in Eclipse to choose *Generate Client*, as shown here:
 
 <br/>
 <img src="images/generate-client-menu.png"/>
 <br/>
 
-You'll then be presented with a sequence of three dialog boxes connected by hitting the "Next" button.  The vast majority of these options are really not of much interest to us for this tutorial, but you can verify your configuration against this set of screenshots:
+You are then presented with a sequence of three dialog boxes connected by hitting the *Next* button. The vast majority of these options are not applicable for this tutorial, but you can verify your configuration against this set of screenshots:
 
 <br/>
 <img src="images/generate-client-dialog1.png"/>
@@ -100,48 +100,48 @@ You'll then be presented with a sequence of three dialog boxes connected by hitt
 <br/>
 
 
-On the first screenshot in this sequence, the red box indicates a slider.  This slider can be moved to another position, the *non error* position, if you are the type of person who doesn't like having "errors" on your screen.
+On the first screenshot in this sequence, the red box indicates a slider.  This slider can be moved to another position, the *non-error* position, if you prefer to not display *errors* on your screen.
 
-The last dialog box shows a number of checkboxes selected. These control various options in CXF's generation of the Java code.  The lower set of checkboxes that are checked (such as -Xts and -Xts:multiline) are not crucial to having the tutorial work properly, but do make debugging easier.
+The last dialog box displays a number of selected checkboxes. These control various options in CXF's generation of the Java code. The lower set of checkboxes that are checked (such as -Xts and -Xts:multiline) are not crucial to have the tutorial work properly, but do make debugging easier.
 
 #### Command Line Generation of a Java Client
 
-If you are using the command line, you can do manually what Eclipse does behind the scenes based on the values given in these dialogs. Below is a very complex command line generated by Eclipse that you can start from, although you will need to adjust the paths to your local machine. 
+If you are using the command line, you can manually do what Eclipse does behind the scenes based on the values given in these dialogs. Below is a complex command line generated by Eclipse that you can start from, although you need to adjust the paths to your local machine. 
 
 {% highlight console %}
 wsdl2Java -client -d /Users/johndoe/tport-workspace/uapiJava/.cxftmp/src -classdir /Users/johndoe/tport-workspace/uapiJava/build/classes -p http://www.travelport.com/service/system_v8_0=com.travelport.service.system_v8_0 -impl -validate -exsh true -dns true -dex true -autoNameResolution -xjc-Xts,-Xts:style:multiline,-Xlocator,-mark-generated -wsdlLocation http://localhost:8080/kestrel/ExternalCacheAccessService?wsdl -verbose -fe jaxws -db jaxb -wv 1.1 file:/Users/johndoe/tport-workspace/uapiJava/wsdl/system_v8_0/System.wsdl
 {% endhighlight %}
 
 
-### Client for "System"
+### Client for *System*
 
-If you use the WDT viewer for a WSDL file, you will see this image when you open `wsdl/system_v8_0/System.wsdl`. There are tabs at the bottom of the main editor view to control whether you view this file in "design view" or as a normal source code file.
+If you use the WDT viewer for a WSDL file, this image displays when you open `wsdl/system_v8_0/System.wsdl`. There are tabs at the bottom of the main editor view to control whether you view this file in *design view* or as a normal source code file.
 
 <br/>
 <img src="images/SystemService.png"/>
 <br/>
 
-This diagram shows you that there are two *services* exposed by`System` : `ExternalCacheAccessService` and `SystemService`.  Often we will get sloppy with the nomenclature and refer to the "system service" as any object that is accessible from objects _generated from the System.wsdl file_.  In this case, the real, concrete class `SystemService` is derived from `System.wsdl` so there is less confusion, but this can become more confusing with other WSDL files, like `Air.wsdl`, that expose many "services" as a by-product of generating the code for the "Air service." Whew, a lot of uses of "service"!
+This diagram shows you that there are two *services* exposed by`System`: `ExternalCacheAccessService` and `SystemService`.  Often we will get sloppy with the nomenclature and refer to the "system service" as any object that is accessible from objects _generated from the System.wsdl file_.  In this case, the real, concrete class `SystemService` is derived from `System.wsdl` so there is less confusion, but this can become more confusing with other WSDL files, like `Air.wsdl`, that expose many "services" as a by-product of generating the code for the "Air service." Whew, a lot of uses of "service"!
  
-For the rest of this lesson we will be working primarily with `SystemService`.
+The remainder of this lesson works primarily with `SystemService`.
 
-You can see the Java code that has been generated for this service in your project's `src` folder, the class `com.travelport.service.system_v8_0.SystemService`.  Although you are welcome to read and explore the source, the good news is that you can *safely ignore* all the implementation details about this service.  The beauty of WSDL is not knowing!
+You can view the Java code generated for this service in your project's `src` folder, the class `com.travelport.service.system_v8_0.SystemService`.  You can *safely ignore* all the implementation details about this service.
 
-Referring back to the diagram for `SystemService` above, you'll see that there are three "ports" exposed by the `SystemService`: `SystemInfoPortType`, `SystemPingPortType`, and the `SystemTimePortType`.  In the code for this lesson, we'll run a simple ping request through the `SystemPingPortType`.
+Referring back to the diagram for `SystemService` above, there are three *ports* exposed by the `SystemService`: `SystemInfoPortType`, `SystemPingPortType`, and the `SystemTimePortType`. In the code for this lesson, we'll run a simple ping request through the `SystemPingPortType`.
 
-### The Other Services In Unit 1
+### The Other Services in Unit 1
 
-We’ll be using a number of services in Unit 1, and this is a good time to generate all the necessary code for them. You’ll need to repeat the process of generating client code explained above with the “Air” service in src/wsdl/air_v26_0/Air.wsdl, the “Hotel” service in src/wsdl/hotel_v26_0/Hotel.wsdl , the “Vehicle” service in src/wsdl/vehicle_v26_0/Vehicle.wsdl, the “Universal” service in src/wsdl/universal_v26_0/UniversalRecord.wsdl.
+A number of services are used in Unit 1, and you need to generate all the necessary code for them. Repeat the process of generating client code explained previously with the *Air* service in src/wsdl/air_v26_0/Air.wsdl, the *Hotel* service in src/wsdl/hotel_v26_0/Hotel.wsdl, the *Vehicle* service in src/wsdl/vehicle_v26_0/Vehicle.wsdl, and the *Universal* service in src/wsdl/universal_v26_0/UniversalRecord.wsdl.
 
 ### The Programming Model
 
-The pattern used by the uAPI design is to expose a *port* which has a single method called *service*.  No matter what programming language you are using, these are the same and most programming languages use the terminology of a "method" or a "function call" to refer to make a request over the network via the given port.
+The pattern used by Travelport Universal API design is to expose a *port* which has a single method called *service*.  No matter what programming language you use, these are the same and most programming languages use the terminology of a *method* or a *function call* to refer to make a request over the network via the given port.
 
-Usually we refer to the port object just by its name, without any prefix or suffix, as "the ping port", or just "ping". All the ports exposed from the file `System.wsdl` start with `System` and end with `PortType` when generated Java code is produced.  These names should be the same in almost any programming language generated from this WSDL.
+Usually we refer to the port object just by its name, without any prefix or suffix, as *the ping port*, or just *ping*. All the ports exposed from the file `System.wsdl` start with `System` and end with `PortType` when generated Java code is produced.  These names should be the same in almost any programming language generated from this WSDL.
 
-The ping port's only method is `service`, as you can see from the diagram. Far more interesting: the diagram shows you the input and output parameters are of type `PingReq` and `PingRsp`, for the request and response respectively.  You can find the source code generated for these classes in the `src` Java folder with the name `com.travelport.schema.system_v8_0.PingReq`, or you can explore them with design view of `System.wsdl`.  
+The ping port's only method is `service`, as you can see from the diagram. The diagram displays the input and output parameters `PingReq` and `PingRsp`, for the request and response respectively.  The source code generated for these classes can be found in the `src` Java folder with the name `com.travelport.schema.system_v8_0.PingReq`, or you can explore them with design view of `System.wsdl`.  
 
-The structure of the `PingReq` and `PingRsp` object are specified to XML inside the XSD file `src/wsdl/system_v8_0/System.xsd`.  The XSD files define various types used in the the WSDL files, and the WSDL reference these XSDs to "import" these definitions.  Here are the definitions for `PingReq` and `PingResp`
+The structure of the `PingReq` and `PingRsp` object are specified to XML inside the XSD file `src/wsdl/system_v8_0/System.xsd`. The XSD files define various types used in the WSDL files, and the WSDL reference these XSDs to *import* these definitions.  Here are the definitions for `PingReq` and `PingResp`.
 
 #### Ping Request/Response as defined in XML
 
@@ -176,7 +176,7 @@ The structure of the `PingReq` and `PingRsp` object are specified to XML inside 
 </xs:element>
 {% endhighlight %}
 
-Again, the details of the implementation are not important to you, you can just _use_ these facilities as part of the uAPI.  If you are curious, here is some slightly-edited, generated Java code derived from the ping request definition:
+If the details of the implementation are not important to you, you can just _use_ these facilities as part of Travelport Universal API.  If you are interested in the implementation details, here is some slightly-edited, generated Java code derived from the ping request definition:
 
 {% highlight java %}
 
@@ -201,7 +201,7 @@ public class PingReq extends BaseReq
 
 {% endhighlight %}
 
-### Using The System Service
+### Using the System Service
 
 We now have the logical pieces necessary to understand how to use functionality exposed by the uAPI.  Let's think about this sequence of actions with the ping port as an example:
 
