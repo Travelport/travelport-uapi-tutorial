@@ -203,20 +203,20 @@ public class PingReq extends BaseReq
 
 ### Using the System Service
 
-We now have the logical pieces necessary to understand how to use functionality exposed by the uAPI.  Let's think about this sequence of actions with the ping port as an example:
+We now have the logical pieces necessary to understand how to use functionality exposed by Travelport Universal API. Below is an example of a sequence of actions with the ping port:
 
-1. Create an object of type `PingReq`
-2. Fill in the necessary fields of the `PingReq` using its "setter" methods
-3. Create an instance of `SystemService`
-4. Access the `SystemService` object to get an object of type `SystemPingPortType`
-5. Call the method `service` on the `SystemPingPortType` instance, passing the `PingReq` object created in step 1
-6. Examine the results of our request by looking at the `PingRsp` object using its "getter" methods
+1. Create an object of type `PingReq`.
+2. Fill in the necessary fields of the `PingReq` using its *setter* methods
+3. Create an instance of `SystemService`.
+4. Access the `SystemService` object to get an object of type `SystemPingPortType`.
+5. Call the method `service` on the `SystemPingPortType` instance, passing the `PingReq` object created in step 1.
+6. Examine the results of the request by looking at the `PingRsp` object using its *getter* methods.
 
-With very few exceptions, all the features and functions of the uAPI follow this pattern of "first build the request parameters and then use the port object to get the results."
+With very few exceptions, all the features and functions of Travelport Universal API follow this pattern of first build the request parameters and then use the port object to get the results.
 
-### Lesson 1 proper
+### Lesson 1
 
-The file  [Lesson1.Java](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson1.Java) is in the Java package [com.travelport.uapi.unit1](https://github.com/travelport/travelport-uapi-tutorial/tree/master/src/com/travelport/uapi/unit1).  You'll notice that in the web-viewable version of this tutorial, we often make the names of files and packages direct links into the github repository for the tutorial.  This makes it easy for those that just want to read the tutorial without "playing along at home" by compiling/running all the examples.
+The file  [Lesson1.Java](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson1.Java) is in the Java package [com.travelport.uapi.unit1](https://github.com/travelport/travelport-uapi-tutorial/tree/master/src/com/travelport/uapi/unit1).  You'll notice that in the web-viewable version of this tutorial, we often make the names of files and packages direct links into the github repository for the tutorial.  This makes it easy for those that just want to read the tutorial by compiling/running all the examples.
 
 Let's examine the `main` method of Lesson 1:
 
@@ -251,19 +251,19 @@ public static void main(String[] argv) {
 {% endhighlight %}
 
 
-The code in `main()` above follows exactly the pattern explained in the programming model section: we set up a `PingReq` object with the proper parameters and then pass them through to the uAPI via the ping port.
+The code in `main()` above follows the pattern explained in the programming model section: a `PingReq` object is set up with the proper parameters and then passed through to Travelport Universal API via the ping port.
 
-The only unexpected part of this simple example is the call to `WSDLService.sysPing.get()` that returns the ping port object.  This is a shorthand for getting the "sys" service and then getting the "ping" port (thus `WSDLService.sysPing`).  The `get` method on this object caches both services and ports so further calls to get return the same port on the same service. These are expensive to create, so this is the preferred behavior.  You may find it useful to your understanding and debugging to call `showXML` on the object that responds to `get`--the _wrapper_ of the port object, not the port itself--so you can see the actual incoming and outgoing XML.
+The only unexpected part of this example is the call to `WSDLService.sysPing.get()` that returns the ping port object. This is a shorthand for getting the "sys" service and then getting the "ping" port (thus `WSDLService.sysPing`). The `get` method on this object caches both services and ports so further calls to get return the same port on the same service. These are expensive to create, so this is the preferred behavior. You may find it useful to your understanding and debugging to call `showXML` on the object that responds to `get`--the _wrapper_ of the port object, not the port itself--so you can see the actual incoming and outgoing XML.
 
-`WSDLService` is a helper class that has been provided with the tutorial to simplify things, and allow you to focus on the essential parts of the uAPI.
+`WSDLService` is a helper class that has been provided with the tutorial to simplify things, and allow you to focus on the essential parts of Travelport Universal API.
 
 ### The details
 
-You will need to configure your copy of the class `WSDLService` slightly to allow you to use the uAPI. You should not need to do this again!
+You need to configure your copy of the class `WSDLService` slightly to allow you to use Travelport Universal API.
 
-If you look inside [WSDLService](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/tutorial/support/ServiceWrapper.java) in the package [com.travelport.tutorial.support](https://github.com/travelport/travelport-uapi-tutorial/tree/master/src/com/travelport/tutorial/support) you will see the things you might need to change.  
+If you look inside [WSDLService](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/tutorial/support/ServiceWrapper.java) in the package [com.travelport.tutorial.support](https://github.com/travelport/travelport-uapi-tutorial/tree/master/src/com/travelport/tutorial/support) you see the things you might need to change.  
 
-Anyone doing the lessons in this tutorial will need to change this:
+If completing the lessons in this tutorial, youd need to change this:
 {% highlight java %}
 
 //make this point to the right path for you... note the slash on the end
@@ -283,7 +283,7 @@ static public String ENDPOINT_PREFIX="https://emea.copy-webservices.travelport.c
 
 {% endhighlight %}
 
-The URLs derived from the prefix above are called "endpoints" in the parlance of WSDL.  This prefix may need to be changed if you are not in the EMEA (_Europe, Middle East, Africa_) geography.  The functionality is the same from any endpoint, the only difference are which servers are used to provide the functionality.
+The URLs derived from the prefix above are called *endpoints* in the parlance of WSDL. This prefix may need to be changed if you are not in the EMEA (_Europe, Middle East, and Africa_) geography. The functionality is the same from any endpoint, the only difference is which servers are used to provide the functionality.
 
 If you try to run the `Lesson1` code either from the command line or from Eclipe's Run menu you'll get an error like this:
 
@@ -292,7 +292,7 @@ Exception in thread "main" Java.lang.RuntimeException: One or more of your prope
 {% endhighlight %}
 
 
-This error indicates that you have not set some "Java properties" (often done using the -D option from the command line) in your Run configuration.  You access or create run configurations in Eclipse with "Run" then "Run Configuration..." from the primary Eclipse menubar.  Here is a screenshot of how to configure your (and Lesson 1's) environment via the "Arguments" tab and supplying "VM arguments":
+This error indicates that you have not set some *Java properties* (often done using the -D option from the command line) in your Run configuration. You access or create run configurations in Eclipse with *Run* then *Run Configuration...* from the primary Eclipse menubar. Here is a screenshot of how to configure your environment via the *Arguments* tab and supplying *VM arguments*:
 
 <br/>
 <img src="images/runconfig.png">
@@ -302,15 +302,15 @@ The red boxes show you the tab you need to use to get to this configuration opti
 
 The values are included in your sign-up documents from the Travelport website.  Note that each of the parameters is of the form -Dxxx="yyy" and are separated by spaces.  The values are always quoted and the names always begin with "travelport".
 
-After you have made the adjustments necessary for your account to this panel, return to the [WSDLService](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/tutorial/support/WSDLService.java) file one last time.  You'll see the `URLPrefix` value is set like this near the top of the file:
+After you make the necessary adjustments for your account, return to the [WSDLService](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/tutorial/support/WSDLService.java) file.  The `URLPrefix` value is set like the image below near the top of the file:
 
 {% highlight java %}
 static protected String URLPREFIX = "file:///Users/iansmith/tport-workspace/uapiJava/";
 {% endhighlight %}
 
-This example shows a path on the tutorial developer's home machine.  You should adjust this to be the prefix of a URL that points to the root of your project. Note that URLs start with "file:///"  and use forward slash (/) to separate directories, even if you are running on the Windows operating system.  You need to be sure to include a trailing slash as well, because various other values are derived from `URLPREFIX` by concatenation.
+This example shows a path on the tutorial developer's home machine.  You need to adjust this to be the prefix of a URL that points to the root of your project. Note that URLs start with "file:///"  and use forward slash (/) to separate directories, even if you are running on the Windows operating system. You need to be sure to include a trailing slash as well, because various other values are derived from `URLPREFIX` by concatenation.
 
-After you have made this adjustment, you should be able to run Lesson 1 via your run configuration created above.  If you see an error like this:
+After you make this adjustment, you can run Lesson 1 via your run configuration created above. If you see an error like this:
 
 {% highlight console %}
 
@@ -332,13 +332,13 @@ Caused by: Javax.wsdl.WSDLException: WSDLException: faultCode=PARSER_ERROR: Prob
 {% endhighlight %}
 
 
-Then you have misconfigured the `URLPREFIX` above and you should re-check the value you gave for it. It should point to the directory that is the _parent_ of the `wsdl` and `src` directories in your project.
+you have misconfigured the `URLPREFIX` above and you need to re-check the value you gave for it. It should point to the directory that is the _parent_ of the `wsdl` and `src` directories in your project.
 
-	Some may be curious how the `WSDLService` object works.  This class depends critically on the fact that there is a common, regularized naming scheme for entities in the uAPI. Because of this fact, it can use Java's reflection capabilities to essentially "guess" what the name of a given service and port will be. It guesses the name, then verifies that it's guess is correct and returns the appropriate object to the caller.  This avoids the problem that new uAPI developers might have navigating through all the objects in the uAPI to find the appropriate services.
+	Some may be curious how the `WSDLService` object works.  This tutorial depends critically on the fact that there is a common, regularized naming scheme for entities in Travelport Universal API. Because of this fact, it can use Java's reflection capabilities to essentially "guess" what the name of a given service and port will be. It guesses the name, then verifies that its guess is correct and returns the appropriate object to the caller. This avoids the problem that new Universal API developers might have navigating through all the objects in Travelport Universal API to find the appropriate services.
 
 ### The pay-off
 
-The final result of all this work (hopefully the last time you'll need to do this type of thing in this tutorial for a long while) is when you can run `Lesson1` and see this output like this:
+You can now run `Lesson1` and see this output like this:
 
 {% highlight console %}
 this my payload; there are many like it but this one is mine
@@ -347,30 +347,29 @@ E07E825F0A07580E004DED8EB9130465
 {% endhighlight %}
 
 
-The last value is a _transaction ID_ that is unique to each call on the uAPI, so it will differ from what is shown here.
+The last value is a _transaction ID_ that is unique to each call on Travelport Universal API, so it will differ from what is displayed above.
 
-When you see this output, you have run a "ping" to the Travelport service and successfully gotten back the values transmitted.  Although this seems trivial, this is good news because it means that all the layers of software and networking (and there are plenty!) between your computer and Travelport's servers are working as expected.
+When you see this output, you have run a *ping* to the Travelport service and successfully gotten back the values transmitted. This means that all the layers of software and networking between your computer and Travelport's servers are working as expected.
 
 ### Other Output
 
-You will also probably see some messages (usually in red, because they are directed to the system's default error log) like this in your Eclipse console:
+You may also see some messages (usually in red, because they are directed to the system's default error log) like this in your Eclipse console:
 
 {% highlight console %}
 INFO: Creating Service {http://www.travelport.com/service/system_v8_0}SystemService from WSDL: file:/Users/iansmith/tport-workspace/uapiJava/wsdl/system_v8_0/System.wsdl
 {% endhighlight %}
 
+This is a message provided by the CXF framework explaining it is creating a service based on a WSDL file and providing some information about the endpoint it is using. You can control the amount of information from the CXF infrastructure by adjusting the values in the [logging.properties](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/logging.properties) file. Most people can safely ignore these messages, unless they are printed out to the `Warning` or `Error` logging levels.
 
-This is a helpful message provided by the CXF framework to tell you it is creating a service based on a WSDL file and giving you some information about the endpoint it is using.  You can control the "chattiness" of the CXF infrastructure by adjusting the values in the [logging.properties](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/logging.properties) file, just as with most other Java applications.  Most people can safely ignore these messages, unless they are printed out to the `Warning` or `Error` logging levels.
+### Seeing the XML Exchanged
 
-### Seeing The XML Exchanged
-
-If rather than make the CXF-layer less chatty, you'd like to make it more chatty and have it display the XML/SOAP messages that are being exchanged you can add this line in main before the call to `service()`:
+If you'd prefer additional information from the CXF layer and have it display the XML/SOAP messages that are being exchanged, add this line in main before the call to `service()`:
 
 {% highlight java %}
 WSDLService.sysPing.showXML(true);
 {% endhighlight %}
 
-This `showXML` function is available for any port used in this tutorial.  Setting this to `true` will dump out to the terminal the "raw" messages that are being exchanged between your workstation and the uAPI.  You'll see something like this for lesson 1:
+This `showXML` function is available for any port used in this tutorial.  Setting this to `true` dumps out to the terminal the *raw* messages that are being exchanged between your workstation and Travelport Universal API. Lesson 1 looks something like this:
 
 {% highlight xml %}
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -392,11 +391,11 @@ This `showXML` function is available for any port used in this tutorial.  Settin
 
 ### Exercises for the reader
 
- * Create a run configuration as above but for the [SystemSvcTest](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/SystemServiceTest.Java) test code.  This is a JUnit4 style test suite so will require the appropriate configuration type in the Run Configurations menu.
+ * Create a run configuration as above but for the [SystemSvcTest](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/SystemServiceTest.Java) test code. This is a JUnit4 style test suite and requires the appropriate configuration type in the Run Configurations menu.
 
  * Change the ping values in `Lesson1` and prove to yourself that the values being returned are the values you supplied.
 
- * Modify the code in Lesson1 to use the "time port" (`SystemTimePortType`).  This will require that you discover how to get access to different ports (via the `WSDLService` helper class), and that you supply different request and response types to match the appropriate types for this different function.   The `time port` returns the current time according to Travelport if you succeed in calling it.
+ * Modify the code in Lesson1 to use the *time port* (`SystemTimePortType`). This requires that you discover how to get access to different ports (via the `WSDLService` helper class), and that you supply different request and response types to match the appropriate types for this different function. The `time port` returns the current time according to Travelport if you succeed in calling it.
 
 ----------------------
 
