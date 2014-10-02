@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Advanced travel shopping"
+title: "Advanced Travel Shopping"
 description: "Understanding shopping and using LowFareSearch requests."
 ---
 {% include JB/setup %}
@@ -9,79 +9,78 @@ description: "Understanding shopping and using LowFareSearch requests."
 
 ### Objective of Lesson 3
 
-After this lesson is completed, you should know how to use the “shopping” facility of Travelport’s Universal API™ to find the lowest cost transport between two cities, including using rail and low cost airlines as a means of travel.
+After this lesson is completed, you will understand how to use the shopping facility of Travelport’s Universal API to find the lowest cost transport between two cities, including using rail and low cost airlines as a means of travel.
 
 You will also understand how to get data from the low cost shopping APIs asynchronously.
 
 
 ### LowFareSearch vs. Availability/Pricing
 
-In the [previous lesson](lesson_1-2.html) we explained that a typical, perhaps even the archetypal, travel industry workflow was to search for availability of flights - the possible itineraries from origin to destination - and then price one or more itineraries that were interesting to the traveller.
+In the [previous lesson](lesson_1-2.html) we explained that a typical travel industry workflow searches for availability of flights - the possible itineraries from origin to destination - and then price one or more itineraries that are interesting to the traveler.
 
-Our code for Lesson 2 wasn’t particularly efficient about choosing what flights to price: it tried them all.
-			Again, we don't recommend pricing all the itinaries returned to you as available!  This was done is lesson 2 for clarity of explanation and far better options will be discussed in this and future lessons.
+Our code for Lesson 2 wasn’t particularly efficient about choosing which flights to price: it tried them all.
+			It is not recommended to price all the available itinaries returned. This was done in Lesson 2 for clarity of explanation.
 
-There are many metrics that a program could use to evaluate itineraries prior to calling the air price port, and improve efficiency. For example, one could choose the shortest amount of time spent travelling, fewest number of stops, or, of course, the lowest priced option.
+There are many metrics that a program could use to evaluate itineraries prior to calling the air price port, and improve efficiency. For example, one could choose the shortest amount of time spent traveling, the fewest number of stops, or the lowest priced option.
 
 The Low Fare Search port, yet another port on the AirService object, allows you to combine these two steps (Availability, Pricing) by doing a search and having the search results come back already priced. Further, the Low Fare Search can do the work of narrowing down the set of returned itineraries to those that are the least expensive, since searching for the lowest price is a common case.
 
 
-![Warning](images/warning.png) Note that the Low Fare Search algorithm does not guarantee that the price shown is still available. It is advised that you follow-up a few “good looking” result returned from the Low Fare Search with an additional AirPricingRequest to ensure that the itinerary’s price is still up to date. 
+![Warning](images/warning.png) Note that the Low Fare Search algorithm does not guarantee that the price shown is still available. It is advised that you follow-up a few good reesults returned from the Low Fare Search with an additional AirPricingRequest to ensure that the itinerary’s price is still up to date. 
 
 ### Air, Rail, and Low Cost Carriers
 
-The Travelport uAPI supports three different types of providers.
+Travelport uAPI supports three different types of providers.
 
-1. The first is the one we have been using previously, the “GDS” provider(s) of Travelport such as Galileo(“1G”), Apollo(“1V”) and Worldspan(“1P”). These provide you with capabilities that one would expect in online shopping and booking of air travel; Lesson 2 was designed to work solely with this type of provider.
+1. The first is the one we have been using previously, the GDS provider(s) of Travelport, Galileo (1G), Apollo (1V), and Worldspan (1P). These provide you with capabilities that one would expect in online shopping and booking of air travel. Lesson 2 was designed to work solely with this type of provider.
 
-2. The uAPI also includes the ability to search for train travel with several different companies, called “suppliers” in the uAPI terminology. The functionality for rail-based travel is accessed in the same general way as we have already seen with air travel, but naturally starting with the RailService that is defined in Rail.wsdl (in the directory wsdl/rail_v26_0 in the supplied files with this tutorial). 
+2. Travelport Universal API also includes the ability to search for train travel with several different companies, called *suppliers* in Universal API terminology. The functionality for rail-based travel is accessed in the same general way as demonstrated with air travel, but starting with the RailService that is defined in Rail.wsdl (in the directory wsdl/rail_v26_0 in the supplied files with this tutorial). 
 
-3. The other type of provider that can be accessed through the uAPI is the traditionally-named “Low-Cost Carrier” provider. In fact, a “Low Cost Carrier” in this terminology is a carrier that does not participate in “global distribution system” agreements for their inventory of seats - and that is the ‘g’ and ‘d’ in the acronym G-D-S. So, GDSes (like Galileo, Apollo, and Worldspan) typically do not distribute the fares or availability of seats of these airlines to their networks. Often these airlines sell exclusively via the internet on their own websites. We mention this type of provider here for completeness. We will focus primarily on the GDS and rail providers as there are numerous special areas to be addressed when working with the “Low Cost provider”.
+3. The third type of provider that can be accessed through Travelport Universal API is the traditionally-named *Low-Cost Carrier* provider. In fact, a Low-Cost Carrier in this terminology is a carrier that does not participate in Global Distribution System (GDS) agreements for their inventory of seats. So, GDSes (like Galileo, Apollo, and Worldspan) typically do not distribute the fares or availability of seats of these airlines to their networks. Often these airlines sell exclusively via the internet on their own websites. We mention this type of provider here for completeness. This tutorial focuses primarily on the GDS and rail providers.
 
-### The goal of Lesson 3
+### Goal of Lesson 3
 
 The goal of this lesson is to produce output to compare prices across different means of transport between two locations.
 
-In the case of this tutorial, the `Lesson3` application just "sleeps" but there is no reason it could not calculate the cube root of pi, the price of tea in China, the net worth of Sergei Brin, etc. while waiting.
 
 ### Low Fare searching, the hard way
 
 Since you have already finished [Lesson 1](lesson_1-1.html) and [Lesson 2](lesson_1-2.html), we'll omit a lot of the details that are present in the `Lesson3` class' source code.
 
-To search using the AirLowFareSearchPortType one simply combines the start of Lesson 2, creating a search request, and the end of Lesson 2, displaying the resulting pricing solutions. The intermediate manipulation of various data structures that was a bit complex in the case of Lesson 2 is now avoided. (Again, it is best to use the air price port to check that results returned from low cost searching are still valid, but we’ll ignore this for now.) This seems easy, so let’s make low fare searching more difficult by not using the AirLowFareSearchPortType and instead using its asynchronous brother, the AirLowFareSearchAsyncPortType!
+To search using the AirLowFareSearchPortType, combine the start of Lesson 2, creating a search request, and the end of Lesson 2, displaying the resulting pricing solutions. The intermediate manipulation of various data structures that was a bit complex in the case of Lesson 2 is now avoided. (It is best to use the air price port to check that results returned from low cost searching are still valid, but we’ll ignore this for now.) Low fare searching is more difficult using the AirLowFareSearchAsyncPortType.
 
-Because some of the results from providers can take some time to be returned, the uAPI offers you the ability to send a search request and then retrieve the results at your convenience. So, the flow of such an application looks like this:
+Because some of the results from providers can take some time to be returned, Travelport Universal API offers the ability to send a search request and then retrieve the results at your convenience. The flow of such an application looks like this:
 
 1. Send LowCostSearchAsyncReq via the low cost search async port’s service() method
 2. Consume LowCostSearchAsyncRsp response object to determine what providers have what data
-3. Looping over all the providers that have results
+3. Loop over all the providers that have results
 	
 	- Send a RetrieveLowFareSearchReq to retrieve results from the above search, from a specific provider
 	- Consume the RetrieveLowFareSearchRsp object to get results
 
-As we have seen in Lesson 1 and Lesson 2, a particular request/response pair should be handled synchronously with the uAPI. However, because of the structure above, it is possible to proceed with other actions in between requesting, say, the air results and the rail results of a particular search.
+As we have seen in Lesson 1 and Lesson 2, a particular request/response pair should be handled synchronously with Travelport Universal API. However, because of the structure above, it is possible to proceed with other actions in between requesting, say, the air results and the rail results of a particular search.
 
-### Java Typing, uAPI, and Low Fare Search Responses
+### Java Typing, Universal API, and Low Fare Search Responses
 
-There are two basic Java types that are used in the asynchronous approach to handling responses: LowFareSearchAsyncRsp and RetrieveLowFareSearchRsp. These are the appropriate types returned by the “asynchronous search” and “get me more data” ports, respectively.
+There are two basic Java types that are used in the asynchronous approach to handling responses: LowFareSearchAsyncRsp and RetrieveLowFareSearchRsp. These are the appropriate types returned by the asynchronous search and get-me-more-data ports, respectively.
 
-Thoughtfully, the designers of the uAPI planned ahead for this and made these two types share a common base type (a Java superclass), AirSearchRsp. This means that your code can be written, of course with some care, to consume results from the AirSearchRsp class and then it can handle either immediate or later-retrieved results.
+The designers of Travelport Universal API planned ahead for this and made these two types share a common base type (a Java superclass), AirSearchRsp. This means that your code can be written to consume results from the AirSearchRsp class and then it can handle either immediate or later-retrieved results.
 
-Similarly, the result of the availability requests in [Lesson 2](lesson_1-2.html) can also be treated as an AirSearchRsp object, as the class AvailabilitySearchReq also inherits from this base class. Looking further up the heirarchy, for example, reveals that all search requests also share a common base class (AirSearchReq and its parent BaseSearchReq). All requests, without regard to their type, share the base class BaseReq (with the notable exception of ping). In BaseReq you find those fields that are common to any request, such as “TraceId”.
+Similarly, the result of the availability requests in [Lesson 2](lesson_1-2.html) can also be treated as an AirSearchRsp object, as the class AvailabilitySearchReq also inherits from this base class. Looking further up the heirarchy, for example, reveals that all search requests also share a common base class (AirSearchReq and its parent BaseSearchReq). All requests, without regard to their type, share the base class BaseReq (with the notable exception of ping). In BaseReq you find those fields that are common to any request, such as *TraceId*.
 
 #### XML -> Java Types
 
-Of course, really the Java “types” are just a convenience for creating XML objects that are actually transmitted or received over the network to or from Travelport. One can actually take this “commonality” one step farther and discover that different responses have parts that similar. For example, both LowFareSearchRsp and LowFareSearchAsynchRsp share elements in the XML representation (and thus the Java type system) with the results contained in of AvailabilitySeachRsp and AirPriceRsp. In many different areas of both requests and response one may either need to create or understand a list of TypeBaseAirSegment objects, for example, because the WSDL (via XSD files, via a generator, via XML, and finally via your programming language) is defined to have a list of TypeBaseAirSegment objects in the same way.
+The Java types are just a convenience for creating XML objects that are actually transmitted or received over the network to or from Travelport. One can actually take this commonality one step farther and discover that different responses have similar parts. For example, both LowFareSearchRsp and LowFareSearchAsynchRsp share elements in the XML representation (and thus the Java type system) with the results contained in of AvailabilitySeachRsp and AirPriceRsp. In many different areas of both requests and response one may either need to create or understand a list of TypeBaseAirSegment objects, for example, because the WSDL (via XSD files, via a generator, via XML, and finally via your programming language) is defined to have a list of TypeBaseAirSegment objects in the same way.
 
 #### Go To Definition
 
-With this in mind, the these types of relationships are present in many places in the uAPI, and it is often very useful to use Eclipse’s “Go To Definition” feature (typically bound to the F3 key) to investigate the parent classes in the class hierarchy generated by the uAPI’s WSDL.
+With this in mind, these types of relationships are present in many places in Travelport Universal API, and it is often very useful to use Eclipse’s *Go To Definition* feature (typically bound to the F3 key) to investigate the parent classes in the class hierarchy generated by Universal API’s WSDL.
 
 ### A small amount of nomenclature
 
 One has to be a bit flexible with the naming and use of some of the methods that are part of the AirSearchRsp response object.
 
-It may seem strange, at first, that an “Air” search response contains rail journeys! This historical bit of nomenclature is needed to account for the ability to put different providers as your preferred (or not preferred!) in an AirSearchReq. If you include the rail provider as a preferred provider for a journey from Berlin to Montpellier, the low fare air search can, and usually will, return a result that includes Deutsche Bahn trains!
+It may seem strange, at first, that an Air search response contains rail journeys. This historical bit of nomenclature is needed to account for the ability to put different providers as your preferred (or not preferred) provider in an AirSearchReq. If you include the rail provider as a preferred provider for a journey from Berlin to Montpellier, the low fare air search can, return a result that includes Deutsche Bahn trains.
 
 
 ### PrintableItinerary
