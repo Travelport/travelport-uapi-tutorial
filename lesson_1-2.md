@@ -9,37 +9,37 @@ description: "Making requests to find schedules and prices."
 
 ### Objective of Lesson 2
 
-After this lesson is completed, you should know how to search for available flights, and price itineraries using the Travelport Universal API;.   
+Lessone 2 demonstrates how to search for available flights and price itineraries using Travelport Universal API.   
 
-If you are using "test" credentials you should be aware that the test environment is based on a "copy" of activity on the primary (non-test) system at Travelport.  For this reason, there are sometimes situations where specific data/requests cannot be served from the test environment, since data must have been "recently" seen in the production environment to be visible in test.  It's a good idea to try a request that has a timeout, for example, again in a minute or two.
+If you are using *test* credentials you should be aware that the test environment is based on a *copy* of activity on the primary (non-test) system at Travelport. For this reason, there are sometimes situations where specific data requests cannot be served from the test environment, since data must have been recently seen in the production environment to be visible in test. For example, try a request that has a timeout again in a minute or two.
 
 ### Workflow
 
-This lesson, building on [Lesson 1](lesson_1-1.html), will allow you to do what most travel agents did in the past and what many search engines still do today.  The objective is to book a trip for a customer, but to do that, the agent needs to do two basic tasks:
+Building on [Lesson 1](lesson_1-1.html),the objective of Lesson 2 is to book a trip for a customer. To do that, the agent needs to do two basic tasks:
 
-1. Find a set of available flights to get the traveller from origin to destination (and often back)
+1. Find a set of available flights to get the traveler from origin to destination (and returned to origin if applicable).
 
-2. Given the set of flights, determine the current price of that itinerary
+2. Given the set of flights, determine the current price of that itinerary.
 
-Given the terminology we explained in [Lesson 1](lesson_1-1.html), there are two ports that are needed to accomplish this workflow: the "Availability Search" port and the "Price" port.  Both of these can be accessed from the `AirService` object.
+There are two ports needed to accomplish this workflow: the *Availability Search* port and the *Price* port. Both of these can be accessed from the `AirService` object.
 
 ### Generating the Client-Side
 
-If you did not do so in the previous lesson, you’ll need to make sure you have all the generated code necessary for Unit 1. In this lesson, we’ll be primarily working with the “Air” service, but it is a good idea to now generate not just the “Air” service in src/wsdl/air_v26_0/Air.wsdl, but also the “Hotel” service in src/wsdl/hotel_v26_0/Hotel.wsdl, “System” service in src/wsdl/system_v8_0/System.wsdl, the “Vehicle” service in src/wsdl/vehicle_v26_0/Vehicle.wsdl and the “Universal” service in src/wsdl/universal_v26_0/UniversalRecord.wsdl
+If you did not do so in the previous lesson, you need to make sure you have all the generated code necessary for Unit 1. This lesson primarily works with the *Air* service, but it is suggested to now generate not just the *Air* service in src/wsdl/air_v26_0/Air.wsdl, but also the *Hotel* service in src/wsdl/hotel_v26_0/Hotel.wsdl, *System* service in src/wsdl/system_v8_0/System.wsdl, the *Vehicle* service in src/wsdl/vehicle_v26_0/Vehicle.wsdl, and the *Universal service in src/wsdl/universal_v26_0/UniversalRecord.wsdl.
 
-After you have generated the code, you will have many more packages in your project (hitting "refresh" or "F5" on your `src` folder is probably a good idea).  The [AirService object's](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/service/air_v26_0/AirService.java) (generated) implementation is part of the package [com.travelport.service.air_v26_0]((https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/service/air_v26_0/).  
+After you generate the code, many more packages are included in your project (clicking *refresh* or F5 on your `src` folder to refresh). The [AirService object's](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/service/air_v26_0/AirService.java) (generated) implementation is part of the package [com.travelport.service.air_v26_0]((https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/service/air_v26_0/).  
 
-### Why So Many Packages And Files?
+### Why So Many Packages and Files?
 
-The reason for all the generated code (tens of thousands of lines of it) resulting from running "generate client" on `Air.wsdl` and the other services, is that WSDL files may reference other WSDL files as well as external types, in XSD files, as we explained previously.  The WSDL code we have used to generate source code is the _complete_ interface to each of the named uAPI services.
+The reason for all the generated code (tens of thousands of lines) resulting from running *generate client* on `Air.wsdl` and the other services, is that WSDL files may reference other WSDL files as well as external types, in XSD files, as we explained previously.  The WSDL code we have used to generate source code is the _complete_ interface to each of the named Travelport Universal API services.
 
 The `Air.wsdl` file is the top of a large pyramid of different objects, and since they all can be referenced in a chain that starts from `Air.wsdl`, the CXF framework is obligated to generate code for them. CXF must generate Java code for all _reachable_ types starting at `Air.wsdl`, and proceeding through any number of requests and responses.
 
-In this specific case, the set of reachable types includes classes describing the amenities available in a particular hotel and the details of the taxes on a particular rail journey!
+In this specific case, the set of reachable types includes classes describing the amenities available in a particular hotel and the details of the taxes on a particular rail journey.
 
 ### Goal
 
-The class [Lesson2](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson2.java) can output itineraries for a given city pair, in this case Paris to Chattanooga Tennessee, USA, in a form like this:
+The class [Lesson2](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson2.java) can generate itineraries for a given city pair, in this case Paris to Chattanooga Tennessee, USA, in a form like this:
 
 {% highlight console %}
 
@@ -60,14 +60,14 @@ DL#8517 from ATL to CDG at 2012-06-29T17:55:00.000-04:00
 
 This output is quite specific to the airline industry but probably familiar to many readers who travel frequently.
 
-Itineraries are separated by the dashed lines. The first itinerary has a price of 941.70 Great Britain Pounds (GBP) and involves two Air France (AF) flights on June 22nd and two Delta (DL) flights on the way back to Paris on June 29th. The next itinerary is (shocking!) about four times as expensive, 3594.70 GBP, and involves three carriers this time, UA (United Airlines), US (US Airways), and again Delta on the return. Note that this outbound air journey has a connection in Charlotte, North Carolina, USA (CLT) instead of Atlanta, Georgia (ATL).
+Itineraries are separated by the dashed lines. The first itinerary has a price of 941.70 Great Britain Pounds (GBP) and involves two Air France (AF) flights on June 22nd and two Delta (DL) flights on the way back to Paris on June 29th. The next itinerary is about four times as expensive, 3594.70 GBP, and involves three carriers - United Airlines (UA), US Airways (US), and Delta (DL). Note that this outbound air journey has a connection in Charlotte, North Carolina, USA (CLT) instead of Atlanta, Georgia (ATL).
 
-When run, the code Lesson2 will produce a number of these itineraries, plus prices for them - typically about 20. There will be a pause at the time the program starts while it waits for the proposed, available itineraries to be returned from a Travelport GDS. At the time each itinerary is displayed, there will also be a pause while that particular itinerary is priced.
+When run, the Lesson 2 code produces a number of these itineraries, plus prices for them - typically about 20. There is a pause when the program starts while it waits for the proposed, available itineraries to be returned from a Travelport GDS. At the time each itinerary is displayed, there is also a pause while that particular itinerary is priced.
 
 
 ### Outline 
 
-At a high level, the class [Lesson2](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson2.java) must perform these logical operations:
+At a high level, the class [Lesson 2](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/Lesson2.java) must perform these logical operations:
 
 1. Construct the necessary parameters for an availability search, such as the origin and destination city as well as the travel dates
 2. Send the availability search request
@@ -77,11 +77,11 @@ At a high level, the class [Lesson2](https://github.com/travelport/travelport-ua
   * Display the resulting price
   * Display the segments of the journey
 
-As we shall see, the first and third items require particular care, and can be more complex than most readers would expect.
+The first and third items require particular care, and can be more complex than expected.
 
-#### Purely uAPI
+#### Purely Travelport Universal API
 
-In the case of the first item, the objective in uAPI terms is construct an AvailabilitySearchReq which is primarily composed of two SearchAirLeg components plus one or more AirSearchModifiers. One SearchAirLeg is for the outbound and one is for the return journey. All these parts can be seen in this XML request, sampled from Lesson2. As before, the origin point is Paris, France (airport is ‘CDG’) and the destination is ‘CHA’ or Chattanooga, Tennessee in the US.
+In the case of the first item, the objective in Travelport Universal API terms is construct an AvailabilitySearchReq which is primarily composed of two SearchAirLeg components plus one or more AirSearchModifiers. One SearchAirLeg is for the outbound and one is for the return journey. All these parts can be seen in this XML request, sampled from Lesson2. As before, the origin point is Paris, France (airport is *CDG*) and the destination is *CHA* or Chattanooga, Tennessee in the US.
 
 {% highlight xml %}
  
@@ -139,13 +139,11 @@ String from ="CDG",to="CHA";
 AvailabilitySearchRsp rsp = search(from, to, Helper.daysInFuture(60), Helper.daysInFuture(67));
 {% endhighlight %}
 
-The two calls to the helper method Helper.daysInFuture() should be fairly self explanatory.
+The two calls to the helper method Helper.daysInFuture() should be fairly self-explanatory.
 
-So, we’ve setup all we need for a search now, right? We have the origin, destination, and dates of travel, so we are ready, right? Not by a long shot! The method search is implemented in Lesson2 and is dozens of lines of code plus uses a number of helper routines.
+The method search is implemented in Lesson2 and is dozens of lines of code plus it uses a number of helper routines.
 
-“Why all this extra code?”, one may wonder. The reason is that there are hundreds of parameters that can possibly be set on an air search, for far too many reasons than can be explained here.
-
-Some of these parameters are required to be sent in any air travel search done with uAPI: not only the obvious origin and destination, but also other details such as what type of passenger is traveling. Adult is our default choice, but there are more than 100 types of passengers such as Military Veteran, Member of the Clergy, etc).
+Any air travel search that uses Travelport Universal API requires not only origin and destination, but also other details such as passenger type. Adult is the default passenger type, but there are more than 100 types of passengers such as Military Veteran, Member of the Clergy, etc).
 
 
 {% highlight java %}
@@ -165,11 +163,11 @@ AirReq.addSearchEconomyPreferred(ret);
 {% endhighlight %}
 
 
-The code above creates two “legs” for the search to consider: one outbound from origin to dest and one for the reverse (ret) one week later. (When actually transmitted, the request results in XML similar to that shown above.) Each leg also has a departure date and what type of seat should be searched for.
+The code above creates two segments (legs) for the search to consider: one outbound from origin to destintation and one for the return one week later. When the request is sent, it contains XML similar to that shown above. Each segment also has a departure date and the type of seat to be searched for.
 
-Each line of this snippet with code on it uses a method from the  [AirReq](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/AirReq.java) helper object.  helper object. These helper methods have been provided to try to make it easier to understand the examples or write new code that does similar things.
+Each line of this snippet with code on it uses a method from the  [AirReq](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit1/AirReq.java) helper object.  These helper methods are provided to make it easier to understand the examples or write new code that does similar things.
 
-The AirReq class has no magic, of course. This class is building various structures from the classes that were generated as part of our work with Air.wsdl. For example:
+The AirReq class builds various structures from the classes that were generated as part of our work with Air.wsdl. For example:
 
 
 {% highlight java %}
@@ -195,16 +193,16 @@ public static SearchAirLeg createSearchLeg(String originAirportCode, String dest
 {% endhighlight %}
 
 
-This is the code that creates a single SearchAirLeg object that is part of our request to the Travelport uAPI for an availability search.
+This code creates a single SearchAirLeg object that is part of our request to Travelport Universal API for an availability search.
 
-You can see from the code above that locations are more complicated objects than one might expect… they can be an airport code, as in this example, or they can be more complex entities such as “all locations near a given a city” as we will see in Lesson 3.
+Locations are complicated objects. They can be an airport code, as in this example, or they can be more complex entities such as “all locations near a given a city” as explained in Lesson 3.
 
-It is worth the time looking at the implementation of AirReq and the XML sample above, so that you can see, even for the relatively simple searches we are doing here, the number of different options, and thus different Java classes and XML structures, that are used.
+You are encouraged to look at the implementation of AirReq and the XML sample above to see, even for the relatively simple searches done here, the number of different options, and thus different Java classes and XML structures, that are used.
 
 
 ### Decoding the result
 
-To understand the decoding taking place in the client code of Lesson 2, it may be useful to examine the XML that is actually returned via the network from the uAPI server to our client. This example is edited for space:
+To understand the decoding taking place in the client code of Lesson 2, it may be useful to examine the XML that is actually returned via the network from Travelport Universal API server to our client. This example is edited for space:
 
 {% highlight xml %}
 
@@ -533,22 +531,22 @@ To understand the decoding taking place in the client code of Lesson 2, it may b
 {% endhighlight %}
 
 
-Let’s understand the approach the uAPI is using to encode the results.
+The approach Travelport Universal API is using to encode the results is described below.
 
-Each type of entity is detailed once, typically in a “list” of that type, for example the air:FlightDetailsList has many air:FlightDetails entities within it (and many more were clipped out for space reasons). Similarly, the air:AirSegmentList contains many air:AirSegment encodings (again, we removed many air:AirSegment items for space).
+Each type of entity is detailed once, typically in a list of that type. For example, the air:FlightDetailsList has many air:FlightDetails entities within it (and many more were removed for space reasons). Similarly, the air:AirSegmentList contains many air:AirSegment encodings (again, many air:AirSegment items were removed for space).
 
 However, it is important to note that within the air:AirSegment, the response does not repeat the air:FlightDetails, but instead uses an air:FlightDetailsRef to refer to the flight details in question. The air:FlightDetailsRef has a Key attribute that matches up with the Key attribute in the air:FlightDetails object.
 
-Why do it this way? Primarily, this approach avoids repetition which would bloat the already large requests and responses. If you look at the last XML objects in the example, you will see two “solutions” (air:AirItinerarySolution) that clearly indicate that it is possible to have a compact representation… after you have all the definitions above!
+This approach avoids repetition which would bloat the already large requests and responses. If you look at the last XML objects in the example, you see two solutions (air:AirItinerarySolution) that clearly indicate that it is possible to have a compact representation… after you have all the definitions above.
 
-Despite the name, a single air:ItinerarySolution may encode many possible itineraries because it “connects” segments with the air:Connection entries. We’ll explain more about this later when we’ll cover building “routings”.
+Despite the name, a single air:ItinerarySolution may encode many possible itineraries because it connects segments with the air:Connection entries. This is further explained when we cover building *routings*.
 
-The large size of these messages and the complexity of encoding and decoding them is one of the more serious complaints about SOAP/XML as a transport mechanism in systems such as the uAPI. We will not debate that point here, but it’s important to highlight that the requests and responses sent to and from the Travelport system often end up being hundreds of lines of XML. If you are concerned about the size of the data being passed from your client to the Travelport servers, you can enable the gzip compression algorithm in the headers of your web requests with Accept-Encoding: gzip, deflate.
+The large size of these messages and the complexity of encoding and decoding them is one of the most common complaints about SOAP/XML as a transport mechanism in systems such as Travelport Universal API. The requests and responses sent to and from the Travelport system often end up being hundreds of lines of XML. If you are concerned about the size of the data being passed from your client to the Travelport servers, you can enable the gzip compression algorithm in the headers of your web requests with Accept-Encoding: gzip, deflate.
 
 
 ### Decoding Part One: Building Key Maps
 
-For this tutorial, we have provided you with helper code to take a list, such as air:FlightDetailsList, and build a Java HashMap that maps all keys to the full air:FlightDetails objects. This is handy to build first, so when your are decoding something like the air:AirItinerarySolution you can easily get to the “true” objects being worked with.
+For this tutorial, helper code is provided to take a list, such as air:FlightDetailsList, and build a Java HashMap that maps all keys to the full air:FlightDetails objects. This is handy to build first, so when your are decoding something like the air:AirItinerarySolution you can easily get to the true objects being worked with.
 
 Here is the part of the main() routine in Lesson2 that builds the maps allSegments and allDetails from the response (rsp) to our availability search request:
 
@@ -563,15 +561,15 @@ Helper.FlightDetailsMap allDetails = Helper.createFlightDetailsMap(rsp.getFlight
 {% endhighlight %}
 
 
-It’s worth noting in this example that to get access to the list of air:AirSegment objects in the result, the Java code is getAirSegmentList().getAirSegment(). This peculiarity is tied to the way that CXF encodes the types expressed in the Air.wsdl file into a Java representation. Other programming languages might use an array or other data structure to encode the list of air segments.
+In this example, to get access to the list of air:AirSegment objects in the result, the Java code is getAirSegmentList().getAirSegment(). This peculiarity is tied to the way that CXF encodes the types expressed in the Air.wsdl file into a Java representation. Other programming languages might use an array of other data structure to encode the list of air segments.
 
-### Decoding part 2: air solutions
+### Decoding Part 2: Air Solutions
 
-It would be handy if the results returned from an air availability search could be pulled out of the response and directly used as parameters back to the uAPI as all or part of a air price request.
+It would be handy if the results returned from an air availability search could be pulled out of the response and directly used as parameters back to Travelport Universal API as all or part of a air price request.
 
 However, the availability search returns many possible solutions and these are encoded in a compact way, see air:AirItinerarySolution in the XML example above. Conversely, the air price port requires that you supply a single itinerary, in the form of an AirItinerary object, for pricing. Some of the pieces of an AirItinerary can be constructed from the pieces returned from the server to us, but most of the pieces of an AirItinerary have to be derived from the results we have obtained from the AirAvailabilitySearchRsp.
 
-In our XML example above, we displayed exactly two AirItinerarySolution objects. This is all that were present in the result because one AirItinerarySolution is returned for each “leg” of the journey that has been searched for. In this case, our search was from CDG (Paris) to CHA (Chattanooga) on the first leg and the reverse for the way back. The code in main that takes care of this small issue is :
+In our XML example above, we displayed exactly two AirItinerarySolution objects. This is all that were present in the result because one AirItinerarySolution is returned for each segment of the journey that has been searched for. In this case, our search was from CDG (Paris) to CHA (Chattanooga) on the first segemnt and the reverse for the return. The code in main that takes care of this issue is:
 
 
 {% highlight java %}
@@ -585,9 +583,9 @@ AirItinerarySolution inboundSolution = solutions.get(1);
 {% endhighlight %}
 
 
-### Decoding part 3: building routings
+### Decoding Part 3: Building Routings
 
-A “routing” is a set a flights, in some order, that get the traveller from an origin to a destination. This set has one element in the case of a direct flight, otherwise it has one or more “connections”. The code for building the final “routings” is quite short in main() for Lesson2:
+A *routing* is a set a flights, in some order, that get the traveler from an origin to a destination. This set has one element for a direct flight, otherwise it has one or more connections. The code for building the final routings is quite short in main() for Lesson 2:
 
 {% highlight java %}
 
@@ -636,7 +634,7 @@ From the example above, this is the outbound solution:
 
 {% endhighlight %}
 
-At first glance, it looks like this solution has a total of 16 air segments involved… way more than just a trip from Paris to Chattanooga via Atlanta! The connections (air:Connection) at the bottom are the key to understanding what route takes someone from Paris to Chattanooga.
+At first glance, it looks like this solution has a total of 16 air segments involved. The connections (air:Connection) at the bottom are the key to understanding what route takes someone from Paris to Chattanooga.
 
 The first air connection object indicates that index 0 of the list above, the air segment ref with key “BghDFrDORxOeDtSVTR55qw==“ has a connection to the next air segment ref (key “Ctjwmp1VQ0yu+R9gDq/YTA==”). If we return to the very top of the XML example given previously and extract the air segments that are referred to by keys BghDFrDORxOeDtSVTR55qw== and Ctjwmp1VQ0yu+R9gDq/YTA== we have:
 
@@ -662,18 +660,18 @@ The first air connection object indicates that index 0 of the list above, the ai
 
 This shows the two flights needed to get from Paris to Chattanooga: US Airways flight 787 (Carrier=”US” and FlightNumber=”787”) from CDG to CLT and then US Airways flight 4703.
  
-This processing of using the AirSolution objects’ Connection objects to figure out the necessary AirSegment objects, taken from the maps built in “Decoding part 1”, is the job of the function buildRoutings() shown earlier. The routing result is an AirItinerary object with the correct legs in it for the particular outbound or inbound journey. Since the routings for outbound and inbound are built separately - the air:AirItinerarySolution entities in the XML dictate this - we will need to combine the outbound and inbound itineraries (in the right order!) to form full return itineraries. Without this, we would be pricing the one way journeys either from Paris to Chattanooga, or the reverse.
+This process of using the AirSolution objects’ Connection objects to figure out the necessary AirSegment objects, taken from the maps built in “Decoding part 1”, is the job of the function buildRoutings() shown earlier. The routing result is an AirItinerary object with the correct legs in it for the particular outbound or inbound journey. Since the routings for outbound and inbound are built separately - the air:AirItinerarySolution entities in the XML dictate this - we need to combine the outbound and inbound itineraries (in the correct order) to form full return itineraries. Without this, we would price the one way journeys either from Paris to Chattanooga, or the reverse.
   
 
-In Lesson2, the function mergeOutboundAndInbound() creates a Java List of all the combinations of outbound and return itineraries created by buildRoutings(). This is done by creating every permutation (the cross product) of the two input lists of AirItinerary objects.
+In Lesson 2, the function mergeOutboundAndInbound() creates a Java List of all the combinations of outbound and return itineraries created by buildRoutings(). This is done by creating every permutation (the cross product) of the two input lists of AirItinerary objects.
 
 ### Pricing
 
 We now have a List<AirItinerary> object, with each element indicating a journey that is suitable for pricing.
 
-As with any port we have discussed in this tutorial, we must first construct the correct request parameters, in this case AirPricingReq. The AirPricingReq object has a few more parameters that are needed besides the itinerary, such as the cabin preference (in case multiple are available), the type of passenger, etc.
+As with any port we have discussed in this tutorial, we must first construct the correct request parameters, in this case AirPricingReq. The AirPricingReq object has a few more parameters that are needed besides the itinerary, such as the cabin preference (in case multiple are available), the passenger type, etc.
 
-This is the critical part of the function displayItineraryPrice that does the work of calling the uAPI to get a price for an AirItinerary by calling another method priceItinerary.
+This is the critical part of the function displayItineraryPrice that does the work of calling Travelport Universal API to get a price for an AirItinerary by calling another method priceItinerary.
 
 	
 {% highlight java %}
@@ -739,7 +737,7 @@ public static AirPriceRsp priceItinerary(AirItinerary itin) throws AirFaultMessa
 
 ### AirPriceReq
 
-One of the most crucial functions of the uAPI is its ability to accurately price a given itinerary and display not only the total price to be paid, but also to break down all the pricing components as well. In addition, there is the complex issue of which taxes and from what jurisdiction should be applied. Here is an example AirPricingReq in XML as sent from Lesson 2 to Travelport:
+One of the most crucial functions of Travelport Universal API is its ability to accurately price a given itinerary and display not only the total price to be paid, but also to break down all the pricing components. In addition, there is the complex issue of which taxes and from what jurisdiction should be applied. Here is an example AirPricingReq in XML as sent from Lesson 2 to Travelport:
 
 {% highlight xml %}
 
@@ -770,13 +768,13 @@ One of the most crucial functions of the uAPI is its ability to accurately price
 
 {% endhighlight %}
 
-As you can see, primarily the request consists of the details of the flights to be travelled on plus a few extra details such as the passenger type and cabin class. The outbound journey is two AirSegment objects, but both in Group zero; the return segments are in Group one. A careful reader might be wondering why the FlightDetails elements have the Key attribute on them, such as the “LeXLrYCsTQK2WBZgVosKYA==” associated with the flight from CHA to ATL. These are not used in this request (and are ignored by uAPI) but are “leftovers” from re-using the some parts of the results provided as a response to our availability request done previously.
+The request primarily consists of the details of the flights to be traveled plus additional details such as the passenger type and cabin class. The outbound journey is two AirSegment objects, but both in Group zero; the return segments are in Group one. The FlightDetails elements that have the Key attribute on them, such as the “LeXLrYCsTQK2WBZgVosKYA==” associated with the flight from CHA to ATL, are not used in this request (and are ignored by Universal API). The attributes are left over from re-using parts of the results provided as a response to our availability request done previously.
 
 ### Pricing Response
 
-Below is a slightly-edited pricing response provided by Travelport in response to an AirPriceReq from Lesson 2 as seen above. The optional services section has been removed as it is quite long and not within the scope of this tutorial.
+Below is a slightly-edited pricing response provided by Travelport in response to an AirPriceReq from Lesson 2 as displayed above. The optional services section has been removed as it is quite long and not within the scope of this tutorial.
 
-The particular details of understanding all the aspects of this response are beyond what we can cover in this tutorial. We do ask you to look at the two highlighted portions of the XML response, marked with highlight 1 and 2. Highlight one shows the AirPricingSolution component of the XML, probably the one that most readers (and travellers!) are most interested in! The second highlight comment shows the section related to taxes. Each of the taxes specified, identified by its Category attribute such as XF, relates to a specific IATA-published tax. In this case, a reader with access to the list of taxes could determine that the XF or “Passenger Facility Charge” tax is applied one time. This is makes sense once realizes that this facility charge is charged only on flights originating from a given airport.
+The particular details of understanding all the aspects of this response are beyond what we can cover in this tutorial. You are encouraged to look at the two highlighted portions of the XML response, marked with highlight 1 and 2. Highlight 1 shows the AirPricingSolution component of the XML. The second highlight comment shows the section related to taxes. Each of the taxes specified, identified by its Category attribute such as XF, relates to a specific IATA-published tax. In this case, a reader with access to the list of taxes could determine that the XF or *Passenger Facility Charge* tax is applied one time. This facility charge is applied only on flights originating from a given airport.
 
 
 {% highlight xml %}
@@ -958,21 +956,21 @@ The particular details of understanding all the aspects of this response are bey
 
 
 {% endhighlight %}
-### Woot! 
+### Lesson 2 Complete 
 
-We have now completed the basic workflow that must be done to find a way to travel between two points via Air! You should be able to run Lesson 2 the same way you ran Lesson 1 and have Travelport price a few dozen or so possible itineraries for you. As we will see in Lesson 3, there are other ways to do this work… and other ways to travel besides air!  
+You have now completed the basic workflow required to find a way to travel between two points via Air. You should be able to run Lesson 2 the same way you ran Lesson 1 and have Travelport price a few dozen or so possible itineraries for you. As we will see in Lesson 3, there are other ways to accomplish this.  
 
-![Warning](images/warning.png) A slight word of warning is in order: It is not recommended practice to price all possible combinations of possible itineraries via an AirPriceReq to the uAPI. We have done so in this lesson because for clarity of exlpanation. One either should apply some filtering logic to reduce the possible set of itineraries, or use the shopping capabilities explained in the next lesson to have the uAPI propose “reasonable and available” itineraries.
+![Warning](images/warning.png) Warning: It is not recommended practice to price all possible combinations of possible itineraries via an AirPriceReq to Travelport Universal API. We have done so in this lesson for clarity of explanation. One either should apply some filtering logic to reduce the possible set of itineraries, or use the shopping capabilities explained in the next lesson to have Universal API propose reasonable and available itineraries.
 
-### Exercises for the reader
+### Exercises
 
-* Try changing the origin and destination airports to ones that you know well. Look at the displayed itineraries and prices and compare to an online travel website.
+* Change the origin and destination airports to ones that you know well. Look at the displayed itineraries and prices and compare to an online travel website.
 
-* Try using the displayItineraryPrice to compare the prices of two one-way journeys from the origin to the destination and the round trip price. To do this you will need to construct “one way” itineraries (AirItinerary) and submit them to the pricing engine.
+* Use the displayItineraryPrice to compare the prices of two one-way journeys from the origin to the destination and the round trip price. To do this, you need to construct one-way itineraries (AirItinerary) and submit them to the pricing engine.
 
-* Try to improve the output of the program to be more descriptive and human-friendly. This primarily means changing the loops in displayItineraryPrice and main() that walk the AirPriceResult and AirItinerary lists respectively.
+* Improve the output of the program by being more descriptive. This primarily means changing the loops in displayItineraryPrice and main() that walk the AirPriceResult and AirItinerary lists respectively.
 
-* Using a debugger, try stopping Lesson2 around line 27. Walk down the hierarchy of objects inside the rsp and explore what more information about the flights could be displayed for the user. Similarly, stop the program around line 227 and do the same for the priceRsp to see what extra information could be displayed about the price.
+* Using a debugger, try stopping Lesson2 around line 27. Walk down the hierarchy of objects inside the rsp and explore what additional information about the flights could be displayed for the user. Similarly, stop the program around line 227 and do the same for the priceRsp to see what extra information could be displayed about the price.
 
 ----------------------
 
