@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Making an Air or Hotel booking"
-description: "Understanding how to create a booking for air, hotel, or both with the Universal API;."
+description: "Understanding how to create a booking for air, hotel, or both with Travelport Universal API;."
 ---
 {% include JB/setup %}
 
@@ -128,9 +128,9 @@ Let's look at part of the XML result that is passed back to our client program w
 
 This is far from all the `hotel:HotelRateDetail` entities encoded in this single XML message.
 
-The early part of this snippet displays some of the detailed data about the property, and the marketing message sent from the hotel's owner.  Further, there are many possible _rates_ that can be identified by the `RatePlanType` attribute.  The prices are shown with descriptive text about each option.  As we shall see, the `Name="Guarantee"` attribute of a `RoomRateDescription` element (child of a `HotelRateDetail` object), will be critical at a later stage in booking, as such a rate typically requires a credit card to hold the reservation.
+The early part of this snippet displays some of the detailed data about the property, and the marketing message sent from the hotel's owner. Further, there are many possible _rates_ that can be identified by the `RatePlanType` attribute. The prices are shown with descriptive text about each option. As we shall see, the `Name="Guarantee"` attribute of a `RoomRateDescription` element (child of a `HotelRateDetail` object), will be critical at a later stage in booking, as such a rate typically requires a credit card to hold the reservation.
 
-The output of the code for `lesson5` is to show the user the selected hotel, some details about it, and the information about room rates.  The search result above and the result below are done based on the point of interest "Golden Gate Bridge" (a famous Bridge in San Francisco, California).  We have selected the cheapest hotel from our shopping search, then asked for details, and chosen the lowest rate found in the details (2 nights in SFO for about 321 USD!), for a non-smoking room, with a King-sized bed.
+The output of the code for `lesson5` is to show the user the selected hotel, some details about it, and the information about room rates. The search result above and the result below are done based on the point of interest *Golden Gate Bridge* (a famous landmark in San Francisco, California). We have selected the cheapest hotel from our shopping search, then asked for details, and chosen the lowest rate found in the details for a non-smoking room with a King-sized bed.
 
 {% highlight console %}
 SUPER 8 SAN FRANCISCO FISHERMA [OZ:46314]
@@ -161,11 +161,11 @@ looking for non-smoking:[Total includes taxes, surcharges and fees.]
 
 ### Reserving the room
 
-For the third step in the hotel booking sequence, we must construct a new request with the key hotel parameters such as the number of rooms, number of adults, check-in and out dates, and choices that might affect price or availability such as `HotelBedding` or the travelers desire for a non-smoking room.
+For the third step in the hotel booking sequence, we construct a new request with the key hotel parameters such as the number of rooms, number of adults, check-in and out dates, and choices that might affect price or availability such as `HotelBedding` or the travelers desire for a non-smoking room.
 
 The two objects for making bookings are called `AirCreateReservationPortType` and `HotelReservationServicePortType`, with the naturally named requests `AirCreateReservationReq` and `HotelCreateReservationReq` and the matching response (`Rsp`) types for getting results.
 
-Since we are now making the reservation, we need to put in details about who the traveler is in the create reservation request:
+Since we are now making the reservation, we need to input the traveler's details in the create reservation request:
 
 {% highlight java %}
 
@@ -291,15 +291,15 @@ xgc1 = DatatypeFactory.newInstance().newXMLGregorianCalendarDate(c.get(Calendar.
 
 {% endhighlight %}
 
-In a real application, rather than a tutorial, one would almost certainly want to add many more details about the traveler.  The `BookingTraveler` object has numerous fields that can accept multiple addresses, phone numbers, email addresses, the gender, the age of the traveler, and more.
+In a real application, rather than a tutorial, one would add many more details about the traveler. The `BookingTraveler` object has numerous fields that can accept multiple addresses, phone numbers, email addresses, the gender, the age of the traveler, and more.
 
-If there is a family traveling and booking this room in Los Angeles, the hotel reception may want to have the name and details of other family members in case they should arrive separately at the hotel from Mr Capet.
+If there is a family traveling and booking this room in Los Angeles, the hotel reception may want to have the name and details of other family members in case they should arrive separately at the hotel from Mr. Capet.
 
-We can take some values found in the "hotel details" response, and place them into the request that we are going to use for booking the room:
+We can take some values found in the *hotel details* response, and place them into the request that we are going to use for booking the room:
 * the `lowestRate` which is of type `HotelRateDetail`
 * the `property` which is of type `HotelProperty`
 
-This is convenient, since we can be sure that we are sending all the details we know about the rate and property.
+This ensures that we send all the details we know about the rate and property.
 
 {% highlight java %}
 
@@ -316,11 +316,11 @@ req.setHotelProperty(property);
 
 A credit card number is needed to reserve a room in most cases.
 
-Generally speaking, the card simply holds the reservation, and is not charged immediately. Later on, the property might charge penalties to the card in case of late cancellations or no-show.
+Generally speaking, the credit card holds the reservation, and is not charged immediately. Later on, the property might charge penalties to the card in case of late cancellations or no-show.
 
-![Warning](images/warning.png)  Because the card is not being charged, many providers do not validate the address of the cardholder against the credit card account --- and the uAPI might generate error if you provide this detail.
+![Warning](images/warning.png)  Because the card is not being charged, many providers do not validate the address of the cardholder against the credit card account --- and Travelport Universal API might generate error if you provide this detail.
 
-In `lesson4` we have a helper routine called `getFakeCreditCard()` that will return a bogus credit card object and, optionally, attach a billing address as well.
+In `lesson4` we have a helper routine called `getFakeCreditCard()` that returns an invalid credit card object and, optionally, attach a billing address as well.
 
 {% highlight java %}
 
@@ -355,13 +355,13 @@ public static CreditCard getFakeCreditCard(boolean withAddress) {
 
 {% endhighlight %}
 
-If you are implementing this tutorial using "testing" credentials issued by Travelport, the actual values in the credit card fields will not be validated.
+If you are implementing this tutorial using test credentials issued by Travelport, the actual values in the credit card fields will not be validated.
 
-In a real application, many checks will be made to verify with the credit card provider if this card number is associated with this owner, and to check if the CCV code (the code on the back of the card) is correct.
+In a real application, many checks are made to verify with the credit card provider if this card number is associated with this owner, and to check if the CCV code (the code on the back of the card) is correct.
 
-### Making The Final Reservation
+### Making the Final Reservation
 
-As has been the case in most of the lessons, we use a request/response pair to actually make the reservation.  This results in the following request and response to be transmitted to and received from Travelport. (This example is for a hotel that is near the 'GOLDEN GATE BRIDGE' attraction in San Francisco, California):
+A request/response pair is used to actually make the reservation. The result is the following request and response transmitted to and received from Travelport. (This example is for a hotel that is near the *GOLDEN GATE BRIDGE* attraction in San Francisco, California):
 
 {% highlight xml %}
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -521,7 +521,7 @@ As has been the case in most of the lessons, we use a request/response pair to a
 </SOAP:Envelope>
 {% endhighlight %}
 
-And our program (lesson5.java) prints out a few fields for people who don't want to dig around in the XML:
+And our program (lesson5.java) prints out a few fields for people who prefer to not search the XML:
 
 {% highlight console %}
 Universal Record Locator: DWTMD8
@@ -535,20 +535,21 @@ Hotel Total Cost        : USD321.72
 
 {% endhighlight %}
 
-A few things to note about the request and response above. First, the credit card information is obviously something that most real applications will need to improve. Be sure that you verify any of your practices with this sensitive data with your credit card company. For example, it is normally not recommended for a website to "hold onto" credit card information but rather utilize it (once) for communication with Travelport and then discard it.
+Notes about the request and response above:
+* First, the credit card information is something that most applications need to improve. Be sure to verify your practices with this sensitive data with your credit card company. For example, it is normally not recommended for a website to hold onto credit card information but rather utilize it (once) for communication with Travelport and then discard it.
 
-There are a number of "human readable" segments to the response. Some of these are displayed in our program's output but there are many text "blobs" that may be interesting to users. The number of these to display depends on what level of detail your application is working with. For application's that target travel agents or other professionals, it is recommended to err on the side of too much detail rather than too little.
+* There are a number of disipherable segments to the response. Some of these are displayed in the program's output but there are many text blobs that may be interesting to users. The number of these to display depends on what level of detail your application is working with. For application's that target travel agents or other professionals, it is recommended to err on the side of too much detail rather than too little.
 
 ### Universal Record
 
-There are two record locators show in the output. The first one is for the Travelport concept of the Universal Record and the second one for the Hotel reservation system. A Universal Record is created for you anytime you book travel, a hotel, or a car through the Universal API™. There are additional APIs provided to allow various types of changes to be made to Universal Records.
+There are two record locators displayed in the output. The first one is for the Travelport concept of the Universal Record and the second one for the Hotel reservation system. A Universal Record is created for you anytime you book travel, a hotel, or a car through Travelport Universal API. There are additional APIs provided to allow various types of changes to be made to Universal Records.
 
-A Universal Record can be thought of as a wrapper around other records. A single Universal Record can have air travel, a vehicle reservation, a hotel reservation, and even tours or other activities associated with it. The objective is to have all the details about a single journey for a specific customer in one place. The details of the Universal Record API is beyond the scope of this tutorial, but suffice it to say that this "container" should be used by application’s that wish to have all of a traveler's data together… and this means almost all of them!
+A Universal Record can be thought of as a wrapper around other records. A single Universal Record can have air travel, a vehicle reservation, a hotel reservation, and tours or other activities associated with it. The objective is to have all the details about a single journey for a specific customer in one place. The details of the Universal Record API is beyond the scope of this tutorial, but suffice it to say that this container should be used by application’s that wish to have all of a traveler's data together.
 
 
-### Thanks
+### Thank you
 
-Thanks for working through all of Unit 2 and our discussion of hotel reservations, booking, and searching by landmarks.  If you continue on to the next unit, we'll be discussing how to embed Travelport's uAPI inside a Facebook app and the issues that arise from that.
+Thanks for working through all of Unit 2 and our discussion of hotel reservations, booking, and searching by landmarks. The next unit, discusses how to embed Travelport's Universal API inside a Facebook app.
 
 
 
