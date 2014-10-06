@@ -9,40 +9,35 @@ description :
 
 ### Objective of Lesson 1
 
-In this lesson, we'll document the how to send a basic PHP Air Search Request.
+In this lesson, we'll document how to send a basic PHP Air Search Request.
 
-We'll focus on how it works and how it uses the uAPI to do its work.  
+We'll focus on how it works and how it uses Travelport Universal API to do the work.  
 
 ### Starting up
 
-Please install PHP and Apache server for PHP. As we will be working with webservices please install CURL to work with webservices in php.
-Once installation is done we are ready to go.
+Please install PHP and Apache server for PHP. Please install CURL to work with webservices in PHP.
+Once installation is completed, we are ready to begin.
 
 
-##Coding
+## Coding
 
-You can start with just creating a blank php page by writing {%highlight php %} <?php          ?> {% endhighlight %} in a blank txt file and saving it as php_SampleAir.php
-You are ready with your first php page. Now to call an uAPI service from php you first need to initialize all the required variables like TargetBranch,
-Username, password and provider. Let us first create a simple air availability search with php.
+You can start creating a blank php page by writing {%highlight php %} <?php          ?> {% endhighlight %} in a blank text file and saving it as php_SampleAir.php
+Now to call a Universal API service from PHP you first need to initialize all the required variables like TargetBranch,
+Username, password, and provider. Let us first create a simple air availability search with PHP.
 
 We have initialized TargetBranch and Credentials as $TARGETBRANCH and $CREDENTIALS and the xml request for Air Availability as $message.
 
-Now after these variables are initialized with values we can encode the credentials with base 64 encode and initialize a variable $soap_do with curl_init
-method which will call the webservices url.
+After these variables are initialized with values, we can encode the credentials with base 64 encode and initialize a variable $soap_do with curl_init
+method which calls the webservices URL.
 
-After that we initialized the header variable with the header array of the xml request to send to the webservices url. Now use curl_setOpt method
-to verify ssl, verify Host, posting the request and add the header.
+After that we initialized the header variable with the header array of the XML request to send to the webservices URL. Now use curl_setOpt method
+to verify SSL, verify Host, posting the request, and add the header.
 
 Now you are ready to run the request using curl_exec. We used another variable to get and print the response.
 
-
-So, we just finished a simple air availability request with php. In the next lesson we will play with Hotel in php.
-
+That is the process to complete a simple air availability request with PHP. The next lesson covers hotel requests in PHP.
 
 
-### The Future
-
-To summarize what is coming up in the tutorial, We have Air Pricing and booking request in line to add to the php Air tutorial.
 
 ----------------------
 
