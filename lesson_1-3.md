@@ -99,13 +99,13 @@ public PrintableItinerary(RailPricingSolution solution, Helper.RailJourneyMap jo
 
 {% endhighlight %}
 
-These two constructors are the air and rail versions of this class. Once constructed, it is possible to simply call “toString()” on the PrintableItinerary object and have something reasonably understandable to a human printed out.
+These two constructors are the air and rail versions of this class. Once constructed, it is possible to simply call *toString()* on the PrintableItinerary object and print out something understandable.
 
 A couple of things to note about PrintableItinerary constructors:
 
 * The air version of the constructor requires the caller to supply the roundTripTurnaround as an airport code. This is because air pricing solutions do not have the direction notion that is present in RailJourney and thus the code in PrintableItinerary must determine which parts of a trip (AirSegments) are out-bound and which are in-bound.
 
-* Both of these constructors need the “maps” that were discussed in lesson 2 to have already been built, so these will be needed in lesson 3 as well. This is not surprising since the PrintableItinerary prints out many details that are present only in the full definition of classes like AirSegment and not in the AirSegmentRef solution.
+* Both of these constructors need the maps that were discussed in Lesson 2 to have already been built, so these are needed in Lesson 3 as well. This is because the PrintableItinerary prints out many details that are present only in the full definition of classes like AirSegment and not in the AirSegmentRef solution.
 
 PrintableItinerary produces simple but functional output. The example output at the beginning of this lesson is from PrintableItinerary. You can change the code to improve the quality of the output if you want to, but be careful to protect your code from unexpected null values: often the results of a rail or air journey have null values in many places and you don’t want your code to crash with a NullPointerException (NPE).
 
@@ -216,13 +216,13 @@ System.err.println("Fault trying send request to travelport:"
 {% endhighlight %}
 
 
-None of the code above should be shocking if you have been following us through the previous two lessons. The key portion of this `main()` function is the loop that goes through the set of providers and each of their parts. A more clever program than the one we have written here would do some useful computation where we have just done “\[sleep a few seconds]\”!
+The key portion of this `main()` function is the loop that goes through the set of providers and each of their parts.
 
 ### Output
 
 When you run `Lesson3` you will see some itineraries such as the ones presented at the top of this lesson.
 
-With those edited for clarity, the output of the program will look like this:
+With those edited for clarity, the output of the program looks like this:
 
 {% highlight console %}
 
@@ -284,34 +284,34 @@ Response Message From Provider null : Warning : No Asynch LFS response data foun
 {% endhighlight %}
 
 
-This is a bit more "real" than the idealized output shown at the beginning of this lesson, that included just the itineraries.
+This is more realistic than the idealized output shown at the beginning of this lesson that included just the itineraries.
 
-![Warning](images/warning.png)  A brief warning is needed here.  Depending on your test credentials, the rail, vehicle, and low-cost carrier providers may not be available.  If you see an error message such as 'No provider configured' or similar, that is because you are using test credentials and you need to upgrade to "real" credentials to access the provider.
+![Warning](images/warning.png)  Note: depending on your test credentials, the rail, vehicle, and low-cost carrier providers may not be available.  If you see an error message such as *No provider configured* or similar, it is because you are using test credentials and you need to upgrade to production credentials to access the provider.
 
-A couple of things that the reader be interested in:
+Of interest:
 
-* The `RCH` provider is the rail provider and two of its suppliers (Benelux and Deutsche Bahn) have no train service in the United Kingdom, so we get the warnings from "RCH\[BN\]" and "RCH\[DB\]" when doing a Glasgow to London search.
+* The `RCH` provider is the rail provider and two of its suppliers (Benelux and Deutsche Bahn) have no train service in the United Kingdom, so we get the warnings from *RCH\[BN\]* and *RCH\[DB\]* when doing a Glasgow to London search.
 
-* There is also a warning that there is no LFS data found for the provider, this is coming from the RetrieveLowFareSearchRsp.
+* There is also a warning that there is no LFS data found for the provider, coming from the RetrieveLowFareSearchRsp.
 
 ### End of Unit 1
 
 Congratulations!
 
-You've managed to get through all three of the lessons in this unit.  With these three lessons under your belt, you should be feeling fairly confident of using nearly any feature of the uAPI that involves searching for content and then displaying it to the user.
+You've completed all three lessons in this unit.  With these three lessons completed, you should be feeling fairly confident of using nearly any feature of Travelport Universal API that involves searching for and displaying content.
 
-In the upcoming unit, we will focus on some other types of common workflows such creating a booking for air travel or searching hotels by their distance from a landmark.
+In the upcoming unit, the focus is on some other types of common workflows such creating a booking for air travel or searching hotels by their distance from a landmark.
 
-Enjoy using the uAPI!
+Enjoy using Travelport Universal API!
 
 
 ### Exercises for the reader
 
 * Using the Low Fare search (synchronous or asynchronous), build the necessary tables to keep track of the lowest priced way to travel from origin to destination and print out the five lowest-priced itineraries, whether by rail or air.
 
-* Above we discussed Java's type system, `AirSearchRsp` objects and the fact that these may include rail journey information.  By studying the WSDL and XSD files, determine if the same "crossover" applies to searching for availability in train travel.
+* Above we discussed Java's type system, `AirSearchRsp` objects and the fact that these may include rail journey information.  By studying the WSDL and XSD files, determine if the same *crossover* applies to searching for availability in train travel.
 
-* Use the `FlightDetails` class to display to the user if any meals are expected on air journeys, as well as the particular type of aircraft that will be used.  It may be helpful to build a table to make the set of aircraft easier to understand for those not familiar with the model numbers of aircraft, such as changing "737" into "Boeing 737" or even "Boeing Single-Aisle Jet".
+* Use the `FlightDetails` class to display to the user if any meals are expected on air journeys, as well as the particular type of aircraft that will be used.  It may be helpful to build a table to make the set of aircraft easier to understand for those not familiar with the model numbers of aircraft, such as changing *737* into *Boeing 737* or even *Boeing Single-Aisle Jet*.
 
 ----------------------
 
