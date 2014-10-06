@@ -9,15 +9,15 @@ description: "Understanding hotel searches and how to search based on a point of
 
 ### Objective of Unit 2
 
-After you have worked your way through this unit, you'll be able to do searching for multiple types of travel-related items (hotels and cars) in addition to the transportation we covered in the last unit.
+After you complete this unit, you'll be able to search for multiple types of travel-related items (hotels and cars) in addition to the transportation covered in the previous unit.
 
-In addition, we are going to focus on creating bookings for hotels, air travel, etc. so you can complete the entire purchase cycle.  We'll finish by putting it all together with a "Universal Record" --- a part of the Universal API; that pulls together all the information about trips and travelers.
+In addition, this unit focuses on creating bookings for hotels, air travel, etc. so you can complete the entire purchase cycle.  We'll finish by putting it all together with a *Universal Record* --- a part of Travelport Universal API that pulls together all the information about trips and travelers.
 
 ### The goal of Lesson 4
 
-After deciding when, where, and how to travel (the subjects of [Unit 1](lesson1) of our tutorial), the next step is usually to try to find an accommodation at the destination.
+After deciding when, where, and how to travel (the subjects of [Unit 1](lesson1) of our tutorial), the next step is to find an accommodation at the destination.
 
-Hotels are the most common target in searching for accommodation.  When this lesson is completed you'll have a program that can output information like this:
+Hotels are the most common target in searching for accommodation. When Lesson 4 is completed you'll have a program that can output information like this:
 
 {% highlight console %}
 
@@ -38,30 +38,30 @@ BW PLUS BLOOMINGTON HOTEL      [BW:03174]
 
 {% endhighlight %}
 
-### WSDL for hotel search
+### WSDL for Hotel Search
 
-You probably should have done so already, but you’ll need to go through the process of generating the client-side code for the Hotel Service if you haven’t done that yet. Building the Air and Vehicle support is also recommended to avoid linker problems. The `HotelService` has a number of ports, as did the `AirService` we covered before.
+You need to generate the client-side code for the Hotel Service not yet registered. Building the Air and Vehicle support is also recommended to avoid linker problems. The `HotelService` has a number of ports, as did the `AirService` we covered previously.
 
 Once you have the client code from `Hotel.wsdl` (in the directory `wsdl/hotel_v26_0` in the provided code), you may want to examine the `HotelAvailabiltySearchReq` and `BaseHotelSearchRsp(Base Type of HotelAvailabiltySearchRsp)` as these are the request/response pair of primary importance to the task ahead.
 
-When we work with the hotel availability search request, as with any request, there is the requirement for the `BillingPointOfSaleInfo` to be set to inform the uAPI what application is using the api; we have provided the method `Helper.tutorialBPOSInfo()` to create this object for you.   Similarly, one must always set the target branch and we do so based on the system property `travelport.targetBranch` (or the environment variable `TPTARGETBRANCH`).  
+When we work with the hotel availability search request, there is the requirement for the `BillingPointOfSaleInfo` to be set to inform Travelport Universal API what application is using it. The method `Helper.tutorialBPOSInfo()` is provided to create this object for you.   Similarly, one must always set the target branch and we do so based on the system property `travelport.targetBranch` (or the environment variable `TPTARGETBRANCH`).  
 
-![Warning](images/warning.png) For any API request other than "ping", the billing point of sale and the target branch parameters are needed.  These are required so that the uAPI can do the proper accounting of what services are being accessed and by whom.
+![Warning](images/warning.png) For any API request other than *ping*, the billing point of sale and the target branch parameters are needed. These are required so that Travelport Universal API can do the proper accounting of what services are being accessed and by whom.
 
-In terms of the actual search parameters, the primary ones are
+The primary search parameters are:
 
-* A `HotelStay` object representing check-in and check-out dates
+* A `HotelStay` object representing check-in and check-out dates.
 * A `HotelSearchModifiers` object which can have many parameters but the number of adults and number of room requested are of primary importance.
 * Either an option to the hotel modifiers to specify a point of interest or a city/airport code that tells the hotel search where the accommodation is desired.
 
 For each of the above, we've provided a helper function in lesson 4's code to make it easy to create these objects.
 
-The return value, `BaseHotelSearchRsp`  is substantially simpler than the return value for air travel searches, but in a similar form.  The critical elements of the returned object are the returned collection of `HotelSearchResult` objects and the children of these objects, the `HotelProperty` and `RateInfo` object object. The `RateInfo` provides information about the pricing of the hotel and the `HotelProperty` object provides some details about the specific property such as the address and amenities etc.
+The return value, `BaseHotelSearchRsp`  is substantially simpler than the return value for air travel searches, but in a similar form.  The critical elements of the returned object are the returned collection of `HotelSearchResult` objects and the children of these objects, the `HotelProperty` and `RateInfo` object object. The `RateInfo` provides information about the pricing of the hotel and the `HotelProperty` object provides some details about the specific property such as the address and amenities, etc.
 
 
-#### XML For A Hotel Search
+#### XML for a Hotel Search
 
-If you using another programming language, or just curious, you may want to see the what the request and response pair of messages are for a hotel search and response
+If you using another programming language, you may want to see what the request and response pair of messages are for a hotel search and response.
 
 *Hotel Search Request*
 
@@ -149,21 +149,20 @@ If you using another programming language, or just curious, you may want to see 
 
 {% endhighlight %}
 
-The amenities list, omitted above, is a sequence of four-letter codes that indicate features of the hotel.  For example
+The amenities list, omitted above, is a sequence of four-letter codes that indicate features of the hotel.  For example, AICO is air-conditioning.
 {% highlight xml %}
     <hotel:Amenity Code="AICO"/>
 {% endhighlight %}
-is air-conditioning.  
 
-### Getting "more" results
+### Getting more results
 
-In the interest of simplicity, we did not discuss in the previous lesson exactly how many search results were expected to be returned, and, perhaps most importantly, how to request more results if the provider of search results can deliver them.
+In the interest of simplicity, we did not discuss in the previous lesson exactly how many search results were expected to be returned, and how to request more results if the provider of search results can deliver them.
 
-The Universal API; will signal in its responses if more results are available for any kind of search.  At the Java level, you use the method `getNextResultReference` to get access to a "token" that you can use later to tell Travelport what data you have already been returned.  You can see the token in the `common_v26_0:NextResultReference` tag at the top of the XML response.
+Travelport Universal API signals in its responses if more results are available for any kind of search. At the Java level, you use the method `getNextResultReference` to get access to a *token* that you can use later to tell Travelport what data has previously been returned. You can see the token in the `common_v26_0:NextResultReference` tag at the top of the XML response.
 
-![Warning](images/warning.png)  Historically, the GDSes provided data on "green-screen", character-based terminals. These systems had the notion of a screenful of information--the number of lines of text that the user could see before the top lines scrolled off-screen.  Some APIs to various GDSes have also used, or perhaps "kept", the notion of a "screenful" of information to represent a partial list of results.  In homage to this tradition, we will keep the nomenclature of "a screen" to indicate one _burst_ of information returned.
+![Warning](images/warning.png)  Historically, the GDSes provided data on *green-screen*, character-based terminals. These systems had the notion of a screenful of information --- the number of lines of text that the user could see before the top lines scrolled off-screen. Some APIs to various GDSes have also used the notion of a *screenful* of information to represent a partial list of results. We kept the nomenclature of *a screen* to indicate one _burst_ of information returned.
 
-The typical construction in code for pulling multiple screens of information from a search request looks something like the following Java code.  We are using a hotel search here, but it applies to other searches.
+The typical construction in code for pulling multiple screens of information from a search request looks something like the following Java code. We are using a hotel search here, but it applies to other searches.
 
 {% highlight java %}
 
@@ -277,17 +276,17 @@ do {
 
 {% endhighlight %}
 
-A few things are worth talking about from this snippet.
+Noteworthy items from this snippet:
 
 * The value returned by `getNextResultReference` is not meaningful other than as a marker to a follow-up request to indicate what part of the full result set has already been seen.
 
 * Second, the _same_ request object is re-used for each pass around the loop.  The request parameters should be the same each time, with the full requests differing only by the next result reference.
 
-* Finally, the loop here keeps track of how many screens have been read and it stops when `MAX_REQUESTS` has been reached.  This is both good policy and safe.  It is good policy because the total list of results may be _far_ larger than you might expect: search for any hotel in Paris, France, can yield a great many results! It is also safe because this protects you from launching a large, or even infinite, number of requests if you have a bug in your program.
+* Finally, the loop here keeps track of how many screens have been read and it stops when `MAX_REQUESTS` has been reached.  This is both good policy and safe.  It is good policy because the total list of results may be _far_ larger than you might expect. It is also safe because this protects you from launching a large, or even infinite, number of requests if you have a bug in your program.
 
 #### The Resulting XML
 
-The XML used to request "more information", aka "next screen", looks like this for a follow-up to the response shown in the previous XML listing:
+The XML used to request more information, aka *next screen*, looks like this for a follow-up to the response shown in the previous XML listing:
 
 {% highlight xml %}
 
@@ -319,13 +318,13 @@ As was explained in the previous section concerning the Java code, the request p
 
 ### Searching by location
 
-If you read the XML carefully above for the requests, you'll have realized that in this lesson, we are going to be searching for hotels that are located near some famous landmark.
+In this lesson, we will search for hotels that are located near a famous landmark.
 
-To do this, one must provide, obviously, the name of the landmark but also *not* provide a "location" with a city code as we have done previously.  For example, let's assume we are looking for accomodation for a family vacation to Paris, France.  With two adults and two children, we are going to need two hotel rooms and we are planning to spend a couple of days at [Disneyland Paris](http://www.disneylandparis.com/).
+To do this, one must provide the name of the landmark but NOT provide a *location* with a city code as done previously. For example, we are looking for accomodation for a family vacation to Paris, France. We require two hotel rooms and are planning to spend time at [Disneyland Paris](http://www.disneylandparis.com/).
 
-For those unfamiliar with Paris' geography, Disneyland Paris _neé EuroDisney_, is 32km east of the center of Paris.  Thus, a hotel search that used the city code "PAR" or any of the Paris airports (north and south of the city) will be unlikely to produce good results.  We need to do our search for this landmark.
+Disneyland Paris _neé EuroDisney_, is 32km east of the center of Paris. Thus, a hotel search that used the city code "PAR" or any of the Paris airports will unlikely produce good results.  We need to search for this landmark.
 
-The key idea for doing a location of search is to use a search modifier with the location's name contained in it.  You do that with Java code like this example from `Lesson4`:
+The key idea for doing a search by landmark is to use a search modifier with the location's name contained in it. You do that with Java code like this example from `Lesson4`:
 
 {% highlight java %}
 HotelSearchModifiers mods = Lesson4.createModifiers(numAdults, numRooms);
@@ -337,7 +336,7 @@ Lesson4.addDistanceModifier(mods, searchRadiusInKM); req.setHotelSearchModifiers
 
 The first line creates a search modifier object, and the parameters represent the need for two rooms with two adults in the party.
 
-Next, we add the attraction to the search modifiers and we do not add anything to the hotel location property of the request of object. We can also add a distance object, created by the helper function, that represents a distance of searchRadiusInKM which can be 5 or 25 or any long value. This is required to tell the geography searching engine of the uAPI how far away from the attraction to consider.
+Next, we add the attraction to the search modifiers and we do not add anything to the hotel location property of the request of object. We can also add a distance object, created by the helper function, that represents a distance of searchRadiusInKM which can be 5 or 25 or any long value. This is required to tell the geography searching engine of Travelport Universal API how far away from the attraction to consider.
 
 ### Full validation of XML schemas
 
@@ -349,57 +348,53 @@ distance.setUnits("KM");
 distance.setValue(BigInteger.valueOf(km));
 {% endhighlight %}
 
-This a good time for a warning about XML schema validation.  Although it appears that "any old string will do" for the units in the `setUnits` call above, actually only two are valid, "KM" and "MI" in uppercase letters. The XML schemas provided by Travelport for the uAPI correctly list the valid values, but the transformation to Java code has chosen to allow you to supply this value as a string.  
+A warning about XML schema validation: the only two valid units in the `setUnits` call above are *KM* and *MI* in uppercase letters. The XML schemas provided by Travelport for Universal API correctly list the valid values, but the transformation to Java code has chosen to allow you to supply this value as a string.  
 
-![Warning](images/warning.png)  It is good practice to turn on "full validation" when developing your application, no matter the programming language you are using.  This means that your system will not attempt to transmit XML sequences that are invalid, and thus likely to be rejected anyway by Travelport's system when it receives them.  There are a few places where Travelport's system is forgiving, but it is far better to correct your errors, such as using "km" as a unit instead of "KM", before-hand and not depend on anything working not provided in the WSDL and XSD files defining the API.  
+![Warning](images/warning.png)  It is good practice to turn on *full validation* when developing your application, no matter the programming language you are using.  This means that your system will not attempt to transmit XML sequences that are invalid, and thus likely to be rejected anyway by Travelport's system when it receives them.  There are a few places where Travelport's system is forgiving, but it is far better to correct your errors before hand and not depend on anything working not provided in the WSDL and XSD files defining the API.  
 
-Our supplied helper code for creating the instances of the uAPI's ports turns on the checking for you like this in `PortWrapper.java`
+Our supplied helper code for creating the instances of Travelport Universal API's ports turns on the checking for you like this in `PortWrapper.java`
 
 {% highlight java %}
 provider.getRequestContext().put("schema-validation-enabled", "true"); 
 {% endhighlight %}
 
-If you have an application finished and ready for deployment to a production system, you can increase performance by turning off this checking.  If you have any doubts, however, about your code or you are trying to debug a problem it is best to leave this checking enabled.
+If you have an application finished and ready for deployment to a production system, you can increase performance by turning off this checking.  If you have any doubts about your code or you are trying to debug a problem it is best to leave this checking enabled.
 
 
 ### Key elements of Lesson 4
 
 The main part of the code for this lesson, contained in [Lesson4.java](https://github.com/travelport/travelport-uapi-tutorial/blob/master/src/com/travelport/uapi/unit2/Lesson4.java) is a loop, as described above in the section about retrieving multiple screens of results. Prior to the loop entry, we set up a `HotelSearchAvailabilityRequest` with the key parameters based on destination attraction and the dates of travel.  
 
-As we go around the loop of reading bunches of results, we keep track of the hotel that has the lowest minimum price and the hotel that is closest (in kilometers) to our attraction.  After reading several screens of data, we display the lowest priced and the closest option with some details from the response object, in particular the `HotelSearchResult` that represents these two "good" choices.  
+As we go around the loop of reading bunches of results, we keep track of the hotel that has the lowest minimum price and the hotel that is closest (in kilometers) to our attraction. After reading several screens of data, the lowest priced and the closest option displays with some details from the response object, in particular the `HotelSearchResult` that represents these two preferable choices.  
 
-As we have done in the [previous lessons](lesson_1-2.html) concerning decoding the results of air searches, we build a map that tracks the "key" to "value" mapping for items in the response.  In this lesson, the type of this object is the `Helper.VendorLocMap`. We construct this object as we read each screen of information. We were not able to find any cases where this map provided us needed information that was not present in either in the `HotelSearchResult` or `HotelProperty` objects that we were processing but this may vary based on your choice of provider.
+As we have done in the [previous lessons](lesson_1-2.html) concerning decoding the results of air searches, we build a map that tracks the key to "alue mapping for items in the response.  In this lesson, the type of this object is the `Helper.VendorLocMap`. We construct this object as we read each screen of information. We were not able to find any cases where this map provided us needed information that was not present in either in the `HotelSearchResult` or `HotelProperty` objects that we were processing but this may vary based on your choice of provider.
 
-### A small exercise for readers interested in vehicles
+### Car Hire Exercise
 
-It may be that renting a car in the area near Disneyland Paris is a useful option for our family on this trip, so we want to add a car search to see how much it might cost and how that would effect the total price of the stay.  
+It may be that renting a car in the area near Disneyland Paris is a useful option for the travelers, so we add a car search to see how much it might cost and how that affects the total price of the stay. We'll expect the family to keep the vehicle for the whole of their trip.
 
-For this small enhancement, we'll make sure we look for a mini-van with air-conditioning and an automatic transmission from the _airport_. We'll expect the family to keep the vehicle for the whole of their trip.
-
-For this exercise, as before, you'll need to generate the client side code for the WSDL in `wsdl/vehicle_v26_0/vehicle.wsdl` if you have not done so already.  You can follow the same "recipe" we have used in all the lessons so far:
+For this exercise, as before, you'll need to generate the client side code for the WSDL in `wsdl/vehicle_v26_0/vehicle.wsdl` if you have not done so already. You can follow the same logic we have used in previous lessons:
 
 * create a request object
 * get the port object representing the functionality
 * call `service()`
-* and finally decode the response object.
+* decode the response object
 
-We won't detail too much about how to add this feature to the code for lesson 4 but only point on some potential "gotchas":
+We won't detail too much about how to add this feature to the code for Lesson 4 but only point on some potential difficulties:
 
 * You need to supply a date _and_ time for pickup and delivery.  These, unlike hotel search, are not using the XML objects but just raw strings in the format "2014-08-20T09:00:00".
-
-
-You should be able to print out the results of the search with the type of `vehicleRate`,  name of the vendor (`VendorCode` field)  and the price (`RateForPeriod`) like this:
+* You should be able to print out the results of the search with the type of `vehicleRate`,  name of the vendor (`VendorCode` field)  and the price (`RateForPeriod`) like this:
 
 {% highlight console %}
 STANDARD                       [ZL:EUR45.00] 
 {% endhighlight %}
 
 
-### Further exercises for the reader
+### Additional Lesson 4 Exercises
 
-* Similarly to the last exercise where we used a different service for a vehicle search, try to convert each price to Thai Bhat. To do this, you can use the `UtilCurrencyConversionPortType` in the `wsdl/Util_v26_0/Util.wsdl` definition.  Naturally, the classes to use are `CurrencyConversionReq` and `CurrencyConversionRsp` who contain `CurrencyConversion` objects.
+* As in the previous exercise where we used a different service for a vehicle search, try to convert each price to Thai Bhat. To do this, you can use the `UtilCurrencyConversionPortType` in the `wsdl/Util_v26_0/Util.wsdl` definition. The classes to use are `CurrencyConversionReq` and `CurrencyConversionRsp` who contain `CurrencyConversion` objects.
 
-* There is a large list of amenties that are provided for each hotel.  Decode this list and display them to the user.  Each amenity is represented by a [four letter code](http://support.travelport.com/webhelp/uapi/Content/Hotel/Shared_Hotel_Topics/Hotel%20Amenities.htm). You should create a table to print these out in a nice way for the user.  The "translation" of each of these amenities is farther down on that same page of documentation.
+* There is a large list of amenties that are provided for each hotel.  Decode this list and display them to the user.  Each amenity is represented by a [four letter code](http://support.travelport.com/webhelp/uapi/Content/Hotel/Shared_Hotel_Topics/Hotel%20Amenities.htm). You should create a table to print these out in a nice way for the user.  The translation of each of these amenities is farther down on that same page of documentation.
 
 ----------------------
 
