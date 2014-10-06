@@ -9,21 +9,21 @@ description: "Understanding how to create a booking for air, hotel, or both with
 
 ### Objective of Lesson 5
 
-In this lesson we are going to focus on the mechanics of actually making a booking, and having that reservation handled by Travelport.
+The focus of Lesson 5 is on the mechanics of actually making a booking, and having that reservation handled by Travelport.
 
 We will discuss Hotel bookings in some depth, and refer to the similarities with making Air reservations.  
 
 ### Shopping and reality
 
-For air travel, [Lesson 3](lesson_1-3.html) discussed how to perform a _low fare search_, usually just called _shopping_. [Lesson 4](lesson_2_4.html) did something similar for hotel room shopping.
+For air travel, [Lesson 3](lesson_1-3.html) discussed how to perform a _low fare search_, usually just called _shopping_. [Lesson 4](lesson_2_4.html) searched similarly for hotel room shopping.
 
 Shopping differs from [availability and pricing](lesson_1-2.html) not only because it combines the two processes in one step, but also because the technology underlying it is quite different.
 
 In particular, almost all providers of search services --- from internet search engines like [Google](http://google.com) to comparison shopping tools for consumer goods like [PriceGrabber](http://www.pricegrabber.com) --- take some shortcuts in an effort to produce the lowest-priced result as quickly as possible.  Although the techniques are different by both industry and shopping provider, typically there is a need to use caching techniques so the shopping provider does not have to do live queries for all of the items that it might propose as results. 
 
-![Warning](images/warning.png)  In the particular case of buying travel-related _live_ inventory, a particular result from a shopping request (`LowFareSearchReq` producing a `LowFareSearchRsp`) may be "out of date".  For this reason, you were cautioned in the previous lesson that it is good practice with the uAPI to follow up a result gained from a shopping request with an additional `AirPricingReq` to insure that the inventory is still available and that the price has not changed.
+![Warning](images/warning.png)  In the particular case of buying travel-related _live_ inventory, a particular result from a shopping request (`LowFareSearchReq` producing a `LowFareSearchRsp`) may be out of date. For this reason, you were cautioned in the previous lesson that it is good practice with Travelport Universal API to follow up a result gained from a shopping request with an additional `AirPricingReq` to insure that the inventory is still available and that the price has not changed.
 
-A deeper reason than caching, for this need to "verify" that a particular price is available or has not changed, is because the uAPI is a truly real-time system with thousands of concurrent users.  It is more than likely that during the time your program spends processing results from a shopping requests, many other pieces of software are connected to Travelport and actively changing the inventory that is available.
+A deeper reason than caching, for this need to verify that a particular price is available or has not changed, is because Travelport Universal API is a truly real-time system with thousands of concurrent users. It is likely that during the time your program spends processing results from a shopping requests, many other pieces of software are connected to Travelport and actively changing the inventory that is available.
 
 Further, the owners of the inventory can, and do, change their prices frequently, and this also can occur concurrently with your program's operation.
 
@@ -31,22 +31,22 @@ The endgame of managing live inventory is the booking step.
 
 When doing a booking request, all possible checks are done to the requested item to be reserved: this is to ensure that the object is still available, has been priced correctly with the provided fares, and any taxes are added correctly.
 
-Further, the system must also know _who_ is making the booking, and how the traveler will pay for the booking.  The uAPI will validate all of the values provided very carefully, to ensure that a final booking is only made when all the data are correct.
+Further, the system must also know _who_ is making the booking, and how the traveler will pay for the booking. Travelport Universal API carefully validates all of the values provided to ensure that a final booking is only made when all the data are correct.
 
-### Hotel details
+### Hotel Details
 
-The sequence of calls to the uAPI for reserving a hotel is:
-1. shop
-2. details
-3. reserve
+The sequence of calls to Travelport Universal API for reserving a hotel is:
+1. Shop
+2. Add details
+3. Make reservation
 
-Generally, the values returned from the Air service are more complex to parse and display to the user, because of the broader range of products (including rail) and the much larger set of possible, applicable fares.  For a hotel room, there are fewer variables so the responses returned are somewhat simpler to process and display.
+Generally, the values returned from the Air service are more complex to parse and display to the user, because of the broader range of products (including rail) and the much larger set of possible, applicable fares. For a hotel room, there are fewer variables so the responses returned are somewhat simpler to process and display.
 
-Although hotel inventory is simpler, the results from a shopping request, such as those shown in lesson 4, are not sufficient to create a booking.  Once a particular hotel of interest is found with a shopping request, it should be followed up to get the detailed room and pricing information, as well as more details about the property that are likely of interest to any traveler, like the full address, phone numbers, etc.
+Although hotel inventory is simpler, the results from a shopping request, such as those shown in Lesson 4, are not sufficient to create a booking. Once a particular hotel of interest is found with a shopping request, it should be followed up to get the detailed room and pricing information, as well as more details about the property that are likely of interest to any traveler, like the full address, phone numbers, etc.
 
 When the `HotelDetailsServicePortType` is invoked with a `HotelDetailsReq`, the parameters that are needed are quite similar to a shopping request but the result includes many different options in terms of pricing and, in some cases, other marketing information from the hotel.  
 
-Let's look "under the hood" to see part of the XML result that is passed back to our client program when we ask for details about a particular property:
+Let's look at part of the XML result that is passed back to our client program when we ask for details about a particular property:
 
 {% highlight xml %}
 <hotel:RequestedHotelDetails>
@@ -126,9 +126,9 @@ Let's look "under the hood" to see part of the XML result that is passed back to
 
 {% endhighlight %}
 
-This is far from all the `hotel:HotelRateDetail` entities encoded in this single XML message!
+This is far from all the `hotel:HotelRateDetail` entities encoded in this single XML message.
 
-The early part of this snippet shows some of the detailed data about the property, and the marketing message sent from the hotel's owner.  Further, there are many possible _rates_ that can be identified by the `RatePlanType` attribute.  The prices are shown with descriptive text about each option.  As we shall see, the `Name="Guarantee"` attribute of a `RoomRateDescription` element (child of a `HotelRateDetail` object), will be critical at a later stage in booking, as such a rate typically requires a credit card to hold the reservation.
+The early part of this snippet displays some of the detailed data about the property, and the marketing message sent from the hotel's owner.  Further, there are many possible _rates_ that can be identified by the `RatePlanType` attribute.  The prices are shown with descriptive text about each option.  As we shall see, the `Name="Guarantee"` attribute of a `RoomRateDescription` element (child of a `HotelRateDetail` object), will be critical at a later stage in booking, as such a rate typically requires a credit card to hold the reservation.
 
 The output of the code for `lesson5` is to show the user the selected hotel, some details about it, and the information about room rates.  The search result above and the result below are done based on the point of interest "Golden Gate Bridge" (a famous Bridge in San Francisco, California).  We have selected the cheapest hotel from our shopping search, then asked for details, and chosen the lowest rate found in the details (2 nights in SFO for about 321 USD!), for a non-smoking room, with a King-sized bed.
 
