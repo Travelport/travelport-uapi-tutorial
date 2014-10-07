@@ -21,7 +21,7 @@ Once installation is completed, we are ready to begin.
 
 ## Coding
 
-You can start creating a blank php page by writing {%highlight php %} <?php          ?> {% endhighlight %} in a blank text file and saving it as php_SampleAir.php
+You can start creating a blank php page by writing <?php          ?> in a blank text file and saving it as php_SampleAir.php
 Now to call a Universal API service from PHP you first need to initialize all the required variables like TargetBranch,
 Username, password, and provider. Let us first create a simple air availability search with PHP.
 
