@@ -40,7 +40,7 @@ cd learn-tport
 git clone git@github.com:Travelport/travelport-uapi-tutorial.git
 {% endhighlight %}
 
-This last command creates the directory `travelport-uapi-tutorial`. Within that directory you can find the directories `src` and `wsdl` in addition to other files. In the `wsdl` directory, are many WSDL files as well as a number of [XML schemas](http://en.wikipedia.org/wiki/XSD), as `xsd` files.  All of these files are supplied by Travelport, and the latest version of Travelport Universal API can be downloaded from [the Travelport Developers site](http://developer.travelport.com).
+This last command creates the directory `travelport-uapi-tutorial`. Within that directory you can find the directories `src` and `wsdl` in addition to other files. In the `wsdl` directory, are many WSDL files as well as a number of [XML schemas](http://en.wikipedia.org/wiki/XSD), as `xsd` files.  All of these files are supplied by Travelport, and the latest version of Travelport Universal API can be downloaded from [the Travelport Developers site](http://developer.travelport.com).Also, you can download the `wsdl` files from [the UAPI Help site](https://support.travelport.com/webhelp/uapi/uAPI.htm#Getting_Started/Universal_API_Schemas_and_WSDLs.htm%3FTocPath%3DGetting%2520Started|Getting%2520Connected|_____2%20%3Chttps://support.travelport.com/webhelp/uapi/uAPI.htm#Getting_Started/Universal_API_Schemas_and_WSDLs.htm?TocPath%3DGetting%2520Started|Getting%2520Connected|_____2%3E).
 
 For the rest of the tutorial we'll assume that you created a Java (or web services) project in Eclipse and put all the  code provided by tutorial at the top level of the project.  A `src` and a `wsdl` directory displays when you have done this correctly.
 
