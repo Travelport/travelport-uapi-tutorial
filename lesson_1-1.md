@@ -52,6 +52,13 @@ Apache's CXF is the critical glue for connecting Travelport's web services to th
 
 You'll need to [download and install](http://cxf.apache.org/download.html) the Apache CXF code. This tutorial requires at least version 2.7.10.
 
+
+### Programming Environment
+
+The tutorial has been created using Apache CXF Library 2.7.12. The Java system libraries used is JDK1.7.0_40 and Apache Tomcat version 7.0. If you face any issues with environment, schema, Client code generation related issues please open an issue in the GitHub.
+
+The tutorial 
+
 #### Using Eclipse
 
 If you are using [Eclipse](http://www.Eclipse.org), you can install the CXF directly into Eclipse by going to "Preferences > WebServices". If you don't have this preference option, you need to install the [Web Tools Platform](http://www.Eclipse.org/webtools/), or WTP, for Eclipse. The preferences screen where you add your installation of CXF should look something like this (with the preference choice highlight by the red box).  
