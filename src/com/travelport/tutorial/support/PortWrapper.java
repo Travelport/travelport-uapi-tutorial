@@ -103,6 +103,15 @@ public class PortWrapper<P,S> {
                 user);
         provider.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY,
                 pwd);
+                
+        
+        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_CONTENT_TYPE, "text/xml;charset=UTF-8");
+        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_ACCEPT_ENCODING, "gzip,deflate");
+        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_CONNECTION, "Keep-Alive");
+        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_CONTENT_LENGTH, "length");
+        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_POST, "POST");
+        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_PROTOCOL_11, "HTTP/1.1");
+
         
         provider.getRequestContext().put("schema-validation-enabled", "true"); 
 
