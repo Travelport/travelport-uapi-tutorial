@@ -3,7 +3,7 @@ layout: page
 title: Travelport Universal API
 tagline: Making it easy to build travel applications
 ---
-<!--{% include JB/setup %}-->
+{% include JB/setup %}
 
 ## Universal API is...
 
