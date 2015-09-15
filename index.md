@@ -15,6 +15,10 @@ For developers, Universal API means an end to managing and maintaining multiple 
 
 These tutorials provided step-by-step instructions to help you connect to the universal API and code a standard workflow in Java and PHP.
 
+## Support
+
+Please open issues in Github Issues.
+
 <!--<p align="center">
 <br/>
 <img src="images/TP-new-logo.jpg"/>
