@@ -17,7 +17,8 @@ These tutorials provided step-by-step instructions to help you connect to the un
 
 ## Support
 
-Please open issues in Github Issues.
+Please open issues in <a href="https://github.com/Travelport/travelport-uapi-tutorial/issues" class="dsq-brlink"><span>Github Issues</span></a>
+
 
 <!--<p align="center">
 <br/>
