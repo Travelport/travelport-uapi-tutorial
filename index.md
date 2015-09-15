@@ -84,5 +84,5 @@ Proceed to Unit 1, Lesson 1: [Setting up to work with the Travelport Universal A
 This website is part of a larger system, [GitHub](http://www.github.com), that allows to make your own copy of this website and the tutorial code, raise issues or comment about the code or documentation, make your own changes and have the "pulled" into this tutorial by the authors, and read the work of many others who are using the site.
 
 -->
-<!--{% include JB/comments %}
-{% include JB/analytics %}-->
+{% include JB/comments %}
+<!--{% include JB/analytics %}-->
