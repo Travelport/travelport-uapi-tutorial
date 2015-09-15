@@ -17,7 +17,8 @@ These tutorials provided step-by-step instructions to help you connect to the un
 
 ## Support
 
-Please open issues in <a href="https://github.com/Travelport/travelport-uapi-tutorial/issues" class="dsq-brlink"><span>Github Issues</span></a>
+Please open issues in <a href="https://github.com/Travelport/travelport-uapi-tutorial/issues">Github Issues</a>.
+If you are an existing customer please open an <a href="https://support.travelport.com/tdssupport/main.asp">ORS Ticket</a>.
 
 
 <!--<p align="center">
