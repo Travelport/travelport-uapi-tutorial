@@ -1,4 +1,4 @@
-travelport-uapi-tutorial
+Java travelport-uapi-tutorial
 ========================
 
 This Java tutorial provides the building blocks for coding a flight and hotel booking application in [Travelport Universal API](http://developer.travelport.com/app/developer-network/universal-api). It teaches you how to setup and configure Travelport Universal API and how to send basic requests. You will learn how to request Air and Rail travel information such as schedules, availability and pricing and search for a hotel using city and reference points and complete a booking for a passenger. 
