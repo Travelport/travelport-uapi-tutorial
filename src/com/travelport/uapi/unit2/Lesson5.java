@@ -1,5 +1,7 @@
 package com.travelport.uapi.unit2;
 
+import java.io.FileNotFoundException;
+import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,39 +15,39 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.travelport.schema.common_v29_0.BookingTraveler;
-import com.travelport.schema.common_v29_0.BookingTravelerName;
-import com.travelport.schema.common_v29_0.CreditCard;
-import com.travelport.schema.common_v29_0.Email;
-import com.travelport.schema.common_v29_0.Guarantee;
-import com.travelport.schema.common_v29_0.HostToken;
-import com.travelport.schema.common_v29_0.PermittedProviders;
-import com.travelport.schema.common_v29_0.PhoneNumber;
-import com.travelport.schema.common_v29_0.Provider;
-import com.travelport.schema.common_v29_0.State;
-import com.travelport.schema.common_v29_0.TypeStructuredAddress;
-import com.travelport.schema.hotel_v29_0.GuestInformation;
-import com.travelport.schema.hotel_v29_0.HotelDetailsModifiers;
-import com.travelport.schema.hotel_v29_0.HotelDetailsReq;
-import com.travelport.schema.hotel_v29_0.HotelDetailsRsp;
-import com.travelport.schema.hotel_v29_0.HotelProperty;
-import com.travelport.schema.hotel_v29_0.HotelRateDetail;
-import com.travelport.schema.hotel_v29_0.HotelReservation;
-import com.travelport.schema.hotel_v29_0.HotelSearchResult;
-import com.travelport.schema.hotel_v29_0.HotelStay;
-import com.travelport.schema.hotel_v29_0.NumberOfAdults;
-import com.travelport.schema.hotel_v29_0.TypeHotelRateDescription;
-import com.travelport.schema.hotel_v29_0.TypeHotelReferencePoint;
-import com.travelport.schema.hotel_v29_0.TypeRateRuleDetail;
-import com.travelport.schema.universal_v29_0.HotelCreateReservationReq;
-import com.travelport.schema.universal_v29_0.HotelCreateReservationRsp;
-import com.travelport.schema.universal_v29_0.UniversalRecord;
-import com.travelport.service.hotel_v29_0.HotelDetailsServicePortType;
-import com.travelport.service.hotel_v29_0.HotelFaultMessage;
-import com.travelport.service.hotel_v29_0.HotelMediaLinksServicePortType;
-import com.travelport.service.hotel_v29_0.HotelSearchServicePortType;
-import com.travelport.service.hotel_v29_0.HotelService;
-import com.travelport.service.universal_v29_0.HotelReservationServicePortType;
+import com.travelport.schema.common_v35_0.BookingTraveler;
+import com.travelport.schema.common_v35_0.BookingTravelerName;
+import com.travelport.schema.common_v35_0.CreditCard;
+import com.travelport.schema.common_v35_0.Email;
+import com.travelport.schema.common_v35_0.Guarantee;
+import com.travelport.schema.common_v35_0.HostToken;
+import com.travelport.schema.common_v35_0.PermittedProviders;
+import com.travelport.schema.common_v35_0.PhoneNumber;
+import com.travelport.schema.common_v35_0.Provider;
+import com.travelport.schema.common_v35_0.State;
+import com.travelport.schema.common_v35_0.TypeStructuredAddress;
+import com.travelport.schema.hotel_v35_0.GuestInformation;
+import com.travelport.schema.hotel_v35_0.HotelDetailsModifiers;
+import com.travelport.schema.hotel_v35_0.HotelDetailsReq;
+import com.travelport.schema.hotel_v35_0.HotelDetailsRsp;
+import com.travelport.schema.hotel_v35_0.HotelProperty;
+import com.travelport.schema.hotel_v35_0.HotelRateDetail;
+import com.travelport.schema.hotel_v35_0.HotelReservation;
+import com.travelport.schema.hotel_v35_0.HotelSearchResult;
+import com.travelport.schema.hotel_v35_0.HotelStay;
+import com.travelport.schema.hotel_v35_0.NumberOfAdults;
+import com.travelport.schema.hotel_v35_0.TypeHotelRateDescription;
+import com.travelport.schema.hotel_v35_0.TypeHotelReferencePoint;
+import com.travelport.schema.hotel_v35_0.TypeRateRuleDetail;
+import com.travelport.schema.universal_v35_0.HotelCreateReservationReq;
+import com.travelport.schema.universal_v35_0.HotelCreateReservationRsp;
+import com.travelport.schema.universal_v35_0.UniversalRecord;
+import com.travelport.service.hotel_v35_0.HotelDetailsServicePortType;
+import com.travelport.service.hotel_v35_0.HotelFaultMessage;
+import com.travelport.service.hotel_v35_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v35_0.HotelSearchServicePortType;
+import com.travelport.service.hotel_v35_0.HotelService;
+import com.travelport.service.universal_v35_0.HotelReservationServicePortType;
 import com.travelport.tutorial.support.ServiceWrapper;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
@@ -59,13 +61,13 @@ public class Lesson5 {
      */
     public static ServiceWrapper<HotelService> svc = new ServiceWrapper<HotelService>(WSDLService.HOTEL_WSDL, HotelService.class);
 
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws FileNotFoundException {
         //the hotel search parametrs
         int numAdults=2, numRooms=1, distanceInKm=25, maxScreens=4;
-        int daysToCheckin = 7, daysToDeparture = 9;
+        int daysToCheckin = 30, daysToDeparture = 32;
         TypeHotelReferencePoint pointOfInterestName=new TypeHotelReferencePoint();
-        pointOfInterestName.setValue("GOLDEN GATE BRIDGE");
-        String city = "SFO";
+        pointOfInterestName.setValue("EIFFEL TOWER");
+        String city = "PAR";
 
         //again, normally this is hidden inside the WSDLService code, this is 
         //just to show how it works
@@ -133,9 +135,9 @@ public class Lesson5 {
             
             
             mods.setRateRuleDetail(TypeRateRuleDetail.COMPLETE);
-            if(Lesson4.getRateSupplier() != null){
+            /*if(Lesson4.getRateSupplier() != null){
             	mods.setRateSupplier(Lesson4.getRateSupplier());
-            }
+            }*/
             
             //put the modifiers in place
             deetReq.setHotelDetailsModifiers(mods);
@@ -244,6 +246,9 @@ public class Lesson5 {
             //now do a booking
             HotelCreateReservationReq req = new HotelCreateReservationReq();
             
+            req.setUniversalRecordLocatorCode("Use the locator Code retrieved from Air Reservation");
+            req.setVersion(new BigInteger("version"));//"Use the universalRecord version retrieved from Air Reservation"
+            
             //only the name and phone are required, but really should be 
             //supplying more data
             //adding traveler 1
@@ -320,7 +325,8 @@ public class Lesson5 {
             
             GregorianCalendar c1 = new GregorianCalendar();
             String dob1 = "1969-06-15";
-            Date date1 = new Date();
+            @SuppressWarnings("unused")
+			Date date1 = new Date();
 			try {
 				date1 = new SimpleDateFormat("yyyy-MM-dd").parse(dob1);
 			} catch (ParseException e1) {
@@ -383,7 +389,9 @@ public class Lesson5 {
             
             
             //put the rate in that we found was the lowest (from result of details request)
-            req.setHotelRateDetail(lowestRate);
+            req.getHotelRateDetail().add(lowestRate);   
+            
+            
             
             //put in the hotel we wanted (from result of details request)
             req.setHotelProperty(property);
@@ -413,8 +421,7 @@ public class Lesson5 {
             System.out.println("Universal Record Locator: "+rec.getLocatorCode());
             HotelReservation rez = rec.getHotelReservation().get(0);
             System.out.println("Hotel reservation Code  : "+rez.getLocatorCode());
-            System.out.println("Hotel Total Cost        : "+
-                    rez.getHotelRateDetail().getTotal());
+            System.out.println("Hotel Total Cost        : "+ rez.getHotelRateDetail().get(0).getTotal());
             for (String msg : rez.getSellMessage()) {
                 System.out.println("                        : "+msg);
 
@@ -423,7 +430,7 @@ public class Lesson5 {
             System.err.println("unable to parse hotel price: " + e.getMessage());
         } catch (HotelFaultMessage e) {
             System.err.println("error reading hotel data: " + e.getMessage());
-        } catch (com.travelport.service.universal_v29_0.HotelFaultMessage e) {
+        } catch (com.travelport.service.universal_v35_0.HotelFaultMessage e) {
 			// TODO Auto-generated catch block
         	System.err.println("error in service: " + e.getMessage());
 		}

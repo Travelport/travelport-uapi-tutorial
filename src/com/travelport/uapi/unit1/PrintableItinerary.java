@@ -6,14 +6,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import com.travelport.schema.air_v29_0.AirPricingSolution;
-import com.travelport.schema.air_v29_0.AirSegmentRef;
-import com.travelport.schema.air_v29_0.TypeBaseAirSegment;
-import com.travelport.schema.rail_v29_0.RailJourney;
-import com.travelport.schema.rail_v29_0.RailJourneyRef;
-import com.travelport.schema.rail_v29_0.RailPricingSolution;
-import com.travelport.schema.rail_v29_0.RailSegment;
-import com.travelport.schema.rail_v29_0.RailSegmentRef;
+import com.travelport.schema.air_v35_0.AirPricingSolution;
+import com.travelport.schema.air_v35_0.AirSegmentRef;
+import com.travelport.schema.air_v35_0.TypeBaseAirSegment;
+import com.travelport.schema.rail_v35_0.RailJourney;
+import com.travelport.schema.rail_v35_0.RailJourneyRef;
+import com.travelport.schema.rail_v35_0.RailPricingSolution;
+import com.travelport.schema.rail_v35_0.RailSegment;
+import com.travelport.schema.rail_v35_0.RailSegmentRef;
 
 /**
  * Utility class for making a decent-looking display out of an itinerary.

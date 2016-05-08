@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<definitions name="SystemService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/system_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/system_v32_0"
+             xmlns:common="http://www.travelport.com/schema/common_v32_0"
+             targetNamespace="http://www.travelport.com/service/system_v32_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/system_v32_0">
+            <include schemaLocation="System.xsd"/>
+        </schema>
+    </types>
+
+    <!--<import namespace="http://www.travelport.com/schema/system/v1.0" location="System.xsd" />
+    <import namespace="http://www.travelport.com/schema/200809" location="General.xsd" />-->
+
+    <message name="SystemPingRequest">
+        <part name="parameters" element="ns1:PingReq" />
+    </message>
+
+    <message name="SystemPingResponse">
+        <part name="result" element="ns1:PingRsp" />
+    </message>
+
+    <message name="SystemTimeRequest">
+        <part name="parameters" element="ns1:TimeReq" />
+    </message>
+
+    <message name="SystemTimeResponse">
+        <part name="result" element="ns1:TimeRsp" />
+    </message>
+
+    <message name="SystemInfoRequest">
+        <part name="parameters" element="ns1:SystemInfoReq" />
+    </message>
+
+    <message name="SystemInfoResponse">
+        <part name="result" element="ns1:SystemInfoRsp" />
+    </message>
+
+	<message name="SystemFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+    
+    <message name="ExternalCacheAccessReq">
+        <part name="parameters" element="ns1:ExternalCacheAccessReq" />
+    </message>
+
+    <message name="ExternalCacheAccessRsp">
+        <part name="result" element="ns1:ExternalCacheAccessRsp" />
+    </message>
+
+    <portType name="SystemPingPortType">
+        <operation name="service">
+            <input message="tns:SystemPingRequest" />
+            <output message="tns:SystemPingResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="SystemInfoPortType">
+        <operation name="service">
+            <input message="tns:SystemInfoRequest" />
+            <output message="tns:SystemInfoResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="SystemTimePortType">
+        <operation name="service">
+            <input message="tns:SystemTimeRequest" />
+            <output message="tns:SystemTimeResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+        <portType name="ExternalCacheAccessPortType">
+        <operation name="service">
+            <input message="tns:ExternalCacheAccessReq" />
+            <output message="tns:ExternalCacheAccessRsp" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    
+
+</definitions>

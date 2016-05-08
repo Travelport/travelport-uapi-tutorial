@@ -1,7 +1,14 @@
 package com.travelport.tutorial.support;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.ws.BindingProvider;
 
@@ -9,6 +16,8 @@ import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.message.Message;
+import org.apache.cxf.transport.common.gzip.GZIPInInterceptor;
 
 /**
  * This is an attempt to create a type-safe wrapper around a "Port" in the sense
@@ -23,7 +32,7 @@ import org.apache.cxf.interceptor.LoggingOutInterceptor;
  * @param <P>  Type of the Port
  * @param <S>  Type of the Service
  */
-public class PortWrapper<P,S> {
+public class PortWrapper<P,S>{
     protected P port;
     protected ServiceWrapper<S> serviceWrapper;
     protected String getterName;
@@ -102,18 +111,21 @@ public class PortWrapper<P,S> {
         provider.getRequestContext().put(BindingProvider.USERNAME_PROPERTY,
                 user);
         provider.getRequestContext().put(BindingProvider.PASSWORD_PROPERTY,
-                pwd);
-                
+                pwd);     
+        Map<String, List<String>> headers = new HashMap<String, List<String>>();
+        //headers.put("Accept-Encoding", Arrays.asList("gzip,deflate"));
+        //headers.put("Accept", Arrays.asList("gzip"));
+        //headers.put("Transfer-Encoding", Arrays.asList("gzip"));
+        provider.getRequestContext().put(Message.PROTOCOL_HEADERS, headers);   
+      
+        provider.getRequestContext().put("schema-validation-enabled", "true");       
         
-        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_CONTENT_TYPE, "text/xml;charset=UTF-8");
-        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_ACCEPT_ENCODING, "gzip,deflate");
-        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_CONNECTION, "Keep-Alive");
-        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_CONTENT_LENGTH, "length");
-        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_POST, "POST");
-        provider.getRequestContext().put(org.apache.axis.transport.http.HTTPConstants.HEADER_PROTOCOL_11, "HTTP/1.1");
-
         
-        provider.getRequestContext().put("schema-validation-enabled", "true"); 
+        /*Map<String, List<String>> rspHeaders = new HashMap<String, List<String>>();
+        rspHeaders.put("Content-Encoding", Arrays.asList(URLEncoder.encode("gzip")));
+        rspHeaders.put("Transfer-Encoding", Arrays.asList("gzip"));
+        //rspHeaders.put("Vary",Arrays.asList(URLEncoder.encode("")));
+        provider.getResponseContext().put(Message.PROTOCOL_HEADERS, rspHeaders);*/
 
     }
 
@@ -122,23 +134,30 @@ public class PortWrapper<P,S> {
      * port because there isn't any easy way to add a method to that object.
      * 
      * @param show true if you want xml output turned on
+     * @throws FileNotFoundException 
      */
-    public void showXML(boolean show) {
+    public void showXML(boolean show) throws FileNotFoundException {
         if (port==null) {
             init();
         }
+        
+        File newFile = new File("C:\\LogginInOut.txt");
+        PrintWriter printWriter = new PrintWriter(newFile);
 
         Client cl = ClientProxy.getClient(port);
         if (show) {
             if (!currentlyShown) {
                 //System.out.println("ADDED INTERCEPTORS:"+cl.getClass());
-
+            	in = new LoggingInInterceptor(printWriter);
+            	out = new LoggingOutInterceptor(printWriter);
+            	cl.getInInterceptors().add(new GZIPInInterceptor());
                 cl.getInInterceptors().add(in);
                 cl.getOutInterceptors().add(out);
                 currentlyShown=true;
             }       
         } else {
             if (currentlyShown) {
+            	cl.getInInterceptors().remove(new GZIPInInterceptor());
                 cl.getInInterceptors().remove(in);
                 cl.getOutInterceptors().remove(out);
                 currentlyShown=false;

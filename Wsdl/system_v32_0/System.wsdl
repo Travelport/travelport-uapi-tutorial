@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<definitions name="SystemService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/system_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/system_v32_0"
+             targetNamespace="http://www.travelport.com/service/system_v32_0">
+
+    <import namespace="http://www.travelport.com/service/system_v32_0"
+            location="SystemAbstract.wsdl" />
+
+    <binding name="SystemPingBinding" type="tns:SystemPingPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SystemService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SystemTimeBinding" type="tns:SystemTimePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SystemService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="SystemInfoBinding" type="tns:SystemInfoPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SystemService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+<binding name="ExternalCacheAccessBinding" type="tns:ExternalCacheAccessPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ExternalCacheAccessService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    
+	<!--  Service -->
+
+  <service name="ExternalCacheAccessService">
+        <port name="ExternalCacheAccessPort" binding="tns:ExternalCacheAccessBinding">
+            <soap:address location="http://localhost:8080/kestrel/ExternalCacheAccessService" />
+        </port>
+    </service>
+    <service name="SystemService">       
+        <port name="SystemPingPort" binding="tns:SystemPingBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SystemService" />
+        </port>
+        <port name="SystemInfoPort" binding="tns:SystemInfoBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SystemService" />
+        </port>
+        <port name="SystemtimePort" binding="tns:SystemTimeBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SystemService" />
+        </port>
+    </service>
+
+</definitions>

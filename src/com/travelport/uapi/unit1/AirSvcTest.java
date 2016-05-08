@@ -1,7 +1,9 @@
 package com.travelport.uapi.unit1;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertThat;
 
 import java.math.BigInteger;
 import java.text.ParseException;
@@ -9,9 +11,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v29_0.*;
-import com.travelport.schema.common_v29_0.BaseReq;
-import com.travelport.service.air_v29_0.AirFaultMessage;
+import com.travelport.schema.air_v35_0.AirSearchModifiers;
+import com.travelport.schema.air_v35_0.AvailabilitySearchReq;
+import com.travelport.schema.air_v35_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v35_0.LowFareSearchReq;
+import com.travelport.schema.air_v35_0.LowFareSearchRsp;
+import com.travelport.schema.air_v35_0.SearchAirLeg;
+import com.travelport.schema.common_v35_0.BaseReq;
+import com.travelport.service.air_v35_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class AirSvcTest {
@@ -57,6 +64,7 @@ public class AirSvcTest {
 
 
 
+	@SuppressWarnings("unused")
 	@Test
 	public void lowFareSearch() throws ParseException, AirFaultMessage {
 		LowFareSearchReq request = new LowFareSearchReq();

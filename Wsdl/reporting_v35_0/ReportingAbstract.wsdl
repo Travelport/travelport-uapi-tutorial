@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="ReportingService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/reporting_v35_0"
+             xmlns:ns1="http://www.travelport.com/schema/reporting_v35_0"
+             xmlns:common="http://www.travelport.com/schema/common_v35_0"
+             targetNamespace="http://www.travelport.com/service/reporting_v35_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/reporting_v35_0">
+            <include schemaLocation="ReportingReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="UniversalRecordReportRequest">
+        <part name="parameters" element="ns1:UniversalRecordReportReq" />
+    </message>
+	
+    <message name="UniversalRecordReportResponse">
+        <part name="result" element="ns1:UniversalRecordReportRsp" />
+    </message>
+    
+    <message name="ProfileMigrationSyncReportRequest">
+        <part name="parameters" element="ns1:ProfileMigrationSyncReportReq" />
+    </message>
+    
+    <message name="ProfileMigrationSyncReportResponse">
+        <part name="result" element="ns1:ProfileMigrationSyncReportRsp" />
+    </message>
+    
+	<message name="ReportingFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+    
+    <!-- Port Type -->
+    <portType name="UniversalRecordReportPortType">
+        <operation name="service">
+            <input message="tns:UniversalRecordReportRequest" />
+            <output message="tns:UniversalRecordReportResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ReportingFaultMessage" />            
+        </operation>
+    </portType>
+        
+    <portType name="ProfileMigrationSyncReportPortType">
+        <operation name="service">
+            <input message="tns:ProfileMigrationSyncReportRequest" />
+            <output message="tns:ProfileMigrationSyncReportResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ReportingFaultMessage" />            
+        </operation>
+   </portType>
+</definitions>

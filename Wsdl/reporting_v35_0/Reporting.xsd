@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/reporting_v35_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v35_0" targetNamespace="http://www.travelport.com/schema/reporting_v35_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.travelport.com/schema/common_v35_0" schemaLocation="../common_v35_0/Common.xsd"/>
+    <!--  Start Profile Reports-->
+    <xs:element name="ProfileCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Account or Traveler Profile Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ExpirationDateRange"/>
+            </xs:sequence>
+            <xs:attribute name="ProfileType" type="typeProfile" use="required">
+                <xs:annotation>
+                    <xs:documentation>This identifies if the report request is for Account profile or Traveler profile.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ExpirationDateRange">
+        <xs:annotation>
+            <xs:documentation>This will contain date range depending on the DateRangeType.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:typeDateRange">
+                    <xs:attribute name="DateRangeType" type="typeDateRangeType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>This will contain the identifier for different types of date range.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProfileResult">
+        <xs:annotation>
+            <xs:documentation>This is the response container for  Account or Traveler Profile Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ProfileInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProfileInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Profile" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="PhoneNumber" type="typePhone" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="Email" minOccurs="0" maxOccurs="unbounded">
+                   <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                      <xs:maxLength value="255"/>
+                      <xs:minLength value="1"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attributeGroup ref="attrProfile"/>
+        </xs:complexType>
+    </xs:element>
+    <!--  End Profile Reports-->
+    <!--  Start UR Ticketed Non Ticketed Reports-->
+    <xs:element name="UniversalRecordCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Ticketed or Un Ticketed UR Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSearchCriteria">
+                    <xs:sequence>
+                        <xs:element name="TicketedDepartureDateRange" type="common:typeDateRange">
+                            <xs:annotation>
+                                <xs:documentation>This contains Ticketing or Departure date range. If the IncludeTicketedUR is true then it will contain Ticketing Date Range else the Departure Date Range.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                   <xs:attribute name="TicketStatus" type="common:URTicketStatus">
+                     <xs:annotation>
+                          <xs:documentation>To filter UR based on ticket status . If not  passed in request, api response will include UR with all types of ticket  status.</xs:documentation>
+                     </xs:annotation>
+                   </xs:attribute>
+                   <xs:attribute name="ServiceFeeStatus" type="common:typeStatus" use="optional">
+                   	 <xs:annotation>
+                          <xs:documentation>To filter UR based on service fee status . If not  passed in request, api response will include UR with all types of service fee status.</xs:documentation>
+                     </xs:annotation>
+                   </xs:attribute>                    
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UniversalRecordResult">
+        <xs:annotation>
+            <xs:documentation>This is the response container for Ticketed or Un Ticketed UR Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="URInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="URInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSegmentInfo">
+                    <xs:attribute name="DepartureDateTime" type="xs:string" use="required"/>
+                    <xs:attribute name="ArrivalDateTime" type="xs:string"/>
+                    <xs:attribute name="TicketStatus" type="common:URTicketStatus" use="required">
+                       <xs:annotation>
+                         <xs:documentation>Ticket status of UR</xs:documentation>
+                       </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ServiceFeeStatus" type="common:typeStatus" use="optional">
+                   	 <xs:annotation>
+                          <xs:documentation>The status of the service Fees.</xs:documentation>
+                     </xs:annotation>
+                   </xs:attribute>                    
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--  End UR Ticketed Non Ticketed Reports-->
+    <!--  Start Car Segment Report-->
+    <xs:element name="CarSegmentCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Car Segment Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSearchCriteria">
+                    <xs:sequence>
+                        <xs:element name="PickUpDateRange" type="common:typeDateRange">
+                            <xs:annotation>
+                                <xs:documentation>This contains Car PickUp date range.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="Status" type="xs:string" use="optional"/>
+                    <xs:attribute name="SupplierCode">
+                    <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                             <xs:maxLength value="20" />
+                             <xs:minLength value="2" />
+                         </xs:restriction>
+                      </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="PickUpLocation">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="30"/>
+                          <xs:minLength value="3"/>
+                        </xs:restriction>
+                       </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="SegmentType" type="typeSegment" default="All">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the report request if for Active or Passive segments.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CarSegmentResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="CarSegmentInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CarSegmentInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSegmentInfo">
+                    <xs:attribute name="PickUpDateTime" type="xs:string" use="optional"/>
+                    <xs:attribute name="DropOffDateTime" type="xs:string" use="optional"/>
+                    <xs:attribute name="PickUpLocation" use="optional">
+                    <xs:simpleType>
+                         <xs:restriction base="xs:string">
+                           <xs:maxLength value="30"/>
+                           <xs:minLength value="3"/>
+                         </xs:restriction>
+                       </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="Status" type="xs:string" use="optional"/>
+                    <xs:attribute name="SegmentType" type="typeSegment" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the report request if for Active or Passive segments.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--  End Car Segment Report-->
+    <!--  Start Hotel Segment Report-->
+    <xs:element name="HotelSegmentCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Hotel Segment Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSearchCriteria">
+                    <xs:sequence>
+                        <xs:element name="CheckInDateRange" type="common:typeDateRange">
+                            <xs:annotation>
+                                <xs:documentation>This contains Hotel CheckIn date range.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Status" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="HotelChain" minOccurs="0" maxOccurs="unbounded">
+                              <xs:simpleType>
+                             <xs:restriction base="xs:string">
+                               <xs:maxLength value="20"/>
+                               <xs:minLength value="2"/>
+                             </xs:restriction>
+                           </xs:simpleType>                      
+                        </xs:element>
+                        <xs:element name="HotelLocation" type="common:typeIATACode" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>The IATA location code for this entity.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="SegmentType" type="typeSegment" default="All">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the report request if for Active or Passive segments.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelSegmentResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelSegmentInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelSegmentInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSegmentInfo">
+                    <xs:attribute name="CheckInDateTime" type="xs:string" use="optional"/>
+                    <xs:attribute name="CheckOutDateTime" type="xs:string" use="optional"/>
+                    <xs:attribute name="HotelLocation" type="common:typeIATACode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>The IATA location code for this entity.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Status" type="xs:string" use="optional"/>
+                    <xs:attribute name="PropertyName" type="xs:string" use="optional"/>
+                    <xs:attribute name="SegmentType" type="typeSegment" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the report request is for Active or Passive segments..</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--  End Hotel Segment Report-->
+    <!--  Start Other Segment Report-->
+    <xs:element name="OtherSegmentCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Other Segment Report.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSearchCriteria">
+                    <xs:sequence>
+                        <xs:element name="DepartureDateRange" type="common:typeDateRange"/>
+                    </xs:sequence>
+                    <xs:attribute name="Status" type="xs:string" use="optional"/>
+                    <xs:attribute name="SupplierName" type="typeWildcard" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This is the supplier name.It supports wildcard charactor.Wildcard character is asterisk (*). Wildcard character can be specified at beginning and/or end of string. Wildcard in middle of string is treated as a normal character, not a wildcard. If no wildcard character is provided, one is assumed at end of string.
+          </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Location" type="xs:string" use="optional"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OtherSegmentResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="OtherSegmentInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OtherSegmentInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSegmentInfo">
+                    <xs:attribute name="StartDateTime" type="xs:string" use="optional"/>
+                    <xs:attribute name="EndDateTime" type="xs:string" use="optional"/>
+                    <xs:attribute name="OtherSegmentType" type="xs:string" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This will contain values for different types of segments other than air,hotel,car,rail.e.g TUR,CRU,ATX etc.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--  End Other Segment Report-->
+    <!--  Start AgentWorkHistory Report-->
+    <xs:element name="AgentWorkHistoryCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Agent Work History Report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSearchCriteria">
+                    <xs:sequence>
+                        <xs:element name="ActionDateRange" type="common:typeDateRange"/>
+                    </xs:sequence>
+                    <xs:attribute name="TicketStatus" type="common:URTicketStatus">
+                        <xs:annotation>
+                           <xs:documentation>To filter UR based on ticket status . If not  passed in request, api response will include UR with all types of ticket  status.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute> 
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AgentWorkHistoryResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AgentWorkHistoryInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AgentWorkHistoryInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Agent" minOccurs="0"/>
+                <xs:element ref="ActionInfo"/>
+                <xs:element ref="Traveler" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="TicketingInfo" minOccurs="0"/>
+                <xs:element ref="SaveTripInfo" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode">
+                <xs:annotation>
+                    <xs:documentation>Contains the Locator Code of the Universal Record.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="WorkFlow" type="xs:string" use="optional"/>
+            <xs:attribute name="URCreatedDateTime" type="xs:string" use="optional"/>
+            <xs:attribute name="RecordStatus" type="common:typeRecordStatus">
+                <xs:annotation>
+                    <xs:documentation>Status of Universal Record e.g. Current,Past or Canceled.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ActionInfo">
+        <xs:complexType>
+            <xs:attribute name="ActionCode" type="xs:string" use="optional"/>
+            <xs:attribute name="ActionName" type="xs:string" use="optional"/>
+            <xs:attribute name="ActionDateTime" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="TicketingInfo">
+        <xs:complexType>            
+            <xs:attribute name="LastTicketedDateTime" type="xs:string" use="optional"/>
+            <xs:attribute name="TicketStatus" type="common:URTicketStatus" use="required">
+              <xs:annotation>
+                 <xs:documentation>Ticket status of UR.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>         
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SaveTripInfo">
+        <xs:complexType>
+            <xs:attribute name="Name" type="xs:string" use="optional"/>
+            <xs:attribute name="LocatorCode" type="common:typeLocatorCode" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <!--  End AgentWorkHistory Report-->
+    <!--  Start FlightRailSegment Report-->
+    <xs:element name="AirRailSegmentCriteria">
+        <xs:annotation>
+            <xs:documentation>This is the request container for Air and Rail Segment Report.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSearchCriteria">
+                    <xs:sequence>
+                        <xs:element name="DepartureDateRange" type="common:typeDateRange">
+                            <xs:annotation>
+                                <xs:documentation>This contains Air or Rail departure date range.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="SupplierCode" type="common:typeSupplierCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This contains flight marketing carrier code or a rail supplier code.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="FlightTrainNumber " use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This contains flight marketing flight number or a train number.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="20"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="Status" type="xs:string" use="optional"/>
+                    <xs:attribute name="Origin" type="common:typeIATACode" use="optional"/>
+                    <xs:attribute name="Destination" type="common:typeIATACode" use="optional"/>
+                    <xs:attribute name="ProductType" type="typeReportingProduct" default="All">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the report request is for Air segment or Rail segment.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="SegmentType" type="typeSegment" default="All">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the report request if for Active or Passive segments.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AirRailSegmentResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AirRailSegmentInfo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AirRailSegmentInfo">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseSegmentInfo">
+                    <xs:attributeGroup ref="attrGrpOrigDestInfo"/>
+                    <xs:attribute name="Status" type="xs:string" use="optional"/>
+                    <xs:attribute name="ProductType" type="typeReportingProduct" use="optional"/>
+                    <xs:attribute name="SegmentType" type="typeSegment" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This value identifies if the segment is Active or Passive.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:attributeGroup name="attrGrpOrigDestInfo">
+        <xs:annotation>
+            <xs:documentation>Basic attributes used to describe an origin destination pair</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="Origin" type="common:typeIATACode" use="optional">
+            <xs:annotation>
+                <xs:documentation>The IATA location code for this origination of this entity.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="Destination" type="common:typeIATACode" use="optional">
+            <xs:annotation>
+                <xs:documentation>The IATA location code for this destination of this entity.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="DepartureTime" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>The date and time at which this entity departs. This does not include time zone information since it can be derived from the origin location.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ArrivalTime" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>The date and time at which this entity arrives at the destination. This does not include time zone information since it can be derived from the origin location.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>    
+    <!--  End FlightRailSegment Report-->
+    <xs:element name="ReservationDetails">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Traveler" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="Provider" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="Supplier" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Supplier">
+        <xs:complexType>
+            <xs:attribute name="Code" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>This contains code of a supplier. This is optional potentially for SDK.</xs:documentation>
+                        </xs:annotation>
+                       <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="20"/>
+                            <xs:minLength value="2"/>
+                         </xs:restriction>
+                       </xs:simpleType>
+                    </xs:attribute>
+            <xs:attribute name="Name" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Provider">
+        <xs:complexType>
+            <xs:attribute name="Code" type="common:typeProviderCode" use="optional"/>
+            <xs:attribute name="LocatorCode" type="common:typeProviderLocatorCode" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Traveler">
+        <xs:complexType>
+            <xs:attribute name="ProfileId" type="xs:string" use="optional"/>
+            <xs:attribute name="Prefix" type="xs:string" use="optional"/>
+            <xs:attribute name="FirstName" type="xs:string" use="optional"/>
+            <xs:attribute name="Middle" type="xs:string" use="optional"/>
+            <xs:attribute name="LastName" type="xs:string" use="optional"/>
+            <xs:attribute name="Suffix" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="BaseSearchCriteria">
+        <xs:sequence>
+            <xs:element ref="Agency"/>
+            <xs:element ref="Agent" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Account" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="Branch" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>This Branch is the booking branch.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="AgentAccountDetails">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Agent" minOccurs="0"/>
+                <xs:element ref="Account" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Agent">
+        <xs:complexType>
+            <xs:attribute name="ProfileId" type="common:typeProfileID" use="optional"/>
+            <xs:attribute name="FirstName" type="xs:string" use="optional"/>
+            <xs:attribute name="LastName" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Agency">
+        <xs:complexType>
+            <xs:attribute name="ProfileId" type="common:typeProfileID" use="required"/>
+            <xs:attribute name="AgencyName" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Account">
+        <xs:complexType>
+            <xs:attribute name="ProfileId" type="common:typeProfileID" use="optional"/>
+            <xs:attribute name="AccountCode" type="xs:string" use="optional"/>
+            <xs:attribute name="AccountName" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Branch">
+        <xs:complexType>
+            <xs:attribute name="ProfileId" type="common:typeProfileID" use="required"/>
+            <xs:attribute name="BranchCode" type="xs:string" use="optional"/>
+            <xs:attribute name="BranchName" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="BaseSegmentInfo">
+        <xs:sequence>
+            <xs:element ref="ReservationDetails" minOccurs="0"/>
+            <xs:element ref="AgentAccountDetails" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode" use="required">
+            <xs:annotation>
+                <xs:documentation>Contains the Locator Code of the Universal Record .</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="RecordStatus" type="common:typeRecordStatus">
+            <xs:annotation>
+                <xs:documentation>Status of Universal Record e.g. Current,Past or Canceled.</xs:documentation>              
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:attributeGroup name="attrProfile">
+        <xs:attribute name="Name" type="xs:string" use="optional"/>
+        <xs:attribute name="DateTime" type="xs:string" use="optional"/>
+        <xs:attribute name="ProfileType" type="typeProfile" use="required">
+            <xs:annotation>
+                <xs:documentation>This identifies if the report request is for Account profile or Traveler profile.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:element name="Profile">
+        <xs:complexType>
+            <xs:attribute name="ProfileId" type="xs:string" use="required"/>
+            <xs:attribute name="ProfileName" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="typeProfile">
+        <xs:annotation>
+            <xs:documentation>Different types of Profile.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Account"/>
+            <xs:enumeration value="Traveler"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeDateRangeType">
+        <xs:annotation>
+            <xs:documentation>Different types of date criteria that can be used for report generation.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CreditCard"/>
+            <xs:enumeration value="Passport"/>
+            <xs:enumeration value="Visa"/>
+            <xs:enumeration value="LastActivity"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeSegment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Active"/>
+            <xs:enumeration value="Passive"/>
+            <xs:enumeration value="All"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeReportingProduct">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Air"/>
+            <xs:enumeration value="Rail"/>
+            <xs:enumeration value="All"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typePhone">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="64"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeWildcard">
+        <xs:annotation>
+            <xs:documentation>Wildcard character is asterisk (*). Wildcard character can be specified at beginning and/or end of string. Wildcard in middle of string is treated as a normal character, not a wildcard. If no wildcard character is provided, one is assumed at end of string.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="80"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeMoreResults">
+        <xs:annotation>
+            <xs:documentation>This identifies if there is more data in the database than what is returned.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:boolean"/>
+    </xs:simpleType>
+   <xs:element name="ProfileReportFilterCritiera">
+       <xs:annotation>
+           <xs:documentation>This container for Profile Report Filter.</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:attribute name="PrimaryIdentifier" type="common:StringLength1to50" use="optional">
+               <xs:annotation>
+                   <xs:documentation>PCC in case of host Profiles, Account Name/Traveler Name in case of TDS profiles.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute> 
+           <xs:attribute name="FileName" type="common:StringLength1to128" use="optional">
+               <xs:annotation>
+                   <xs:documentation>CSV File name.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="SecondaryIdentifier" type="common:StringLength1to50" use="optional">
+               <xs:annotation>
+                   <xs:documentation>Account in case of host Profiles.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="ReportStartDate" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                   <xs:documentation>The start date of the migration/sync report.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="ReportEndDate" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                   <xs:documentation>The end date of the migration/sync report.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="ExternalSystem" type="common:StringLength1to10" use="required">
+               <xs:annotation>
+                   <xs:documentation>In Migration report, ExternalSystem to indicate the origin of Profiles. In Sync report, ExternalSystem to indicate where the Profiles have been synced. e.g -1G,1V,1P,CSV,TDS</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+            <xs:attribute name="FailedProfilesOnlyInd" type="xs:boolean" use="optional" default="false">
+               <xs:annotation>
+                   <xs:documentation>When marked true, this will pull records of only failed Profiles during migration/sync to the uProfile system. False will return entire result.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+       </xs:complexType>
+   </xs:element>
+
+    <xs:element name="FilterModifiers">
+       <xs:annotation>
+           <xs:documentation>Specify the range of filter result. If omitted, the defaults for each attributes are used.</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+            <xs:attribute name="MaxResults" type="common:typeMaxResults1to100" use="optional" default="20">
+               <xs:annotation>
+                   <xs:documentation>Limits the number of search results in the response. Note that performance may decline when a large number of results are requested.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="StartFromResult" type="common:typeStartFromResult" use="optional" default="1">
+               <xs:annotation>
+                   <xs:documentation>The starting search index of the results returned. Used to browse beyond the initial search results.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+       </xs:complexType>
+   </xs:element>
+
+   <xs:element name="ProfileReportDetails">
+      <xs:annotation>
+           <xs:documentation>This is the request container for Account or Traveler Profile Report</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:sequence>
+               <xs:element name="ErrorInfo" type="common:StringLength1to1000" minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                      <xs:documentation>Description of the any error captured during processing of the migration or sync reporting.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+           </xs:sequence>
+           <xs:attribute name="ExternalSystem" type="common:StringLength1to10" use="optional">
+              <xs:annotation>
+                  <xs:documentation>The ExternalSystem will indicate for which host system the report is being generated.</xs:documentation>
+                 </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="ExternalSystemProfileID" type="common:StringLength1to100" use="optional">
+               <xs:annotation>
+                   <xs:documentation>The Profile Id of the External system. e.g. BAR/PAR title for Host ,Account Number for TDS, File Name for CSV</xs:documentation>
+               </xs:annotation>
+           </xs:attribute> 
+           <xs:attribute name="ProfileID" type="common:StringLength1to10" use="optional">
+               <xs:annotation>
+                   <xs:documentation>The system-assigned, unique ID of the profile.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="Status" type="common:StringLength1to128" use="optional">
+               <xs:annotation>
+                   <xs:documentation>Status of the migration/sync report.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="ProfileType" type="xs:string" use="optional">
+               <xs:annotation>
+                   <xs:documentation>Specify the Profile Type (limited to only the ones where Profile Identifier is relevant)</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="JobID" type="common:StringLength1to128" use="optional">
+               <xs:annotation>
+                   <xs:documentation>JobID that will used to identify a specific migration process.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+           <xs:attribute name="Date" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                   <xs:documentation>Date of migrated or synced profiles.</xs:documentation>
+               </xs:annotation>
+           </xs:attribute>
+       </xs:complexType>
+   </xs:element>
+</xs:schema>

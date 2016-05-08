@@ -1,5 +1,6 @@
 package com.travelport.uapi.unit2;
 
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,45 +14,45 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.travelport.schema.common_v29_0.CreditCard;
-import com.travelport.schema.common_v29_0.Distance;
-import com.travelport.schema.common_v29_0.HostToken;
-import com.travelport.schema.common_v29_0.NextResultReference;
-import com.travelport.schema.common_v29_0.PermittedProviders;
-import com.travelport.schema.common_v29_0.Provider;
-import com.travelport.schema.common_v29_0.State;
-import com.travelport.schema.common_v29_0.TypeReserveRequirement;
-import com.travelport.schema.common_v29_0.TypeStructuredAddress;
-import com.travelport.schema.common_v29_0.TypeVehicleClass;
-import com.travelport.schema.common_v29_0.TypeVehicleLocation;
-import com.travelport.schema.common_v29_0.TypeVehicleTransmission;
-import com.travelport.schema.hotel_v29_0.BaseHotelSearchRsp;
-import com.travelport.schema.hotel_v29_0.HotelLocation;
-import com.travelport.schema.hotel_v29_0.HotelMediaLinksReq;
-import com.travelport.schema.hotel_v29_0.HotelProperty;
-import com.travelport.schema.hotel_v29_0.HotelRating;
-import com.travelport.schema.hotel_v29_0.HotelSearchAvailabilityReq;
-import com.travelport.schema.hotel_v29_0.HotelSearchLocation;
-import com.travelport.schema.hotel_v29_0.HotelSearchModifiers;
-import com.travelport.schema.hotel_v29_0.HotelSearchResult;
-import com.travelport.schema.hotel_v29_0.HotelStay;
-import com.travelport.schema.hotel_v29_0.RateInfo;
-import com.travelport.schema.hotel_v29_0.TypeHotelAvailability;
-import com.travelport.schema.hotel_v29_0.TypeHotelLocation;
-import com.travelport.schema.hotel_v29_0.TypeHotelReferencePoint;
-import com.travelport.schema.vehicle_v29_0.TypeRateAvailability;
-import com.travelport.schema.vehicle_v29_0.Vehicle;
-import com.travelport.schema.vehicle_v29_0.VehicleDateLocation;
-import com.travelport.schema.vehicle_v29_0.VehicleModifier;
-import com.travelport.schema.vehicle_v29_0.VehicleRate;
-import com.travelport.schema.vehicle_v29_0.VehicleSearchAvailabilityReq;
-import com.travelport.schema.vehicle_v29_0.VehicleSearchAvailabilityRsp;
-import com.travelport.schema.vehicle_v29_0.VehicleSearchModifiers;
-import com.travelport.service.hotel_v29_0.HotelFaultMessage;
-import com.travelport.service.hotel_v29_0.HotelMediaLinksServicePortType;
-import com.travelport.service.hotel_v29_0.HotelSearchServicePortType;
-import com.travelport.service.vehicle_v29_0.VehicleFaultMessage;
-import com.travelport.service.vehicle_v29_0.VehicleSearchServicePortType;
+import com.travelport.schema.common_v35_0.CreditCard;
+import com.travelport.schema.common_v35_0.Distance;
+import com.travelport.schema.common_v35_0.HostToken;
+import com.travelport.schema.common_v35_0.NextResultReference;
+import com.travelport.schema.common_v35_0.PermittedProviders;
+import com.travelport.schema.common_v35_0.Provider;
+import com.travelport.schema.common_v35_0.State;
+import com.travelport.schema.common_v35_0.TypeReserveRequirement;
+import com.travelport.schema.common_v35_0.TypeStructuredAddress;
+import com.travelport.schema.common_v35_0.TypeVehicleClass;
+import com.travelport.schema.common_v35_0.TypeVehicleLocation;
+import com.travelport.schema.common_v35_0.TypeVehicleTransmission;
+import com.travelport.schema.hotel_v35_0.BaseHotelSearchRsp;
+import com.travelport.schema.hotel_v35_0.HotelLocation;
+import com.travelport.schema.hotel_v35_0.HotelMediaLinksReq;
+import com.travelport.schema.hotel_v35_0.HotelProperty;
+import com.travelport.schema.hotel_v35_0.HotelRating;
+import com.travelport.schema.hotel_v35_0.HotelSearchAvailabilityReq;
+import com.travelport.schema.hotel_v35_0.HotelSearchLocation;
+import com.travelport.schema.hotel_v35_0.HotelSearchModifiers;
+import com.travelport.schema.hotel_v35_0.HotelSearchResult;
+import com.travelport.schema.hotel_v35_0.HotelStay;
+import com.travelport.schema.hotel_v35_0.RateInfo;
+import com.travelport.schema.hotel_v35_0.TypeHotelAvailability;
+import com.travelport.schema.hotel_v35_0.TypeHotelLocation;
+import com.travelport.schema.hotel_v35_0.TypeHotelReferencePoint;
+import com.travelport.schema.vehicle_v35_0.TypeRateAvailability;
+import com.travelport.schema.vehicle_v35_0.Vehicle;
+import com.travelport.schema.vehicle_v35_0.VehicleDateLocation;
+import com.travelport.schema.vehicle_v35_0.VehicleModifier;
+import com.travelport.schema.vehicle_v35_0.VehicleRate;
+import com.travelport.schema.vehicle_v35_0.VehicleSearchAvailabilityReq;
+import com.travelport.schema.vehicle_v35_0.VehicleSearchAvailabilityRsp;
+import com.travelport.schema.vehicle_v35_0.VehicleSearchModifiers;
+import com.travelport.service.hotel_v35_0.HotelFaultMessage;
+import com.travelport.service.hotel_v35_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v35_0.HotelSearchServicePortType;
+import com.travelport.service.vehicle_v35_0.VehicleFaultMessage;
+import com.travelport.service.vehicle_v35_0.VehicleSearchServicePortType;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
 import com.travelport.uapi.unit1.Helper.VendorLocMap;
@@ -68,13 +69,14 @@ public class Lesson4 {
      * 
      * @param argv
      *            cmd line args
+	 * @throws FileNotFoundException 
      *            
      *            
      *            
      */
 	
 	
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws FileNotFoundException {
 
         // get the port and request, as usual
         HotelSearchServicePortType port = WSDLService.hotelShop.get();
@@ -284,8 +286,8 @@ public class Lesson4 {
 		                	if(info.getMaximumAmount() != null){
 		                		min = Helper.parseNumberWithCurrency(info.getMaximumAmount())/2;
 		                	}
-		                	else if(info.getApproximateAverageMinimumAmount() != null){
-		                		min = Helper.parseNumberWithCurrency(info.getApproximateAverageMinimumAmount())/2;
+		                	else if(info.getApproximateMinimumAmount() != null){
+		                		min = Helper.parseNumberWithCurrency(info.getApproximateMinimumAmount())/2;
 		                	}
 		                	else if(info.getApproximateMaximumAmount() != null){
 		                		min = Helper.parseNumberWithCurrency(info.getApproximateMaximumAmount())/2;
@@ -347,8 +349,9 @@ public class Lesson4 {
      * @param string
      * @return 
      * @throws VehicleFaultMessage
+     * @throws FileNotFoundException 
      */
-    public static VehicleSearchAvailabilityRsp searchVehicle(String airportCode, int daysInFuturePickup, int daysInFutureReturn) throws VehicleFaultMessage {
+    public static VehicleSearchAvailabilityRsp searchVehicle(String airportCode, int daysInFuturePickup, int daysInFutureReturn) throws VehicleFaultMessage, FileNotFoundException {
         VehicleSearchServicePortType port = WSDLService.vehicleSearch.get();
         WSDLService.vehicleSearch.showXML(true);
         
@@ -431,7 +434,7 @@ public class Lesson4 {
 		        		fmt.format("%10s %-10s to %-10s \n", "", ri.getMinimumAmount(), ri.getMaximumAmount());
 		        	}
 		        	else if(ri.getApproximateMinimumStayAmount() != null){
-		        		fmt.format("%10s %-10s to %-10s \n", "", ri.getApproximateMinimumStayAmount(), ri.getApproximateAverageMinimumAmount());
+		        		fmt.format("%10s %-10s to %-10s \n", "", ri.getApproximateMinimumStayAmount(), ri.getApproximateMinimumAmount());
 		        	}
 		        	else if(ri.getApproximateMinimumAmount() != null){
 		        		fmt.format("%10s %-10s to %-10s \n", "", ri.getApproximateMinimumAmount(), ri.getApproximateMaximumAmount());

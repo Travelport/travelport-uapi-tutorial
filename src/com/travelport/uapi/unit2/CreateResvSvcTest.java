@@ -1,5 +1,6 @@
 package com.travelport.uapi.unit2;
 
+import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -12,33 +13,33 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v29_0.AirPricingSolution;
-import com.travelport.schema.air_v29_0.AirReservation;
-import com.travelport.schema.common_v29_0.ActionStatus;
-import com.travelport.schema.common_v29_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v29_0.BookingTraveler;
-import com.travelport.schema.common_v29_0.BookingTravelerName;
-import com.travelport.schema.common_v29_0.ContinuityCheckOverride;
-import com.travelport.schema.common_v29_0.CreditCard;
-import com.travelport.schema.common_v29_0.Email;
-import com.travelport.schema.common_v29_0.FormOfPayment;
-import com.travelport.schema.common_v29_0.Payment;
-import com.travelport.schema.common_v29_0.PhoneNumber;
-import com.travelport.schema.common_v29_0.Remark;
-import com.travelport.schema.universal_v29_0.AirCreateReservationReq;
-import com.travelport.schema.universal_v29_0.AirCreateReservationRsp;
-import com.travelport.schema.universal_v29_0.ProviderReservationInfo;
-import com.travelport.schema.universal_v29_0.TypeRetainReservation;
-import com.travelport.service.air_v29_0.AirFaultMessage;
-import com.travelport.service.universal_v29_0.AirCreateReservationPortType;
-import com.travelport.service.universal_v29_0.AvailabilityFaultMessage;
+import com.travelport.schema.air_v35_0.AirPricingSolution;
+import com.travelport.schema.air_v35_0.AirReservation;
+import com.travelport.schema.common_v35_0.ActionStatus;
+import com.travelport.schema.common_v35_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v35_0.BookingTraveler;
+import com.travelport.schema.common_v35_0.BookingTravelerName;
+import com.travelport.schema.common_v35_0.ContinuityCheckOverride;
+import com.travelport.schema.common_v35_0.CreditCard;
+import com.travelport.schema.common_v35_0.Email;
+import com.travelport.schema.common_v35_0.FormOfPayment;
+import com.travelport.schema.common_v35_0.Payment;
+import com.travelport.schema.common_v35_0.PhoneNumber;
+import com.travelport.schema.common_v35_0.Remark;
+import com.travelport.schema.universal_v35_0.AirCreateReservationReq;
+import com.travelport.schema.universal_v35_0.AirCreateReservationRsp;
+import com.travelport.schema.universal_v35_0.ProviderReservationInfo;
+import com.travelport.schema.universal_v35_0.TypeRetainReservation;
+import com.travelport.service.air_v35_0.AirFaultMessage;
+import com.travelport.service.universal_v35_0.AirCreateReservationPortType;
+import com.travelport.service.universal_v35_0.AvailabilityFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class CreateResvSvcTest {
 	public static final String FORM_OF_PAYMENT_REF="jwt2mcK1Qp27I2xfpcCtAw==";
 	
 	@Test
-	public void createCancelTest() throws DatatypeConfigurationException, AirFaultMessage, AvailabilityFaultMessage {
+	public void createCancelTest() throws DatatypeConfigurationException, AirFaultMessage, AvailabilityFaultMessage, FileNotFoundException {
 		AirCreateReservationPortType create = WSDLService.airReserve.get();
 		WSDLService.airReserve.showXML(true);
 		
@@ -191,7 +192,7 @@ public class CreateResvSvcTest {
 					System.out.println("Air Reservation Locator : " + airRes.getLocatorCode());
 				}
 			}
-		} catch (com.travelport.service.universal_v29_0.AirFaultMessage e) {
+		} catch (com.travelport.service.universal_v35_0.AirFaultMessage e) {
 			// TODO Auto-generated catch block
 			System.err.println("unable to create service: " + e.getMessage());
 		}

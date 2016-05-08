@@ -1,52 +1,52 @@
 package com.travelport.uapi.unit1;
 
+import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
-import com.travelport.schema.air_v29_0.AirPricingSolution;
-import com.travelport.schema.air_v29_0.AirSearchModifiers;
-import com.travelport.schema.air_v29_0.AirSearchRsp;
-import com.travelport.schema.air_v29_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v29_0.LowFareSearchAsynchReq;
-import com.travelport.schema.air_v29_0.LowFareSearchAsynchRsp;
-import com.travelport.schema.air_v29_0.PCC;
-import com.travelport.schema.air_v29_0.RetrieveLowFareSearchReq;
-import com.travelport.schema.air_v29_0.SearchAirLeg;
-import com.travelport.schema.common_v29_0.BaseAsyncProviderSpecificResponse;
-import com.travelport.schema.common_v29_0.PointOfSale;
-import com.travelport.schema.common_v29_0.ResponseMessage;
-import com.travelport.schema.rail_v29_0.RailPricingSolution;
-import com.travelport.service.air_v29_0.AirFaultMessage;
+import com.travelport.schema.air_v35_0.AirPricingSolution;
+import com.travelport.schema.air_v35_0.AirSearchModifiers;
+import com.travelport.schema.air_v35_0.AirSearchRsp;
+import com.travelport.schema.air_v35_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v35_0.LowFareSearchReq;
+import com.travelport.schema.air_v35_0.LowFareSearchRsp;
+import com.travelport.schema.air_v35_0.PCC;
+import com.travelport.schema.air_v35_0.SearchAirLeg;
+import com.travelport.schema.common_v35_0.PointOfSale;
+import com.travelport.schema.common_v35_0.ResponseMessage;
+import com.travelport.schema.rail_v35_0.RailPricingSolution;
+import com.travelport.service.air_v35_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson3 {
 	public static final String MYAPP = "UAPI";
 
-	public static void main(String[] argv) {
+	@SuppressWarnings("unused")
+	public static void main(String[] argv) throws FileNotFoundException {
 		// pick a pair of cities that might be better to go via rail and have
 		// low cost carrier options
-		String origin = "GLA", destination = "LGW";
-		LowFareSearchAsynchReq req = new LowFareSearchAsynchReq();
+		String origin = "DEN", destination = "SFO";
+		//LowFareSearchAsynchReq req = new LowFareSearchAsynchReq();
+		LowFareSearchReq req = new LowFareSearchReq();
 		// this creates the request parameters... and doesn't care if the
 		// request is synchronous or asynch
 		createLowFareSearchWithRail(req, origin, destination, 7, 9);
 
 		try {
 			System.out.println("waiting for first response from a provider...");
-			WSDLService.airShopAsync.showXML(true);
-			LowFareSearchAsynchRsp lowCostRsp = WSDLService.airShopAsync.get().service(req);
+			WSDLService.airShop.showXML(true);
+			//LowFareSearchAsynchRsp lowCostRsp = WSDLService.airShopAsync.get().service(req);			
+			LowFareSearchRsp lowCostRsp = WSDLService.airShop.get().service(req);
 			HashMap<String, Boolean> partMap = new HashMap<String, Boolean>();
 
-			List<BaseAsyncProviderSpecificResponse> specificResponses = lowCostRsp
-					.getAsyncProviderSpecificResponse();
+			//List<BaseAsyncProviderSpecificResponse> specificResponses = lowCostRsp.getAsyncProviderSpecificResponse();			
 
 			// print out what we got from initial response... this is to print
 			// the summary for all providers and set up the partMap for use in
 			// our loop below
-			for (Iterator<BaseAsyncProviderSpecificResponse> specIter = specificResponses
+			/*for (Iterator<BaseAsyncProviderSpecificResponse> specIter = specificResponses
 					.iterator(); specIter.hasNext();) {
 				BaseAsyncProviderSpecificResponse asynchRsp = (BaseAsyncProviderSpecificResponse) specIter
 						.next();
@@ -55,29 +55,29 @@ public class Lesson3 {
 					System.out.println("Provider " + asynchRsp.getProviderCode());
 					System.out.println("More results waiting " + asynchRsp.isMoreResults());
 				}
-			}
+			}*/
 
 			// prepare for the loop... we print first and ask for the response
 			// second we have to setup the values before entering the first time
-			String searchId = lowCostRsp.getSearchId();
-			String currentProvider = null;
-			if(lowCostRsp.getResponseMessage().size() > 0){
+			//String searchId = lowCostRsp.getSearchId();
+			//String currentProvider = null;
+			/*if(lowCostRsp.getResponseMessage().size() > 0){
 				checkForErrorMessage(lowCostRsp);
 				currentProvider = lowCostRsp.getResponseMessage().get(0).getProviderCode();
-			}
-			AirSearchRsp rsp = lowCostRsp; // so we can print it out
-			while (partMap.isEmpty() == false) {
+			}*/
+			//AirSearchRsp rsp = lowCostRsp; // so we can print it out
+			/*while (partMap.isEmpty() == false) {
 				
 				if(currentProvider != null && partMap.get(currentProvider) != null){
 					System.out.println("++++++++++++++++++++\n"
 							+ "Response is from provider " + currentProvider + ":"
 							+ partMap.get(currentProvider));
-				}
+				}*/
 
-				printSomeExampleResults(destination, rsp, 7);
+				//printSomeExampleResults(destination, rsp, 7);
 				
-				boolean moreResults = false;
-				if(currentProvider != null && partMap.get(currentProvider) != null){
+				//boolean moreResults = false;
+				/*if(currentProvider != null && partMap.get(currentProvider) != null){
 					moreResults = partMap.get(currentProvider);
 				}
 				else{
@@ -95,20 +95,21 @@ public class Lesson3 {
 					// change to next provider from the partMap
 					//currentProvider = partMap.keySet().iterator().next();					
 				}
+				*/
 				// start the retreival of either the next part or the 1st part
 				// from the next provider
 
 				// just to show we can do something else while we wait
-				try {
+				/*try {
 					System.out.println("Sleeping 5 secs before trying to "
 							+ "request more results from "
-							+ currentProvider);
-					Thread.sleep(5 * 1000);
-				} catch (InterruptedException ignored) {
+							+ currentProvider);*/
+					//Thread.sleep(5 * 1000);
+				/*} catch (InterruptedException ignored) {
 					/* wont happen */
-				}
+				//}
 				// sleep is finished, run the request for more data...
-				RetrieveLowFareSearchReq retrieve = new RetrieveLowFareSearchReq();
+				/*RetrieveLowFareSearchReq retrieve = new RetrieveLowFareSearchReq();
 				retrieve.setSearchId(searchId);
 				retrieve.setProviderCode(currentProvider);				
 				AirReq.addPointOfSale(retrieve, MYAPP);
@@ -118,7 +119,7 @@ public class Lesson3 {
 				// finished with that one
 				partMap.remove(currentProvider);
 				// more providers?
-			}
+			}*/
 		} catch (AirFaultMessage e) {
 			System.err.println("Fault trying send request to travelport:"
 					+ e.getMessage());

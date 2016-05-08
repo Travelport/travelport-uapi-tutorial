@@ -1,15 +1,17 @@
 package com.travelport.uapi.unit1;
 
-import com.sun.tools.xjc.reader.xmlschema.bindinfo.BIInlineBinaryData;
-import com.travelport.schema.common_v28_0.BillingPointOfSaleInfo;
-import com.travelport.schema.system_v9_0.PingReq;
-import com.travelport.schema.system_v9_0.PingRsp;
-import com.travelport.service.system_v9_0.SystemFaultMessage;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+
+import com.travelport.schema.common_v32_0.BillingPointOfSaleInfo;
+import com.travelport.schema.system_v32_0.PingReq;
+import com.travelport.schema.system_v32_0.PingRsp;
+import com.travelport.service.system_v32_0.SystemFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson1 {
 
-	public static void main(String[] argv) {		
+	public static void main(String[] argv) throws FileNotFoundException, UnsupportedEncodingException {		
 		//
 		// PING REQUEST
 		//
@@ -31,10 +33,11 @@ public class Lesson1 {
 		try {
 			//run the ping request
 	        WSDLService.sysPing.showXML(true);
-
-			PingRsp rsp = WSDLService.sysPing.get().service(req);
+	        
+	        PingRsp rsp = new PingRsp();        
+	        //WSDLService.sysPing.get().service(req);     	
+        	rsp = WSDLService.sysPing.get().service(req);
 			//print results.. payload and trace ID are echoed back in response
-			System.out.println(rsp.getPayload());
 			System.out.println(rsp.getTraceId());
 			System.out.println(rsp.getTransactionId());
 		} catch (SystemFaultMessage e) {

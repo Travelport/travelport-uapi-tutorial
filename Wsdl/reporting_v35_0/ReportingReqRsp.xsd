@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by E032073 (Travelport GDS) -->
+<xs:schema xmlns="http://www.travelport.com/schema/reporting_v35_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v35_0" targetNamespace="http://www.travelport.com/schema/reporting_v35_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.travelport.com/schema/common_v35_0" schemaLocation="../common_v35_0/CommonReqRsp.xsd"/>
+	<xs:include schemaLocation="Reporting.xsd"/>
+	<!--    Reporting Request Element-->
+	<xs:element name="UniversalRecordReportReq">
+		<xs:annotation>
+			<xs:documentation>Request to get different types of Reports for Data Tracking purposes.ex:Account Profile,Agent Work History etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:choice>
+						<xs:element ref="ProfileCriteria"/>
+						<xs:element ref="UniversalRecordCriteria"/>
+						<xs:element ref="AirRailSegmentCriteria"/>
+						<xs:element ref="CarSegmentCriteria"/>
+						<xs:element ref="HotelSegmentCriteria"/>
+						<xs:element ref="OtherSegmentCriteria"/>
+						<xs:element ref="AgentWorkHistoryCriteria"/>
+					</xs:choice>
+					<xs:attribute name="RecordStatus" type="common:typeRecordStatus">
+                      <xs:annotation>
+                        <xs:documentation>Status of Universal Record e.g. Current,Past,Canceled or any status.</xs:documentation>
+                        <xs:documentation>This applies to all search criterion apart from ProfileCriteria.</xs:documentation>
+                     </xs:annotation>
+                    </xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--    Reporting Response Element-->
+	<xs:element name="UniversalRecordReportRsp">
+		<xs:annotation>
+			<xs:documentation>Response for different types of reports for Data Tracking purposes.ex:Account Profile,Agent Work History etc.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:choice>
+						<xs:element ref="ProfileResult"/>
+						<xs:element ref="UniversalRecordResult"/>
+						<xs:element ref="AirRailSegmentResult"/>
+						<xs:element ref="CarSegmentResult"/>
+						<xs:element ref="HotelSegmentResult"/>
+						<xs:element ref="OtherSegmentResult"/>
+						<xs:element ref="AgentWorkHistoryResult"/>
+					</xs:choice>
+					<xs:attribute name="MoreResults" type="typeMoreResults">
+						<xs:annotation>
+							<xs:documentation>This identifies if there is more data in the database than what is returned.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="ProfileMigrationSyncReportReq">
+       <xs:annotation>
+           <xs:documentation>Request to get different types of Reports for Data Tracking purpose: e.g. - Host Profile Migration/Sync, CSV Migration, and TDS Profile Migration.</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                   <xs:sequence>
+                       <xs:choice>
+                           <xs:element ref="ProfileReportFilterCritiera" minOccurs="1"/>
+                           <xs:element name="JobID" type="common:StringLength1to128" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                 <xs:documentation>JobID that will used to identify a specific migration process.</xs:documentation>
+                            </xs:annotation>
+                           </xs:element>
+                       </xs:choice>
+                           <xs:element ref="FilterModifiers" minOccurs="0" maxOccurs="1"/>
+                   </xs:sequence>
+               <xs:attribute name="MigrationReportInd" type="xs:boolean" use="optional" default="false">
+                   <xs:annotation>
+                       <xs:documentation>When marked true, this will pull records of Profiles migrated to the uProfile system.</xs:documentation>
+                   </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="SyncReportInd" type="xs:boolean" use="optional" default="false">
+                   <xs:annotation>
+                       <xs:documentation>When marked true, this will pull records of Profiles synced from the uProfile system to external systems like hosts 1G/1V.</xs:documentation>
+                   </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="BranchCode" type="common:typeProvisioningCode" use="optional">
+					<xs:annotation>
+    					<xs:documentation>Optional Branch Code used to specify a specific branch if multiple branches have the same PCC.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+                   </xs:extension>
+           </xs:complexContent>
+       </xs:complexType>
+   </xs:element>
+
+    <xs:element name="ProfileMigrationSyncReportRsp">
+        <xs:annotation>
+            <xs:documentation>Response of different types of Reports for Data Tracking purpose: e.g. - Host Profile Migration/Sync, CSV Migration, and TDS Profile Migration.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+                <xs:sequence>
+                    <xs:element ref="ProfileReportDetails" minOccurs="0" maxOccurs="unbounded"> 
+                        <xs:annotation>
+                            <xs:documentation>This container for Profile Report Filter.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+               <xs:attribute name="TotalNumberOfProfiles" type="xs:integer" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>Total number of Profiles migrated or Synced for the given criteria.</xs:documentation>
+                    </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="NumberOfPassed" type="xs:integer" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>Number of Profiles passed.</xs:documentation>
+                    </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="NumberOfFailures" type="xs:integer" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>Number of Profiles that Failed.</xs:documentation>
+                    </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+    </xs:element>
+</xs:schema>
