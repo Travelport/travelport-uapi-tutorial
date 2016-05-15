@@ -118,7 +118,7 @@ public class PortWrapper<P,S>{
         //headers.put("Transfer-Encoding", Arrays.asList("gzip"));
         provider.getRequestContext().put(Message.PROTOCOL_HEADERS, headers);   
       
-        provider.getRequestContext().put("schema-validation-enabled", "true");       
+        provider.getRequestContext().put("schema-validation-enabled", "false");       
         
         
         /*Map<String, List<String>> rspHeaders = new HashMap<String, List<String>>();
