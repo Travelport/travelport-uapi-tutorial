@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UProfileSharedService" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.travelport.com/service/shareduprofile_v1_0" 
+	xmlns:ns1="http://www.travelport.com/soa/common/security/SessionContext_v1"
+	xmlns:common="http://www.travelport.com/schema/common_v29_0"
+	targetNamespace="http://www.travelport.com/service/shareduprofile_v1_0">
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+			targetNamespace="http://www.travelport.com/schema/shareduprofile_v1_0">
+			 <import namespace="http://www.travelport.com/soa/common/security/SessionContext_v1" schemaLocation="../SessionContext_v1/SessionContext_v1.xsd"/>
+		</schema>
+	</types>
+
+	<message name="SessionContext">
+		<part name="sessioncontext" element="ns1:SessionContext" />
+	</message>
+
+	<message name="ProfileCreateRequest">
+	</message>
+
+	<message name="ProfileCreateResponse">
+	</message>
+
+	<message name="ProfileModifyRequest">
+	</message>
+
+	<message name="ProfileModifyResponse">
+	</message>
+
+	<message name="ProfileRetrieveRequest">
+	</message>
+
+	<message name="ProfileRetrieveResponse">
+	</message>
+
+	<message name="ProfileSearchRequest">
+	</message>
+
+	<message name="ProfileSearchResponse">
+	</message>
+
+	<message name="ProfileDeleteRequest">
+	</message>
+
+	<message name="ProfileDeleteResponse">
+	</message>
+
+	<message name="SystemFaultMessage">
+		<part name="fault" element="common:ErrorInfo" />
+	</message>
+
+	<portType name="ProfileCreatePortType">
+		<operation name="service">
+			<input message="tns:ProfileCreateRequest" />
+			<output message="tns:ProfileCreateResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileModifyPortType">
+		<operation name="service">
+			<input message="tns:ProfileModifyRequest" />
+			<output message="tns:ProfileModifyResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileRetrievePortType">
+		<operation name="service">
+			<input message="tns:ProfileRetrieveRequest" />
+			<output message="tns:ProfileRetrieveResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileSearchPortType">
+		<operation name="service">
+			<input message="tns:ProfileSearchRequest" />
+			<output message="tns:ProfileSearchResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileDeletePortType">
+		<operation name="service">
+			<input message="tns:ProfileDeleteRequest" />
+			<output message="tns:ProfileDeleteResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+</definitions>

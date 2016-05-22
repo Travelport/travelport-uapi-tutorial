@@ -36,13 +36,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "fareGuaranteeInfo"
 })
 @XmlRootElement(name = "PassengerType")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class PassengerType
     extends TypePassengerType
 {
 
     @XmlElement(name = "FareGuaranteeInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected FareGuaranteeInfo fareGuaranteeInfo;
 
     /**
@@ -53,7 +53,7 @@ public class PassengerType
      *     {@link FareGuaranteeInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public FareGuaranteeInfo getFareGuaranteeInfo() {
         return fareGuaranteeInfo;
     }
@@ -66,7 +66,7 @@ public class PassengerType
      *     {@link FareGuaranteeInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setFareGuaranteeInfo(FareGuaranteeInfo value) {
         this.fareGuaranteeInfo = value;
     }
@@ -77,7 +77,7 @@ public class PassengerType
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

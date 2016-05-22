@@ -80,58 +80,58 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     TypeAirReservationWithFOP.class,
     AirReservation.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class TypeBaseAirReservation
     extends BaseReservation
 {
 
     @XmlElement(name = "OptionalServices")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected OptionalServices optionalServices;
     @XmlElement(name = "SupplierLocator", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<SupplierLocator> supplierLocator;
     @XmlElement(name = "ThirdPartyInformation", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<ThirdPartyInformation> thirdPartyInformation;
     @XmlElement(name = "DocumentInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected DocumentInfo documentInfo;
     @XmlElement(name = "BookingTravelerRef", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<BookingTravelerRef> bookingTravelerRef;
     @XmlElement(name = "ProviderReservationInfoRef", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<ProviderReservationInfoRef> providerReservationInfoRef;
     @XmlElement(name = "AirSegment")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<TypeBaseAirSegment> airSegment;
     @XmlElement(name = "AirPricingInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirPricingInfo> airPricingInfo;
     @XmlElement(name = "Payment", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<Payment> payment;
     @XmlElement(name = "CreditCardAuth", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<CreditCardAuth> creditCardAuth;
     @XmlElement(name = "FareNote")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<FareNote> fareNote;
     @XmlElement(name = "FeeInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<TypeFeeInfo> feeInfo;
     @XmlElement(name = "TaxInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<TypeTaxInfoWithPaymentRef> taxInfo;
     @XmlElement(name = "TicketingModifiers")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<TicketingModifiers> ticketingModifiers;
     @XmlElement(name = "AssociatedRemark")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<AssociatedRemark> associatedRemark;
     @XmlElement(name = "PocketItineraryRemark")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<PocketItineraryRemark> pocketItineraryRemark;
 
     /**
@@ -142,7 +142,7 @@ public class TypeBaseAirReservation
      *     {@link OptionalServices }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public OptionalServices getOptionalServices() {
         return optionalServices;
     }
@@ -155,7 +155,7 @@ public class TypeBaseAirReservation
      *     {@link OptionalServices }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setOptionalServices(OptionalServices value) {
         this.optionalServices = value;
     }
@@ -182,7 +182,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<SupplierLocator> getSupplierLocator() {
         if (supplierLocator == null) {
             supplierLocator = new ArrayList<SupplierLocator>();
@@ -212,7 +212,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<ThirdPartyInformation> getThirdPartyInformation() {
         if (thirdPartyInformation == null) {
             thirdPartyInformation = new ArrayList<ThirdPartyInformation>();
@@ -228,7 +228,7 @@ public class TypeBaseAirReservation
      *     {@link DocumentInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public DocumentInfo getDocumentInfo() {
         return documentInfo;
     }
@@ -241,7 +241,7 @@ public class TypeBaseAirReservation
      *     {@link DocumentInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setDocumentInfo(DocumentInfo value) {
         this.documentInfo = value;
     }
@@ -268,7 +268,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<BookingTravelerRef> getBookingTravelerRef() {
         if (bookingTravelerRef == null) {
             bookingTravelerRef = new ArrayList<BookingTravelerRef>();
@@ -298,7 +298,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<ProviderReservationInfoRef> getProviderReservationInfoRef() {
         if (providerReservationInfoRef == null) {
             providerReservationInfoRef = new ArrayList<ProviderReservationInfoRef>();
@@ -328,7 +328,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<TypeBaseAirSegment> getAirSegment() {
         if (airSegment == null) {
             airSegment = new ArrayList<TypeBaseAirSegment>();
@@ -358,7 +358,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<AirPricingInfo> getAirPricingInfo() {
         if (airPricingInfo == null) {
             airPricingInfo = new ArrayList<AirPricingInfo>();
@@ -388,7 +388,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<Payment> getPayment() {
         if (payment == null) {
             payment = new ArrayList<Payment>();
@@ -418,7 +418,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<CreditCardAuth> getCreditCardAuth() {
         if (creditCardAuth == null) {
             creditCardAuth = new ArrayList<CreditCardAuth>();
@@ -448,7 +448,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<FareNote> getFareNote() {
         if (fareNote == null) {
             fareNote = new ArrayList<FareNote>();
@@ -478,7 +478,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<TypeFeeInfo> getFeeInfo() {
         if (feeInfo == null) {
             feeInfo = new ArrayList<TypeFeeInfo>();
@@ -508,7 +508,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<TypeTaxInfoWithPaymentRef> getTaxInfo() {
         if (taxInfo == null) {
             taxInfo = new ArrayList<TypeTaxInfoWithPaymentRef>();
@@ -538,7 +538,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<TicketingModifiers> getTicketingModifiers() {
         if (ticketingModifiers == null) {
             ticketingModifiers = new ArrayList<TicketingModifiers>();
@@ -568,7 +568,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<AssociatedRemark> getAssociatedRemark() {
         if (associatedRemark == null) {
             associatedRemark = new ArrayList<AssociatedRemark>();
@@ -598,7 +598,7 @@ public class TypeBaseAirReservation
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<PocketItineraryRemark> getPocketItineraryRemark() {
         if (pocketItineraryRemark == null) {
             pocketItineraryRemark = new ArrayList<PocketItineraryRemark>();
@@ -612,7 +612,7 @@ public class TypeBaseAirReservation
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

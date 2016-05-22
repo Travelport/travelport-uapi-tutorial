@@ -38,13 +38,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "fareDisplay"
 })
 @XmlRootElement(name = "AirFareDisplayRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirFareDisplayRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "FareDisplay")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<FareDisplay> fareDisplay;
 
     /**
@@ -69,7 +69,7 @@ public class AirFareDisplayRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<FareDisplay> getFareDisplay() {
         if (fareDisplay == null) {
             fareDisplay = new ArrayList<FareDisplay>();
@@ -83,7 +83,7 @@ public class AirFareDisplayRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

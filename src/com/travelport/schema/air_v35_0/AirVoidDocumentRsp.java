@@ -40,16 +40,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "voidResultInfo"
 })
 @XmlRootElement(name = "AirVoidDocumentRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirVoidDocumentRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "ETR")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<ETR> etr;
     @XmlElement(name = "VoidResultInfo", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<VoidResultInfo> voidResultInfo;
 
     /**
@@ -74,7 +74,7 @@ public class AirVoidDocumentRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<ETR> getETR() {
         if (etr == null) {
             etr = new ArrayList<ETR>();
@@ -104,7 +104,7 @@ public class AirVoidDocumentRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<VoidResultInfo> getVoidResultInfo() {
         if (voidResultInfo == null) {
             voidResultInfo = new ArrayList<VoidResultInfo>();
@@ -118,7 +118,7 @@ public class AirVoidDocumentRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

@@ -49,28 +49,28 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "airExchangeBundle"
 })
 @XmlRootElement(name = "AirExchangeRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirExchangeRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "TicketNumber", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<String> ticketNumber;
     @XmlElement(name = "BookingTraveler", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<BookingTraveler> bookingTraveler;
     @XmlElement(name = "AirReservation")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected TypeAirReservationWithFOP airReservation;
     @XmlElement(name = "ExchangeFailureInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<TypeTicketFailureInfo> exchangeFailureInfo;
     @XmlElement(name = "AirExchangeBundleTotal")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirExchangeBundleTotal airExchangeBundleTotal;
     @XmlElement(name = "AirExchangeBundle")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirExchangeBundle> airExchangeBundle;
 
     /**
@@ -95,7 +95,7 @@ public class AirExchangeRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<String> getTicketNumber() {
         if (ticketNumber == null) {
             ticketNumber = new ArrayList<String>();
@@ -125,7 +125,7 @@ public class AirExchangeRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<BookingTraveler> getBookingTraveler() {
         if (bookingTraveler == null) {
             bookingTraveler = new ArrayList<BookingTraveler>();
@@ -141,7 +141,7 @@ public class AirExchangeRsp
      *     {@link TypeAirReservationWithFOP }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public TypeAirReservationWithFOP getAirReservation() {
         return airReservation;
     }
@@ -154,7 +154,7 @@ public class AirExchangeRsp
      *     {@link TypeAirReservationWithFOP }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirReservation(TypeAirReservationWithFOP value) {
         this.airReservation = value;
     }
@@ -181,7 +181,7 @@ public class AirExchangeRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<TypeTicketFailureInfo> getExchangeFailureInfo() {
         if (exchangeFailureInfo == null) {
             exchangeFailureInfo = new ArrayList<TypeTicketFailureInfo>();
@@ -197,7 +197,7 @@ public class AirExchangeRsp
      *     {@link AirExchangeBundleTotal }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirExchangeBundleTotal getAirExchangeBundleTotal() {
         return airExchangeBundleTotal;
     }
@@ -210,7 +210,7 @@ public class AirExchangeRsp
      *     {@link AirExchangeBundleTotal }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirExchangeBundleTotal(AirExchangeBundleTotal value) {
         this.airExchangeBundleTotal = value;
     }
@@ -237,7 +237,7 @@ public class AirExchangeRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<AirExchangeBundle> getAirExchangeBundle() {
         if (airExchangeBundle == null) {
             airExchangeBundle = new ArrayList<AirExchangeBundle>();
@@ -251,7 +251,7 @@ public class AirExchangeRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

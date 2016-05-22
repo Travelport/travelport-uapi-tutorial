@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns="http://www.travelport.com/schema/desktopServices_v32_0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.travelport.com/schema/common_v32_0"
+	targetNamespace="http://www.travelport.com/schema/desktopServices_v32_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.travelport.com/schema/common_v32_0"
+		schemaLocation="../common_v32_0/CommonReqRsp.xsd"/>
+	<xs:include schemaLocation="DTSCommon.xsd"/>
+	<xs:annotation>
+		<xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved.
+			Proprietary Information of Travelport GDS.</xs:documentation>
+	</xs:annotation>
+	
+	<!--*** Shared Elements of Manifest***-->
+	<xs:element name="ManifestReference">
+		<xs:complexType>
+			<xs:attributeGroup ref="attrManifestSummary"/>
+			<xs:attributeGroup ref="VersionNumbers"/>
+			<xs:attribute name="CreateDate" type="typeCreateDate" use="required"/>
+		</xs:complexType>
+	</xs:element>
+		
+	<xs:simpleType name="typeManifestStatus">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Current"/>
+			<xs:enumeration value="Superceded"/>
+			<xs:enumeration value="Deprecated"/>
+			<xs:enumeration value="Not viable"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeUpdateType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Inherit"/>
+			<xs:enumeration value="ImmediateAsync"/>
+			<xs:enumeration value="ImmediateSync"/>
+			<xs:enumeration value="ApplicationClose"/>
+			<xs:enumeration value="SpecifiedTime"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeCreateDate">
+		<xs:annotation>
+			<xs:documentation>Date this Release was created
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="typeProduct">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="uDesktop"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeReleaseName">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeReleaseType">
+		<xs:annotation>
+			<xs:documentation>General or Limited</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="General"/>
+			<xs:enumeration value="Limited"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--<xs:attribute name="Status" type="typeManifestStatus"/>
+	-->
+	<xs:simpleType name="typeTargetEnvironment">
+		<xs:annotation>
+			<xs:documentation>e.g. Production, QA</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="production"/>
+			<xs:enumeration value="preprod"/>
+			<xs:enumeration value="perf"/>
+			<xs:enumeration value="QA"/>
+			<xs:enumeration value="int"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeTemplateManifestURI">
+		<xs:restriction base="xs:anyURI">
+			<xs:maxLength value="2000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeVersion">
+		<xs:annotation>
+			<xs:documentation>Build number of the product, e.g. 1.4.11.1243
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:attributeGroup name="attrManifest">
+		<xs:attributeGroup ref="attrManifestSummary"/>
+		<xs:attribute name="TemplateManifestURI" type="typeTemplateManifestURI" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrManifestID">
+		<xs:attribute name="Product" type="typeProduct" use="required"/>
+		<xs:attribute name="Version" type="typeVersion" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrManifestSummary">
+		<xs:attributeGroup ref="attrManifestID"/>
+		<xs:attribute name="ReleaseName" type="typeReleaseName" use="required"/>
+		<xs:attribute name="ReleaseType" type="typeReleaseType" use="required"/>
+		<xs:attribute name="FunctionalReleaseSummaryURI" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:anyURI">
+					<xs:maxLength value="2000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ReleaseNotesURI" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:anyURI">
+					<xs:maxLength value="2000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ExpirationDate" type="xs:date" use="optional"/>
+		<xs:attribute name="Preferred" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>Indicates whether this release is
+					preferred by the organisation the requesting agents represents. Can
+					not be set when ReleaseType is "Limited" or if an ExpirationDate
+					has been set. If another release is currently "Preferred" by this
+					agency, it will lose that status.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	
+	<xs:attributeGroup name="VersionNumbers">
+	  <xs:attribute name="Major" type="xs:integer" use="required"/>
+	  <xs:attribute name="Minor" type="xs:integer" use="required"/>
+	  <xs:attribute name="Revision" type="xs:integer" use="required"/>
+	 </xs:attributeGroup>
+	
+	
+
+	<xs:attributeGroup name="attrAssignedVersion">
+		<xs:attribute name="Product" type="typeProduct" use="required"/>
+		<xs:attribute name="Version" use="required"/>
+		<xs:attribute name="ReleaseName" type="typeReleaseName" use="required"/>
+		<!--
+			<xs:attribute name="UpdateType" type="typeUpdateType"
+			default="ImmediateAsync" /> <xs:attribute name="UpdateLastDateTime"
+			type="xs:dateTime"> <xs:annotation> <xs:documentation>The latest the
+			targets can do a manual update, after this dateTime update is
+			forced</xs:documentation> </xs:annotation> </xs:attribute>
+		-->
+		<xs:attribute name="Active" type="xs:boolean"/>
+	</xs:attributeGroup>
+
+	<!--*** Shared Elements of Extension***-->
+	<xs:attributeGroup name="attrExtension">
+		<xs:attribute name="ExtensionName" use="required">
+			<xs:annotation>
+				<xs:documentation>Name must be unique within Agency
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Description">
+			<xs:annotation>
+				<xs:documentation>Business Description of Extension
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="2000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ManagingEntity" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>ID of Regional Managing Entity (e.g. Galileo UK) that owns this extension. Can only be used by an agent with Managing Entitiy level rights when NOT emulating. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:element name="ExtensionFile">
+		<xs:complexType>
+			<xs:attribute name="FileLocation" use="required">
+				<xs:annotation>
+					<xs:documentation>Download location</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:anyURI">
+						<xs:maxLength value="2000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>			
+			<xs:attribute name="FileType" type="typeExtensionType" use="required">
+	            <xs:annotation>
+	               <xs:documentation>Valid values are RS, ZP or MD corresponding to resource, zip archive, module respectively.</xs:documentation>
+	            </xs:annotation>
+            </xs:attribute>
+			<xs:attribute name="InstallLocation" use="required">
+				<xs:annotation>
+					<xs:documentation>Relative installation path
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="1000"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="HashValue" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="ExtensionRef">
+		<xs:annotation>
+			<xs:documentation>extension reference </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ExtensionFile" maxOccurs="unbounded"/>
+				<xs:element ref="ProductVersion" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="AppliesTo" type="common:typeAgencyHierarchyReference"
+					minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>When left empty it will remove any
+							assignment</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="AutoReleaseRange" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="typeID" use="required"/>
+			<xs:attribute name="Version" type="xs:int" use="required"/>
+			<xs:attributeGroup ref="attrExtension"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="AutoReleaseRange">
+	  <xs:complexType>
+	   <xs:sequence>
+	    <xs:element ref="StartVersion"/>
+	    <xs:element ref="EndVersion" minOccurs="0"/>	    	    
+	   </xs:sequence>
+	   <xs:attribute name="Product" type="typeProduct" use="required"/>
+	  </xs:complexType>
+	 </xs:element>
+	 
+	 <xs:element name="EndVersion">
+  	 	<xs:complexType>
+   			<xs:attributeGroup ref="VersionNumbers"/>
+  		</xs:complexType>
+ 	</xs:element>
+ 	
+	<xs:element name="StartVersion">
+  		<xs:complexType>
+   			<xs:attributeGroup ref="VersionNumbers"/>
+  		</xs:complexType>
+ 	</xs:element> 	
+
+	<xs:simpleType name="typeExtensionType">
+      <xs:annotation>
+         <xs:documentation>File Extension Type Code</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="2"/>
+         <xs:enumeration value="RS"/>
+         <xs:enumeration value="ZP"/>
+         <xs:enumeration value="MD"/>
+      </xs:restriction>
+   </xs:simpleType>
+   
+   
+
+   <!--*** Shared Elements of ProductVersion***-->
+	<xs:element name="ProductVersion">
+		<xs:annotation>
+			<xs:documentation>ProductVersion for which this
+				extension is valid</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Product" type="typeProduct" use="required"/>
+			<xs:attribute name="ReleaseName" type="typeReleaseName" use="required"/>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpgradeMethod">
+		<xs:complexType>
+			<xs:attribute name="Type" type="typeUpdateType" use="optional"
+				default="ImmediateAsync" />
+			<xs:attribute name="UpgradeTime" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>Only used when Type is Specified Time.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Required" type="xs:boolean" default="true" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ProfileReference">
+		<xs:annotation>
+			<xs:documentation>List of profiles using the release in the
+				ManifestReference? node. pagination is applied on this node.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UpgradeMethod" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Upgrade method applicable specific to
+							each profile</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Name" type="xs:string" use="required" />
+			<xs:attribute name="ProfileID" type="typeID" />
+			<xs:attribute name="ProfileType" type="common:typeAgencyProfileLevel" />
+			<xs:attribute name="ManagingEntityCode" type="xs:int" />
+			<xs:attribute name="DynamicReleaseType">
+			<xs:annotation>
+				<xs:documentation>Can be 'Latest' if using the latest Travelport
+					release or 'Inherit' if getting the release from parent's assignment.
+				</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Latest" />
+					<xs:enumeration value="Inherit" />
+				</xs:restriction>
+			</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

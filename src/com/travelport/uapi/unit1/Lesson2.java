@@ -318,7 +318,7 @@ public class Lesson2 {
 		posInfo.setOriginApplication("UAPI");
 		airBookReq.setBillingPointOfSaleInfo(posInfo);
 		
-		BookingTraveler bookingTraveler = CreateBookingTravelerDetails();	
+		BookingTraveler bookingTraveler = createBookingTravelerDetails();	
 		
 		
 		FormOfPayment fop = new FormOfPayment();
@@ -387,14 +387,14 @@ public class Lesson2 {
 		airBookReq.getActionStatus().add(actionStatus);
 		
 		//airBookRsp = new AirCreateReservationRsp();
-		WSDLService.airReserve.showXML(true);
+		//WSDLService.airReserve.showXML(true);
 		
 		AirCreateReservationPortType resv = WSDLService.airReserve.get();
 		
 		return resv.service(airBookReq, null);
 	}
 
-	private static BookingTraveler CreateBookingTravelerDetails() {
+	private static BookingTraveler createBookingTravelerDetails() {
 		// TODO Auto-generated method stub
 		BookingTraveler bookingTraveler = new BookingTraveler();
 		bookingTraveler.setTravelerType("ADT");

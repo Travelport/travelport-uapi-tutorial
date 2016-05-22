@@ -41,16 +41,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "pointOfSale"
 })
 @XmlRootElement(name = "AvailabilitySearchReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AvailabilitySearchReq
     extends AirSearchReq
 {
 
     @XmlElement(name = "SearchPassenger", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<SearchPassenger> searchPassenger;
     @XmlElement(name = "PointOfSale", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<PointOfSale> pointOfSale;
 
     /**
@@ -75,7 +75,7 @@ public class AvailabilitySearchReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<SearchPassenger> getSearchPassenger() {
         if (searchPassenger == null) {
             searchPassenger = new ArrayList<SearchPassenger>();
@@ -105,7 +105,7 @@ public class AvailabilitySearchReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<PointOfSale> getPointOfSale() {
         if (pointOfSale == null) {
             pointOfSale = new ArrayList<PointOfSale>();
@@ -119,7 +119,7 @@ public class AvailabilitySearchReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

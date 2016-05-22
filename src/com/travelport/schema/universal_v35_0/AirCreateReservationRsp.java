@@ -44,19 +44,19 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "airSegmentSellFailureInfo"
 })
 @XmlRootElement(name = "AirCreateReservationRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class AirCreateReservationRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "UniversalRecord")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected UniversalRecord universalRecord;
     @XmlElement(name = "AirSolutionChangedInfo", namespace = "http://www.travelport.com/schema/air_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirSolutionChangedInfo> airSolutionChangedInfo;
     @XmlElement(name = "AirSegmentSellFailureInfo", namespace = "http://www.travelport.com/schema/air_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected AirSegmentSellFailureInfo airSegmentSellFailureInfo;
 
     /**
@@ -67,7 +67,7 @@ public class AirCreateReservationRsp
      *     {@link UniversalRecord }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public UniversalRecord getUniversalRecord() {
         return universalRecord;
     }
@@ -80,7 +80,7 @@ public class AirCreateReservationRsp
      *     {@link UniversalRecord }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setUniversalRecord(UniversalRecord value) {
         this.universalRecord = value;
     }
@@ -107,7 +107,7 @@ public class AirCreateReservationRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<AirSolutionChangedInfo> getAirSolutionChangedInfo() {
         if (airSolutionChangedInfo == null) {
             airSolutionChangedInfo = new ArrayList<AirSolutionChangedInfo>();
@@ -123,7 +123,7 @@ public class AirCreateReservationRsp
      *     {@link AirSegmentSellFailureInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public AirSegmentSellFailureInfo getAirSegmentSellFailureInfo() {
         return airSegmentSellFailureInfo;
     }
@@ -136,7 +136,7 @@ public class AirCreateReservationRsp
      *     {@link AirSegmentSellFailureInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSegmentSellFailureInfo(AirSegmentSellFailureInfo value) {
         this.airSegmentSellFailureInfo = value;
     }
@@ -147,7 +147,7 @@ public class AirCreateReservationRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

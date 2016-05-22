@@ -38,13 +38,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "airSegment"
 })
 @XmlRootElement(name = "FlightDetailsRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class FlightDetailsRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "AirSegment", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<TypeBaseAirSegment> airSegment;
 
     /**
@@ -69,7 +69,7 @@ public class FlightDetailsRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<TypeBaseAirSegment> getAirSegment() {
         if (airSegment == null) {
             airSegment = new ArrayList<TypeBaseAirSegment>();
@@ -83,7 +83,7 @@ public class FlightDetailsRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

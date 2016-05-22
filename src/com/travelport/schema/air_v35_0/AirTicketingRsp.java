@@ -46,22 +46,22 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "detailedBillingInformation"
 })
 @XmlRootElement(name = "AirTicketingRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirTicketingRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "AirSolutionChangedInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirSolutionChangedInfo airSolutionChangedInfo;
     @XmlElement(name = "ETR")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<ETR> etr;
     @XmlElement(name = "TicketFailureInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<TicketFailureInfo> ticketFailureInfo;
     @XmlElement(name = "DetailedBillingInformation")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<DetailedBillingInformation> detailedBillingInformation;
 
     /**
@@ -72,7 +72,7 @@ public class AirTicketingRsp
      *     {@link AirSolutionChangedInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirSolutionChangedInfo getAirSolutionChangedInfo() {
         return airSolutionChangedInfo;
     }
@@ -85,7 +85,7 @@ public class AirTicketingRsp
      *     {@link AirSolutionChangedInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSolutionChangedInfo(AirSolutionChangedInfo value) {
         this.airSolutionChangedInfo = value;
     }
@@ -112,7 +112,7 @@ public class AirTicketingRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<ETR> getETR() {
         if (etr == null) {
             etr = new ArrayList<ETR>();
@@ -142,7 +142,7 @@ public class AirTicketingRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<TicketFailureInfo> getTicketFailureInfo() {
         if (ticketFailureInfo == null) {
             ticketFailureInfo = new ArrayList<TicketFailureInfo>();
@@ -172,7 +172,7 @@ public class AirTicketingRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<DetailedBillingInformation> getDetailedBillingInformation() {
         if (detailedBillingInformation == null) {
             detailedBillingInformation = new ArrayList<DetailedBillingInformation>();
@@ -186,7 +186,7 @@ public class AirTicketingRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

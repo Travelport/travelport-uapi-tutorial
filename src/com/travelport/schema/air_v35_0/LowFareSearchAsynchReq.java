@@ -35,13 +35,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "airSearchAsynchModifiers"
 })
 @XmlRootElement(name = "LowFareSearchAsynchReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class LowFareSearchAsynchReq
     extends BaseLowFareSearchReq
 {
 
     @XmlElement(name = "AirSearchAsynchModifiers")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirSearchAsynchModifiers airSearchAsynchModifiers;
 
     /**
@@ -52,7 +52,7 @@ public class LowFareSearchAsynchReq
      *     {@link AirSearchAsynchModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirSearchAsynchModifiers getAirSearchAsynchModifiers() {
         return airSearchAsynchModifiers;
     }
@@ -65,7 +65,7 @@ public class LowFareSearchAsynchReq
      *     {@link AirSearchAsynchModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSearchAsynchModifiers(AirSearchAsynchModifiers value) {
         this.airSearchAsynchModifiers = value;
     }
@@ -76,7 +76,7 @@ public class LowFareSearchAsynchReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

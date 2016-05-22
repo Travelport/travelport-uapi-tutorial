@@ -43,16 +43,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
 @XmlSeeAlso({
     RailCreateReservationRsp.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public abstract class TypeRailCreateReservationRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "UniversalRecord")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected UniversalRecord universalRecord;
     @XmlElement(name = "RailSolutionChangedInfo", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<RailSolutionChangedInfo> railSolutionChangedInfo;
 
     /**
@@ -63,7 +63,7 @@ public abstract class TypeRailCreateReservationRsp
      *     {@link UniversalRecord }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public UniversalRecord getUniversalRecord() {
         return universalRecord;
     }
@@ -76,7 +76,7 @@ public abstract class TypeRailCreateReservationRsp
      *     {@link UniversalRecord }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setUniversalRecord(UniversalRecord value) {
         this.universalRecord = value;
     }
@@ -103,7 +103,7 @@ public abstract class TypeRailCreateReservationRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<RailSolutionChangedInfo> getRailSolutionChangedInfo() {
         if (railSolutionChangedInfo == null) {
             railSolutionChangedInfo = new ArrayList<RailSolutionChangedInfo>();
@@ -117,7 +117,7 @@ public abstract class TypeRailCreateReservationRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

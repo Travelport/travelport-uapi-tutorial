@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractDesktopPreferenceServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/desktopPreference_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/desktopPreference_v32_0"
+             xmlns:common="http://www.travelport.com/schema/common_v32_0"
+             targetNamespace="http://www.travelport.com/service/desktopPreference_v32_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/desktopPreference_v32_0">
+            <include schemaLocation="DesktopPreference.xsd"/>
+        </schema>
+    </types>
+
+    <message name="DesktopPreferenceFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+
+    <message name="DesktopPreferenceManageRequest">
+        <part name="parameters" element="ns1:DesktopAgentPreferenceManageReq" />
+    </message>
+
+    <message name="DesktopPreferenceManageResponse">
+        <part name="result" element="ns1:DesktopAgentPreferenceManageRsp" />
+    </message>
+
+    <message name="DesktopPreferenceDeleteRequest">
+        <part name="parameters" element="ns1:DesktopAgentPreferenceDeleteReq" />
+    </message>
+
+    <message name="DesktopPreferenceDeleteResponse">
+        <part name="result" element="ns1:DesktopAgentPreferenceDeleteRsp" />
+    </message>
+
+    <message name="DesktopPreferenceRetrieveRequest">
+        <part name="parameters" element="ns1:DesktopAgentPreferenceRetrieveReq" />
+    </message>
+
+    <message name="DesktopPreferenceRetrieveResponse">
+        <part name="result" element="ns1:DesktopAgentPreferenceRetrieveRsp" />
+    </message>
+
+    <portType name="DesktopPreferenceManagePortType">
+        <operation name="service">
+            <input message="tns:DesktopPreferenceManageRequest" />
+            <output message="tns:DesktopPreferenceManageResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopPreferenceFaultMessage" />
+        </operation>
+    </portType>
+
+   <portType name="DesktopPreferenceDeletePortType">
+        <operation name="service">
+            <input message="tns:DesktopPreferenceDeleteRequest" />
+            <output message="tns:DesktopPreferenceDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopPreferenceFaultMessage" />            
+        </operation>
+    </portType> 
+
+    <portType name="DesktopPreferenceRetrievePortType">
+        <operation name="service">
+            <input message="tns:DesktopPreferenceRetrieveRequest" />
+            <output message="tns:DesktopPreferenceRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopPreferenceFaultMessage" />
+        </operation>
+    </portType>
+
+</definitions>
+

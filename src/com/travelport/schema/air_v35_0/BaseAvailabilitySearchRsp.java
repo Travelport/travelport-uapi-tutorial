@@ -58,34 +58,34 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     AvailabilitySearchRsp.class,
     AirSearchRsp.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class BaseAvailabilitySearchRsp
     extends BaseSearchRsp
 {
 
     @XmlElement(name = "FlightDetailsList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected FlightDetailsList flightDetailsList;
     @XmlElement(name = "AirSegmentList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirSegmentList airSegmentList;
     @XmlElement(name = "FareInfoList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected FareInfoList fareInfoList;
     @XmlElement(name = "FareRemarkList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected FareRemarkList fareRemarkList;
     @XmlElement(name = "AirItinerarySolution")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirItinerarySolution> airItinerarySolution;
     @XmlElement(name = "HostTokenList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected HostTokenList hostTokenList;
     @XmlElement(name = "APISRequirementsList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected APISRequirementsList apisRequirementsList;
     @XmlAttribute(name = "DistanceUnits")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected TypeDistance distanceUnits;
 
     /**
@@ -96,7 +96,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link FlightDetailsList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public FlightDetailsList getFlightDetailsList() {
         return flightDetailsList;
     }
@@ -109,7 +109,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link FlightDetailsList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setFlightDetailsList(FlightDetailsList value) {
         this.flightDetailsList = value;
     }
@@ -122,7 +122,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link AirSegmentList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirSegmentList getAirSegmentList() {
         return airSegmentList;
     }
@@ -135,7 +135,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link AirSegmentList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSegmentList(AirSegmentList value) {
         this.airSegmentList = value;
     }
@@ -148,7 +148,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link FareInfoList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public FareInfoList getFareInfoList() {
         return fareInfoList;
     }
@@ -161,7 +161,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link FareInfoList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setFareInfoList(FareInfoList value) {
         this.fareInfoList = value;
     }
@@ -174,7 +174,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link FareRemarkList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public FareRemarkList getFareRemarkList() {
         return fareRemarkList;
     }
@@ -187,7 +187,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link FareRemarkList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setFareRemarkList(FareRemarkList value) {
         this.fareRemarkList = value;
     }
@@ -214,7 +214,7 @@ public class BaseAvailabilitySearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<AirItinerarySolution> getAirItinerarySolution() {
         if (airItinerarySolution == null) {
             airItinerarySolution = new ArrayList<AirItinerarySolution>();
@@ -230,7 +230,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link HostTokenList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public HostTokenList getHostTokenList() {
         return hostTokenList;
     }
@@ -243,7 +243,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link HostTokenList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setHostTokenList(HostTokenList value) {
         this.hostTokenList = value;
     }
@@ -256,7 +256,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link APISRequirementsList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public APISRequirementsList getAPISRequirementsList() {
         return apisRequirementsList;
     }
@@ -269,7 +269,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link APISRequirementsList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAPISRequirementsList(APISRequirementsList value) {
         this.apisRequirementsList = value;
     }
@@ -282,7 +282,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link TypeDistance }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public TypeDistance getDistanceUnits() {
         return distanceUnits;
     }
@@ -295,7 +295,7 @@ public class BaseAvailabilitySearchRsp
      *     {@link TypeDistance }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setDistanceUnits(TypeDistance value) {
         this.distanceUnits = value;
     }
@@ -306,7 +306,7 @@ public class BaseAvailabilitySearchRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

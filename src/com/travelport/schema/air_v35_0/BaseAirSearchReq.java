@@ -50,22 +50,22 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
 @XmlSeeAlso({
     BaseLowFareSearchReq.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class BaseAirSearchReq
     extends BaseCoreSearchReq
 {
 
     @XmlElement(name = "SearchAirLeg")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<SearchAirLeg> searchAirLeg;
     @XmlElement(name = "SearchSpecificAirSegment")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<SearchSpecificAirSegment> searchSpecificAirSegment;
     @XmlElement(name = "AirSearchModifiers")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirSearchModifiers airSearchModifiers;
     @XmlElement(name = "JourneyData")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected JourneyData journeyData;
 
     /**
@@ -90,7 +90,7 @@ public class BaseAirSearchReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<SearchAirLeg> getSearchAirLeg() {
         if (searchAirLeg == null) {
             searchAirLeg = new ArrayList<SearchAirLeg>();
@@ -120,7 +120,7 @@ public class BaseAirSearchReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<SearchSpecificAirSegment> getSearchSpecificAirSegment() {
         if (searchSpecificAirSegment == null) {
             searchSpecificAirSegment = new ArrayList<SearchSpecificAirSegment>();
@@ -136,7 +136,7 @@ public class BaseAirSearchReq
      *     {@link AirSearchModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirSearchModifiers getAirSearchModifiers() {
         return airSearchModifiers;
     }
@@ -149,7 +149,7 @@ public class BaseAirSearchReq
      *     {@link AirSearchModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSearchModifiers(AirSearchModifiers value) {
         this.airSearchModifiers = value;
     }
@@ -162,7 +162,7 @@ public class BaseAirSearchReq
      *     {@link JourneyData }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public JourneyData getJourneyData() {
         return journeyData;
     }
@@ -175,7 +175,7 @@ public class BaseAirSearchReq
      *     {@link JourneyData }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setJourneyData(JourneyData value) {
         this.journeyData = value;
     }
@@ -186,7 +186,7 @@ public class BaseAirSearchReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

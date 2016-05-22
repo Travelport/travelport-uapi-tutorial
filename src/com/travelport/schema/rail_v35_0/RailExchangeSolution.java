@@ -35,13 +35,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "railExchangeInfo"
 })
 @XmlRootElement(name = "RailExchangeSolution")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class RailExchangeSolution
     extends TypeRailPricingSolution
 {
 
     @XmlElement(name = "RailExchangeInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected RailExchangeInfo railExchangeInfo;
 
     /**
@@ -52,7 +52,7 @@ public class RailExchangeSolution
      *     {@link RailExchangeInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public RailExchangeInfo getRailExchangeInfo() {
         return railExchangeInfo;
     }
@@ -65,7 +65,7 @@ public class RailExchangeSolution
      *     {@link RailExchangeInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setRailExchangeInfo(RailExchangeInfo value) {
         this.railExchangeInfo = value;
     }
@@ -76,7 +76,7 @@ public class RailExchangeSolution
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

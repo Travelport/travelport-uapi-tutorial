@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.travelport.com/schema/desktopServices_v32_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.travelport.com/schema/desktopServices_v32_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v32_0">
+   <xs:import namespace="http://www.travelport.com/schema/common_v32_0" schemaLocation="../common_v32_0/CommonReqRsp.xsd"/>
+   <xs:include schemaLocation="DeploymentReqRsp.xsd"/>
+   <xs:include schemaLocation="DesktopServices.xsd"/>
+   
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    
+     <!--*** Start Inbox Item Request Types ***-->
+     
+    <!--*** Inbox Item Create Request Type ***-->
+    <xs:element name="InboxItemCreateReq">
+        <xs:annotation>
+            <xs:documentation>Request to create the Inbox Item.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element name="InboxItem" type="typeInboxItem" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Item Create Response Type ***-->
+    <xs:element name="InboxItemCreateRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the Inbox Items.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="InboxItem" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Contains the created inbox item.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="InboxItemModifyReq">
+        <xs:annotation>
+            <xs:documentation>Request to save the Inbox Item with modified details.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element name="InboxItem" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Contains the InboxItemData? .</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:extension base="typeInboxItem">
+                                        <xs:attribute name="ItemID" use="required"/>
+                                        <xs:attribute name="IsRead" type="xs:boolean" use="optional"/>
+                                    </xs:extension>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Item Modify Response Type ***-->
+    <xs:element name="InboxItemModifyRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the modified Inbox Item.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="InboxItem" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Contains the modified data.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Items Search Request Type ***-->
+    <xs:element name="InboxItemSearchReq">
+        <xs:annotation>
+            <xs:documentation>Request to get the Inbox Items according to the criteria passed.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType mixed="false">
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="InboxItemSearchCriteria"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Items Search Response Type ***-->
+    <xs:element name="InboxItemSearchRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the requested Inbox Items.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="InboxItem" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Contains the inbox data.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Item Delete Request Type ***-->
+    <xs:element name="InboxItemDeleteReq">
+        <xs:annotation>
+            <xs:documentation>Request to delete the particular inbox item.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="Item" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Contains the id"s of the items to be deleted</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Items Delete Response Type ***-->
+    <xs:element name="InboxItemDeleteRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the details of the requested Inbox Item.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="Item" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="InboxItem" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+	<!--*** Inbox Item Retrieve History Request Type ***-->
+	<xs:element name="InboxItemRetrieveHistoryReq">
+		<xs:annotation>
+			<xs:documentation>Request to retrieve the history for a particular inbox item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element name="InboxItemRetrieveHistoryCriteria">
+							<xs:annotation>
+								<xs:documentation>Contains the criteria for retrieving the history.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="ItemID" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>The ItemID for which the history is needed.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="Category" type="typeInboxItemCategory" use="required">
+									<xs:annotation>
+										<xs:documentation>The category type of the inbox item</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="MaxHistoryItems" type="xs:int" use="optional">
+									<xs:annotation>
+										<xs:documentation>The maximum no. of history items need to be retrieved.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Inbox Items Retrieve HistoryResponse Type ***-->
+	<xs:element name="InboxItemRetrieveHistoryRsp">
+		<xs:annotation>
+			<xs:documentation>Response with the history of the requested Inbox Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="InboxItem" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Contains the inbox data.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+    <!--***End Inbox Item Request Types ***-->
+    
+    <!--*** Start DistributionList Management Request Types ***-->
+    <xs:element name="InboxDistributionListCreateReq">
+	 <xs:annotation>
+	  <xs:documentation> Create a distribution List to be used with the Inbox services</xs:documentation>
+	 </xs:annotation>
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseReq">
+	    <xs:sequence>
+	     <xs:element name="PermittedUsers" minOccurs="0">
+	      <xs:complexType>
+	       <xs:sequence>
+	           <xs:element name="ProfileReference" type="common:typeAgencyHierarchyReference" maxOccurs="unbounded"/>
+	       </xs:sequence>
+	      </xs:complexType>
+	     </xs:element>
+	     <xs:element name="Recipients" minOccurs="0">
+	      <xs:complexType>
+	       <xs:sequence>
+	        <xs:element name="EmbeddedDistListRef" minOccurs="0" maxOccurs="unbounded">
+	         <xs:complexType>
+	          <xs:attribute name="ID" use="required"/>
+	         </xs:complexType>
+	        </xs:element>
+	           <xs:element name="ProfileReference" type="common:typeAgencyHierarchyReference" maxOccurs="unbounded"/>
+	       </xs:sequence>
+	      </xs:complexType>
+	     </xs:element>
+	    </xs:sequence>
+	    <xs:attribute name="ListName" use="required">
+	     <xs:simpleType>
+	      <xs:restriction base="xs:string">
+	       <xs:maxLength value="50"/>
+	      </xs:restriction>
+	     </xs:simpleType>
+	    </xs:attribute>
+	    <xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+          <xs:annotation>
+              <xs:documentation>Secondary Owner of the InboxDistributionList</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+
+	<xs:element name="InboxDistributionListCreateRsp">
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseRsp">
+	    <xs:sequence>
+	     <xs:element ref="InboxDistributionList"/>
+	    </xs:sequence>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+
+
+	<xs:element name="InboxDistributionListRetrieveReq">
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseReq">
+	    <xs:attribute name="ID" type="typeID" use="required"/>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+
+	<xs:element name="InboxDistributionListRetrieveRsp">
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseRsp">
+	    <xs:sequence>
+	     <xs:element ref="InboxDistributionList" minOccurs="0"/>
+	    </xs:sequence>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+
+	<xs:element name="InboxDistributionListModifyReq">
+	 <xs:annotation>
+	  <xs:documentation> Create a distribution List to be used with the Inbox services</xs:documentation>
+	 </xs:annotation>
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseReq">
+	    <xs:sequence>
+	     <xs:element name="PermittedUsers" minOccurs="0">
+	      <xs:complexType>
+	       <xs:sequence>
+	        <xs:element name="ProfileReference" type="common:typeAgencyHierarchyReference" maxOccurs="unbounded"/>
+	       </xs:sequence>
+	      </xs:complexType>
+	     </xs:element>
+	     <xs:element name="Recipients" minOccurs="0">
+	      <xs:complexType>
+	       <xs:sequence>
+	        <xs:element name="EmbeddedDistListRef" minOccurs="0" maxOccurs="unbounded">
+	         <xs:complexType>
+	          <xs:attribute name="ID" use="required"/>
+	         </xs:complexType>
+	        </xs:element>
+	        <xs:element name="ProfileReference" type="common:typeAgencyHierarchyReference" maxOccurs="unbounded"/>
+	       </xs:sequence>
+	      </xs:complexType>
+	     </xs:element>
+	    </xs:sequence>
+	    <xs:attributeGroup ref="attrInboxDistList"/>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+
+	<xs:element name="InboxDistributionListModifyRsp" type="common:BaseRsp">
+	 <xs:annotation>
+	  <xs:documentation>Modify an existing distriibution List. Can only be done by Admin of owning Agency, or System Administrator for "SystemOwned"</xs:documentation>
+	 </xs:annotation>
+	</xs:element>
+
+
+	<xs:element name="InboxDistributionListDeleteReq">
+	 <xs:annotation>
+	  <xs:documentation>Delete an existing distribution list. Can only be done by and administrator of the owning entity or System Admin for global lists.</xs:documentation>
+	 </xs:annotation>
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseReq">
+	    <xs:attribute name="ID" type="typeID" use="required"/>
+	    <xs:attribute name="Version" use="required"/>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element name="InboxDistributionListDeleteRsp" type="common:BaseRsp">
+	 <xs:annotation>
+	  <xs:documentation>Delete an existing distribution list. Can only be done by and administrator of the owning entity or System Admin for global lists.</xs:documentation>
+	 </xs:annotation>
+	</xs:element>
+
+	
+	 <xs:element name="InboxDistributionListSearchReq">
+         <xs:annotation>
+          <xs:documentation>Search for Inbox Distriibution Lists. Supports pagination (through Modifiers)</xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+          <xs:complexContent>
+           <xs:extension base="common:BaseReq">
+            <xs:sequence>
+             <xs:element name="Modifiers" type="typePaginationModifiers" minOccurs="0"/>
+             <xs:element name="PermittedUsers" type="common:typeAgencyHierarchyReference" minOccurs="0" maxOccurs="unbounded"/>
+
+             <xs:element name="Recipients" type="common:typeAgencyHierarchyReference" minOccurs="0" maxOccurs="unbounded"/>
+
+            </xs:sequence>
+            <xs:attribute name="ListName">
+             <xs:annotation>
+              <xs:documentation>supports wild cards</xs:documentation>
+             </xs:annotation>
+             <xs:simpleType>
+              <xs:restriction base="common:typeWildcard"/>
+             </xs:simpleType>
+            </xs:attribute>
+                <xs:attribute name="Modifiable" type="xs:boolean" use="optional">
+                        <xs:annotation>
+                                <xs:documentation>Only return modifiable InboxDistributionList that can be updated by searching agent.</xs:documentation>
+
+                        </xs:annotation>
+                </xs:attribute>
+           </xs:extension>
+          </xs:complexContent>
+         </xs:complexType>
+        </xs:element> 
+	
+	<xs:element name="InboxDistributionListSearchRsp">
+	 <xs:complexType>
+	  <xs:complexContent>
+	   <xs:extension base="common:BaseRsp">
+	    <xs:sequence>
+	     <xs:element ref="InboxDistributionListSummary" minOccurs="0" maxOccurs="unbounded"/>
+	    </xs:sequence>
+	    <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required"/>
+	   </xs:extension>
+	  </xs:complexContent>
+	 </xs:complexType>
+	</xs:element>
+    <!--*** End DistributionList Management Request Types ***-->
+    
+   <!-- *** License count update Start*** -->   
+   <xs:element name="LicenseLimitsUpdateReq">
+	   <xs:annotation>
+	      <xs:documentation>Request to update default count value associated with a license type.</xs:documentation>
+	   </xs:annotation>
+	   <xs:complexType>
+	      <xs:complexContent>
+	         <xs:extension base="common:BaseReq">
+	            <xs:sequence>
+	               <xs:element ref="LicenseLimits" maxOccurs="5"/>
+	            </xs:sequence>
+	         </xs:extension>
+	      </xs:complexContent>
+	   </xs:complexType>
+	</xs:element>
+
+	<xs:element name="LicenseLimitsUpdateRsp" type="common:BaseRsp"/>
+   <!-- *** License count update End*** -->
+	
+	<!-- *** Media change assignment Start*** -->
+	<xs:element name="MediaChangeAssignmentReq">
+		<xs:annotation>
+			<xs:documentation>Assigns an externally supported media
+				element to a media type for multiple profiles. Items can be stored
+				at the TPPS mediaserver or elsewhere. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="AppliesToMediaProfiles" maxOccurs="unbounded" />
+						<xs:choice>
+							<xs:element name="Assign">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="MediaItem" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UnAssign">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="MediaItem" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="MediaChangeAssignmentRsp">
+	   <xs:annotation>
+	      <xs:documentation>Will show all currently assigned media for the profiles specified in request</xs:documentation>
+	   </xs:annotation>
+	   <xs:complexType>
+	      <xs:complexContent>
+	         <xs:extension base="common:BaseRsp"/>
+	      </xs:complexContent>
+	   </xs:complexType>
+	</xs:element>
+	
+	<xs:element name="MediaRetrieveReq">
+	   <xs:annotation>
+	      <xs:documentation>Retrieves the links to externally supported media elements for a particular profile. Can return a particular media type or all types. Items can be stored at the TPPS mediaserver or elsewhere. Can be retrieved by Account or Agent ID.</xs:documentation>
+	   </xs:annotation>
+	   <xs:complexType>
+	      <xs:complexContent>
+	         <xs:extension base="common:BaseReq">
+	            <xs:attribute name="MediaTypeCode">
+	                 <xs:simpleType>
+	                     <xs:restriction base="typeMediaTypeCode"/>
+	                 </xs:simpleType>
+	             </xs:attribute>
+	            <xs:attribute name="AppliesToAccount" type="typeID"/>
+	            <xs:attribute name="AppliesToAgent" type="typeID"/>
+	         </xs:extension>
+	      </xs:complexContent>
+	   </xs:complexType>
+	</xs:element>
+	<xs:element name="MediaRetrieveRsp">
+	   <xs:complexType>
+	      <xs:complexContent>
+	         <xs:extension base="common:BaseRsp">
+	            <xs:sequence>
+	               <xs:element ref="MediaItem" minOccurs="0" maxOccurs="unbounded"/>
+	            </xs:sequence>
+	         </xs:extension>
+	      </xs:complexContent>
+	   </xs:complexType>
+	</xs:element>
+	
+	<xs:element name="MediaSearchReq">
+        <xs:annotation>
+		    <xs:documentation>Searching media items, for several profiles at once, without hierarchy travelsal.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+		    <xs:complexContent>
+		        <xs:extension base="common:BaseReq">
+		            <xs:sequence>
+		                <xs:element ref="AppliesToMediaProfiles" maxOccurs="unbounded"/>
+		                <xs:choice minOccurs="0">
+					       <xs:annotation>
+					           <xs:documentation>Select Either a Category or a Type. If included, will only return media assignments of type requested.</xs:documentation>
+					       </xs:annotation>
+						    <xs:element name="MediaCategory">
+						    	<xs:complexType>
+						            <xs:attribute name="Category">
+						                <xs:simpleType>
+	  						                <xs:restriction base="xs:string">
+									           <xs:enumeration value="Icons"/>
+									           <xs:enumeration value="Logos"/>
+						         			 </xs:restriction>
+						         		</xs:simpleType>
+						        	</xs:attribute>
+						       </xs:complexType>
+						    </xs:element>
+		      				<xs:element name="MediaType">
+		      					<xs:complexType>
+		        					<xs:attribute name="TypeCode" type="typeMediaTypeCode"/>
+		       					</xs:complexType>
+		      				</xs:element>
+		     			</xs:choice>
+		     			<xs:element name="SearchModifiers" type="typePaginationModifiers" minOccurs="0">
+		      				<xs:annotation>
+		       					<xs:documentation>Controls for the Search request, used for pagination</xs:documentation>
+		     				</xs:annotation>
+		     			</xs:element>
+		   			</xs:sequence>
+		   		</xs:extension>
+		  	</xs:complexContent>
+		 </xs:complexType>
+	</xs:element>
+  
+	<xs:element name="MediaSearchRsp">
+ 		<xs:annotation>
+  			<xs:documentation>Searching media items, for several profiles at once, without hierarchy travelsal.</xs:documentation>
+ 		</xs:annotation>
+ 		<xs:complexType>
+			<xs:complexContent>
+		    	<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+				    	<xs:element name="MediaItem" minOccurs="0" maxOccurs="unbounded">
+ 					    	<xs:complexType>
+       							<xs:sequence>
+							        <xs:element ref="AppliesToMediaProfiles" maxOccurs="unbounded"/>
+       							</xs:sequence>
+						       <xs:attributeGroup ref="MediaDetails"/>
+						    </xs:complexType>
+					    </xs:element>
+    				</xs:sequence>
+				    <xs:attribute name="MoreResults" type="xs:boolean" use="required"/>
+   				</xs:extension>
+		 	 </xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- *** Media change assignment End*** -->
+	<!--*** Trigger Policy requests Start***-->
+	<xs:element name="TriggerPolicyCreateReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="WorkflowReference" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="PolicyData"/>
+						<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+						<xs:element ref="VerifiedDesktopVersion" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="attrTriggerPolicy"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyCreateRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="TriggerPolicyRuleSet"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyModifyReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="TriggerPolicyRuleSetData"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyModifyRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="TriggerPolicyRuleSet"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyRetrieveReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element name="ID" type="typeID" maxOccurs="25">
+							<xs:annotation>
+								<xs:documentation>List of unique IDs of TriggerPolicy? set.
+									Used by retrieve and modify, returned by create.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyRetrieveRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="TriggerPolicyRuleSet" minOccurs="0" maxOccurs="25" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="TriggerPolicySearchReq">
+		<xs:annotation>
+			<xs:documentation>Search for matching TriggerPolicy sets. All entered attributes will be matched. (AND).</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="WorkflowReference" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="AppliesToSearch" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Used to indicate whether the parent is uniquely available to the agency, or only to certain other profiles (usually Accounts). ProfileEntityID and ProfileLevel refer to the owner (organisation or person) to whom this entity belongs. "OR" logic used, allows to send in the hierarchy.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="TriggerPolicyID" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="VerifiedDesktopVersion" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="Name" type="xs:string"/>
+					<xs:attribute name="DescriptionPart" type="typeDescriptionPart" use="optional">
+						<xs:annotation>
+							<xs:documentation>If entered, can be a part of the descirption</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="ExecuteDate" type="xs:date"/>
+					<xs:attribute name="Published" type="xs:boolean"/>
+					<xs:attribute name="Active" type="xs:boolean"/>
+					<xs:attribute name="Immutable" type="xs:boolean"/>
+					<xs:attribute name="SystemOwned" type="xs:boolean"/>
+					<xs:attribute name="UnAssigned" type="xs:boolean">
+     					<xs:annotation>
+      						<xs:documentation>Search for Unassigned TriggerPolicies. Can not be used in combination with AppliesToSearch nodes.</xs:documentation>
+     					</xs:annotation>
+     				</xs:attribute>
+     				<xs:attribute name="Modifiable" type="xs:boolean" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Only return modifiable trigger policies that can be updated by searching agent.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicySearchRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="TriggerPolicySummary" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyDeleteReq">
+		<xs:annotation>
+			<xs:documentation>Delete the TriggerPolicy specifiied.
+ TriggerPolicies are identiffied by their ID This service will NOT
+ verify that the TriggerPolicyis not in use in a current workflow.
+			Restricted access. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="ID" type="typeID" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyDeleteRsp" type="common:BaseRsp"/>
+	
+	<xs:element name="TriggerPolicyAssignReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+					<xs:attribute name="ID" type="typeID" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="TriggerPolicyAssignRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element> 
+  <!--*** Trigger Policy requests End***-->
+
+  <!--*** Work Flow requests Start ***-->
+	<xs:element name="WorkflowCreateReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Describes the various entities to whom this workflow can apply. Can be Accounts, Travelers, Agencies, Branches or Agencies. If not specified applies to the whole hierarchy of owner.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="Activities"/>
+						<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="attrWorkflow"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowCreateRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="Workflow"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowDeleteReq">
+		<xs:annotation>
+			<xs:documentation>Delete the Workflowspecified. Workflows are identified by their ID This service will NOT verify that the Workflow is not in use.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="ID" type="typeID" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowDeleteRsp" type="common:BaseRsp"/>
+	<xs:element name="WorkflowModifyReq">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="common:BaseReq">
+		<xs:sequence>
+			<xs:element ref="WorkflowData"/>
+		</xs:sequence>
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowModifyRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="Workflow"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowRetrieveReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="ID" type="typeID" use="required">
+						<xs:annotation>
+							<xs:documentation>unique ID. used by retrieve and modify. returned by create.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowRetrieveRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="Workflow"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowSearchReq">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:element ref="AppliesToSearch" minOccurs="0" maxOccurs="unbounded"/>
+                  <xs:element name="Category" type="typeCategory" minOccurs="0" maxOccurs="unbounded"/>
+                  <xs:element ref="WorkflowID"  minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+               <xs:attribute name="Name" type="xs:string"/>
+               <xs:attribute name="ExecuteDate" type="xs:date"/>
+               <xs:attribute name="DescriptionPart" type="typeDescriptionPart" use="optional">
+					<xs:annotation>
+						<xs:documentation>If entered, can be a part of the description</xs:documentation>
+					</xs:annotation>
+			   </xs:attribute>               
+               <xs:attribute name="Published" type="xs:boolean"/>
+               <xs:attribute name="Active" type="xs:boolean"/>
+               <xs:attribute name="Immutable" type="xs:boolean"/>
+               <xs:attribute name="SystemOwned" type="xs:boolean"/>
+               <xs:attribute name="UnAssigned" type="xs:boolean">
+			   		<xs:annotation>
+						<xs:documentation>Search for Unassigned workflows. Can not be used in combination with AppliesToSearch nodes.</xs:documentation>
+					</xs:annotation>
+			   </xs:attribute>
+			   <xs:attribute name="Modifiable" type="xs:boolean" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Only return modifiable workflows that can be updated by searching agent.</xs:documentation>
+                     </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+	<xs:element name="WorkflowSearchRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="WorkflowSummary"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Workflow Attribute Messages ***-->
+	<xs:element name="WorkflowCategoryAssociationReq">
+		<xs:annotation>
+			<xs:documentation>Creates or changes the workflows associated with a Category. If no WorkflowReferences given, will delete any association that exists.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="WorkflowReference" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="Category" type="typeCategory" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowCategoryAssociationRsp" type="common:BaseRsp"/>
+	
+	<xs:element name="WorkflowAssignReq">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+					<xs:attribute name="ID" type="typeID" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+	<xs:element name="WorkflowAssignRsp">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="common:BaseRsp"/>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+  <!--*** Work Flow requests End ***-->
+
+  <!--*** Reason Code (List) requests Start ***-->
+	<xs:element name="ReasonCodesListCreateReq">
+		<xs:annotation>
+			<xs:documentation>Create a list of Reason Codes. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="Reason" maxOccurs="unbounded"/>
+						<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="attrReasonCodesList"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReasonCodesListCreateRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ReasonCodesList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	 <xs:element name="ReasonCodesListSearchReq">
+         <xs:annotation>
+            <xs:documentation>Searches for ReasonCodesLists for the
+                  Contract Level 
+                  of the requesting agent. If no additional
+                  attributes are sent, all ReasonCodesLists are returned.
+               </xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+            <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                  <xs:sequence>
+                     <xs:element name="SearchModifiers" type="typePaginationModifiers" minOccurs="0">
+                        <xs:annotation>
+                           <xs:documentation>Controls for the Search request, used for pagination</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element ref="AppliesToSearch" minOccurs="0" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                  <xs:attribute name="Category" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>If entered, must fully match Category on
+                              file.
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="NamePart">
+                     <xs:annotation>
+                        <xs:documentation>If entered, can be a part of the name
+                           </xs:documentation>
+                     </xs:annotation>
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:minLength value="3"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="DescriptionPart" type="typeDescriptionPart" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>If entered, can be a part of the description</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="UnAssigned" type="xs:boolean">
+                     <xs:annotation>
+                        <xs:documentation>Search for Unassigned ReasonCodeLists. Can not be used in combination with AppliesToSearch nodes.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Modifiable" type="xs:boolean" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Only return modifiable ReasonCodeLists that can be updated by searching agent.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:element>
+	<xs:element name="ReasonCodesListSearchRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ReasonCodesListData" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="MoreResults" type="xs:boolean" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReasonCodesListModifyReq">
+		<xs:annotation>
+			<xs:documentation>Allows the modification of the
+	 ReasonCodesList. Name must be an exact match to name on file.
+		</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="ReasonCodesList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReasonCodesListModifyRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ReasonCodesList"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	 <xs:element name="ReasonCodesListDeleteReq">
+         <xs:annotation>
+            <xs:documentation>Delete the ReasonCodeList specifiied.
+         ReasonCode Lists are identiffied by their name, which is unique
+       within an agency. The ownership is determined from the Contract Level of the requesting agent. This service will NOT verify that the
+         ReasonCodeList is not in use in a current workflow. Restricted
+       access. </xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+            <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                  <xs:attribute name="Name" type="typeReasonCodeListName" use="required"/>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:element>
+	<xs:element name="ReasonCodesListDeleteRsp" type="common:BaseRsp"/>
+  <!--*** Reason Code (List) requests End ***-->
+</xs:schema>

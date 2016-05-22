@@ -9,6 +9,24 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
+import com.travelport.schema.air_v35_0.AirBaseReq;
+import com.travelport.schema.air_v35_0.AirExchangeReq;
+import com.travelport.schema.air_v35_0.AirExchangeTicketingReq;
+import com.travelport.schema.air_v35_0.AirFareDisplayReq;
+import com.travelport.schema.air_v35_0.AirFareRulesReq;
+import com.travelport.schema.air_v35_0.AirMerchandisingDetailsReq;
+import com.travelport.schema.air_v35_0.AirMerchandisingOfferAvailabilityReq;
+import com.travelport.schema.air_v35_0.AirPrePayReq;
+import com.travelport.schema.air_v35_0.AirRefundQuoteReq;
+import com.travelport.schema.air_v35_0.AirRefundReq;
+import com.travelport.schema.air_v35_0.AirRetrieveDocumentReq;
+import com.travelport.schema.air_v35_0.AirVoidDocumentReq;
+import com.travelport.schema.air_v35_0.EMDIssuanceReq;
+import com.travelport.schema.air_v35_0.EMDRetrieveReq;
+import com.travelport.schema.air_v35_0.FlightDetailsReq;
+import com.travelport.schema.air_v35_0.FlightInformationReq;
+import com.travelport.schema.air_v35_0.RetrieveLowFareSearchReq;
+import com.travelport.schema.air_v35_0.SeatMapReq;
 import com.travelport.schema.universal_v35_0.AckScheduleChangeReq;
 import com.travelport.schema.universal_v35_0.AirCancelReq;
 import com.travelport.schema.universal_v35_0.AirMerchandisingFulfillmentReq;
@@ -84,16 +102,16 @@ import com.travelport.schema.vehicle_v35_0.VehicleRetrieveReq;
     ProviderReservationDivideReq.class,
     UniversalRecordRetrieveReq.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class BaseReq
     extends BaseCoreReq
 {
 
     @XmlElement(name = "OverridePCC")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected OverridePCC overridePCC;
     @XmlAttribute(name = "RetrieveProviderReservationDetails")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected Boolean retrieveProviderReservationDetails;
 
     /**
@@ -104,7 +122,7 @@ public class BaseReq
      *     {@link OverridePCC }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public OverridePCC getOverridePCC() {
         return overridePCC;
     }
@@ -117,7 +135,7 @@ public class BaseReq
      *     {@link OverridePCC }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setOverridePCC(OverridePCC value) {
         this.overridePCC = value;
     }
@@ -130,7 +148,7 @@ public class BaseReq
      *     {@link Boolean }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public boolean isRetrieveProviderReservationDetails() {
         if (retrieveProviderReservationDetails == null) {
             return false;
@@ -147,7 +165,7 @@ public class BaseReq
      *     {@link Boolean }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setRetrieveProviderReservationDetails(Boolean value) {
         this.retrieveProviderReservationDetails = value;
     }
@@ -158,7 +176,7 @@ public class BaseReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

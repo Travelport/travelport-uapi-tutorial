@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/desktopServices_v32_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v32_0" targetNamespace="http://www.travelport.com/schema/desktopServices_v32_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:annotation>
+<xs:documentation>(c) Travelport GDS 2010 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://www.travelport.com/schema/common_v32_0" schemaLocation="../common_v32_0/CommonReqRsp.xsd"/>
+
+<xs:complexType name="typePaginationModifiers">
+	<xs:attribute name="MaxResults" type="common:typeMaxResults" default="20"/>
+	<xs:attribute name="StartFromResult" type="common:typeStartFromResult" default="1"/>
+</xs:complexType>
+<xs:element name="AppliesTo">
+	<xs:complexType>
+		<xs:attribute name="ProfileEntityID" type="typeID" use="required">
+	   <xs:annotation>
+			<xs:documentation>ProfileEntityID and ProfileLevel? refer to the owner (organisation or person) to whom this entity belongs.</xs:documentation>
+       </xs:annotation>
+       </xs:attribute>
+       <xs:attribute name="ProfileLevel" type="common:typeProfileLevelWithSystem" use="required"/>
+   </xs:complexType>
+</xs:element>
+
+<xs:element name="AppliesToMediaProfiles">
+	<xs:complexType>
+		<xs:attribute name="ProfileEntityID" type="typeID" use="required">
+			<xs:annotation>
+				<xs:documentation>ProfileEntityID and ProfileLevel? ? refer to the owner (organisation or person) to whom this entity belongs.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ProfileLevel" type="typeProfileLevelMedia" use="required"/>
+	</xs:complexType>
+</xs:element>
+
+<xs:simpleType name="typeProfileLevelMedia">
+	<xs:annotation>
+		<xs:documentation>The "profile level" used for association of workflow etc.</xs:documentation>
+	</xs:annotation>
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="Agency"/>
+		<xs:enumeration value="Branch"/>
+		<xs:enumeration value="Account"/>
+	</xs:restriction>
+</xs:simpleType> 
+
+<xs:simpleType name="typeID">
+   <xs:annotation>
+   		<xs:documentation>immunitable, unique ID for this entity</xs:documentation>
+   </xs:annotation>
+   <xs:restriction base="xs:string"/>
+</xs:simpleType>
+
+<xs:attributeGroup name="BuildVersion">
+	<xs:attribute name="Major" type="xs:integer" use="required" />
+	<xs:attribute name="Minor" type="xs:integer" use="required" />
+	<xs:attribute name="Revision" type="xs:integer" use="required" />
+</xs:attributeGroup> 
+
+</xs:schema>

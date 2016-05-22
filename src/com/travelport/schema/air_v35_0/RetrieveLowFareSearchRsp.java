@@ -42,19 +42,19 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "brandList"
 })
 @XmlRootElement(name = "RetrieveLowFareSearchRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class RetrieveLowFareSearchRsp
     extends AirSearchRsp
 {
 
     @XmlElement(name = "AsyncProviderSpecificResponse")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<BaseAsyncProviderSpecificResponse> asyncProviderSpecificResponse;
     @XmlElement(name = "BrandList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected BrandList brandList;
     @XmlAttribute(name = "CurrencyType")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected String currencyType;
 
     /**
@@ -79,7 +79,7 @@ public class RetrieveLowFareSearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<BaseAsyncProviderSpecificResponse> getAsyncProviderSpecificResponse() {
         if (asyncProviderSpecificResponse == null) {
             asyncProviderSpecificResponse = new ArrayList<BaseAsyncProviderSpecificResponse>();
@@ -95,7 +95,7 @@ public class RetrieveLowFareSearchRsp
      *     {@link BrandList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public BrandList getBrandList() {
         return brandList;
     }
@@ -108,7 +108,7 @@ public class RetrieveLowFareSearchRsp
      *     {@link BrandList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setBrandList(BrandList value) {
         this.brandList = value;
     }
@@ -121,7 +121,7 @@ public class RetrieveLowFareSearchRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String getCurrencyType() {
         return currencyType;
     }
@@ -134,7 +134,7 @@ public class RetrieveLowFareSearchRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setCurrencyType(String value) {
         this.currencyType = value;
     }
@@ -145,7 +145,7 @@ public class RetrieveLowFareSearchRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

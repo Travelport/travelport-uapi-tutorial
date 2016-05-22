@@ -38,13 +38,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "savedTripSearchResult"
 })
 @XmlRootElement(name = "SavedTripSearchRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class SavedTripSearchRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "SavedTripSearchResult")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<SavedTripSearchResult> savedTripSearchResult;
 
     /**
@@ -69,7 +69,7 @@ public class SavedTripSearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<SavedTripSearchResult> getSavedTripSearchResult() {
         if (savedTripSearchResult == null) {
             savedTripSearchResult = new ArrayList<SavedTripSearchResult>();
@@ -83,7 +83,7 @@ public class SavedTripSearchRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

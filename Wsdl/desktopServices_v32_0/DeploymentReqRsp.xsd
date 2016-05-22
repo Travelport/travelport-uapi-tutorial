@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns="http://www.travelport.com/schema/desktopServices_v32_0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:common="http://www.travelport.com/schema/common_v32_0"
+	targetNamespace="http://www.travelport.com/schema/desktopServices_v32_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.travelport.com/schema/common_v32_0"
+		schemaLocation="../common_v32_0/CommonReqRsp.xsd"/>
+	<xs:include schemaLocation="Deployment.xsd"/>
+	<xs:annotation>
+		<xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved.
+			Proprietary Information of Travelport GDS.</xs:documentation>
+	</xs:annotation>
+	
+	<!-- *** Manifest request Start -->
+	<!--*** Link the agent to the custom manifest URI and vice versa ***-->
+	<xs:element name="ManifestCalculateURIReq">
+		<xs:annotation>
+			<xs:documentation>Return the manifest URL for the user and the
+				product specified. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Product" type="typeProduct" use="required">
+						<xs:annotation>
+							<xs:documentation>e.g. uDesktop</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="AgentCode" type="common:typeAgentCode" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestCalculateURIRsp">
+		<xs:annotation>
+			<xs:documentation>Returns a calculated Restfull URI of the
+				latest manifest based on the user credentials </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:attribute name="CustomizedClickOnceURI" type="xs:anyURI" use="required">
+						<xs:annotation>
+							<xs:documentation>e.g.
+								http://install.travelport.com/UniversalDesktop/WX75FGHWYRE
+							</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestCalculateTargetReq">
+		<xs:annotation>
+			<xs:documentation>takes the personalised URI combined with the
+				product ID and returns the Profile ID of the owner, and optionally,
+				the version of the product this agent should be running
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Product" type="typeProduct" use="required"/>
+					<xs:attribute name="CustomizedClickOnceURI" type="xs:anyURI" use="required"/>
+					<xs:attribute name="returnProductVersion" type="xs:boolean" default="false"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestCalculateTargetRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:attribute name="AgentCode" use="required"/>
+					<xs:attribute name="Version" type="typeVersion"/>
+					<xs:attribute name="ReleaseName" type="typeReleaseName"/>
+					<xs:attribute name="TemplateManifestURI" type="typeTemplateManifestURI"/>
+					<xs:attribute name="CurrentReleaseName" type="typeReleaseName"/>
+                    <xs:attribute name="CurrentVersion" type="typeVersion"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Version Management Service Requests ***-->
+	<xs:element name="ManifestReferenceCreateReq">
+		<xs:annotation>
+			<xs:documentation>Store the details of a new version for a
+				product. Can only be done by a Travelport Administrator. "Preferred"
+				in this request means "preferred by Travelport". </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attributeGroup ref="BuildVersion"/>
+					<xs:attributeGroup ref="attrManifest"/>					
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceCreateRsp">
+		<xs:annotation>
+			<xs:documentation>The Create response will return all version
+				manifests for the given product and TargetEnvironment specified in
+				the request available for the user to manage (does not look at
+				assignments).Does not include releases that have been "soft"
+				deleted.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ManifestReference" maxOccurs="unbounded"/>												
+					</xs:sequence>
+					  				
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceModifyReq">
+		<xs:annotation>
+			<xs:documentation>Updates an existing version of the given
+				product. Can only be used to update the FunctionalReleaseSummaryURI,
+				FunctionalReleaseNotesURI, The ReleaseType and The
+				PreferredIndicator. Only available to a Travelport administrator,
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attributeGroup ref="attrManifestSummary"/>
+					<xs:attributeGroup ref="BuildVersion"/>					
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceModifyRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ManifestReference" maxOccurs="unbounded"/>
+					</xs:sequence>					
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceSearchReq">
+		<xs:annotation>
+			<xs:documentation>Searches the product releases that this
+				agent can manage.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Product" type="typeProduct" use="required"/>
+					<xs:attribute name="ReleaseType" type="typeReleaseType"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceSearchRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ManifestReference" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>				
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceDeleteReq">
+		<xs:annotation>
+			<xs:documentation>Does a "soft" delete of a release reference.
+				Only available to Travelport administrator. A "Travelport Preferred"
+				release can not be deleted.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Product" type="typeProduct" use="required"/>
+					<xs:attribute name="Version" type="typeVersion" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceDeleteRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ManifestReference" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceRetrieveReq">
+		<xs:annotation>
+			<xs:documentation>Retrieve the details of a new version for a
+				product. Can only be done by the Click Once service and portal.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Product" type="typeProduct" use="required"/>
+					<xs:attribute name="Version" type="typeVersion" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ManifestReferenceRetrieveRsp">
+		<xs:annotation>
+			<xs:documentation>.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:attributeGroup ref="BuildVersion"/>				
+					<xs:attributeGroup ref="attrManifest"/>
+					<xs:attribute name="CreateDate" type="typeCreateDate" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- *** Manifest request Start -->
+	
+	<!-- ProductVersionRetrieve request Start -->
+	<xs:element name="ProductVersionRetrieveReq">
+		<xs:annotation>
+			<xs:documentation>Retrieves the version of the product the
+				agent is supposed to be using. The input parameters are the release
+				this agent is currently using. (If the product is not yet installed,
+				the Agent will use the portal)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="Product" type="typeProduct" use="required"/>
+					<xs:attribute name="Version" type="typeVersion" use="optional"/>
+					<xs:attribute name="AgentCode" type="common:typeAgentCode">
+						<xs:annotation>
+							<xs:documentation>Code of target Agent, defaults to Agent
+								requesting</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ProductVersionRetrieveRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="AvailableExtensions" minOccurs="0"
+								maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="ID" type="typeID" use="required" />
+									<xs:attribute name="Version" use="required" />
+									<xs:attributeGroup ref="attrExtension" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ProductVersion">
+								<xs:complexType>
+									<xs:attributeGroup ref="attrAssignedVersion" />
+									<xs:attribute name="ExpirationDate" type="xs:date" />
+									<xs:attribute name="Status" type="typeManifestStatus" />
+									<xs:attribute name="AssignmentDateTime" type="xs:dateTime" />
+									<xs:attribute name="FunctionalReleaseSummaryURI"
+										type="xs:anyURI" use="required" />
+									<xs:attribute name="ReleaseType" type="typeReleaseType"
+										use="required" />
+									<xs:attribute name="ReleaseNotesURI" type="xs:anyURI" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="UpgradeMethod" />
+						</xs:sequence>
+						<xs:element name="UpgradesNotAvailable">
+							<xs:annotation>
+								<xs:documentation>If the upgrade service is not available,
+									this response will be given instead of the release info. The
+									client should not attempt to upgrade or contact the Click Once
+									service for any other reason.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="UpgradesIndicator" type="xs:boolean"
+									default="false" />
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+					<xs:attribute name="CurrentVersionTimeToLive" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>Expressed in Days. Only returned if
+								current version added to query. If not present, the current
+								version does have an expiry date.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+		<!--
+		ProductVersionSetReq & ProductVersionSetReq Assignment of limited
+		release(s) Un-assignment of limited release(s) Setting preferred
+		release STARTS HERE
+	-->
+	<xs:element name="ProductVersionSetReq">
+		<xs:annotation>
+			<xs:documentation>This request will be used to set a preferred
+				release or assign/un-assign a limited release to a profile entity.
+				Will be used by System Admin or Regional Admin and will be targetted
+				for Agency Admins</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:choice>
+							<xs:annotation>
+								<xs:documentation>Either you can un-assign a limited
+									release (i.e. use UnAssign? node) or you can assign a limited
+									release while marking another release preferred (i.e. use
+									Assign
+									nodes)</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Assign">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="AssignLimited" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Assign a specific limited release.
+													Check if no other limited release is assigned
+												</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attributeGroup ref="attrManifestID"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="SetPreferred" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Set a preferred version - either
+													Travelport Default OR parent's preferred OR Specific
+													release
+													as preferred</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+												<xs:element name="ReleaseVersion" minOccurs="0">
+												<xs:annotation>
+												<xs:documentation>Specific product release. This
+																preferred release can be a limited or general release
+															</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:attributeGroup ref="attrManifestID"/>
+												</xs:complexType>
+												</xs:element>
+												</xs:sequence>
+												<xs:attribute name="SetType">
+												<xs:annotation>
+												<xs:documentation>Type to denote if Travelport
+															Preferred should be set or if parent's preferred should
+															be
+															set. If this is set, then cannot have an entry for
+															Preferred in ReleaseVersion? node below. Allowed values
+															are 'Default' and 'Parent'</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="Default"/>
+												<xs:enumeration value="Parent"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="UnAssign">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="UnAssignLimited" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Un-Assign a specific limited
+													release. Check if already assigned</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attributeGroup ref="attrManifestID"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:element ref="AppliesTo" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ProductVersionSetRsp" type="common:BaseRsp"/>
+
+	<!--
+		ProductVersionSetReq & ProductVersionSetReq Assignment of limited
+		release(s) Un-assignment of limited release(s) Setting preferred
+		release ENDS HERE
+	-->
+	<xs:element name="ProductVersionAssignReq">
+		<xs:annotation>
+			<xs:documentation>
+			This request is used to assign a particular release override to a profile
+			entity. Usually used by an Agency Administrator
+	</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:choice>
+							<xs:annotation>
+								<xs:documentation>
+								The administrator can select a specific release or chose a
+								particular entities preferred release. The latter will move with
+								the Preferred setting.
+							</xs:documentation>
+							</xs:annotation>
+							<xs:element name="SpecificRelease">
+								<xs:complexType>
+									<xs:attributeGroup ref="attrManifestID"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DynamicAssignment">
+							<xs:complexType>
+								<xs:attribute name="Type" use="required">
+									<xs:annotation>
+										<xs:documentation>A standard dynamic assignment is the same
+											as removing the assignment: we'll follow the hierarchy
+											through assigned, then preferred releases. For PreferredOnly,
+											we'll only follow the preferred released through Agency,
+											Region, Global, bypassing any intermediate assignments
+										</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="PreferredOnly" />
+											<xs:enumeration value="Standard" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+						</xs:choice>
+						<xs:element ref="AppliesTo" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="UpgradeMethod" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Inherit"/>
+								<xs:enumeration value="Immediate Async"/>
+								<xs:enumeration value="Immediate Sync"/>
+								<xs:enumeration value="ApplicationExit"/>
+								<xs:enumeration value="Timed"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="UpgradeTime" type="xs:time">
+						<xs:annotation>
+							<xs:documentation>Local PC time for Upgrade. Only valid when
+							UpgradeMethod=Timed
+						</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Deferable" type="xs:boolean" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductVersionAssignRsp" type="common:BaseRsp"/>
+	
+	
+	<xs:element name="ProductReleaseAssignmentSearchReq">
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:extension base="common:BaseReq">
+				<xs:sequence>
+					<xs:element name="Modifiers" type="typePaginationModifiers"
+						minOccurs="0" />
+				</xs:sequence>
+				<xs:attribute name="Product" type="typeProduct" />
+				<xs:attribute name="Version" type="typeVersion" />
+				<xs:attribute name="ProfileLevel" type="common:typeAgencyProfileLevel">
+					<xs:annotation>
+						<xs:documentation>Valid levels are Agency, Branch Group,
+							Branch and Agent if requested by Agency Admin. Not required and
+							defaulted to Agency//BranchGroup if requested by Regional Admin
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="ProfileName" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Profile Name search filter for the
+							profile level requested </xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="ParentProfileID" type="typeID">
+                    <xs:annotation>
+                       <xs:documentation>Profile ID of the parent profile when you want to search for assignments for direct children of the parent. Required when search requested by an Agency Admin</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+				<xs:attribute name="PreferredOnly" type="xs:boolean" />
+				<xs:attribute name="ManagingEntityCode" type="xs:int" />
+				<xs:attribute name="ReturnUpgradeMethod" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>Returns the upgrade method in the
+							response if set to true</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductReleaseAssignmentSearchRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element name="ProductAssignment" minOccurs="0"
+							maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ManifestReference" minOccurs="0"/>
+									<xs:element ref="ProfileReference" maxOccurs="unbounded" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="MoreResults" type="common:typeMoreResults"
+						use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+   <!-- ProductVersionRetrieve request End -->
+   
+   <!-- Extension request Start-->
+   <!-- ExtensionSearch schemas -->
+	<xs:element name="ExtensionSearchReq">
+		<xs:annotation>
+			<xs:documentation>Searches for matching extensions. Limited
+				to extension controlled by agent (managing entity or Agency Admin)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="ProductVersion" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="Name">
+						<xs:annotation>
+							<xs:documentation>Name must be unique within Agency
+							</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="common:typeWildcard">
+								<xs:maxLength value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="Description">
+						<xs:annotation>
+							<xs:documentation>Business Description of Extension
+							</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="common:typeWildcard">
+								<xs:maxLength value="2000"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ExtensionSearchRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element name="ExtensionSummary" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="ProductVersion" minOccurs="0"
+										maxOccurs="unbounded"/>
+									<xs:element name="AppliesTo"
+										type="common:typeAgencyHierarchyReference" minOccurs="0"
+										maxOccurs="unbounded"/>
+									<xs:element ref="AutoReleaseRange" minOccurs="0" maxOccurs="1"/>
+								</xs:sequence>
+								<xs:attribute name="ID" use="required"/>
+								<xs:attribute name="Version" use="required"/>
+								<xs:attributeGroup ref="attrExtension"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- ExtensionCreate schemas -->
+	<xs:element name="ExtensionCreateReq">
+		<xs:annotation>
+			<xs:documentation>Creates an extension reference and
+				associates it with applicatble release. When used by a managing
+				entity will be associated with entity. When used by an Agency Admin
+				will be associatiod with the agency.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="ExtensionFile" maxOccurs="unbounded"/>
+						<xs:element ref="ProductVersion" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="AppliesTo" type="common:typeAgencyHierarchyReference"
+							minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="AutoReleaseRange" minOccurs="0" maxOccurs="1"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="attrExtension"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="ExtensionCreateRsp">
+		<xs:annotation>
+			<xs:documentation>Creates an extension reference and
+				associates it with applicatble release. When used by a managing
+				entity will be associated with entity. When used by an Agency Admin
+				will be associatiod with the agency.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ExtensionRef"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- ExtensionModify schema-->
+	<xs:element name="ExtensionModifyReq">
+		<xs:annotation>
+			<xs:documentation>Modifies </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="ExtensionRef"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ExtensionModifyRsp" type="common:BaseRsp"/>
+	
+	<!-- ExtensionRetrieve schema-->
+	<xs:element name="ExtensionRetrieveReq">
+		<xs:annotation>
+			<xs:documentation>Retrieves an extension reference details
+				by ID</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="ID" type="typeID" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ExtensionRetrieveRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="ExtensionRef"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+    <!-- ExtensionDelete schema-->
+	<xs:element name="ExtensionDeleteReq">
+		<xs:annotation>
+			<xs:documentation>Deletes an extension reference by ID
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:attribute name="ID" type="typeID" use="required"/>
+					<xs:attribute name="Version" type="xs:int" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExtensionDeleteRsp" type="common:BaseRsp"/>
+   <!-- Extension request End -->
+</xs:schema>

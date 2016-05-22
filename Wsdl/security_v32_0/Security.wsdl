@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="SecurityService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/security_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/security_v32_0"
+             targetNamespace="http://www.travelport.com/service/security_v32_0">
+
+    <import namespace="http://www.travelport.com/service/security_v32_0"
+            location="SecurityAbstract.wsdl" />
+
+    <binding name="SecurityAssignableResourcesRetrieveBinding" type="tns:SecurityAssignableResourcesRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityRoleCreateBinding" type="tns:SecurityRoleCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="SecurityRoleDeleteBinding" type="tns:SecurityRoleDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="SecurityRoleModifyBinding" type="tns:SecurityRoleModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>    
+
+    <binding name="SecurityAssignRoleBinding" type="tns:SecurityAssignRolePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityAgentAssignableRolesRetrieveBinding" type="tns:SecurityAgentAssignableRolesRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityResourceInfoRetrieveBinding" type="tns:SecurityResourceInfoRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityAssignedRoleRetrieveBinding" type="tns:SecurityAssignedRoleRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="SecurityRoleRetrieveBinding" type="tns:SecurityRoleRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityRoleSearchBinding" type="tns:SecurityRoleSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityModifyRoleAssignablityBinding" type="tns:SecurityModifyRoleAssignabilityPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityRetrieveRoleAssignablityBinding" type="tns:SecurityRetrieveRoleAssignabilityPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityAssignedProfileRetrieveBinding" type="tns:SecurityAssignedProfileRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SecurityEmulationTargetRetrieveBinding" type="tns:SecurityEmulationTargetRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="DesktopPermissionCreateBinding" type="tns:DesktopPermissionCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="DesktopPermissionModifyBinding" type="tns:DesktopPermissionModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>    
+
+    <binding name="SecurityPermissionSearchBinding" type="tns:SecurityPermissionSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="DesktopPermissionDeleteBinding" type="tns:DesktopPermissionDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/SecurityService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <service name="SecurityService">
+        <port name="SecurityAssignableResourcesRetrievePort" binding="tns:SecurityAssignableResourcesRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityRoleCreatePort" binding="tns:SecurityRoleCreateBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+
+        <port name="SecurityRoleDeletePort" binding="tns:SecurityRoleDeleteBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+
+        <port name="SecurityRoleModifyPort" binding="tns:SecurityRoleModifyBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+
+        <port name="SecurityAssignRolePort" binding="tns:SecurityAssignRoleBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>        
+        <port name="SecurityAgentAssignableRolesRetrievePort" binding="tns:SecurityAgentAssignableRolesRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityResourceInfoRetrievePort" binding="tns:SecurityResourceInfoRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityAssignedRoleRetrievePort" binding="tns:SecurityAssignedRoleRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityRoleRetrievePort" binding="tns:SecurityRoleRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityRoleSearchPort" binding="tns:SecurityRoleSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityModifyRoleAssignabilityPortType" binding="tns:SecurityModifyRoleAssignablityBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port> 
+        <port name="SecurityRetrieveRoleAssignabilityPortType" binding="tns:SecurityRetrieveRoleAssignablityBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityAssignedProfileRetrievePortType" binding="tns:SecurityAssignedProfileRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityEmulationTargetRetrievePortType" binding="tns:SecurityEmulationTargetRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="DesktopPermissionCreatePort" binding="tns:DesktopPermissionCreateBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="DesktopPermissionModifyPort" binding="tns:DesktopPermissionModifyBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="SecurityPermissionSearcPort" binding="tns:SecurityPermissionSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+        <port name="DesktopPermissionDeletePort" binding="tns:DesktopPermissionDeleteBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/SecurityService" />
+        </port>
+    </service>
+
+</definitions>

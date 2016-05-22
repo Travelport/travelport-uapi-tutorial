@@ -41,16 +41,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "airSegmentError"
 })
 @XmlRootElement(name = "UniversalModifyErrorInfo")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class UniversalModifyErrorInfo
     extends TypeErrorInfo
 {
 
     @XmlElement(name = "UniversalModifyCommandError")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<UniversalModifyCommandError> universalModifyCommandError;
     @XmlElement(name = "AirSegmentError", namespace = "http://www.travelport.com/schema/air_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirSegmentError> airSegmentError;
 
     /**
@@ -75,7 +75,7 @@ public class UniversalModifyErrorInfo
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<UniversalModifyCommandError> getUniversalModifyCommandError() {
         if (universalModifyCommandError == null) {
             universalModifyCommandError = new ArrayList<UniversalModifyCommandError>();
@@ -105,7 +105,7 @@ public class UniversalModifyErrorInfo
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<AirSegmentError> getAirSegmentError() {
         if (airSegmentError == null) {
             airSegmentError = new ArrayList<AirSegmentError>();
@@ -119,7 +119,7 @@ public class UniversalModifyErrorInfo
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

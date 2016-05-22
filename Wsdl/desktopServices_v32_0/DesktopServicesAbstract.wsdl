@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractInboxServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/desktopServices_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/desktopServices_v32_0"
+             xmlns:common="http://www.travelport.com/schema/common_v32_0"
+             targetNamespace="http://www.travelport.com/service/desktopServices_v32_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/desktopServices_v32_0">
+            <include schemaLocation="DesktopServicesReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="InboxItemFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+
+    <message name="InboxItemCreateRequest">
+        <part name="parameters" element="ns1:InboxItemCreateReq" />
+    </message>
+
+    <message name="InboxItemCreateResponse">
+        <part name="result" element="ns1:InboxItemCreateRsp" />
+    </message>
+
+    <message name="InboxItemModifyRequest">
+        <part name="parameters" element="ns1:InboxItemModifyReq" />
+    </message>
+
+    <message name="InboxItemModifyResponse">
+        <part name="result" element="ns1:InboxItemModifyRsp" />
+    </message>
+
+    <message name="InboxItemSearchRequest">
+        <part name="parameters" element="ns1:InboxItemSearchReq" />
+    </message>
+
+    <message name="InboxItemSearchResponse">
+        <part name="result" element="ns1:InboxItemSearchRsp" />
+    </message>
+
+    <message name="InboxItemDeleteRequest">
+        <part name="parameters" element="ns1:InboxItemDeleteReq" />
+    </message>
+
+    <message name="InboxItemDeleteResponse">
+        <part name="result" element="ns1:InboxItemDeleteRsp" />
+    </message>
+
+    <message name="InboxItemRetrieveHistoryRequest">
+        <part name="parameters" element="ns1:InboxItemRetrieveHistoryReq" />
+    </message>
+
+    <message name="InboxItemRetrieveHistoryResponse">
+        <part name="result" element="ns1:InboxItemRetrieveHistoryRsp" />
+    </message>
+    
+    
+    <!-- Desktop Activity Message Start -->
+    <message name="DesktopWorkFlowCreateRequest">
+        <part name="parameters" element="ns1:WorkflowCreateReq" />
+    </message>
+
+    <message name="DesktopWorkFlowCreateResponse">
+        <part name="result" element="ns1:WorkflowCreateRsp" />
+    </message>
+    
+    <message name="DesktopWorkFlowFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+    
+    
+     <message name="DesktopWorkFlowRetrieveRequest">
+        <part name="parameters" element="ns1:WorkflowRetrieveReq" />
+    </message>
+
+    <message name="DesktopWorkFlowRetrieveResponse">
+        <part name="result" element="ns1:WorkflowRetrieveRsp" />
+    </message>
+    
+    <message name="DesktopWorkFlowSearchRequest">
+        <part name="parameters" element="ns1:WorkflowSearchReq" />
+    </message>
+
+    <message name="DesktopWorkFlowSearchResponse">
+        <part name="result" element="ns1:WorkflowSearchRsp" />
+    </message>
+    
+    <message name="DesktopWorkFlowModifyRequest">
+        <part name="parameters" element="ns1:WorkflowModifyReq" />
+    </message>
+
+    <message name="DesktopWorkFlowModifyResponse">
+        <part name="result" element="ns1:WorkflowModifyRsp" />
+    </message>
+    
+    <message name="DesktopWorkFlowDeleteRequest">
+        <part name="parameters" element="ns1:WorkflowDeleteReq" />
+    </message>
+
+    <message name="DesktopWorkFlowDeleteResponse">
+        <part name="result" element="ns1:WorkflowDeleteRsp" />
+    </message>
+    
+    <!-- Desktop Activity Message End -->
+    
+    <!-- Trigger Policy Start -->
+    
+    <message name="TriggerPolicyCreateRequest">
+        <part name="parameters" element="ns1:TriggerPolicyCreateReq" />
+    </message>
+
+    <message name="TriggerPolicyCreateResponse">
+        <part name="result" element="ns1:TriggerPolicyCreateRsp" />
+    </message>
+
+    <message name="TriggerPolicyRetrieveRequest">
+        <part name="parameters" element="ns1:TriggerPolicyRetrieveReq" />
+    </message>
+
+    <message name="TriggerPolicyRetrieveResponse">
+        <part name="result" element="ns1:TriggerPolicyRetrieveRsp" />
+    </message>
+    
+    <message name="TriggerPolicyModifyRequest">
+        <part name="parameters" element="ns1:TriggerPolicyModifyReq" />
+    </message>
+    
+    <message name="TriggerPolicyModifyResponse">
+        <part name="result" element="ns1:TriggerPolicyModifyRsp" />
+    </message>
+
+    <message name="TriggerPolicyDeleteRequest">
+        <part name="parameters" element="ns1:TriggerPolicyDeleteReq" />
+    </message>
+    <message name="TriggerPolicyDeleteResponse">
+        <part name="result" element="ns1:TriggerPolicyDeleteRsp" />
+    </message>
+    
+
+    
+    <message name="TriggerPolicySearchRequest">
+        <part name="parameters" element="ns1:TriggerPolicySearchReq" />
+    </message>
+    
+    <message name="TriggerPolicySearchResponse">
+        <part name="result" element="ns1:TriggerPolicySearchRsp" />
+    </message>
+    
+    <message name="TriggerPolicyAssignRequest">
+        <part name="parameters" element="ns1:TriggerPolicyAssignReq" />
+    </message>
+    
+    <message name="TriggerPolicyAssignResponse">
+        <part name="result" element="ns1:TriggerPolicyAssignRsp" />
+    </message>
+
+    <!--  Trigger Policy End -->
+    <!-- DesktopReasonCodesList Start -->
+     <message name="DesktopReasonCodesListCreateRequest">
+        <part name="parameters" element="ns1:ReasonCodesListCreateReq" />
+    </message>
+    
+    <message name="DesktopReasonCodesListCreateResponse">
+        <part name="result" element="ns1:ReasonCodesListCreateRsp" />
+    </message>
+    
+    <message name="DesktopReasonCodesListSearchRequest">
+        <part name="parameters" element="ns1:ReasonCodesListSearchReq" />
+    </message>
+    
+    <message name="DesktopReasonCodesListSearchResponse">
+        <part name="result" element="ns1:ReasonCodesListSearchRsp" />
+    </message>
+    
+    <message name="DesktopReasonCodesListModifyRequest">
+        <part name="parameters" element="ns1:ReasonCodesListModifyReq" />
+    </message>
+    
+    <message name="DesktopReasonCodesListModifyResponse">
+        <part name="result" element="ns1:ReasonCodesListModifyRsp" />
+    </message>
+    
+     <message name="DesktopReasonCodesListDeleteRequest">
+        <part name="parameters" element="ns1:ReasonCodesListDeleteReq" />
+    </message>
+    
+    <message name="DesktopReasonCodesListDeleteResponse">
+        <part name="result" element="ns1:ReasonCodesListDeleteRsp" />
+    </message>
+
+    <message name="WorkflowCategoryAssociationRequest">
+        <part name="parameters" element="ns1:WorkflowCategoryAssociationReq" />
+    </message>
+    
+    <message name="WorkflowCategoryAssociationResponse">
+        <part name="result" element="ns1:WorkflowCategoryAssociationRsp" />
+    </message>    
+
+    <message name="DesktopServiceFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>    
+    
+    <message name="InboxDistributionListCreateRequest">
+        <part name="parameters" element="ns1:InboxDistributionListCreateReq" />
+    </message>
+    
+     <message name="InboxDistributionListCreateResponse">
+        <part name="result" element="ns1:InboxDistributionListCreateRsp" />
+    </message>
+    
+    <message name="InboxDistributionListSearchRequest">
+        <part name="parameters" element="ns1:InboxDistributionListSearchReq" />
+    </message>
+    
+     <message name="InboxDistributionListSearchResponse">
+        <part name="result" element="ns1:InboxDistributionListSearchRsp" />
+    </message>
+        
+    <message name="InboxDistributionListRetrieveRequest">
+        <part name="parameters" element="ns1:InboxDistributionListRetrieveReq" />
+    </message>
+
+    <message name="InboxDistributionListDeleteRequest">
+        <part name="parameters" element="ns1:InboxDistributionListDeleteReq" />
+    </message>    
+    
+    <message name="InboxDistributionListRetrieveResponse">
+        <part name="result" element="ns1:InboxDistributionListRetrieveRsp" />
+    </message>
+    
+    <message name="InboxDistributionListDeleteResponse">
+        <part name="result" element="ns1:InboxDistributionListDeleteRsp" />
+    </message>    
+    
+    <message name="ExtensionSearchRequest">
+        <part name="parameters" element="ns1:ExtensionSearchReq" />
+    </message>
+     <message name="ExtensionSearchResponse">
+        <part name="result" element="ns1:ExtensionSearchRsp" />
+    </message>
+
+    <message name="LicenseLimitsUpdateRequest">
+        <part name="parameters" element="ns1:LicenseLimitsUpdateReq" />
+    </message>
+    
+     <message name="LicenseLimitsUpdateResponse">
+        <part name="result" element="ns1:LicenseLimitsUpdateRsp" />
+    </message>
+    
+     <message name="InboxDistributionListModifyRequest">
+        <part name="parameters" element="ns1:InboxDistributionListModifyReq" />
+     </message>
+    
+     <message name="InboxDistributionListModifyResponse">
+        <part name="result" element="ns1:InboxDistributionListModifyRsp" />
+     </message>
+    
+   <!-- DesktopReasonCodesList End -->
+   
+   <!--Added For Click Once Deployment -->  	
+	
+	<message name="ClickOnceFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+    
+    <message name="ManifestReferenceCreateRequest">
+        <part name="parameters" element="ns1:ManifestReferenceCreateReq" />
+    </message>
+
+    <message name="ManifestReferenceCreateResponse">
+        <part name="result" element="ns1:ManifestReferenceCreateRsp" />
+    </message>       
+     
+    <message name="ManifestCalculateTargetRequest">
+        <part name="parameters" element="ns1:ManifestCalculateTargetReq" />
+    </message>
+    
+    <message name="ManifestCalculateURIRequest">
+        <part name="parameters" element="ns1:ManifestCalculateURIReq" />
+    </message>
+    
+    <message name="ManifestReferenceModifyRequest">
+        <part name="parameters" element="ns1:ManifestReferenceModifyReq" />
+    </message>
+    
+    <message name="ManifestReferenceModifyResponse">
+        <part name="result" element="ns1:ManifestReferenceModifyRsp" />
+    </message>
+    
+    <message name="ManifestCalculateTargetResponse">
+        <part name="result" element="ns1:ManifestCalculateTargetRsp" />
+    </message>
+     <message name="ManifestCalculateURIResponse">
+        <part name="result" element="ns1:ManifestCalculateURIRsp" />
+    </message>
+
+    <message name="ManifestReferenceSearchRequest">
+        <part name="parameters" element="ns1:ManifestReferenceSearchReq" />
+    </message>
+
+    <message name="ManifestReferenceSearchResponse">
+        <part name="result" element="ns1:ManifestReferenceSearchRsp" />
+    </message> 
+    <message name="ManifestReferenceRetrieveRequest">
+        <part name="parameters" element="ns1:ManifestReferenceRetrieveReq" />
+    </message>
+
+    <message name="ManifestReferenceRetrieveResponse">
+        <part name="result" element="ns1:ManifestReferenceRetrieveRsp" />
+    </message>
+
+	<message name="ManifestReferenceDeleteRequest">
+        <part name="parameters" element="ns1:ManifestReferenceDeleteReq" />
+    </message>
+
+    <message name="ManifestReferenceDeleteResponse">
+        <part name="result" element="ns1:ManifestReferenceDeleteRsp" />
+    </message>
+    
+    <message name="ProductVersionRetrieveRequest">
+        <part name="parameters" element="ns1:ProductVersionRetrieveReq" />
+    </message>
+    
+    <message name="ProductVersionSetRequest">
+        <part name="parameters" element="ns1:ProductVersionSetReq" />
+    </message>
+    
+    <message name="ProductVersionSetResponse">
+        <part name="result" element="ns1:ProductVersionSetRsp" />
+    </message>
+    
+    <message name="ProductVersionAssignRequest">
+        <part name="parameters" element="ns1:ProductVersionAssignReq" />
+    </message>
+    
+    <message name="ProductVersionAssignResponse">
+        <part name="result" element="ns1:ProductVersionAssignRsp" />
+    </message>
+    
+    <message name="ProductReleaseAssignmentSearchRequest">
+        <part name="parameters" element="ns1:ProductReleaseAssignmentSearchReq" />
+    </message>
+    
+    <message name="ProductReleaseAssignmentSearchResponse">
+        <part name="result" element="ns1:ProductReleaseAssignmentSearchRsp" />
+    </message>
+    
+     <message name="ExtensionCreateRequest">
+        <part name="parameters" element="ns1:ExtensionCreateReq" />
+    </message>
+
+	<message name="ExtensionCreateResponse">
+        <part name="result" element="ns1:ExtensionCreateRsp" />
+    </message>
+    
+    <message name="ExtensionModifyRequest">
+        <part name="parameters" element="ns1:ExtensionModifyReq" />
+    </message>
+    
+    <message name="ExtensionModifyResponse">
+        <part name="result" element="ns1:ExtensionModifyRsp" />
+    </message>
+    
+    <message name="ProductVersionRetrieveResponse">
+        <part name="result" element="ns1:ProductVersionRetrieveRsp" />
+    </message>
+    
+    <message name="ExtensionRetrieveRequest">
+        <part name="parameters" element="ns1:ExtensionRetrieveReq" />
+    </message>
+    
+    <message name="ExtensionRetrieveResponse">
+        <part name="result" element="ns1:ExtensionRetrieveRsp" />
+    </message>
+    
+    <message name="ExtensionDeleteRequest">
+        <part name="parameters" element="ns1:ExtensionDeleteReq" />
+    </message>
+    
+    <message name="ExtensionDeleteResponse">
+        <part name="result" element="ns1:ExtensionDeleteRsp" />
+    </message>
+    
+    <message name="MediaChangeAssignmentRequest">
+        <part name="parameters" element="ns1:MediaChangeAssignmentReq" />
+    </message>
+    
+    <message name="MediaChangeAssignmentResponse">
+        <part name="result" element="ns1:MediaChangeAssignmentRsp" />
+    </message>
+    
+    
+    <message name="MediaRetrieveRequest">
+    	<part name="parameters" element="ns1:MediaRetrieveReq" />
+    </message>
+    
+    <message name="MediaRetrieveResponse">
+        <part name="result" element="ns1:MediaRetrieveRsp" />
+    </message>
+    
+    <message name="MediaSearchRequest">
+    	<part name="parameters" element="ns1:MediaSearchReq" />
+    </message>
+    
+    <message name="MediaSearchResponse">
+        <part name="result" element="ns1:MediaSearchRsp" />
+    </message>
+    
+    <message name="WorkflowAssignRequest">
+    	<part name="parameters" element="ns1:WorkflowAssignReq" />
+    </message>
+    
+    <message name="WorkflowAssignResponse">
+        <part name="result" element="ns1:WorkflowAssignRsp" />
+    </message>
+    
+    <portType name="InboxItemCreatePortType">
+        <operation name="service">
+            <input message="tns:InboxItemCreateRequest" />
+            <output message="tns:InboxItemCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:InboxItemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="InboxItemModifyPortType">
+        <operation name="service">
+            <input message="tns:InboxItemModifyRequest" />
+            <output message="tns:InboxItemModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:InboxItemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="InboxItemSearchPortType">
+        <operation name="service">
+            <input message="tns:InboxItemSearchRequest" />
+            <output message="tns:InboxItemSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:InboxItemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="InboxItemDeletePortType">
+        <operation name="service">
+            <input message="tns:InboxItemDeleteRequest" />
+            <output message="tns:InboxItemDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:InboxItemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="InboxItemRetrieveHistoryPortType">
+        <operation name="service">
+            <input message="tns:InboxItemRetrieveHistoryRequest" />
+            <output message="tns:InboxItemRetrieveHistoryResponse" />
+            <fault name="ErrorInfoMsg" message="tns:InboxItemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <!--  Desktop WorkFlow PortType Start -->
+    <portType name="DesktopWorkFlowCreatePortType">
+        <operation name="service">
+            <input message="tns:DesktopWorkFlowCreateRequest" />
+            <output message="tns:DesktopWorkFlowCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopWorkFlowFaultMessage" />            
+        </operation>
+    </portType>   
+    
+    
+    <portType name="DesktopWorkFlowRetrievePortType">
+        <operation name="service">
+            <input message="tns:DesktopWorkFlowRetrieveRequest" />
+            <output message="tns:DesktopWorkFlowRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopWorkFlowFaultMessage" />            
+        </operation>
+    </portType> 
+    
+    <portType name="DesktopWorkFlowSearchPortType">
+        <operation name="service">
+            <input message="tns:DesktopWorkFlowSearchRequest" />
+            <output message="tns:DesktopWorkFlowSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopWorkFlowFaultMessage" />            
+        </operation>
+    </portType> 
+    
+    <!--  Desktop Activity PortType End -->
+    
+    
+    <!-- Trigger Policy Start -->
+    <portType name="TriggerPolicyCreatePortType">
+        <operation name="service">
+            <input message="tns:TriggerPolicyCreateRequest" />
+            <output message="tns:TriggerPolicyCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+
+    <portType name="TriggerPolicyRetrievePortType">
+        <operation name="service">
+            <input message="tns:TriggerPolicyRetrieveRequest" />
+            <output message="tns:TriggerPolicyRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+
+    
+    <portType name="TriggerPolicyModifyPortType">
+        <operation name="service">
+            <input message="tns:TriggerPolicyModifyRequest" />
+            <output message="tns:TriggerPolicyModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+    
+
+    <portType name="TriggerPolicyDeletePortType">
+        <operation name="service">
+            <input message="tns:TriggerPolicyDeleteRequest" />
+            <output message="tns:TriggerPolicyDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+
+     <portType name="TriggerPolicySearchPortType">
+        <operation name="service">
+            <input message="tns:TriggerPolicySearchRequest" />
+            <output message="tns:TriggerPolicySearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+    
+
+    <portType name="DesktopWorkFlowModifyPortType">
+        <operation name="service">
+            <input message="tns:DesktopWorkFlowModifyRequest" />
+            <output message="tns:DesktopWorkFlowModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+        
+    <portType name="TriggerPolicyAssignPortType">
+    	<operation name="service">
+            <input message="tns:TriggerPolicyAssignRequest" />
+            <output message="tns:TriggerPolicyAssignResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    <!-- Trigger Policy End -->
+    <!-- DesktopReasonCodesList Start -->
+	<portType name="DesktopReasonCodesListCreatePortType">
+        <operation name="service">
+            <input message="tns:DesktopReasonCodesListCreateRequest" />
+            <output message="tns:DesktopReasonCodesListCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+    <portType name="DesktopReasonCodesListSearchPortType">
+        <operation name="service">
+            <input message="tns:DesktopReasonCodesListSearchRequest" />
+            <output message="tns:DesktopReasonCodesListSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+    <portType name="DesktopReasonCodesListModifyPortType">
+        <operation name="service">
+            <input message="tns:DesktopReasonCodesListModifyRequest" />
+            <output message="tns:DesktopReasonCodesListModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+    <portType name="DesktopReasonCodesListDeletePortType">
+        <operation name="service">
+            <input message="tns:DesktopReasonCodesListDeleteRequest" />
+            <output message="tns:DesktopReasonCodesListDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+	<!-- DesktopReasonCodesList End -->
+	
+    <portType name="DesktopWorkFlowDeletePortType">
+        <operation name="service">
+            <input message="tns:DesktopWorkFlowDeleteRequest" />
+            <output message="tns:DesktopWorkFlowDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+
+    <portType name="WorkflowCategoryAssociationPortType">
+        <operation name="service">
+            <input message="tns:WorkflowCategoryAssociationRequest" />
+            <output message="tns:WorkflowCategoryAssociationResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />            
+        </operation>
+    </portType>
+
+    <!--Added for Click Once-->
+    <portType name="ManifestReferenceCreatePortType">
+        <operation name="service">
+            <input message="tns:ManifestReferenceCreateRequest" />
+            <output message="tns:ManifestReferenceCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ManifestCalculateURIPortType">
+        <operation name="service">
+            <input message="tns:ManifestCalculateURIRequest" />
+            <output message="tns:ManifestCalculateURIResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType> 
+        
+	
+	<portType name="ManifestCalculateTargetPortType">
+        <operation name="service">
+            <input message="tns:ManifestCalculateTargetRequest" />
+            <output message="tns:ManifestCalculateTargetResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>    
+    
+    <portType name="ManifestReferenceSearchPortType">
+        <operation name="service">
+            <input message="tns:ManifestReferenceSearchRequest" />
+            <output message="tns:ManifestReferenceSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ManifestReferenceDeletePortType">
+        <operation name="service">
+            <input message="tns:ManifestReferenceDeleteRequest" />
+            <output message="tns:ManifestReferenceDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ManifestReferenceModifyPortType">
+        <operation name="service">
+            <input message="tns:ManifestReferenceModifyRequest" />
+            <output message="tns:ManifestReferenceModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ManifestReferenceRetrievePortType">
+        <operation name="service">
+            <input message="tns:ManifestReferenceRetrieveRequest" />
+            <output message="tns:ManifestReferenceRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProductVersionRetrievePortType">
+        <operation name="service">
+            <input message="tns:ProductVersionRetrieveRequest" />
+            <output message="tns:ProductVersionRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProductVersionSetPortType">
+        <operation name="service">
+            <input message="tns:ProductVersionSetRequest" />
+            <output message="tns:ProductVersionSetResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProductVersionAssignPortType">
+        <operation name="service">
+            <input message="tns:ProductVersionAssignRequest" />
+            <output message="tns:ProductVersionAssignResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProductReleaseAssignmentSearchPortType">
+        <operation name="service">
+            <input message="tns:ProductReleaseAssignmentSearchRequest" />
+            <output message="tns:ProductReleaseAssignmentSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ExtensionCreatePortType">
+        <operation name="service">
+            <input message="tns:ExtensionCreateRequest" />
+            <output message="tns:ExtensionCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ExtensionModifyPortType">
+        <operation name="service">
+            <input message="tns:ExtensionModifyRequest" />
+            <output message="tns:ExtensionModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    <portType name="ExtensionRetrievePortType">
+        <operation name="service">
+            <input message="tns:ExtensionRetrieveRequest" />
+            <output message="tns:ExtensionRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+	<portType name="ExtensionDeletePortType">
+        <operation name="service">
+            <input message="tns:ExtensionDeleteRequest" />
+            <output message="tns:ExtensionDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="InboxDistributionListCreatePortType">
+        <operation name="service">
+            <input message="tns:InboxDistributionListCreateRequest" />
+            <output message="tns:InboxDistributionListCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="InboxDistributionListSearchPortType">
+        <operation name="service">
+            <input message="tns:InboxDistributionListSearchRequest" />
+            <output message="tns:InboxDistributionListSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="InboxDistributionListRetrievePortType">
+        <operation name="service">
+            <input message="tns:InboxDistributionListRetrieveRequest" />
+            <output message="tns:InboxDistributionListRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="InboxDistributionListDeletePortType">
+        <operation name="service">
+            <input message="tns:InboxDistributionListDeleteRequest" />
+            <output message="tns:InboxDistributionListDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>    
+
+    <portType name="ExtensionSearchBindingPortType">
+        <operation name="service">
+            <input message="tns:ExtensionSearchRequest" />
+            <output message="tns:ExtensionSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ClickOnceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="LicenseLimitsUpdatePortType">
+        <operation name="service">
+            <input message="tns:LicenseLimitsUpdateRequest" />
+            <output message="tns:LicenseLimitsUpdateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="InboxDistributionListModifyPortType">
+        <operation name="service">
+            <input message="tns:InboxDistributionListModifyRequest" />
+            <output message="tns:InboxDistributionListModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="MediaChangeAssignmentServicePortType">
+        <operation name="service">
+            <input message="tns:MediaChangeAssignmentRequest" />
+            <output message="tns:MediaChangeAssignmentResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+   
+   <portType name="MediaRetrievePortType">
+    	<operation name="service">
+            <input message="tns:MediaRetrieveRequest" />
+            <output message="tns:MediaRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="MediaSearchPortType">
+    	<operation name="service">
+            <input message="tns:MediaSearchRequest" />
+            <output message="tns:MediaSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType> 
+    
+    <portType name="WorkflowAssignPortType">
+    	<operation name="service">
+            <input message="tns:WorkflowAssignRequest" />
+            <output message="tns:WorkflowAssignResponse" />
+            <fault name="ErrorInfoMsg" message="tns:DesktopServiceFaultMessage" />
+        </operation>
+    </portType>
+</definitions>
+

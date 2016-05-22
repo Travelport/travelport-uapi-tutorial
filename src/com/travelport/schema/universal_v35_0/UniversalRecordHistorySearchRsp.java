@@ -40,16 +40,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "universalRecordHistorySearchResult"
 })
 @XmlRootElement(name = "UniversalRecordHistorySearchRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class UniversalRecordHistorySearchRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "UniversalRecordHistorySearchResult")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<UniversalRecordHistorySearchResult> universalRecordHistorySearchResult;
     @XmlAttribute(name = "LastResult")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected Boolean lastResult;
 
     /**
@@ -74,7 +74,7 @@ public class UniversalRecordHistorySearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<UniversalRecordHistorySearchResult> getUniversalRecordHistorySearchResult() {
         if (universalRecordHistorySearchResult == null) {
             universalRecordHistorySearchResult = new ArrayList<UniversalRecordHistorySearchResult>();
@@ -90,7 +90,7 @@ public class UniversalRecordHistorySearchRsp
      *     {@link Boolean }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public Boolean isLastResult() {
         return lastResult;
     }
@@ -103,7 +103,7 @@ public class UniversalRecordHistorySearchRsp
      *     {@link Boolean }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setLastResult(Boolean value) {
         this.lastResult = value;
     }
@@ -114,7 +114,7 @@ public class UniversalRecordHistorySearchRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

@@ -40,16 +40,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "tcrRefundBundle"
 })
 @XmlRootElement(name = "AirRefundQuoteRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirRefundQuoteRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "AirRefundBundle")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirRefundBundle> airRefundBundle;
     @XmlElement(name = "TCRRefundBundle")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<TCRRefundBundle> tcrRefundBundle;
 
     /**
@@ -74,7 +74,7 @@ public class AirRefundQuoteRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<AirRefundBundle> getAirRefundBundle() {
         if (airRefundBundle == null) {
             airRefundBundle = new ArrayList<AirRefundBundle>();
@@ -104,7 +104,7 @@ public class AirRefundQuoteRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<TCRRefundBundle> getTCRRefundBundle() {
         if (tcrRefundBundle == null) {
             tcrRefundBundle = new ArrayList<TCRRefundBundle>();
@@ -118,7 +118,7 @@ public class AirRefundQuoteRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

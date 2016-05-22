@@ -45,34 +45,34 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "railReservationCriteria"
 })
 @XmlRootElement(name = "SavedTripSearchReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class SavedTripSearchReq
     extends BaseReq
 {
 
     @XmlElement(name = "SavedTripSearchModifiers")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected SavedTripSearchModifiers savedTripSearchModifiers;
     @XmlElement(name = "TravelerCriteria")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected TravelerCriteria travelerCriteria;
     @XmlElement(name = "SearchAgent")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected SearchAgent searchAgent;
     @XmlElement(name = "AirReservationCriteria")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected AirReservationCriteria airReservationCriteria;
     @XmlElement(name = "HotelReservationCriteria")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected HotelReservationCriteria hotelReservationCriteria;
     @XmlElement(name = "VehicleReservationCriteria")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected VehicleReservationCriteria vehicleReservationCriteria;
     @XmlElement(name = "RailReservationCriteria")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected RailReservationCriteria railReservationCriteria;
     @XmlAttribute(name = "RecordStatus")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected TypeSavedTripRecordStatus recordStatus;
 
     /**
@@ -83,7 +83,7 @@ public class SavedTripSearchReq
      *     {@link SavedTripSearchModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public SavedTripSearchModifiers getSavedTripSearchModifiers() {
         return savedTripSearchModifiers;
     }
@@ -96,7 +96,7 @@ public class SavedTripSearchReq
      *     {@link SavedTripSearchModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setSavedTripSearchModifiers(SavedTripSearchModifiers value) {
         this.savedTripSearchModifiers = value;
     }
@@ -109,7 +109,7 @@ public class SavedTripSearchReq
      *     {@link TravelerCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public TravelerCriteria getTravelerCriteria() {
         return travelerCriteria;
     }
@@ -122,7 +122,7 @@ public class SavedTripSearchReq
      *     {@link TravelerCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setTravelerCriteria(TravelerCriteria value) {
         this.travelerCriteria = value;
     }
@@ -135,7 +135,7 @@ public class SavedTripSearchReq
      *     {@link SearchAgent }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public SearchAgent getSearchAgent() {
         return searchAgent;
     }
@@ -148,7 +148,7 @@ public class SavedTripSearchReq
      *     {@link SearchAgent }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setSearchAgent(SearchAgent value) {
         this.searchAgent = value;
     }
@@ -161,7 +161,7 @@ public class SavedTripSearchReq
      *     {@link AirReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public AirReservationCriteria getAirReservationCriteria() {
         return airReservationCriteria;
     }
@@ -174,7 +174,7 @@ public class SavedTripSearchReq
      *     {@link AirReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setAirReservationCriteria(AirReservationCriteria value) {
         this.airReservationCriteria = value;
     }
@@ -187,7 +187,7 @@ public class SavedTripSearchReq
      *     {@link HotelReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public HotelReservationCriteria getHotelReservationCriteria() {
         return hotelReservationCriteria;
     }
@@ -200,7 +200,7 @@ public class SavedTripSearchReq
      *     {@link HotelReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setHotelReservationCriteria(HotelReservationCriteria value) {
         this.hotelReservationCriteria = value;
     }
@@ -213,7 +213,7 @@ public class SavedTripSearchReq
      *     {@link VehicleReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public VehicleReservationCriteria getVehicleReservationCriteria() {
         return vehicleReservationCriteria;
     }
@@ -226,7 +226,7 @@ public class SavedTripSearchReq
      *     {@link VehicleReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setVehicleReservationCriteria(VehicleReservationCriteria value) {
         this.vehicleReservationCriteria = value;
     }
@@ -239,7 +239,7 @@ public class SavedTripSearchReq
      *     {@link RailReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public RailReservationCriteria getRailReservationCriteria() {
         return railReservationCriteria;
     }
@@ -252,7 +252,7 @@ public class SavedTripSearchReq
      *     {@link RailReservationCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setRailReservationCriteria(RailReservationCriteria value) {
         this.railReservationCriteria = value;
     }
@@ -265,7 +265,7 @@ public class SavedTripSearchReq
      *     {@link TypeSavedTripRecordStatus }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public TypeSavedTripRecordStatus getRecordStatus() {
         return recordStatus;
     }
@@ -278,7 +278,7 @@ public class SavedTripSearchReq
      *     {@link TypeSavedTripRecordStatus }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setRecordStatus(TypeSavedTripRecordStatus value) {
         this.recordStatus = value;
     }
@@ -289,7 +289,7 @@ public class SavedTripSearchReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

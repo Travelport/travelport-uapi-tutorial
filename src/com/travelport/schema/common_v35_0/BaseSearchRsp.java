@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+import com.travelport.schema.air_v35_0.BaseAvailabilitySearchRsp;
+import com.travelport.schema.air_v35_0.FlightTimeTableRsp;
 import com.travelport.schema.vehicle_v35_0.BaseVehicleSearchAvailabilityRsp;
 import com.travelport.schema.vehicle_v35_0.VehicleRulesRsp;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -38,17 +40,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
 @XmlType(name = "BaseSearchRsp", propOrder = {
     "nextResultReference"
 })
-//@XmlSeeAlso({
-//    VehicleRulesRsp.class,
-//    BaseVehicleSearchAvailabilityRsp.class
-//})
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class BaseSearchRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "NextResultReference")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<NextResultReference> nextResultReference;
 
     /**
@@ -73,7 +71,7 @@ public class BaseSearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<NextResultReference> getNextResultReference() {
         if (nextResultReference == null) {
             nextResultReference = new ArrayList<NextResultReference>();
@@ -87,7 +85,7 @@ public class BaseSearchRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

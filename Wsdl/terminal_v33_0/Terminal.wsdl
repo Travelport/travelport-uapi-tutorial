@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<definitions name="TerminalServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/terminal_v33_0"
+             xmlns:ns1="http://www.travelport.com/schema/terminal_v33_0"
+             targetNamespace="http://www.travelport.com/service/terminal_v33_0">
+
+    <import namespace="http://www.travelport.com/service/terminal_v33_0"
+            location="TerminalAbstract.wsdl"/>
+
+    <binding name="TerminalServiceBinding" type="tns:TerminalServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/TerminalService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="CreateTerminalSessionServiceBinding" type="tns:CreateTerminalSessionServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/TerminalService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="EndTerminalSessionServiceBinding" type="tns:EndTerminalSessionServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/TerminalService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="TerminalService">
+        <port name="CreateTerminalSessionServicePort" binding="tns:CreateTerminalSessionServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/TerminalService"/>
+        </port>
+        <port name="TerminalServicePort" binding="tns:TerminalServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/TerminalService"/>
+        </port>
+        <port name="EndTerminalSessionServicePort" binding="tns:EndTerminalSessionServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/TerminalService"/>
+        </port>
+    </service>
+
+</definitions>

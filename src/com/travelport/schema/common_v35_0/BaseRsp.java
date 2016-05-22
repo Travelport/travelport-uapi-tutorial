@@ -20,6 +20,26 @@ import org.xml.sax.Locator;
 
 import com.sun.xml.bind.Locatable;
 import com.sun.xml.bind.annotation.XmlLocation;
+import com.travelport.schema.air_v35_0.AirExchangeQuoteRsp;
+import com.travelport.schema.air_v35_0.AirExchangeRsp;
+import com.travelport.schema.air_v35_0.AirExchangeTicketingRsp;
+import com.travelport.schema.air_v35_0.AirFareDisplayRsp;
+import com.travelport.schema.air_v35_0.AirFareRulesRsp;
+import com.travelport.schema.air_v35_0.AirMerchandisingDetailsRsp;
+import com.travelport.schema.air_v35_0.AirMerchandisingOfferAvailabilityRsp;
+import com.travelport.schema.air_v35_0.AirPrePayRsp;
+import com.travelport.schema.air_v35_0.AirRefundQuoteRsp;
+import com.travelport.schema.air_v35_0.AirRefundRsp;
+import com.travelport.schema.air_v35_0.AirRepriceRsp;
+import com.travelport.schema.air_v35_0.AirRetrieveDocumentRsp;
+import com.travelport.schema.air_v35_0.AirTicketingRsp;
+import com.travelport.schema.air_v35_0.AirVoidDocumentRsp;
+import com.travelport.schema.air_v35_0.BaseAirPriceRsp;
+import com.travelport.schema.air_v35_0.EMDIssuanceRsp;
+import com.travelport.schema.air_v35_0.EMDRetrieveRsp;
+import com.travelport.schema.air_v35_0.FlightDetailsRsp;
+import com.travelport.schema.air_v35_0.FlightInformationRsp;
+import com.travelport.schema.air_v35_0.SeatMapRsp;
 import com.travelport.schema.universal_v35_0.AckScheduleChangeRsp;
 import com.travelport.schema.universal_v35_0.AirCancelRsp;
 import com.travelport.schema.universal_v35_0.AirCreateReservationRsp;
@@ -107,29 +127,29 @@ import com.travelport.schema.vehicle_v35_0.VehicleRetrieveRsp;
     ProviderReservationDivideRsp.class,
     UniversalRecordRetrieveRsp.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class BaseRsp
     implements Locatable
 {
 
     @XmlElement(name = "ResponseMessage")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<ResponseMessage> responseMessage;
     @XmlAttribute(name = "TraceId")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected String traceId;
     @XmlAttribute(name = "TransactionId")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected String transactionId;
     @XmlAttribute(name = "ResponseTime")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected BigInteger responseTime;
     @XmlAttribute(name = "CommandHistory")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected String commandHistory;
     @XmlLocation
     @XmlTransient
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected Locator locator;
 
     /**
@@ -154,7 +174,7 @@ public class BaseRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<ResponseMessage> getResponseMessage() {
         if (responseMessage == null) {
             responseMessage = new ArrayList<ResponseMessage>();
@@ -170,7 +190,7 @@ public class BaseRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String getTraceId() {
         return traceId;
     }
@@ -183,7 +203,7 @@ public class BaseRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setTraceId(String value) {
         this.traceId = value;
     }
@@ -196,7 +216,7 @@ public class BaseRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String getTransactionId() {
         return transactionId;
     }
@@ -209,7 +229,7 @@ public class BaseRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setTransactionId(String value) {
         this.transactionId = value;
     }
@@ -222,7 +242,7 @@ public class BaseRsp
      *     {@link BigInteger }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public BigInteger getResponseTime() {
         return responseTime;
     }
@@ -235,7 +255,7 @@ public class BaseRsp
      *     {@link BigInteger }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setResponseTime(BigInteger value) {
         this.responseTime = value;
     }
@@ -248,7 +268,7 @@ public class BaseRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String getCommandHistory() {
         return commandHistory;
     }
@@ -261,7 +281,7 @@ public class BaseRsp
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setCommandHistory(String value) {
         this.commandHistory = value;
     }
@@ -272,17 +292,17 @@ public class BaseRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public Locator sourceLocation() {
         return locator;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setSourceLocation(Locator newLocator) {
         locator = newLocator;
     }

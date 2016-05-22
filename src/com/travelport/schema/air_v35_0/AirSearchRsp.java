@@ -78,52 +78,52 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     RetrieveLowFareSearchRsp.class,
     ScheduleSearchRsp.class
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirSearchRsp
     extends BaseAvailabilitySearchRsp
 {
 
     @XmlElement(name = "FareNoteList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected FareNoteList fareNoteList;
     @XmlElement(name = "ExpertSolutionList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected ExpertSolutionList expertSolutionList;
     @XmlElement(name = "RouteList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected RouteList routeList;
     @XmlElement(name = "AlternateRouteList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AlternateRouteList alternateRouteList;
     @XmlElement(name = "AlternateLocationDistanceList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AlternateLocationDistanceList alternateLocationDistanceList;
     @XmlElement(name = "FareInfoMessage")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<FareInfoMessage> fareInfoMessage;
     @XmlElement(name = "AirPricingSolution")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<AirPricingSolution> airPricingSolution;
     @XmlElement(name = "AirPricePointList")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirPricePointList airPricePointList;
     @XmlElement(name = "RailSegmentList", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected RailSegmentList railSegmentList;
     @XmlElement(name = "RailJourneyList", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected RailJourneyList railJourneyList;
     @XmlElement(name = "RailFareNoteList", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected RailFareNoteList railFareNoteList;
     @XmlElement(name = "RailFareIDList", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected RailFareIDList railFareIDList;
     @XmlElement(name = "RailFareList", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected RailFareList railFareList;
     @XmlElement(name = "RailPricingSolution", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<RailPricingSolution> railPricingSolution;
 
     /**
@@ -134,7 +134,7 @@ public class AirSearchRsp
      *     {@link FareNoteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public FareNoteList getFareNoteList() {
         return fareNoteList;
     }
@@ -147,7 +147,7 @@ public class AirSearchRsp
      *     {@link FareNoteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setFareNoteList(FareNoteList value) {
         this.fareNoteList = value;
     }
@@ -160,7 +160,7 @@ public class AirSearchRsp
      *     {@link ExpertSolutionList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public ExpertSolutionList getExpertSolutionList() {
         return expertSolutionList;
     }
@@ -173,7 +173,7 @@ public class AirSearchRsp
      *     {@link ExpertSolutionList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setExpertSolutionList(ExpertSolutionList value) {
         this.expertSolutionList = value;
     }
@@ -186,7 +186,7 @@ public class AirSearchRsp
      *     {@link RouteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public RouteList getRouteList() {
         return routeList;
     }
@@ -199,7 +199,7 @@ public class AirSearchRsp
      *     {@link RouteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setRouteList(RouteList value) {
         this.routeList = value;
     }
@@ -212,7 +212,7 @@ public class AirSearchRsp
      *     {@link AlternateRouteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AlternateRouteList getAlternateRouteList() {
         return alternateRouteList;
     }
@@ -225,7 +225,7 @@ public class AirSearchRsp
      *     {@link AlternateRouteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAlternateRouteList(AlternateRouteList value) {
         this.alternateRouteList = value;
     }
@@ -238,7 +238,7 @@ public class AirSearchRsp
      *     {@link AlternateLocationDistanceList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AlternateLocationDistanceList getAlternateLocationDistanceList() {
         return alternateLocationDistanceList;
     }
@@ -251,7 +251,7 @@ public class AirSearchRsp
      *     {@link AlternateLocationDistanceList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAlternateLocationDistanceList(AlternateLocationDistanceList value) {
         this.alternateLocationDistanceList = value;
     }
@@ -278,7 +278,7 @@ public class AirSearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<FareInfoMessage> getFareInfoMessage() {
         if (fareInfoMessage == null) {
             fareInfoMessage = new ArrayList<FareInfoMessage>();
@@ -308,7 +308,7 @@ public class AirSearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<AirPricingSolution> getAirPricingSolution() {
         if (airPricingSolution == null) {
             airPricingSolution = new ArrayList<AirPricingSolution>();
@@ -324,7 +324,7 @@ public class AirSearchRsp
      *     {@link AirPricePointList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirPricePointList getAirPricePointList() {
         return airPricePointList;
     }
@@ -337,7 +337,7 @@ public class AirSearchRsp
      *     {@link AirPricePointList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirPricePointList(AirPricePointList value) {
         this.airPricePointList = value;
     }
@@ -350,7 +350,7 @@ public class AirSearchRsp
      *     {@link RailSegmentList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public RailSegmentList getRailSegmentList() {
         return railSegmentList;
     }
@@ -363,7 +363,7 @@ public class AirSearchRsp
      *     {@link RailSegmentList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setRailSegmentList(RailSegmentList value) {
         this.railSegmentList = value;
     }
@@ -376,7 +376,7 @@ public class AirSearchRsp
      *     {@link RailJourneyList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public RailJourneyList getRailJourneyList() {
         return railJourneyList;
     }
@@ -389,7 +389,7 @@ public class AirSearchRsp
      *     {@link RailJourneyList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setRailJourneyList(RailJourneyList value) {
         this.railJourneyList = value;
     }
@@ -402,7 +402,7 @@ public class AirSearchRsp
      *     {@link RailFareNoteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public RailFareNoteList getRailFareNoteList() {
         return railFareNoteList;
     }
@@ -415,7 +415,7 @@ public class AirSearchRsp
      *     {@link RailFareNoteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setRailFareNoteList(RailFareNoteList value) {
         this.railFareNoteList = value;
     }
@@ -428,7 +428,7 @@ public class AirSearchRsp
      *     {@link RailFareIDList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public RailFareIDList getRailFareIDList() {
         return railFareIDList;
     }
@@ -441,7 +441,7 @@ public class AirSearchRsp
      *     {@link RailFareIDList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setRailFareIDList(RailFareIDList value) {
         this.railFareIDList = value;
     }
@@ -454,7 +454,7 @@ public class AirSearchRsp
      *     {@link RailFareList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public RailFareList getRailFareList() {
         return railFareList;
     }
@@ -467,7 +467,7 @@ public class AirSearchRsp
      *     {@link RailFareList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setRailFareList(RailFareList value) {
         this.railFareList = value;
     }
@@ -494,7 +494,7 @@ public class AirSearchRsp
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<RailPricingSolution> getRailPricingSolution() {
         if (railPricingSolution == null) {
             railPricingSolution = new ArrayList<RailPricingSolution>();
@@ -508,7 +508,7 @@ public class AirSearchRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

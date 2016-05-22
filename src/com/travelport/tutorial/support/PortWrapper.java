@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -145,6 +144,7 @@ public class PortWrapper<P,S>{
         PrintWriter printWriter = new PrintWriter(newFile);
 
         Client cl = ClientProxy.getClient(port);
+        
         if (show) {
             if (!currentlyShown) {
                 //System.out.println("ADDED INTERCEPTORS:"+cl.getClass());

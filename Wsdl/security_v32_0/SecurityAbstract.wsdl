@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="SecurityService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/security_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/security_v32_0"
+             xmlns:common="http://www.travelport.com/schema/common_v32_0"
+             targetNamespace="http://www.travelport.com/service/security_v32_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/security_v32_0">
+            <include schemaLocation="SecurityReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="SystemFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>
+    
+    <message name="SecurityAssignableResourcesRetrieveRequest">
+        <part name="parameters" element="ns1:AssignableResourcesRetrieveReq" />
+    </message>
+
+    <message name="SecurityAssignableResourcesRetrieveResponse">
+        <part name="result" element="ns1:AssignableResourcesRetrieveRsp" />
+    </message>
+    
+    <message name="SecurityRoleCreateRequest">
+        <part name="parameters" element="ns1:RoleCreateReq" />
+    </message>
+
+    <message name="SecurityRoleCreateResponse">
+        <part name="result" element="ns1:RoleCreateRsp" />
+    </message>
+
+    <message name="SecurityRoleDeleteRequest">
+        <part name="parameters" element="ns1:RoleDeleteReq" />
+    </message>
+    
+    <message name="SecurityRoleDeleteResponse">
+        <part name="result" element="ns1:RoleDeleteRsp" />
+    </message>    
+
+    <message name="SecurityRoleModifyRequest">
+        <part name="parameters" element="ns1:RoleModifyReq" />
+    </message>
+
+    <message name="SecurityRoleModifyResponse">
+        <part name="result" element="ns1:RoleModifyRsp" />
+    </message>    
+
+    <message name="SecurityAssignRoleRequest">
+        <part name="parameters" element="ns1:AssignRoleReq" />
+    </message>
+
+    <message name="SecurityAssignRoleResponse">
+        <part name="result" element="ns1:AssignRoleRsp" />
+    </message>
+    
+    <message name="SecurityAgentAssignableRolesRetrieveRequest">
+        <part name="parameters" element="ns1:AgentAssignableRolesRetrieveReq" />
+    </message>
+
+    <message name="SecurityAgentAssignableRolesRetrieveResponse">
+        <part name="result" element="ns1:AgentAssignableRolesRetrieveRsp" />
+    </message>
+    
+    <message name="SecurityResourceInfoRetrieveRequest">
+        <part name="parameters" element="ns1:ResourceInfoRetrieveReq" />
+    </message>
+
+    <message name="SecurityResourceInfoRetrieveResponse">
+        <part name="result" element="ns1:ResourceInfoRetrieveRsp" />
+    </message>
+    
+    <message name="SecurityAssignedRoleRetrieveRequest">
+        <part name="parameters" element="ns1:AssignedRoleRetrieveReq" />
+    </message>
+
+    <message name="SecurityAssignedRoleRetrieveResponse">
+        <part name="result" element="ns1:AssignedRoleRetrieveRsp" />
+    </message>
+
+    <message name="SecurityRoleRetrieveRequest">
+        <part name="parameters" element="ns1:RoleRetrieveReq" />
+    </message>
+
+    <message name="SecurityRoleRetrieveResponse">
+        <part name="result" element="ns1:RoleRetrieveRsp" />
+    </message>
+    
+    <message name="SecurityRoleSearchRequest">
+        <part name="parameters" element="ns1:RoleSearchReq" />
+    </message>
+
+    <message name="SecurityRoleSearchResponse">
+        <part name="result" element="ns1:RoleSearchRsp" />
+    </message>
+    
+    <message name="SecurityModifyRoleAssignablityRequest">
+        <part name="parameters" element="ns1:RoleCategoryModifyAssignabilityReq"/>
+    </message>
+
+    <message name="SecurityModifyRoleAssignablityResponse">
+        <part name="result" element="ns1:RoleCategoryModifyAssignabilityRsp"/>
+    </message>
+    
+    <message name="SecurityRetrieveRoleAssignablityRequest">
+        <part name="parameters" element="ns1:RoleCategoryRetrieveAssignabilityReq"/>
+    </message>
+
+    <message name="SecurityRetrieveRoleAssignablityResponse">
+        <part name="result" element="ns1:RoleCategoryRetrieveAssignabilityRsp"/>
+    </message>    
+    
+    <message name="SecurityAssignedProfileRetrieveRequest">
+        <part name="parameters" element="ns1:AssignedProfileRetrieveReq"/>
+    </message>
+
+    <message name="SecurityAssignedProfileRetrieveResponse">
+        <part name="result" element="ns1:AssignedProfileRetrieveRsp"/>
+    </message>
+    
+    <message name="SecurityEmulationTargetRetrieveRequest">
+        <part name="parameters" element="ns1:EmulationTargetRetrieveReq"/>
+    </message>
+
+    <message name="SecurityEmulationTargetRetrieveResponse">
+        <part name="result" element="ns1:EmulationTargetRetrieveRsp"/>
+    </message>
+    
+    <message name="DesktopPermissionCreateRequest">
+        <part name="parameters" element="ns1:DesktopPermissionCreateReq"/>
+    </message>
+
+    <message name="DesktopPermissionCreateResponse">
+        <part name="result" element="ns1:DesktopPermissionCreateRsp"/>
+    </message>    
+
+    <message name="DesktopPermissionModifyRequest">
+        <part name="parameters" element="ns1:DesktopPermissionModifyReq"/>
+    </message>
+
+    <message name="DesktopPermissionModifyResponse">
+        <part name="result" element="ns1:DesktopPermissionModifyRsp"/>
+    </message>    
+
+    <message name="SecurityPermissionSearchReq">
+        <part name="parameters" element="ns1:PermissionSearchReq"/>
+    </message>
+    
+    <message name="SecurityPermissionSearchRsp">
+        <part name="result" element="ns1:PermissionSearchRsp"/>
+    </message> 
+    
+    <message name="DesktopPermissionDeleteRequest">
+        <part name="parameters" element="ns1:DesktopPermissionDeleteReq"/>
+    </message>
+
+    <message name="DesktopPermissionDeleteResponse">
+        <part name="result" element="ns1:DesktopPermissionDeleteRsp"/>
+    </message>   
+
+    <portType name="SecurityAssignableResourcesRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityAssignableResourcesRetrieveRequest" />
+            <output message="tns:SecurityAssignableResourcesRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityRoleCreatePortType">
+        <operation name="service">
+            <input message="tns:SecurityRoleCreateRequest" />
+            <output message="tns:SecurityRoleCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>    
+
+     <portType name="SecurityRoleDeletePortType">
+        <operation name="service">
+            <input message="tns:SecurityRoleDeleteRequest" />
+            <output message="tns:SecurityRoleDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>    
+
+    <portType name="SecurityRoleModifyPortType">
+        <operation name="service">
+            <input message="tns:SecurityRoleModifyRequest" />
+            <output message="tns:SecurityRoleModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>    
+
+    <portType name="SecurityAssignRolePortType">
+        <operation name="service">
+            <input message="tns:SecurityAssignRoleRequest" />
+            <output message="tns:SecurityAssignRoleResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityAgentAssignableRolesRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityAgentAssignableRolesRetrieveRequest" />
+            <output message="tns:SecurityAgentAssignableRolesRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityResourceInfoRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityResourceInfoRetrieveRequest" />
+            <output message="tns:SecurityResourceInfoRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityAssignedRoleRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityAssignedRoleRetrieveRequest" />
+            <output message="tns:SecurityAssignedRoleRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="SecurityRoleRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityRoleRetrieveRequest" />
+            <output message="tns:SecurityRoleRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityRoleSearchPortType">
+        <operation name="service">
+            <input message="tns:SecurityRoleSearchRequest" />
+            <output message="tns:SecurityRoleSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityModifyRoleAssignabilityPortType">
+        <operation name="service">
+            <input message="tns:SecurityModifyRoleAssignablityRequest" />
+            <output message="tns:SecurityModifyRoleAssignablityResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityRetrieveRoleAssignabilityPortType">
+        <operation name="service">
+            <input message="tns:SecurityRetrieveRoleAssignablityRequest" />
+            <output message="tns:SecurityRetrieveRoleAssignablityResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>  
+    
+    <portType name="SecurityAssignedProfileRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityAssignedProfileRetrieveRequest" />
+            <output message="tns:SecurityAssignedProfileRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SecurityEmulationTargetRetrievePortType">
+        <operation name="service">
+            <input message="tns:SecurityEmulationTargetRetrieveRequest" />
+            <output message="tns:SecurityEmulationTargetRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="DesktopPermissionCreatePortType">
+        <operation name="service">
+            <input message="tns:DesktopPermissionCreateRequest" />
+            <output message="tns:DesktopPermissionCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>    
+
+    <portType name="DesktopPermissionModifyPortType">
+        <operation name="service">
+            <input message="tns:DesktopPermissionModifyRequest" />
+            <output message="tns:DesktopPermissionModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>    
+
+    <portType name="SecurityPermissionSearchPortType">
+        <operation name="service">
+            <input message="tns:SecurityPermissionSearchReq" />
+            <output message="tns:SecurityPermissionSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>    
+    
+     <portType name="DesktopPermissionDeletePortType">
+        <operation name="service">
+            <input message="tns:DesktopPermissionDeleteRequest" />
+            <output message="tns:DesktopPermissionDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+</definitions>

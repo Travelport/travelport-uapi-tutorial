@@ -44,22 +44,22 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "detailedBillingInformation"
 })
 @XmlRootElement(name = "AirExchangeTicketingRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirExchangeTicketingRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "AirSolutionChangedInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirSolutionChangedInfo airSolutionChangedInfo;
     @XmlElement(name = "ETR")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected ETR etr;
     @XmlElement(name = "TicketFailureInfo")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected TicketFailureInfo ticketFailureInfo;
     @XmlElement(name = "DetailedBillingInformation")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected DetailedBillingInformation detailedBillingInformation;
 
     /**
@@ -70,7 +70,7 @@ public class AirExchangeTicketingRsp
      *     {@link AirSolutionChangedInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirSolutionChangedInfo getAirSolutionChangedInfo() {
         return airSolutionChangedInfo;
     }
@@ -83,7 +83,7 @@ public class AirExchangeTicketingRsp
      *     {@link AirSolutionChangedInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSolutionChangedInfo(AirSolutionChangedInfo value) {
         this.airSolutionChangedInfo = value;
     }
@@ -96,7 +96,7 @@ public class AirExchangeTicketingRsp
      *     {@link ETR }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public ETR getETR() {
         return etr;
     }
@@ -109,7 +109,7 @@ public class AirExchangeTicketingRsp
      *     {@link ETR }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setETR(ETR value) {
         this.etr = value;
     }
@@ -122,7 +122,7 @@ public class AirExchangeTicketingRsp
      *     {@link TicketFailureInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public TicketFailureInfo getTicketFailureInfo() {
         return ticketFailureInfo;
     }
@@ -135,7 +135,7 @@ public class AirExchangeTicketingRsp
      *     {@link TicketFailureInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setTicketFailureInfo(TicketFailureInfo value) {
         this.ticketFailureInfo = value;
     }
@@ -148,7 +148,7 @@ public class AirExchangeTicketingRsp
      *     {@link DetailedBillingInformation }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public DetailedBillingInformation getDetailedBillingInformation() {
         return detailedBillingInformation;
     }
@@ -161,7 +161,7 @@ public class AirExchangeTicketingRsp
      *     {@link DetailedBillingInformation }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setDetailedBillingInformation(DetailedBillingInformation value) {
         this.detailedBillingInformation = value;
     }
@@ -172,7 +172,7 @@ public class AirExchangeTicketingRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

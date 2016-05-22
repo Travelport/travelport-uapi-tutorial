@@ -36,13 +36,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "flightTimeTableCriteria"
 })
 @XmlRootElement(name = "FlightTimeTableReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class FlightTimeTableReq
     extends BaseSearchReq
 {
 
     @XmlElement(name = "FlightTimeTableCriteria", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected FlightTimeTableCriteria flightTimeTableCriteria;
 
     /**
@@ -53,7 +53,7 @@ public class FlightTimeTableReq
      *     {@link FlightTimeTableCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public FlightTimeTableCriteria getFlightTimeTableCriteria() {
         return flightTimeTableCriteria;
     }
@@ -66,7 +66,7 @@ public class FlightTimeTableReq
      *     {@link FlightTimeTableCriteria }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setFlightTimeTableCriteria(FlightTimeTableCriteria value) {
         this.flightTimeTableCriteria = value;
     }
@@ -77,7 +77,7 @@ public class FlightTimeTableReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

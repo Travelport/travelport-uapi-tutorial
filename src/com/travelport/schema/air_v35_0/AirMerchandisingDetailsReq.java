@@ -38,16 +38,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "optionalServiceModifiers"
 })
 @XmlRootElement(name = "AirMerchandisingDetailsReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirMerchandisingDetailsReq
     extends BaseReq
 {
 
     @XmlElement(name = "MerchandisingDetails")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected MerchandisingDetails merchandisingDetails;
     @XmlElement(name = "OptionalServiceModifiers")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected OptionalServiceModifiers optionalServiceModifiers;
 
     /**
@@ -58,7 +58,7 @@ public class AirMerchandisingDetailsReq
      *     {@link MerchandisingDetails }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public MerchandisingDetails getMerchandisingDetails() {
         return merchandisingDetails;
     }
@@ -71,7 +71,7 @@ public class AirMerchandisingDetailsReq
      *     {@link MerchandisingDetails }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setMerchandisingDetails(MerchandisingDetails value) {
         this.merchandisingDetails = value;
     }
@@ -84,7 +84,7 @@ public class AirMerchandisingDetailsReq
      *     {@link OptionalServiceModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public OptionalServiceModifiers getOptionalServiceModifiers() {
         return optionalServiceModifiers;
     }
@@ -97,7 +97,7 @@ public class AirMerchandisingDetailsReq
      *     {@link OptionalServiceModifiers }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setOptionalServiceModifiers(OptionalServiceModifiers value) {
         this.optionalServiceModifiers = value;
     }
@@ -108,7 +108,7 @@ public class AirMerchandisingDetailsReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

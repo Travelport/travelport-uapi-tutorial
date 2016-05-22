@@ -56,31 +56,31 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "railSpecificSeatAssignment"
 })
 @XmlRootElement(name = "RailCreateReservationReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class RailCreateReservationReq
     extends BaseCreateWithFormOfPaymentReq
 {
 
     @XmlElement(name = "RailPricingSolution", namespace = "http://www.travelport.com/schema/rail_v35_0", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected RailPricingSolution railPricingSolution;
     @XmlElement(name = "Payment", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected Payment payment;
     @XmlElement(name = "RailFareNoteList", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected RailFareNoteList railFareNoteList;
     @XmlElement(name = "HostTokenList", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected HostTokenList hostTokenList;
     @XmlElement(name = "RailAutoSeatAssignment", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<RailAutoSeatAssignment> railAutoSeatAssignment;
     @XmlElement(name = "RailSpecificSeatAssignment", namespace = "http://www.travelport.com/schema/rail_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected List<RailSpecificSeatAssignment> railSpecificSeatAssignment;
     @XmlAttribute(name = "BookingActionType", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected String bookingActionType;
 
     /**
@@ -91,7 +91,7 @@ public class RailCreateReservationReq
      *     {@link RailPricingSolution }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public RailPricingSolution getRailPricingSolution() {
         return railPricingSolution;
     }
@@ -104,7 +104,7 @@ public class RailCreateReservationReq
      *     {@link RailPricingSolution }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setRailPricingSolution(RailPricingSolution value) {
         this.railPricingSolution = value;
     }
@@ -117,7 +117,7 @@ public class RailCreateReservationReq
      *     {@link Payment }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public Payment getPayment() {
         return payment;
     }
@@ -130,7 +130,7 @@ public class RailCreateReservationReq
      *     {@link Payment }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setPayment(Payment value) {
         this.payment = value;
     }
@@ -143,7 +143,7 @@ public class RailCreateReservationReq
      *     {@link RailFareNoteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public RailFareNoteList getRailFareNoteList() {
         return railFareNoteList;
     }
@@ -156,7 +156,7 @@ public class RailCreateReservationReq
      *     {@link RailFareNoteList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setRailFareNoteList(RailFareNoteList value) {
         this.railFareNoteList = value;
     }
@@ -169,7 +169,7 @@ public class RailCreateReservationReq
      *     {@link HostTokenList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public HostTokenList getHostTokenList() {
         return hostTokenList;
     }
@@ -182,7 +182,7 @@ public class RailCreateReservationReq
      *     {@link HostTokenList }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setHostTokenList(HostTokenList value) {
         this.hostTokenList = value;
     }
@@ -209,7 +209,7 @@ public class RailCreateReservationReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<RailAutoSeatAssignment> getRailAutoSeatAssignment() {
         if (railAutoSeatAssignment == null) {
             railAutoSeatAssignment = new ArrayList<RailAutoSeatAssignment>();
@@ -239,7 +239,7 @@ public class RailCreateReservationReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public List<RailSpecificSeatAssignment> getRailSpecificSeatAssignment() {
         if (railSpecificSeatAssignment == null) {
             railSpecificSeatAssignment = new ArrayList<RailSpecificSeatAssignment>();
@@ -255,7 +255,7 @@ public class RailCreateReservationReq
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String getBookingActionType() {
         return bookingActionType;
     }
@@ -268,7 +268,7 @@ public class RailCreateReservationReq
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setBookingActionType(String value) {
         this.bookingActionType = value;
     }
@@ -279,7 +279,7 @@ public class RailCreateReservationReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

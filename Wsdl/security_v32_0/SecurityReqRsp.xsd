@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/security_v32_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/security_v32_0"
+           xmlns:common="http://www.travelport.com/schema/common_v32_0" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    <xs:import schemaLocation="../common_v32_0/CommonReqRsp.xsd" namespace="http://www.travelport.com/schema/common_v32_0"/>
+    <xs:include schemaLocation="Security.xsd"></xs:include>
+    
+    <!--*** Role Management Request Types ***-->
+    <xs:element name="AssignableResourcesRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Requests a list of all system resources that the user is permitted to assign.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="AgentCode" type="common:typeAgentCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>The unique identifier of an agent.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AssignableResourcesRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response showing all system resources that a user is permitted to assign.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ResourceAssignmentInfo" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Defines the resource.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:element name="EmulationTargetRetrieveReq">
+ 		<xs:annotation>
+			<xs:documentation>Without Search Modifiers: retrieve a list of all the allowable emulation targets for this agent. (credentails in HTTP header).  When used with SearchModifiers will filter to those that match. Does not support emulation in itself.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element name="SearchModifiers" minOccurs="0">
+							<xs:complexType>
+								<xs:attribute name="PCC" type="common:typePCC">
+									<xs:annotation>
+										<xs:documentation>Exact match for PCC or SID associated with branch in PROFILE</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="BranchName" type="common:typeWildcardMax50">
+									<xs:annotation>
+										<xs:documentation>Willdcard search for Branch name</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="IncludeAgencyName" type="xs:boolean" default="false">
+                                     <xs:annotation>
+                                         <xs:documentation>When requested the AgencyName is included in the response.</xs:documentation>
+                                     </xs:annotation>
+                                </xs:attribute>
+								<xs:attribute name="IncludeBranchName" type="xs:boolean" default="false">
+									<xs:annotation>
+										<xs:documentation>When requested the BranchName is included in the response. Please note that this will increase the reponse time.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="ReturnProviders" type="xs:boolean" default="false">
+                                    <xs:annotation>
+                                        <xs:documentation>Returns the list of providers which are configured for branch</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+								<xs:attribute name="StartFromResult" type="common:typeStartFromResult" default="1"/>
+								<xs:attribute name="MaxResults" type="common:typeMaxResults" default="20"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EmulationTargetRetrieveRsp">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element name="Branch" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="common:APIProvider" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+							    <xs:attribute name="ProfileID" type="common:typeProfileID" use="required"/>
+								<xs:attribute name="BranchCode" type="common:typeBranchCode" use="required"/>
+								<xs:attribute name="AgencyName" type="common:StringLength1to128">
+                                    <xs:annotation>
+                                        <xs:documentation>When requested the AgencyName is included in the response. </xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+								<xs:attribute name="BranchName" type="common:StringLength1to128">
+									<xs:annotation>
+										<xs:documentation>When requested the BranchName is included in the response. Please note that this will increase the reponse time.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="AllAllowed" type="xs:boolean" default="false">
+						<xs:annotation>
+							<xs:documentation>Means that all branches in the system are valid targets for emulation.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="MoreResults" type="common:typeMoreResults" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	 <xs:element name="RoleCreateReq">
+        <xs:annotation>
+            <xs:documentation>Request to create a new role. To create a role available to all agencies, omit AgencyID (only Travelport admins can do so).</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                     <xs:sequence>
+                        <xs:element name="TransactionalInfo">
+                            <xs:annotation>
+                                <xs:documentation>Defines the transactional authorization of the role (what security permissions the role has).</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                   <xs:element ref="ResourceLevelInfo" minOccurs="1" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="AssignableInfo" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Defines the transferable authorization of the role (what security permissions they may assign to another role when creating or modifying roles).</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="ResourceLevelInfo" minOccurs="1" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                     <xs:attribute name="Name" type="typeRoleName" use="required">
+				     	<xs:annotation>
+				      		<xs:documentation>Short name for the role. Must be unique within it's context.</xs:documentation>
+				     	</xs:annotation>
+				     </xs:attribute>
+                      <xs:attribute name="Description" type="typeRoleDescription" use="required">
+                         <xs:annotation>
+                             <xs:documentation>Description of the role's function.</xs:documentation>
+                         </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="AgencyID" type="common:typeAgencyID" use="optional">
+                         <xs:annotation>
+                             <xs:documentation>Unique identifier of an agency.</xs:documentation>
+                         </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="TravelportRestricted" type="xs:boolean" use="optional" default="false">
+                         <xs:annotation>
+                             <xs:documentation>True if the role cannot be used or viewed by customer agencies. Only used by Travelport Administrators</xs:documentation>
+                         </xs:annotation>
+	                  </xs:attribute>
+                     <xs:attribute name="Category" type="typeRoleCategory" use="optional">
+                         <xs:annotation>
+                             <xs:documentation>The category of the role,which governs who can assign this role to other users.Only system administrator can specify a category,it is automatically defined by the system in most cases. Check documentation on typeRoleCategory for valid values.</xs:documentation>
+                         </xs:annotation>
+                     </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RoleCreateRsp">
+      <xs:annotation>
+         <xs:documentation>Response with newly created role information.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="Role">
+                     <xs:annotation>
+                        <xs:documentation>Details of the role.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RoleDeleteReq">
+        <xs:annotation>
+            <xs:documentation>Request to delete an existing role.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="Id" type="common:typeRoleId" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The unique identifier of the role, assigned by the system.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+   </xs:element>
+   <xs:element name="RoleDeleteRsp">
+       <xs:annotation>
+           <xs:documentation>Response showing the deleted role.</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+           <xs:complexContent>
+               <xs:extension base="common:BaseRsp"/>
+           </xs:complexContent>
+       </xs:complexType>
+   </xs:element>
+    <xs:element name="RoleModifyReq">
+        <xs:annotation>
+            <xs:documentation>Request to modify an existing role.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="Role">
+                            <xs:annotation>
+                                <xs:documentation>Complete information about a role and its transactional and assignable resources.  Agency and branch data cannot be modified after a role is created.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>      
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RoleModifyRsp">
+        <xs:annotation>
+            <xs:documentation>Response with newly modified role information.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="Role"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RoleRetrieveReq">
+        <xs:annotation>
+             <xs:documentation>Requests details of all given roles.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="Id" type="common:typeRoleId" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The unique identifier of the role,assigned by the system.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RoleRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a RoleRetrieveReq with role details,including transactional and assignable resources and levels.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="Role"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RoleSearchReq">
+        <xs:annotation>
+             <xs:documentation>Request to search for existing roles.Specify an agencyId  search roles owned by given agency;
+             leave them blank to search the roles owned by the Travelport. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="AgencyID" type="common:typeAgencyID" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Used if the role is owned by the agency.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>    
+                    <xs:attribute name="Name" type="common:typeWildcard" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Specify all or part of the role name to search for a role by its name .</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ReturnAssignableOnly" type="xs:boolean" use="optional" default="false">					
+					    <xs:annotation>
+					       <xs:documentation>Set to true to exclude roles that are not assignable in the search results.</xs:documentation>
+					    </xs:annotation>
+     				</xs:attribute>                    
+                    <xs:attribute name="IncludeTravelportRoles" type="xs:boolean" use="optional" default="false">
+                        <xs:annotation>
+                            <xs:documentation>Set to true to include Travelport roles in the search results when searching by an agency or branch identifier.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>    
+    <xs:element name="RoleSearchRsp">
+      <xs:annotation>
+         <xs:documentation>Response showing a summary of all roles the user is permitted to view.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+				<xs:element ref="RoleSearchResult" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+    <!--*** Role Assignment Request Types ***-->
+    <xs:element name="AssignRoleReq">
+        <xs:annotation>
+            <xs:documentation>Request to assign a role or roles to an entity. Specify a single entity and each role to assign to that entity.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:choice>
+     					<xs:element name="RoleId" type="common:typeRoleId" minOccurs="0" maxOccurs="unbounded">
+	      					<xs:annotation>
+	       						<xs:documentation>Specify each role to assign to the entity. Remove all roles to allow the entity to inherit role assignments of its parent. Specify either RoleNames or Ids</xs:documentation>
+						    </xs:annotation>
+					    </xs:element>
+     					<xs:element name="RoleName" type="typeRoleName" minOccurs="0" maxOccurs="unbounded">
+	      					<xs:annotation>
+	       						<xs:documentation>RoleName of a Travelport owned ("Canned") Role</xs:documentation>
+	      					</xs:annotation>
+     					</xs:element>
+    				</xs:choice>
+                    <xs:attribute name="AgentCode" type="common:typeAgentCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Unique identifier of an agent.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AssignRoleRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a AssignRoleReq. Includes all roles assigned to the specified entity.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:RoleInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AgentAssignableRolesRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Requests roles that can be assigned by the specified user,Will use agent in the credentials if none is specified in the request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+  			<xs:complexContent>
+   				<xs:extension base="common:BaseReq">
+    				<xs:attribute name="AgentCode" type="common:typeAgentCode" use="optional"/>
+   				</xs:extension>
+  			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="AgentAssignableRolesRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a request for an agent's assignable role.Includes a summary of the roles and its ownership.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element name="RoleSummary" type="typeRoleSummaryData" minOccurs="0" maxOccurs="unbounded"/>                            
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Assigned Role/Resource Request Types ***-->
+    <xs:element name="ResourceInfoRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Requests access level info for the requesting agent.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="AgentCode" type="common:typeAgentCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>The unique identifier of an agent.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Type" type="typeResourceTarget">
+    			        <xs:annotation>
+			    	        <xs:documentation>Filter by type, e.g. Desktop</xs:documentation>
+				        </xs:annotation>
+				    </xs:attribute>
+				    <xs:attribute name="ReturnNames" type="xs:boolean" use="optional" default="true">
+                        <xs:annotation>
+                            <xs:documentation>If true then shows the "Name" of the ResourceLevel is shown in the response(Default value : true).</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ReturnDescriptions" type="xs:boolean" use="optional" default="true">
+                        <xs:annotation>
+                            <xs:documentation>If true then shows the "Description" of the ResourceLevel is shown in the response(Default value : true).</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ResourceInfoRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a ResourceInfoRetrieveReq. Includes resource IDs and their associated access levels.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">   
+                    <xs:sequence>
+                    	<xs:element name="ResourceLevel" minOccurs="0" maxOccurs="unbounded">
+                        	<xs:complexType>	
+                            	<xs:complexContent>                            	
+                                	<xs:extension base="typeResourceLevel">
+                                    	<xs:attribute name="Code" use="required"/>
+                                    	<xs:attribute name="Name" type="xs:string" use="optional">
+					                        <xs:annotation>
+					                            <xs:documentation>Name of the resource.</xs:documentation>
+					                        </xs:annotation>
+					                     </xs:attribute>
+					                     <xs:attribute name="Description" use="optional">
+					                         <xs:annotation>
+					                            <xs:documentation>Function of the resource.</xs:documentation>
+					                         </xs:annotation>
+					                         <xs:simpleType>
+					                            <xs:restriction base="xs:string">
+					                                <xs:maxLength value="1024"/>
+					                            </xs:restriction>
+					                         </xs:simpleType>
+					                     </xs:attribute>
+                                    </xs:extension>
+                                </xs:complexContent>
+                           </xs:complexType>
+                       </xs:element>
+                 	</xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AssignedRoleRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Request to retrieve the role or roles currently assigned to an entity. Specify a single entity.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="AgentCode" type="common:typeAgentCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Unique identifier of an agent.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AssignedRoleRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a AssignedRoleRetrieveReq, specifying the role or roles assigned to the entity.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:RoleInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>  
+    
+    <!--*** Retrieve Profiles By Role ****-->
+	<xs:element name="AssignedProfileRetrieveReq">
+		<xs:annotation>
+			<xs:documentation>Retrieve all the profile IDs to which this
+				role has been assigned</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReq">
+					<xs:sequence>
+						<xs:element ref="Modifiers" minOccurs="0" />
+					</xs:sequence>
+					<xs:attribute name="RoleID" type="common:typeRoleId" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AssignedProfileRetrieveRsp">
+                <xs:annotation>
+                        <xs:documentation>Retrieve all the profile IDs to which this role has been assigned</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="common:BaseRsp">
+                                        <xs:sequence>
+                                                <xs:element ref="ProfileReference" minOccurs="0" maxOccurs="unbounded"/>
+                                        </xs:sequence>
+                                        <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required"/>
+                                </xs:extension>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="RoleCategoryModifyAssignabilityReq">
+      <xs:annotation>
+         <xs:documentation>Request to define which role category is permitted to assign roles of other role categories.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:element ref="RoleCategory" minOccurs="0" maxOccurs="unbounded"/>
+               </xs:sequence>
+               <xs:attribute name="AssignerCategory" type="typeRoleCategory" use="required">
+                  <xs:annotation>
+                      <xs:documentation>The category of role that is permittted to assign other role categories specified. If no Role Category is specified, a user whose role is in the Assigner Category will not be permitted to assign roles of any category.  Check documentation on typeRoleCategory for valid values. </xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+  <xs:element name="RoleCategoryModifyAssignabilityRsp">
+      <xs:annotation>
+         <xs:documentation>Response to a request to modify which other role categories a given role category can assign. Response shows all categories.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="RoleCategoryAssignability" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="RoleCategoryRetrieveAssignabilityReq">
+      <xs:annotation>
+         <xs:documentation>Request to retrieve the Role categories which a Role category can assign.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:attribute name="AssignerCategory" type="typeRoleCategory" use="required">
+                  <xs:annotation>
+                      <xs:documentation>The Role category for which the Role Category assignability is to be retrieved.  Check documentation on typeRoleCategory for valid values.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="RoleCategoryRetrieveAssignabilityRsp">
+      <xs:annotation>
+         <xs:documentation>Response to a request for the Role categories which a Role category can assign.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="RoleCategoryAssignability" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="DesktopPermissionCreateReq">
+        <xs:annotation>
+            <xs:documentation>Request to create a desktop permission with dependant API resources.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="ServicePermissionID" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attributeGroup ref="DesktopPermissionInfo"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+        
+    <xs:element name="DesktopPermissionCreateRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a request for the desktop permission create request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ServicePermissionInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attributeGroup ref="DesktopPermissionInfo"/>
+                    <xs:attributeGroup ref="DesktopPermissionTypeVersion"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DesktopPermissionModifyReq">
+        <xs:annotation>
+            <xs:documentation>Request to modify a desktop permission with dependant API resources.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="ServicePermissionID" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attributeGroup ref="DesktopPermissionInfo"/>
+                    <xs:attribute name="Version" type="common:typeVersion" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="DesktopPermissionModifyRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a modify for the desktop permission create request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ServicePermissionInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attributeGroup ref="DesktopPermissionInfo"/>
+                    <xs:attributeGroup ref="DesktopPermissionTypeVersion"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>    
+
+    <xs:element name="PermissionSearchReq">
+        <xs:complexType>
+         <xs:complexContent>
+          <xs:extension base="common:BaseReq">
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="SearchByID"/>
+                    <xs:element ref="SearchByType"/>
+                </xs:choice>
+              <xs:element ref="SecuritySearchModifiers" minOccurs="0"/>
+             </xs:sequence>
+            </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PermissionSearchRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a request for the search permission request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="PermissionInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attribute name="MoreResults" type="xs:boolean"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="DesktopPermissionDeleteReq">
+        <xs:annotation>
+            <xs:documentation>Request to delete a desktop permission with dependant API resources.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="ID" type="typePermissionID" use="required">
+                          <xs:annotation>
+                              <xs:documentation>ID of the Desktop resource.</xs:documentation>
+                          </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Version" type="common:typeVersion" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Version of the security resource.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>   
+    <xs:element name="DesktopPermissionDeleteRsp">
+        <xs:annotation>
+                      <xs:documentation>Response will only include warnings if they exist.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                      <xs:complexContent>
+                             <xs:extension base="common:BaseRsp"/>
+                      </xs:complexContent>
+              </xs:complexType>
+    </xs:element>
+</xs:schema>

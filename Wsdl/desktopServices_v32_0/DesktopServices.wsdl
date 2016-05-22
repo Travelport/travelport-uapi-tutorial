@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="DesktopServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/desktopServices_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/desktopServices_v32_0"             
+             targetNamespace="http://www.travelport.com/service/desktopServices_v32_0">
+
+    <import namespace="http://www.travelport.com/service/desktopServices_v32_0"
+            location="DesktopServicesAbstract.wsdl"/>
+
+    <binding name="InboxItemCreateBinding" type="tns:InboxItemCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="InboxItemModifyBinding" type="tns:InboxItemModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="InboxItemSearchBinding" type="tns:InboxItemSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="InboxItemDeleteBinding" type="tns:InboxItemDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="InboxItemRetrieveHistoryBinding" type="tns:InboxItemRetrieveHistoryPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+     <!-- Desktop Workflow Binding Start -->
+    <binding name="DesktopWorkFlowCreateBinding" type="tns:DesktopWorkFlowCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    
+    <binding name="DesktopWorkFlowRetrieveBinding" type="tns:DesktopWorkFlowRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="DesktopWorkFlowSearchBinding" type="tns:DesktopWorkFlowSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <!-- Desktop Workflow Binding End -->
+    
+    <!--  Trigger Policy Start -->
+    
+    <binding name="TriggerPolicyCreateBinding" type="tns:TriggerPolicyCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="TriggerPolicyRetrieveBinding" type="tns:TriggerPolicyRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="TriggerPolicyModifyBinding" type="tns:TriggerPolicyModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+     <binding name="TriggerPolicyDeleteBinding" type="tns:TriggerPolicyDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+   
+
+     <binding name="TriggerPolicySearchBinding" type="tns:TriggerPolicySearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+     <binding name="TriggerPolicyAssignBinding" type="tns:TriggerPolicyAssignPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <!--  Trigger Policy End --> 
+
+
+    <binding name="DesktopWorkFlowModifyBinding" type="tns:DesktopWorkFlowModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="DesktopWorkFlowDeleteBinding" type="tns:DesktopWorkFlowDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <!-- DesktopReasonCodesList Start -->
+     <binding name="DesktopReasonCodesListCreateBinding" type="tns:DesktopReasonCodesListCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="DesktopReasonCodesListSearchBinding" type="tns:DesktopReasonCodesListSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+     <binding name="DesktopReasonCodesListModifyBinding" type="tns:DesktopReasonCodesListModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="DesktopReasonCodesListDeleteBinding" type="tns:DesktopReasonCodesListDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <!-- DesktopReasonCodesList End -->
+    <binding name="WorkflowCategoryAssociationBinding" type="tns:WorkflowCategoryAssociationPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <!-- Binding For ClickOnceDeployment-->
+    <binding name="ManifestReferenceCreateBinding"
+             type="tns:ManifestReferenceCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ManifestReferenceDeleteBinding"
+             type="tns:ManifestReferenceDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ManifestReferenceModifyBinding"
+             type="tns:ManifestReferenceModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    
+    <binding name="ManifestReferenceSearchBinding"
+             type="tns:ManifestReferenceSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+     <binding name="ManifestCalculateURIBinding"
+             type="tns:ManifestCalculateURIPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <!--Click Once: Calculate AgentCode from ManifestURI-->
+    <binding name="ManifestCalculateTargetBinding"
+             type="tns:ManifestCalculateTargetPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ManifestReferenceRetrieveBinding"
+             type="tns:ManifestReferenceRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProductVersionRetrieveBinding"
+             type="tns:ProductVersionRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProductReleaseAssignmentSearchBinding"
+             type="tns:ProductReleaseAssignmentSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProductVersionSetBinding"
+             type="tns:ProductVersionSetPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProductVersionAssignBinding"
+             type="tns:ProductVersionAssignPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+
+    <binding name="ExtensionCreateBinding"
+             type="tns:ExtensionCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="ExtensionModifyBinding"
+             type="tns:ExtensionModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    <binding name="ExtensionRetrieveBinding"
+             type="tns:ExtensionRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    <binding name="ExtensionDeleteBinding"
+             type="tns:ExtensionDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                	<soap:fault name="ErrorInfoMsg" use="literal" />
+            	</fault>
+        </operation>
+    </binding>
+    
+    <binding name="InboxDistributionListCreateBinding" type="tns:InboxDistributionListCreatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxDistributionListService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+	<binding name="InboxDistributionListRetrieveBinding" type="tns:InboxDistributionListRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxDistributionListService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+	<binding name="InboxDistributionListDeleteBinding" type="tns:InboxDistributionListDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxDistributionListService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>    
+	<binding name="ExtensionSearchBinding" type="tns:ExtensionSearchBindingPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/ClickOnceDeploymentService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>    
+	   
+	<binding name="InboxDistributionListSearchBinding" type="tns:InboxDistributionListSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxDistributionListService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+		<binding name="LicenseLimitsUpdateBinding" type="tns:LicenseLimitsUpdatePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/LicenseService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding> 
+	<binding name="InboxDistributionListModifyBinding" type="tns:InboxDistributionListModifyPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/InboxDistributionListService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>    
+    
+     <binding name="MediaChangeAssignmentBinding" type="tns:MediaChangeAssignmentServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/MediaService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="MediaRetrieveBinding" type="tns:MediaRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/MediaService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="MediaSearchBinding" type="tns:MediaSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/MediaService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="WorkflowAssignBinding" type="tns:WorkflowAssignPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <service name="InboxItemCreateService">
+        <port name="InboxItemCreateServicePort" binding="tns:InboxItemCreateBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxService"/>
+        </port>
+    </service>
+
+    <service name="InboxItemModifyService">
+        <port name="InboxItemModifyServicePort" binding="tns:InboxItemModifyBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxService"/>
+        </port>
+    </service>
+
+    <service name="InboxItemSearchService">
+        <port name="InboxItemSearchServicePort" binding="tns:InboxItemSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxService"/>
+        </port>
+    </service>
+
+    <service name="InboxItemDeleteService">
+        <port name="InboxItemDeleteServicePort" binding="tns:InboxItemDeleteBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxService"/>
+        </port>
+    </service>
+
+    <service name="InboxItemRetrieveHistoryService">
+        <port name="InboxItemRetrieveHistoryServicePort" binding="tns:InboxItemRetrieveHistoryBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxService"/>
+        </port>
+    </service>
+
+   <service name="DesktopWorkFlowCreateService">
+        <port name="DesktopWorkFlowCreateServicePort" binding="tns:DesktopWorkFlowCreateBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    
+    <service name="DesktopWorkFlowRetrieveService">
+        <port name="DesktopWorkFlowRetrieveServicePort" binding="tns:DesktopWorkFlowRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    
+    <service name="DesktopWorkFlowSearchService">
+        <port name="DesktopWorkFlowSearchServicePort" binding="tns:DesktopWorkFlowSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    
+    <service name="TriggerPolicyCreateService">
+        <port name="TriggerPolicyCreateServicePort" binding="tns:TriggerPolicyCreateBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+
+    <service name="TriggerPolicyRetrieveService">
+        <port name="TriggerPolicyRetrieveServicePort" binding="tns:TriggerPolicyRetrieveBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>    
+   <service name="TriggerPolicyModifyService">
+        <port name="TriggerPolicyModifyServicePort" binding="tns:TriggerPolicyModifyBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service> 
+    
+     <service name="TriggerPolicyDeleteService">
+        <port name="TriggerPolicyDeleteServicePort" binding="tns:TriggerPolicyDeleteBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>      
+
+    <service name="TriggerPolicySearchService">
+        <port name="TriggerPolicySearchServicePort" binding="tns:TriggerPolicySearchBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>       
+
+    <service name="TriggerPolicyAssignService">
+    	<port name="TriggerPolicyAssignServicePort" binding="tns:TriggerPolicyAssignBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+   
+   <service name="DesktopWorkFlowModifyService">
+        <port name="DesktopWorkFlowModifyServicePort" binding="tns:DesktopWorkFlowModifyBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>       
+   <!-- WorkFlow Service End -->
+   <!-- DesktopReasonCodesList Start -->
+    <service name="DesktopReasonCodesListCreateService">
+        <port name="DesktopReasonCodesListCreatePort" binding="tns:DesktopReasonCodesListCreateBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    <service name="DesktopReasonCodesListSearchService">
+        <port name="DesktopReasonCodesListSearchPort" binding="tns:DesktopReasonCodesListSearchBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    <service name="DesktopReasonCodesListModifyService">
+        <port name="DesktopReasonCodesListModifyPort" binding="tns:DesktopReasonCodesListModifyBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    <service name="DesktopReasonCodesListDeleteService">
+        <port name="DesktopReasonCodesListDeletePort" binding="tns:DesktopReasonCodesListDeleteBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    <!-- DesktopReasonCodesList End -->
+    
+
+    <service name="DesktopWorkFlowDeleteService">
+        <port name="DesktopWorkFlowDeleteServicePort" binding="tns:DesktopWorkFlowDeleteBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+    
+    <service name="WorkflowCategoryAssociationService">
+        <port name="WorkflowCategoryAssociationServicePort" binding="tns:WorkflowCategoryAssociationBinding">
+			<soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+
+    <service name="ManifestReferenceCreateService">
+        <port name="ManifestReferenceCreatePort" binding="tns:ManifestReferenceCreateBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ManifestReferenceModifyService">
+        <port name="ManifestReferenceModifyPort" binding="tns:ManifestReferenceModifyBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>    
+
+	<service name="ManifestCalculateURIService">
+        <port name="ManifestCalculateURIPort" binding="tns:ManifestCalculateURIBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>  
+    
+    <service name="ManifestCalculateTargetService">
+        <port name="ManifestCalculateTargetPort" binding="tns:ManifestCalculateTargetBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ManifestReferenceSearchService">
+        <port name="ManifestReferenceSearchPort" binding="tns:ManifestReferenceSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ManifestReferenceDeleteService">
+        <port name="ManifestReferenceDeletePort" binding="tns:ManifestReferenceDeleteBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ManifestReferenceRetrieveService">
+        <port name="ManifestReferenceRetrievePort" binding="tns:ManifestReferenceRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ProductVersionRetrieveService">
+        <port name="ProductVersionRetrievePort" binding="tns:ProductVersionRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ProductReleaseAssignmentSearchService">
+        <port name="ProductReleaseAssignmentSearchPort" binding="tns:ProductReleaseAssignmentSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="ExtensionCreateService">
+        <port name="ExtensionCreatePort" binding="tns:ExtensionCreateBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    <service name="ExtensionModifyService">
+        <port name="ExtensionModifyPort" binding="tns:ExtensionModifyBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    <service name="ExtensionRetrieveService">
+        <port name="ExtensionRetrievePort" binding="tns:ExtensionRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+	<service name="ExtensionDeleteService">
+        <port name="ExtensionDeletePort" binding="tns:ExtensionDeleteBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    <service name="InboxDistributionListCreateService">
+        <port name="InboxDistributionListCreateServicePort" binding="tns:InboxDistributionListCreateBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxDistributionListService"/>
+        </port>
+    </service>
+    <service name="InboxDistributionListRetrieveService">
+        <port name="InboxDistributionListRetrieveServicePort" binding="tns:InboxDistributionListRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxDistributionListService"/>
+        </port>
+    </service>
+    <service name="InboxDistributionListDeleteService">
+        <port name="InboxDistributionListDeleteServicePort" binding="tns:InboxDistributionListDeleteBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxDistributionListService"/>
+        </port>
+    </service>    
+    <service name="InboxDistributionListModifyService">
+        <port name="InboxDistributionListModifyServicePort" binding="tns:InboxDistributionListModifyBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxDistributionListService"/>
+        </port>
+    </service>
+    
+    <service name="ExtensionSearchService">
+        <port name="ExtensionSearchServicePort" binding="tns:ExtensionSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/ClickOnceDeploymentService" />
+        </port>
+    </service>
+    
+    <service name="LicenseLimitsUpdateService">
+        <port name="LicenseLimitsUpdateServicePort" binding="tns:LicenseLimitsUpdateBinding">
+            <soap:address location="http://localhost:8080/kestrel/LicenseService"/>            
+        </port>
+    </service>
+    
+     <service name="InboxDistributionListSearchService">
+        <port name="InboxDistributionListSearchServicePort" binding="tns:InboxDistributionListSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/InboxDistributionListService"/>
+        </port>
+    </service>
+    
+    <service name="MediaChangeAssignmentService">
+        <port name="MediaChangeAssignmentServicePort" binding="tns:MediaChangeAssignmentBinding">
+            <soap:address location="http://localhost:8080/kestrel/MediaService"/>
+        </port>
+    </service>
+    
+    
+    <service name="MediaRetrieveService">
+    	<port name="MediaRetrieveServicePort" binding="tns:MediaRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/MediaService"/>
+        </port>
+    </service>
+    
+    <service name="MediaSearchService">
+    	<port name="MediaSearchServicePort" binding="tns:MediaSearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/MediaService"/>
+        </port>
+    </service>
+    
+    <service name="WorkflowAssignService">
+    	<port name="WorkflowAssignServicePort" binding="tns:WorkflowAssignBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopService"/>
+        </port>
+    </service>
+ 
+</definitions>
+

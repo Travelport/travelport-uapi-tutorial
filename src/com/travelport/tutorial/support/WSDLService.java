@@ -20,6 +20,8 @@ import com.travelport.service.system_v32_0.SystemTimePortType;
 import com.travelport.service.universal_v35_0.AirCreateReservationPortType;
 import com.travelport.service.universal_v35_0.HotelCancelServicePortType;
 import com.travelport.service.universal_v35_0.HotelReservationServicePortType;
+import com.travelport.service.universal_v35_0.UniversalRecordRetrieveServicePortType;
+import com.travelport.service.universal_v35_0.UniversalRecordService;
 import com.travelport.service.vehicle_v35_0.VehicleSearchServicePortType;
 import com.travelport.service.vehicle_v35_0.VehicleService;
 
@@ -53,6 +55,8 @@ public class WSDLService {
 	static public String AIR_ENDPOINT = ENDPOINT_PREFIX + "AirService";
 	static public String HOTEL_ENDPOINT = ENDPOINT_PREFIX + "HotelService";
 	static public String VEHICLE_ENDPOINT = ENDPOINT_PREFIX + "VehicleService";
+	static public String UNIVERSAL_ENDPOINT = ENDPOINT_PREFIX + "UniversalRecordService";
+	
 
 	// the services... these are not normally useful to most developers
 	public static ServiceWrapper<HotelService> hotel = new ServiceWrapper<HotelService>(
@@ -68,6 +72,8 @@ public class WSDLService {
 	
 	public static ServiceWrapper<com.travelport.service.universal_v35_0.AirService> universalAir = new ServiceWrapper<com.travelport.service.universal_v35_0.AirService>(
 			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v35_0.AirService.class);
+	public static ServiceWrapper<UniversalRecordService> universal = new ServiceWrapper<UniversalRecordService>(
+			WSDLService.UNIVERSAL_WSDL, UniversalRecordService.class);
 
 	// air ports
 	public static PortWrapper<AirLowFareSearchPortType, AirService> airShop = new PortWrapper<AirLowFareSearchPortType, AirService>(
@@ -106,7 +112,9 @@ public class WSDLService {
 	// vehicle ports
 	public static PortWrapper<VehicleSearchServicePortType, VehicleService> vehicleSearch = new PortWrapper<VehicleSearchServicePortType, VehicleService>(
 			vehicle, VehicleSearchServicePortType.class, VEHICLE_ENDPOINT);
-
+	// universalrecord ports
+	public static PortWrapper<UniversalRecordRetrieveServicePortType, UniversalRecordService> universalRetrieve = new PortWrapper<UniversalRecordRetrieveServicePortType, UniversalRecordService>(
+			universal, UniversalRecordRetrieveServicePortType.class, UNIVERSAL_ENDPOINT);
 	// names of the environment properties
 	static protected String USERNAME_PROP = "travelport.username";
 	static protected String PASSWORD_PROP = "travelport.password";

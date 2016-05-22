@@ -1,0 +1,990 @@
+<xs:schema targetNamespace="http://www.travelport.com/schema/desktopServices_v32_0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://www.travelport.com/schema/desktopServices_v32_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v32_0">
+   <xs:import namespace="http://www.travelport.com/schema/common_v32_0" schemaLocation="../common_v32_0/CommonReqRsp.xsd"/>
+   <xs:include schemaLocation="DTSCommon.xsd"/> 
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    
+   <!--*** Shared Elements For InboxItem Start***-->    
+    <xs:element name="InboxItem">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="typeInboxItem">
+					<xs:attribute name="ItemID" use="required" />
+					<xs:attribute name="TravelerFirstName">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="30" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="TravelerLastName">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="30" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="CreatedByAgentCode" type="common:typeAgentCode" use="required" />
+					<xs:attribute name="CreatedByAgentFirstName" type="common:StringLength1to128" use="required" />
+					<xs:attribute name="CreatedByAgentLastName" type="common:StringLength1to128" use="required" />
+					<xs:attribute name="CreatedDateTime" type="xs:dateTime" use="required" />
+					<xs:attribute name="ModifiedByAgentCode" type="common:typeAgentCode" use="optional" />
+					<xs:attribute name="ModifiedByAgentFirstName" type="common:StringLength1to128" use="optional" />
+					<xs:attribute name="ModifiedByAgentLastName" type="common:StringLength1to128" use="optional" />
+					<xs:attribute name="ModifiedDateTime" type="xs:dateTime" use="optional">
+						<xs:annotation>
+							<xs:documentation>Most recent modification</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="CompletionDateTime" type="xs:dateTime" use="optional" />
+					<xs:attribute name="IsHistoryItem" type="xs:boolean" use="optional" />
+					<xs:attribute name="IsRead" type="xs:boolean" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element> 
+    <!--*** Inbox Item's RetrieveCriteria ***-->
+    <xs:element name="InboxItemSearchCriteria">
+        <xs:annotation>
+            <xs:documentation>This contains all the Inbox Item Data</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="AssignedToAgentCode" type="common:typeAgentCode" use="required">
+                <xs:annotation>
+                    <xs:documentation>The inbox items assigned to this agent.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Category" type="typeInboxItemCategory" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The category type of the inbox item</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Type" type="typeInboxItemType" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The type of the inbox item</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Status" type="typeInboxItemStatus" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The status of the inbox item</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ModifiedAfterDateTime" type="xs:dateTime" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The modified date after which the records will be retrieved.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="PreferredDescLength" type="xs:integer" use="optional">
+                <xs:annotation>
+                    <xs:documentation>This gives the preferred length for the description</xs:documentation>
+                </xs:annotation>
+
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Item for delete service ***-->
+    <xs:element name="Item">
+        <xs:annotation>
+            <xs:documentation>Contains the deleted data.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="ItemID" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>This contains the deleted itemId</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Category" type="typeInboxItemCategory" use="required">
+                <xs:annotation>
+                    <xs:documentation>This contains the value either Active or Archive.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--*** Inbox Item Priority Details ***-->
+    <xs:simpleType name="typeInboxItemPriority">
+        <xs:annotation>
+            <xs:documentation>This contains the various priorities that can be used for an Inbox Items: Low, Medium, High</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Low"/>
+            <xs:enumeration value="Medium"/>
+            <xs:enumeration value="High"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!--*** Inbox Item Status Details ***-->
+    <xs:simpleType name="typeInboxItemStatus">
+        <xs:annotation>
+            <xs:documentation>This contains the various statuses that can be used for an Inbox Item: Pending, Complete, In Progress, Researching, New, Auto-Archive</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pending"/>
+            <xs:enumeration value="Complete"/>
+            <xs:enumeration value="In Progress"/>
+            <xs:enumeration value="Researching"/>
+            <xs:enumeration value="New"/>
+            <xs:enumeration value="Auto-Archive"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!--*** Inbox Item Type Details ***-->
+    <xs:simpleType name="typeInboxItemType">
+        <xs:annotation>
+            <xs:documentation>This contains the various types of values that can be used for Inbox Items: Task, Note, Alert, WorkItem</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Task"/>
+            <xs:enumeration value="Note"/>
+            <xs:enumeration value="Alert"/>
+            <xs:enumeration value="WorkItem"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!--*** Inbox Item Category Details ***-->
+    <xs:simpleType name="typeInboxItemCategory">
+        <xs:annotation>
+            <xs:documentation>This contains the various categories of values that can be used for Inbox Items: Active, Archive</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Active"/>
+            <xs:enumeration value="Archive"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!--*** Inbox Item Action ***-->
+    <xs:simpleType name="typeInboxActionType">
+        <xs:annotation>
+            <xs:documentation>This contains the various actions that can be performed in modify service: Modify, MoveToArchive</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Modify"/>
+            <xs:enumeration value="MoveToArchive"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+        <xs:complexType name="typeInboxItem">
+		<xs:sequence>
+			<xs:element name="AssignedToAgentCode" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Names will be populated in the responses and ignored in the request. Code is moved to an attribute.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:attribute name="AgentCode" type="common:typeAgentCode" use="required" />
+					<xs:attribute name="FirstName" type="common:StringLength1to128" use="optional" />
+					<xs:attribute name="LastName" type="common:StringLength1to128" use="optional" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DistributionList" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Description" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="2500" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Type" type="typeInboxItemType" use="required">
+			<xs:annotation>
+				<xs:documentation>This notifies the type of the Inbox Item like Task, Note, Alert or WorkItem? .</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Priority" type="typeInboxItemPriority" use="required">
+			<xs:annotation>
+				<xs:documentation>This contains the value like Low, Medium or High.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Status" type="typeInboxItemStatus" use="required">
+			<xs:annotation>
+				<xs:documentation>The status of the Inbox Item - Pending, Complete, In Progress, Researching, New or Auto-Archive.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Category" type="typeInboxItemCategory" use="required">
+			<xs:annotation>
+				<xs:documentation>This is the type category i.e. Active or Archive. The inbox item can be changed from active to archive and vice-versa</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="UniversalRecordLocatorCode" use="optional">
+			<xs:annotation>
+				<xs:documentation>The universal record associated with this inbox item.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="6" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="TravelerProfileID" type="common:typeTravelerID" use="optional">
+			<xs:annotation>
+				<xs:documentation>The universal profile of the traveler associated with this inbox item.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="NotifyWhenCompleted" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:documentation>This boolean tells whether the creator need to be notified on completion of this assigned task.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DueDateTime" type="xs:dateTime" use="optional" />
+	</xs:complexType> 
+  <!--*** Shared Elements For InboxItem End***-->
+    
+  <!--*** Shared Elements For DistributionList Management Start***-->
+	<xs:element name="PermittedUsers">
+	 <xs:complexType>
+	  <xs:sequence>
+	      <xs:element name="ProfileReference" type="common:typeAgencyHierarchyLongReference" maxOccurs="unbounded"/>
+	  </xs:sequence>
+	 </xs:complexType>
+	</xs:element>
+	<xs:element name="Recipients">
+	 <xs:complexType>
+	  <xs:sequence>
+	   <xs:element ref="EmbeddedDistList" minOccurs="0" maxOccurs="unbounded"/>
+	      <xs:element name="ProfileReference" type="common:typeAgencyHierarchyLongReference" maxOccurs="unbounded"/>
+	  </xs:sequence>
+	 </xs:complexType>
+	</xs:element>
+	<xs:element name="EmbeddedDistList">
+	 <xs:complexType>
+	  <xs:attributeGroup ref="attrInboxDistList"/>
+	 </xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="attrInboxDistList">
+	 <xs:attribute name="ListName" use="required">
+	  <xs:simpleType>
+	   <xs:restriction base="xs:string">
+	    <xs:maxLength value="50"/>
+	   </xs:restriction>
+	  </xs:simpleType>
+	 </xs:attribute>
+	 <xs:attribute name="ID" type="typeID" use="required"/>
+	 <xs:attribute name="Version" type="common:typeVersion" use="required"/>
+	 <xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+       <xs:annotation>
+           <xs:documentation>Secondary Owner of the InboxDistributionList</xs:documentation>
+       </xs:annotation>
+     </xs:attribute>
+	</xs:attributeGroup>
+	
+	<xs:attributeGroup name="attrInboxDistListData">
+		<xs:attribute name="ListName" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="50"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ID" type="typeID" use="required"/>
+		<xs:attribute name="Version" type="common:typeVersion" use="required"/>
+		<xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+			<xs:annotation>
+				<xs:documentation>Secondary Owner of the InboxDistributionList</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Modifiable" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>searching agent would need to know which searched InboxDistributionList he can modify and which not.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:element name="InboxDistributionList">
+	  <xs:complexType>
+	   <xs:sequence>
+	    <xs:element ref="PermittedUsers" minOccurs="0"/>
+	    <xs:element ref="Recipients" minOccurs="0"/>
+	   </xs:sequence>
+	   <xs:attributeGroup ref="attrInboxDistList"/>
+	  </xs:complexType>
+	</xs:element>
+
+	<xs:element name="InboxDistributionListSummary">
+		<xs:complexType>
+			<xs:attributeGroup ref="attrInboxDistListData"/>
+		</xs:complexType>
+	</xs:element>
+
+	
+	<xs:complexType name="attrInboxDistList">
+		<xs:attribute name="ListName" type="common:typeWildcard" use="required"/>
+		<xs:attribute name="ID" type="typeID" use="required"/>
+		<xs:attribute name="Version" type="common:typeVersion" use="required"/>
+	</xs:complexType>
+	
+   <!--***Shared elements of DistributionList Management End***-->
+
+   <!-- *** Shared elements of License count update Start-->
+	<xs:element name="LicenseLimits">
+	   <xs:complexType>
+	      <xs:sequence>
+	         <xs:element name="WorkflowLimits" type="typeLimits" minOccurs="0">
+	            <xs:annotation>
+	               <xs:documentation>If WorkflowLimits are not present, the current workflow limits will be left intact.  If -1 for limit, means no limit.</xs:documentation>
+	            </xs:annotation>
+	         </xs:element>
+	         <xs:element name="PolicyLimits" type="typeLimits" minOccurs="0">
+	            <xs:annotation>
+	               <xs:documentation>If PolicyLimits are not present, the current policy limits will be left intact.  If -1 for limit, means no limit.</xs:documentation>
+	            </xs:annotation>
+	         </xs:element>
+	      </xs:sequence>
+	      <xs:attribute name="LicenseCode" type="common:typeLicenseCode" use="required"/>
+	   </xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="typeLimits">
+	   <xs:annotation>
+	      <xs:documentation>Used to store number of assigned or owned workflows, policies, etc.</xs:documentation>
+	   </xs:annotation>
+	   <xs:attribute name="Assigned" type="xs:integer"/>
+	   <xs:attribute name="Owned" type="xs:integer"/>
+	</xs:complexType>
+ <!-- *** Shared elements of License count update End*** -->  
+ 
+ <!-- *** Shared elements of Media change assignment Start*** -->
+	 <xs:attributeGroup name="MediaDetails">
+	   <xs:attribute name="MediaType" use="optional">
+	      <xs:simpleType>
+	         <xs:restriction base="typeMediaType"/>
+	      </xs:simpleType>
+	   </xs:attribute>
+	    <xs:attribute name="MediaTypeCode" use="required">
+	      <xs:simpleType>
+	         <xs:restriction base="typeMediaTypeCode"/>
+	      </xs:simpleType>
+	   </xs:attribute>
+	   
+	   <xs:attribute name="ItemURL" use="optional">
+	      <xs:simpleType>
+	         <xs:restriction base="xs:anyURI">
+	            <xs:maxLength value="2000"/>
+	         </xs:restriction>
+	      </xs:simpleType>
+	   </xs:attribute>
+	   <xs:attribute name="ThumbnailURL">
+	      <xs:simpleType>
+	         <xs:restriction base="xs:anyURI">
+	            <xs:maxLength value="2000"/>
+	         </xs:restriction>
+	      </xs:simpleType>
+	   </xs:attribute>
+	</xs:attributeGroup>
+
+	<xs:element name="MediaItem">
+	   <xs:complexType>
+	      <xs:attributeGroup ref="MediaDetails"/>
+	   </xs:complexType>
+	</xs:element>
+
+
+	<xs:simpleType name="typeMediaType">
+	   <xs:restriction base="xs:string">      
+	      <xs:enumeration value="Logo"/>
+	      <xs:enumeration value="In Policy"/>
+	      <xs:enumeration value="Out of Policy"/>
+	      <xs:enumeration value="Traveler Preferred"/>
+	      <xs:enumeration value="Traveler Non-Preferred"/>
+	      <xs:enumeration value="In Contract"/>
+	      <xs:enumeration value="Out of Contract"/>
+	      <xs:enumeration value="Negotiated Price"/>
+	      <xs:enumeration value="Agent Preference"/>
+	      <xs:enumeration value="Agent Non-Preferred"/>
+	      <xs:enumeration value="Branch Preference"/>
+	      <xs:enumeration value="Branch Non-Preferred"/>
+	      <xs:enumeration value="Agency Preference"/>
+	      <xs:enumeration value="Agency Non-Preferred"/>
+	      <xs:enumeration value="Account Preferred"/>
+	      <xs:enumeration value="Account Non-Preferred"/>
+	   </xs:restriction>
+	</xs:simpleType>
+
+
+
+   <xs:simpleType name="typeMediaTypeCode">
+      <xs:restriction base="xs:string">        
+         <xs:enumeration value="YL"/>
+         <xs:enumeration value="IP"/>
+         <xs:enumeration value="OP"/>
+         <xs:enumeration value="TP"/>
+         <xs:enumeration value="TN"/>
+         <xs:enumeration value="IC"/>
+         <xs:enumeration value="OC"/>
+         <xs:enumeration value="NP"/>
+         <xs:enumeration value="AP"/>
+         <xs:enumeration value="AN"/>
+         <xs:enumeration value="BP"/>
+         <xs:enumeration value="BN"/>
+         <xs:enumeration value="YP"/>
+         <xs:enumeration value="YN"/>
+         <xs:enumeration value="CP"/>
+         <xs:enumeration value="CN"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <!-- *** Shared elements of Media change assignment End*** -->
+   
+   <!--*** shared elements For Workflow/PolicyRule/ReasonCode Start***-->
+	<xs:element name="AppliesToSearch">
+    	<xs:annotation>
+        	<xs:documentation>Used to indicate whether the parent has been uniquely applied to the agency, or only to certain other profiles (usually Accounts). ProfileEntityID and ProfileLevel refer to the owner (organisation or person) to whom this entity belongs.For Search the user may not supply the ProfileEntityID if he is searching based on ProfileLevel.</xs:documentation>
+      	</xs:annotation>
+    		<xs:complexType>
+        		<xs:attribute name="ProfileEntityID" type="typeID" use="optional"/>
+         		<xs:attribute name="ProfileLevel" type="common:typeProfileLevelWithSystem" use="required"/>
+      	</xs:complexType>
+	</xs:element>
+	<xs:element name="ActiveCompletionCriterion">
+		<xs:complexType>
+			<xs:attribute name="Name" type="typeWorkFlowLongName" use="required">
+				<xs:annotation>
+					<xs:documentation>refers to a completion criterion defined inside Activity Assembly. Not validated by services</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Activities">
+		<xs:annotation>
+			<xs:documentation>The Service will not validate or analyse  the contents of this node</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ActivityInstance" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ActivityInstance">
+		<xs:annotation>
+			<xs:documentation>Describes the use of an Activity (Assembly) in a workflow. Used and verified by desktop. Not checked by Service.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TaskInstance" maxOccurs="unbounded"/>
+				<xs:element ref="ReasonActionData" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Reason Code data can be stored here. Not validated by service</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ActivityID" type="typeGUID" use="required">
+				<xs:annotation>
+					<xs:documentation>unique id of Activity - in practice will be GUID of Assembly</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ActivitySetID" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>SetID and SetOrderID define execution order inside a workflow. Not validated by service</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ActivitySetOrderNr" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>SetID and SetOrderID define execution order inside a workflow. Not validated by service</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Key" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>ActivityInstance unique id managed by client</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="attrPriority"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AllowedExceptions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Exception" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Exception">
+		<xs:complexType>
+			<xs:attribute name="ID" type="xs:long" use="required"/>
+			<xs:attribute name="ReasonCode" type="xs:string" use="required"/>
+			<xs:attribute name="Description" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PolicyData">
+	 <xs:complexType>
+	  <xs:annotation>
+	   <xs:documentation>XML serialisation of the Rules</xs:documentation>
+	  </xs:annotation>
+	  <xs:attribute name="Policy">
+	   <xs:simpleType>
+	    <xs:restriction base="xs:string">
+	     <xs:maxLength value="500000"/>
+	    </xs:restriction>
+	   </xs:simpleType>
+	  </xs:attribute>
+	 </xs:complexType>
+    </xs:element>
+	<xs:element name="Reason">
+		<xs:complexType>
+			<xs:attributeGroup ref="attrReason"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReasonCodesList">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Reason" maxOccurs="unbounded"/>
+				<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="attrReasonCodesList"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReasonActionData" type="xs:string"/>
+	<xs:element name="TaskInstance">
+		<xs:annotation>
+			<xs:documentation>Possible tasks are defined inside the Assembly, not by the services. The validity of the TaskInstance can not be validated by the service.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ActiveCompletionCriterion" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ReasonActionData" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Reason Code data can be stored here. Not validated by service</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Name" type="typeWorkFlowName" use="required">
+				<xs:annotation>
+					<xs:documentation>Name as defined within the Assembly, not validated by service.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TaskSetOrderNr" type="xs:int" use="required"/>
+			<xs:attribute name="AllowsException" type="xs:boolean" use="required"/>
+			<xs:attribute name="Required" type="xs:boolean" use="required"/>
+			<xs:attribute name="Key" type="xs:int" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicyRuleSet">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="WorkflowReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PolicyData"/>
+				<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+				<xs:element ref="VerifiedDesktopVersion" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="typeID" use="required">
+				<xs:annotation>
+					<xs:documentation>unique ID, used for modify and retrieve </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="attrTriggerPolicy"/>
+		</xs:complexType>
+	</xs:element>
+		<xs:element name="TriggerPolicyRuleSetData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="WorkflowReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PolicyData"/>
+				<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+				<xs:element ref="VerifiedDesktopVersion" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="typeID" use="required">
+				<xs:annotation>
+					<xs:documentation>unique ID, used for modify and retrieve </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="attrTriggerPolicy"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TriggerPolicySummary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="WorkflowReference" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+				<xs:element ref="VerifiedDesktopVersion" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ID" use="required">
+				<xs:annotation>
+					<xs:documentation>ID can be used in subsequent retrieve</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="attrTriggerPolicyData"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Workflow">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Activities"/>
+				<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="typeID" use="required"/>
+			<xs:attributeGroup ref="attrWorkflow"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Activities" />
+				<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ID" type="typeID" use="required"/>
+			<xs:attributeGroup ref="attrWorkflow"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowReference">
+		<xs:complexType>
+			<xs:attribute name="WorkflowID" type="typeID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowSummary">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Category" type="typeCategory" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Description" type="typeWorkFlowDescription" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="ID" use="required"/>
+			<xs:attributeGroup ref="attrWorkflowData"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="attrProfileReference">
+		<xs:attribute name="ProfileEntityID" type="typeID" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					ProfileEntityID and ProfileLevel refer to the owner (organisation or person) to whom this entity belongs.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ProfileLevel" type="typeProfileLevel" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrPriority">
+		<xs:attribute name="TravelerPolicyPriority" type="xs:int"/>
+		<xs:attribute name="AccountPolicyPriority" type="xs:int"/>
+		<xs:attribute name="AgencyPolicyPriority" type="xs:int"/>
+		<xs:attribute name="AgentPolicyPriority" type="xs:int"/>
+		<xs:attribute name="BranchPolicyPriority" type="xs:int"/>
+		<xs:attribute name="WorkflowPriority" type="xs:int"/>
+		<xs:attribute name="BranchGroupPriority" type="xs:int"/>
+		<xs:attribute name="TravelerGroupPriority" type="xs:int"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrReason">
+		<xs:attribute name="Code" use="required">
+			<xs:annotation>
+				<xs:documentation>Code must be unique within list</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="86"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Description" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="255"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrReasonCodesList">
+         <xs:attribute name="Name" use="required">
+            <xs:annotation>
+               <xs:documentation>Name must be unique for agency</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:minLength value="3"/>
+                  <xs:maxLength value="50"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+         <xs:attribute name="Description" type="typeWorkFlowDescription" use="optional"/>
+         <xs:attribute name="Category">
+            <xs:annotation>
+               <xs:documentation>A User defined Category that allows the user to search and filter.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="25"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+         <xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+            <xs:annotation>
+                <xs:documentation>Profile id of a work area branch.</xs:documentation>
+            </xs:annotation>
+      	</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrTriggerPolicy">
+		<xs:attribute name="Name" type="typeWorkFlowLongName" use="required"/>
+		<xs:attribute name="TaskName" type="typeWorkFlowName" use="required"/>
+		<xs:attribute name="Version" type="xs:short">
+			<xs:annotation>
+				<xs:documentation>required in modify returned in create, modify and search</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EffectiveFrom" type="xs:date"/>
+		<xs:attribute name="EffectiveTo" type="xs:date"/>
+		<xs:attribute name="Immutable" type="xs:boolean" default="false"/>
+		<xs:attribute name="Active" type="xs:boolean" default="true"/>
+		<xs:attribute name="SystemOwned" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>If true: Travelport owned, should not be modified.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Published" type="xs:boolean" default="true"/>
+		<xs:attribute name="BasedOnID" type="xs:string"/>
+		<xs:attribute name="RuleType" type="typeOfRuleType" use="required"/>
+		<xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+            <xs:annotation>
+                <xs:documentation>Profile id of a work area branch.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrWorkflow">
+		<xs:attribute name="Name" type="typeWorkFlowLongName" use="required"/>
+		<xs:attribute name="EffectiveFrom" type="xs:date"/>
+		<xs:attribute name="EffectiveTo" type="xs:date"/>
+		<xs:attribute name="Version" type="xs:short"/>
+		<xs:attribute name="Immutable" type="xs:boolean"/>
+		<xs:attribute name="Active" type="xs:boolean" default="true"/>
+		<xs:attribute name="SystemOwned" type="xs:boolean"/>
+		<xs:attribute name="Published" type="xs:boolean" default="true"/>
+		<xs:attribute name="BasedOnID" type="typeID"/>
+		<xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+            <xs:annotation>
+                <xs:documentation>Profile id of a work area branch.</xs:documentation>
+            </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ShowRules" type="xs:boolean" default="true">
+            <xs:annotation>
+                <xs:documentation>Determines whether rules to be displayed to an Agent for a Workflow or not</xs:documentation>
+            </xs:annotation>
+      </xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrWorkflowData">
+		<xs:attribute name="Name" type="typeWorkFlowLongName"
+			use="required" />
+		<xs:attribute name="EffectiveFrom" type="xs:date" />
+		<xs:attribute name="EffectiveTo" type="xs:date" />
+		<xs:attribute name="Version" type="xs:short" />
+		<xs:attribute name="Immutable" type="xs:boolean" />
+		<xs:attribute name="Active" type="xs:boolean" default="true" />
+		<xs:attribute name="SystemOwned" type="xs:boolean" />
+		<xs:attribute name="Published" type="xs:boolean" default="true" />
+		<xs:attribute name="BasedOnID" type="typeID" />
+		<xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+			<xs:annotation>
+				<xs:documentation>Profile id of a work area branch.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ShowRules" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:documentation>Determines whether rules to be displayed to an Agent for a Workflow or not</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Modifiable" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>searching agent would need to know which searched Workflows he can modify and which not.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="attrTriggerPolicyData">
+		<xs:attribute name="Name" type="typeWorkFlowLongName"
+			use="required" />
+		<xs:attribute name="TaskName" type="typeWorkFlowName"
+			use="required" />
+		<xs:attribute name="Version" type="xs:short">
+			<xs:annotation>
+				<xs:documentation>required in modify returned in create, modify and search</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="EffectiveFrom" type="xs:date" />
+		<xs:attribute name="EffectiveTo" type="xs:date" />
+		<xs:attribute name="Immutable" type="xs:boolean" default="false" />
+		<xs:attribute name="Active" type="xs:boolean" default="true" />
+		<xs:attribute name="SystemOwned" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>If true: Travelport owned, should not be modified.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Published" type="xs:boolean" default="true" />
+		<xs:attribute name="BasedOnID" type="xs:string" />
+		<xs:attribute name="RuleType" type="typeOfRuleType" use="required" />
+		<xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+			<xs:annotation>
+				<xs:documentation>Profile id of a work area branch.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Modifiable" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>searching agent would need to know which searched TriggerPolicies he can modify and which not.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="ReasonCodesListData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Reason" maxOccurs="unbounded"/>
+                <xs:element ref="AppliesTo" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="attrReasonCodesListData"/>
+        </xs:complexType>
+    </xs:element>
+	<xs:attributeGroup name="attrReasonCodesListData">
+		<xs:attribute name="Name" use="required">
+			<xs:annotation>
+				<xs:documentation>Name must be unique for agency</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="3" />
+					<xs:maxLength value="50" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Description" type="typeWorkFlowDescription"
+			use="optional" />
+		<xs:attribute name="Category">
+			<xs:annotation>
+				<xs:documentation>A User defined Category that allows the user to search and filter.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="25" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="SecondaryOwner" type="typeID" use="optional">
+			<xs:annotation>
+				<xs:documentation>Profile id of a work area branch.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Modifiable" type="xs:boolean" use="required">
+			<xs:annotation>
+				<xs:documentation>searching agent would need to know which searched ReasonCodeLists he can modify and which not.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	
+	<!--*** Shared Types ***-->
+	<xs:simpleType name="typeCategory">
+ 		<xs:annotation>
+			<xs:documentation>(Create) new (Booking), (Modify) existing (Booking), ticket (existing Booking)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="New Booking" />
+			<xs:enumeration value="Existing Booking" />
+			<xs:enumeration value="Ticketing" />
+			<xs:enumeration value="Corporate Booking" />
+			<xs:enumeration value="Leisure Booking" />
+			<xs:enumeration value="Information Only" />
+			<xs:enumeration value="Invoicing" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeGUID">
+		<xs:annotation>
+			<xs:documentation>
+ The representation of a GUID, used as unique IDs for certain elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeReasonCodeListName">
+		<xs:annotation>
+			<xs:documentation> The name of the List of Reason Codes. Unique within
+	an agency</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeOfRuleType">
+		<xs:annotation>
+			<xs:documentation>to whom does this rule apply</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Account"/>
+			<xs:enumeration value="Traveler"/>
+			<xs:enumeration value="Agency"/>
+			<xs:enumeration value="Branch"/>
+			<xs:enumeration value="Agent"/>
+			<xs:enumeration value="Workflow"/>
+			<xs:enumeration value="BranchGroup"/>
+			<xs:enumeration value="TravelerGroup"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeWorkFlowClassName">
+		<xs:annotation>
+			<xs:documentation>Up to 255 to specify the fully qualified class name used in an Activity</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeWorkFlowDescription">
+      	<xs:annotation>
+         	<xs:documentation>Up to 2000 chars to describe the workflow, Activity, rule etc used within Workflow</xs:documentation>
+      	</xs:annotation>
+      	<xs:restriction base="xs:string">
+         	<xs:maxLength value="2000"/>
+         	<xs:minLength value="3"/>
+      	</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeWorkFlowName">
+		<xs:annotation>
+			<xs:documentation>Up to 30 chars to name the workflow, Activity, rule etc used within Workflow</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeProfileLevel">
+        <xs:annotation>
+            <xs:documentation>Valid profile levels for DesktopServices.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Agency"/>
+            <xs:enumeration value="Branch"/>
+            <xs:enumeration value="Account"/>
+            <xs:enumeration value="Traveler"/>
+            <xs:enumeration value="Agent"/>
+            <xs:enumeration value="System"/>
+        </xs:restriction>
+    </xs:simpleType> 
+    <xs:simpleType name="typeDescriptionPart">
+		<xs:annotation>
+		<xs:documentation>If entered, can be a part of the Description</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+		<xs:minLength value="3"/>
+		</xs:restriction>
+    </xs:simpleType>
+	<xs:element name="TriggerPolicyID">
+		<xs:complexType>
+			<xs:attribute name="ID" type="typeID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkflowID">
+    	<xs:complexType>
+        		<xs:attribute name="ID" type="typeID" use="required"/>
+       </xs:complexType>
+	</xs:element>
+	<xs:simpleType name="typeWorkFlowLongName">
+		<xs:annotation>
+			<xs:documentation>Up to 50 chars to name the workflow, Activity, rule etc used within Workflow</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="VerifiedDesktopVersion">
+		<xs:complexType>
+			<xs:attribute name="VerifiedDesktopDate" type="xs:date"
+				use="required">
+				<xs:annotation>
+					<xs:documentation>Date Trigger Policy was tested and verified on. Version of UD Trigger Policy was tested and verified on.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="BuildVersion" />
+		</xs:complexType>
+	</xs:element>
+   <!--*** shared elements For Workflow/PolicyRule/ReasonCode End***-->
+</xs:schema>

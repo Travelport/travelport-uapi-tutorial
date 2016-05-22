@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="DesktopPreferenceServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/desktopPreference_v32_0"
+             xmlns:ns1="http://www.travelport.com/schema/desktopPreference_v32_0"
+             targetNamespace="http://www.travelport.com/service/desktopPreference_v32_0">
+
+    <import namespace="http://www.travelport.com/service/desktopPreference_v32_0"
+            location="DesktopPreferenceAbstract.wsdl"/>
+
+    <binding name="DesktopPreferenceManageBinding" type="tns:DesktopPreferenceManagePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopPreferenceService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="DesktopPreferenceDeleteBinding" type="tns:DesktopPreferenceDeletePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopPreferenceService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="DesktopPreferenceRetrieveBinding" type="tns:DesktopPreferenceRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/DesktopPreferenceService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="DesktopPreferenceManageService">
+        <port name="DesktopPreferenceManageServicePort" binding="tns:DesktopPreferenceManageBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopPreferenceService"/>
+        </port>
+    </service>
+
+    <service name="DesktopPreferenceRetrieveService">
+        <port name="DesktopPreferenceRetrieveServicePort" binding="tns:DesktopPreferenceRetrieveBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopPreferenceService"/>
+        </port>
+    </service>
+
+    <service name="DesktopPreferenceDeleteService">
+        <port name="DesktopPreferenceDeleteServicePort" binding="tns:DesktopPreferenceDeleteBinding">
+            <soap:address location="http://localhost:8080/kestrel/DesktopPreferenceService"/>
+        </port>
+    </service>
+
+</definitions>
+

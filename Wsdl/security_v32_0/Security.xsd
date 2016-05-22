@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/security_v32_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/security_v32_0"
+           xmlns:common="http://www.travelport.com/schema/common_v32_0" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2009-2010 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+
+    <xs:import schemaLocation="../common_v32_0/CommonReqRsp.xsd" namespace="http://www.travelport.com/schema/common_v32_0"/>
+    
+    <!-- *** Shared elements *** -->   
+	   
+		<xs:simpleType name="typePermissionID">
+		   <xs:restriction base="typeResourceID">
+		       <xs:pattern value="[D][0-9][0-9][0-9]"/>
+		   </xs:restriction>
+		</xs:simpleType>
+    
+	   <xs:simpleType name="typeResourceID">
+        <xs:restriction base="xs:string">
+            <xs:length value="4"/>
+        </xs:restriction>
+       </xs:simpleType> 
+	   
+	   <xs:simpleType name="typeCategoryCode">          
+          <xs:restriction base="xs:string">
+             <xs:minLength value="3"/>
+             <xs:maxLength value="3"/>
+          </xs:restriction>
+       </xs:simpleType>
+	    
+	   <xs:simpleType name="typeRoleCategory">
+	      <xs:annotation>
+	         <xs:documentation>The Category of the Role can be one of the enumerated values.Valid values only:SystemAdministrator, ProvisioningAdmin,TechnicalSupportAdmin, HelpDeskPersonnel, AgencyAdministrator, BranchAdministrator, TravelportAgencyRole, AgencyOwned, BranchOwned, InternalSystem, Agent, BranchManager, AgencyManager, UAPIAgent, UAPIAdministrator, SDKAgent, LocalSupport, GlobalSupport </xs:documentation>
+	      </xs:annotation>
+	      <xs:restriction base="xs:string">
+	         <xs:maxLength value="128"/>
+	      </xs:restriction>
+	   </xs:simpleType>
+   
+
+        <!--*** Common Reference Elements ***-->
+		        
+		<xs:element name="ServicePermissionID">
+		   <xs:complexType>
+		      <xs:attribute name="ID" use="required" type="typeResourceID">
+		         <xs:annotation>
+		            <xs:documentation>ID of the dependant API resource.</xs:documentation>
+		         </xs:annotation>
+		      </xs:attribute>         
+		   </xs:complexType>
+		</xs:element>
+		
+		<xs:element name="ServicePermissionInfo">
+		      <xs:complexType>
+		          <xs:attribute name="ID" type="typeResourceID" use="required">
+		              <xs:annotation>
+		                  <xs:documentation>ID of the dependant API resource.</xs:documentation>
+		              </xs:annotation>
+		          </xs:attribute>
+		          <xs:attribute name="Name" type="common:StringLength1to128" use="required">
+		              <xs:annotation>
+		                  <xs:documentation>Name of the dependant API resource.</xs:documentation>
+		              </xs:annotation>
+		          </xs:attribute>
+		          <xs:attribute name="CategoryDescription" type="common:StringLength1to128" use="required">
+		              <xs:annotation>
+		                  <xs:documentation>Category Description of the service permission. Valid values of category can be found through retrieve ref-pub service for resource category.</xs:documentation>
+		              </xs:annotation>
+		          </xs:attribute>
+		      </xs:complexType>
+		</xs:element>
+		
+		<xs:attributeGroup name="DesktopPermissionInfo">
+		      <xs:attribute name="ID" type="typePermissionID" use="required">
+		          <xs:annotation>
+		              <xs:documentation>ID of the Desktop resource.</xs:documentation>
+		          </xs:annotation>
+		      </xs:attribute>
+		      <xs:attribute name="Name" type="common:StringLength1to128" use="required">
+		          <xs:annotation>
+		              <xs:documentation>Name of the Desktop resource.</xs:documentation>
+		          </xs:annotation>
+		      </xs:attribute>
+		      <xs:attribute name="Description" type="common:StringLength1to1024" use="required"/>
+		      <xs:attribute name="CategoryCode" type="typeCategoryCode" use="required">
+		          <xs:annotation>
+		              <xs:documentation>Category Code of the desktop permission. Valid values of category can be found through retrieve ref-pub service for resource category.</xs:documentation>
+		          </xs:annotation>
+		      </xs:attribute>
+		</xs:attributeGroup>
+		
+		<xs:attributeGroup name="DesktopPermissionTypeVersion">
+		    <xs:attribute name="Type" type="typeResourceTarget" use="required">
+		        <xs:annotation>
+		            <xs:documentation>Type of the resource.</xs:documentation>
+		        </xs:annotation>
+		    </xs:attribute>
+		    <xs:attribute name="Version" type="common:typeVersion" use="required">
+		        <xs:annotation>
+		            <xs:documentation>Version of the security resource.</xs:documentation>
+		        </xs:annotation>
+		    </xs:attribute>
+		</xs:attributeGroup>		
+		
+		<xs:attributeGroup name="SecurityResourceInfo">
+            <xs:attribute name="ID" type="typeResourceID" use="required">
+                <xs:annotation>
+                    <xs:documentation>ID of the resource.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Name" type="common:StringLength1to128" use="required">
+                <xs:annotation>
+                    <xs:documentation>Name of the resource.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CategoryDescription" type="common:StringLength1to128" use="required">
+                <xs:annotation>
+                    <xs:documentation>Function of the resource.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:attributeGroup> 
+
+        <xs:element name="ProfileReference">
+                <xs:annotation>
+                        <xs:documentation>Contains profile data at Agent,Branch or Agency level</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="common:typeAgencyHierarchyLongReference">
+                                        <xs:sequence>
+                                                <xs:element ref="ParentProfileReference" minOccurs="0"/>
+                                        </xs:sequence>
+                                        <xs:attribute name="ProfileStatus" type="common:typeProfileEntityStatus" use="required">
+                                                <xs:annotation>
+                                                        <xs:documentation>Status of Profile</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:attribute>
+                                </xs:extension>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+
+        <xs:element name="ParentProfileReference">
+                <xs:annotation>
+                        <xs:documentation>Contains parent profile data at Branch or Agency level</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                        <xs:complexContent>
+                                <xs:extension base="common:typeAgencyHierarchyLongReference">
+                                        <xs:sequence>
+                                                <xs:element ref="ParentProfileReference" minOccurs="0"/>
+                                        </xs:sequence>
+                                        <xs:attribute name="ProfileStatus" type="common:typeProfileEntityStatus" use="required">
+                                                <xs:annotation>
+                                                        <xs:documentation>Status of Profile</xs:documentation>
+                                                </xs:annotation>
+                                        </xs:attribute>
+                                </xs:extension>
+                        </xs:complexContent>
+                </xs:complexType>
+        </xs:element>
+  
+    <!--*** Common Reference Elements ***-->
+	<xs:element name="Modifiers">
+		<xs:complexType>
+			<xs:attribute name="MaxResults" type="common:typeMaxResults" default="20" />
+			<xs:attribute name="StartFromResult" type="common:typeStartFromResult" default="1" />
+		</xs:complexType>
+	</xs:element>
+     <xs:element name="ResourceLevel">
+        <xs:complexType>
+              <xs:complexContent>
+                 <xs:extension base="typeResourceLevel">
+	                 <xs:attribute name="Name" type="xs:string" use="required">
+		                <xs:annotation>
+		                    <xs:documentation>Name of the resource.</xs:documentation>
+		                </xs:annotation>
+	                 </xs:attribute>
+		             <xs:attribute name="Description" use="required">
+		                 <xs:annotation>
+		                    <xs:documentation>Function of the resource.</xs:documentation>
+		                 </xs:annotation>
+		                 <xs:simpleType>
+		                    <xs:restriction base="xs:string">
+		                        <xs:maxLength value="1024"/>
+		                    </xs:restriction>
+		                 </xs:simpleType>
+		             </xs:attribute>
+		         </xs:extension>
+              </xs:complexContent>
+           </xs:complexType>
+    </xs:element>
+    <xs:element name="ResourceLevelInfo">
+        <xs:annotation>
+            <xs:documentation>Defines the resource assigned to a user and the level at which that resource can be used.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Id" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Identifies the resource.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="AccessLevel" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Level at which the resource can be applied.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Role">
+      <xs:annotation>
+         <xs:documentation>Details of the role.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="TransactionalResources">
+                <xs:annotation>
+                   <xs:documentation>Defines the transactional authorization of the role (what security permissions the role has).</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                   <xs:sequence>
+                      <xs:element ref="ResourceLevel" minOccurs="1" maxOccurs="unbounded"/>
+                   </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="AssignableResources" minOccurs="0">
+                <xs:annotation>
+                   <xs:documentation>Defines the assignable authorization of the role (what security permissions they may assign to another role when creating or modifying roles).</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                   <xs:sequence>
+                      <xs:element ref="ResourceLevel" minOccurs="1" maxOccurs="unbounded"/>
+                   </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="Id" type="common:typeRoleId" use="required">
+             <xs:annotation>
+                 <xs:documentation>The unique identifier of the role, assigned by the system.</xs:documentation>
+             </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Name" type="typeRoleName" use="required">
+   			<xs:annotation>
+    			<xs:documentation>Short name for the role. Must be unique within it's context.</xs:documentation>
+   			</xs:annotation>
+  		 </xs:attribute>
+         <xs:attribute name="Description" type="typeRoleDescription" use="required">
+            <xs:annotation>
+               <xs:documentation>Description of the role's function.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="AgencyID" type="common:typeAgencyID" use="optional">
+            <xs:annotation>
+               <xs:documentation>Unique identifier of an agency.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="AgencyName" use="optional">
+            <xs:simpleType>
+               <xs:restriction base="xs:string">
+                  <xs:maxLength value="50"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+         <xs:attribute name="TravelportRestricted" type="xs:boolean" use="optional" default="false">
+            <xs:annotation>
+               <xs:documentation>True if the role cannot be used or viewed by customer agencies. Only used by Travelport Administrators</xs:documentation>
+            </xs:annotation>
+	     </xs:attribute>
+         <xs:attribute name="Category" type="typeRoleCategory" use="optional">
+            <xs:annotation>
+               <xs:documentation>The category of the role,which governs who can assign this role to other users.Only system administrator can specify a category,it is automatically defined by the system in most cases. Check documentation on typeRoleCategory for valid values.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>   
+         <xs:attribute name="Version" type="typeRoleVersion" use="optional">
+            <xs:annotation>
+               <xs:documentation>The version of the role which provides information of how many times the role has been modified.</xs:documentation>
+            </xs:annotation> 
+         </xs:attribute>   
+	  </xs:complexType>
+  	</xs:element>
+  	<xs:simpleType name="typeRoleVersion">
+		<xs:annotation>
+			<xs:documentation>Version of the Role.</xs:documentation>
+		</xs:annotation>
+        <xs:restriction base="xs:integer">
+        </xs:restriction>
+	</xs:simpleType>
+	<xs:element name="RoleSearchResult">
+           <xs:complexType>
+              <xs:complexContent>
+                 <xs:extension base="typeRoleSummaryData">
+                    <xs:attribute name="CanDelete" type="xs:boolean" use="required">
+                       <xs:annotation>
+                          <xs:documentation>Indicates that the user is permitted to delete this role.</xs:documentation>
+                       </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="CanModify" type="xs:boolean" use="required">
+                       <xs:annotation>
+                          <xs:documentation>Indicates that the user is permitted to modify this role.</xs:documentation>
+                       </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="CanRetrieve" type="xs:boolean" use="required">
+                       <xs:annotation>
+                          <xs:documentation>Indicates that the user is permitted to retrieve this role.</xs:documentation>
+                       </xs:annotation>
+                    </xs:attribute>
+                 </xs:extension>
+              </xs:complexContent>
+           </xs:complexType>
+       </xs:element>
+       <xs:element name="SecuritySearchModifiers">
+            <xs:annotation>
+                <xs:documentation>Specifies the range of search results. If omitted, the default values for each attriubute are used.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:attribute name="MaxResults" type="common:typeMaxResults" default="20">
+                    <xs:annotation>
+                        <xs:documentation>Limits the number of search results in the response. Note that performance may decline when a large number of results is requested.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="StartFromResult" type="common:typeStartFromResult" default="1">
+                    <xs:annotation>
+                        <xs:documentation>The starting search index of the results returned. Used to browse beyond the initial search results.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:complexType>
+       </xs:element>
+       <xs:element name="PermissionInfo">
+            <xs:annotation>
+                <xs:documentation>Response to a request for the search desktop permission request.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element ref="ServicePermissionInfo" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="AssociatedRole" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Response of the Associated Role/s which is associated with the search desktop permission request.</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:attribute name="ID" type="common:typeRoleId" use="required">
+                                <xs:annotation>
+                                    <xs:documentation>The unique identifier of the role, associated with the resource.</xs:documentation>
+                                </xs:annotation>
+                            </xs:attribute>
+                            <xs:attribute name="Name" type="typeRoleName" use="required">
+                                <xs:annotation>
+                                    <xs:documentation>Short name for the associated role.</xs:documentation>
+                                </xs:annotation>
+                            </xs:attribute>
+                            <xs:attribute name="Description" type="typeRoleDescription" use="required">
+                                <xs:annotation>
+                                    <xs:documentation>Description of the associated role's function.</xs:documentation>
+                                </xs:annotation>
+                            </xs:attribute>
+                            <xs:attribute name="CategoryDescription" type="common:StringLength1to128" use="optional">
+                                <xs:annotation>
+                                    <xs:documentation>Description of the associated role's categoty.</xs:documentation>
+                                </xs:annotation>
+                            </xs:attribute>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attributeGroup ref="SecurityResourceInfo"/>
+                <xs:attribute name="Type" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Type of the resource.A is API, D is Desktop and B is Both.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="A"/>
+                            <xs:enumeration value="D"/>
+                            <xs:enumeration value="B"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="Version" type="common:typeVersion" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Version of the security resource.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:complexType>
+        </xs:element>
+        
+        <xs:element name="SearchByID">
+            <xs:annotation>
+                <xs:documentation>Defines the assignable Resource plus its dependencies.The resources a user can assign to a role, and the maximum level at which each can be assigned.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="Permission" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="ID" type="typeResourceID" use="required"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="ReturnServicePermission" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>If true, the response will include Service i.e. Dependent Permission.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ReturnAssociatedRole" type="xs:boolean" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>If true, the response will include Associated Roles.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:complexType>
+        </xs:element>
+ 
+        <xs:element name="SearchByType">
+            <xs:annotation>
+                <xs:documentation>Defines the assignable Resource plus its dependencies.The resources a user can assign to a role, and the maximum level at which each can be assigned.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:attribute name="Type" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Type of the resource.A is API, D is Desktop and B is Both.</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="A"/>
+                            <xs:enumeration value="D"/>
+                            <xs:enumeration value="B"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:complexType>
+        </xs:element>
+ 
+        
+  	<!--*** Complex Types  ***-->
+  	<xs:complexType name="typeRoleSummaryData">
+	      <xs:attribute name="Id" type="xs:string" use="required">
+	         <xs:annotation>
+	            <xs:documentation>The unique identifier of the role, assigned by the system. Cannot be modified.</xs:documentation>
+	         </xs:annotation>		         
+	      </xs:attribute>
+	      <xs:attribute name="Name" type="typeRoleName" use="required">
+	         <xs:annotation>
+	            <xs:documentation>Short name for the role. Must be unique within its context. </xs:documentation>
+	         </xs:annotation>
+	      </xs:attribute>
+	      <xs:attribute name="Description" type="typeRoleDescription" use="required">
+	         <xs:annotation>
+	            <xs:documentation>Description of the role's function.</xs:documentation>
+	         </xs:annotation>
+	      </xs:attribute>
+	      <xs:attribute name="AgencyID" type="common:typeAgencyID">
+	         <xs:annotation>
+	            <xs:documentation>Given if the role is owned by an agency.</xs:documentation>
+	         </xs:annotation>
+	      </xs:attribute>
+	      <xs:attribute name="AgencyName">
+	         <xs:annotation>
+	            <xs:documentation>Given if the role is owned by an agency.</xs:documentation>
+	         </xs:annotation>
+	         <xs:simpleType>
+	            <xs:restriction base="xs:string">
+	               <xs:maxLength value="50"/>
+	            </xs:restriction>
+	         </xs:simpleType>
+	      </xs:attribute>
+	      <xs:attribute name="TravelportRestricted" type="xs:boolean" use="optional" default="false">
+	         <xs:annotation>
+	            <xs:documentation>True if the role cannot be used or viewed by customer agencies, Only used by Travelport administrators. </xs:documentation>
+	         </xs:annotation>
+	      </xs:attribute>
+     	   <xs:attribute name="Category" type="typeRoleCategory" use="optional">
+     	      <xs:annotation>
+     	         <xs:documentation>The category of the role,which governs who can assign this role to other users.Only system administrator can specify a category,it is automatically defined by the system in most cases. Check documentation on typeRoleCategory for valid values.</xs:documentation>
+     	      </xs:annotation>
+     	   </xs:attribute>
+  	</xs:complexType>  	
+  	<xs:element name="RoleCategory">
+      <xs:annotation>
+         <xs:documentation>A role category that can be assigned.</xs:documentation>
+      </xs:annotation>
+  	   <xs:complexType>
+  	      <xs:attribute name="Category" type="typeRoleCategory" use="required">
+  	         <xs:annotation>
+  	            <xs:documentation>Identifies the Category to be assigned.  Check documentation on typeRoleCategory for valid values.</xs:documentation>
+  	         </xs:annotation>
+  	      </xs:attribute>
+  	   </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="RoleCategoryAssignability">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="RoleCategory" minOccurs="0" maxOccurs="unbounded"/>
+         </xs:sequence>
+         <xs:attribute name="AssignerCategory" type="typeRoleCategory" use="required">
+            <xs:annotation>
+               <xs:documentation>The Role category for which the Role Category assignability is to be retrieved.  Check documentation on typeRoleCategory for valid values.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>   
+   <xs:simpleType name="typeResourceTarget">
+	     <xs:annotation>
+               <xs:documentation>The ResourceTarget of the resource can be one of the enumerated values.</xs:documentation>
+            </xs:annotation>
+         <xs:restriction base="xs:string">
+	         <xs:enumeration value="API"/>
+	         <xs:enumeration value="Desktop"/>
+	         <xs:enumeration value="3rd Party"/>	         
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeRoleName">
+ 		<xs:restriction base="xs:string">
+ 		 	<xs:minLength value="1"/>
+  			<xs:maxLength value="128"/>
+ 		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeRoleDescription">
+       <xs:restriction base="xs:string">
+           <xs:maxLength value="1024"/>
+       </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="ResourceAssignmentInfo">
+		<xs:annotation>
+			<xs:documentation>Defines the assignable Resource plus its dependencies.The resources a user can assign to a role, and the maximum level at which each can be assigned.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="typeResourceLevel">
+					<xs:sequence>
+						<xs:element name="DependentResource" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:attribute name="Id" type="xs:string" use="required">
+									<xs:annotation>
+										<xs:documentation>Identifies the resource.</xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="LevelAware" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>Identifies whether the resource is level aware.</xs:documentation>
+					</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Name" type="xs:string" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Name of the resource.</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="Description" use="required">
+                         <xs:annotation>
+                            <xs:documentation>Function of the resource.</xs:documentation>
+                         </xs:annotation>
+                         <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1024"/>
+                            </xs:restriction>
+                         </xs:simpleType>
+                     </xs:attribute>				
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+	<xs:complexType name="typeResourceLevel">
+		    <xs:attribute name="Id" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Identifies the resource.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>  
+            <xs:attribute name="Type" use="required">
+                <xs:annotation>
+                    <xs:documentation>The type of resource, either transactional (used for authorization of transactions) or assignable (used during role create/modify).</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Transactional"/>
+                        <xs:enumeration value="Assignable"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="AccessLevel" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Level at which the resource can be applied.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Category" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>The system-defined category used to group related resources(e.g Air,Hotel,UniversalRecord,Ticketing,Queuing,Security and Role Management,Profile Retrieve).Cannot be modified.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ResourceTarget" type="typeResourceTarget">
+            	<xs:annotation>
+					<xs:documentation>Indicate if this resource was created for an external system.Read only attribute,will be ignored on Role update..</xs:documentation>
+				</xs:annotation>
+            </xs:attribute>        
+	</xs:complexType>
+</xs:schema>

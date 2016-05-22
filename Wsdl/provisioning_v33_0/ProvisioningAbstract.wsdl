@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="ProvisioningService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/provisioning_v33_0"
+             xmlns:ns1="http://www.travelport.com/schema/provisioning_v33_0"
+             xmlns:common="http://www.travelport.com/schema/common_v33_0"
+             targetNamespace="http://www.travelport.com/service/provisioning_v33_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/provisioning_v33_0">
+            <include schemaLocation="ProvisioningReqRsp.xsd"/>
+        </schema>
+    </types>           
+
+
+    <message name="ProvisioningRetrieveByAgentRequest">
+        <part name="parameters" element="ns1:ProvisioningRetrieveByAgentReq" />
+    </message>
+
+    <message name="ProvisioningRetrieveByAgentResponse">
+        <part name="result" element="ns1:ProvisioningRetrieveByAgentRsp" />
+    </message>   
+
+    <message name="ProvisioningFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+    
+    <message name="ProvisioningModifyRequest">
+        <part name="parameters" element="ns1:ProvisioningModifyReq" />
+    </message>
+    
+    <message name="ProvisioningModifyResponse">
+        <part name="result" element="ns1:ProvisioningModifyRsp" />
+    </message>
+    
+    <message name="ProvisioningRetrieveRequest">
+        <part name="parameters" element="ns1:ProvisioningRetrieveReq" />
+    </message>
+    
+    <message name="ProvisioningRetrieveResponse">
+        <part name="result" element="ns1:ProvisioningRetrieveRsp" />
+    </message>
+
+	<message name="ProvisioningCreateRequest">
+        <part name="parameters" element="ns1:ProvisioningCreateReq" />
+    </message>
+    
+    <message name="ProvisioningCreateResponse">
+        <part name="result" element="ns1:ProvisioningCreateRsp" />
+    </message>
+    
+    <message name="ProvisioningSearchRequest">
+        <part name="parameters" element="ns1:ProvisioningSearchReq" />
+    </message>
+    
+    <message name="ProvisioningSearchResponse">
+        <part name="result" element="ns1:ProvisioningSearchRsp" />
+    </message>
+    
+    <message name="CustomerContractInfoModifyRequest">
+        <part name="parameters" element="ns1:CustomerContractInfoModifyReq" />
+    </message>
+
+    <message name="CustomerContractInfoModifyResponse">
+        <part name="result" element="ns1:CustomerContractInfoModifyRsp" />
+    </message> 
+    
+    <message name="CustomerContractInfoCreateRequest">
+        <part name="parameters" element="ns1:CustomerContractInfoCreateReq" />
+    </message>
+    
+    <message name="CustomerContractInfoCreateResponse">
+        <part name="result" element="ns1:CustomerContractInfoCreateRsp" />
+    </message>
+
+    <message name="CustomerContractInfoRetrieveRequest">
+        <part name="parameters" element="ns1:CustomerContractInfoRetrieveReq" />
+    </message>
+    
+    <message name="CustomerContractInfoRetrieveResponse">
+        <part name="result" element="ns1:CustomerContractInfoRetrieveRsp" />
+    </message>
+    
+    <message name="ThirdPartyCredentialCreateRequest">
+        <part name="parameters" element="ns1:ThirdPartyCredentialCreateReq" />
+    </message>
+    
+    <message name="ThirdPartyCredentialCreateResponse">
+        <part name="result" element="ns1:ThirdPartyCredentialCreateRsp" />
+    </message>
+    
+    <message name="ThirdPartyCredentialDeleteRequest">
+        <part name="parameters" element="ns1:ThirdPartyCredentialDeleteReq" />
+    </message>
+    
+    <message name="ThirdPartyCredentialDeleteResponse">
+        <part name="result" element="ns1:ThirdPartyCredentialDeleteRsp" />
+    </message>
+    
+    <message name="ThirdPartyCredentialSearchRequest">
+        <part name="parameters" element="ns1:ThirdPartyCredentialSearchReq" />
+    </message>
+    
+    <message name="ThirdPartyCredentialSearchResponse">
+        <part name="result" element="ns1:ThirdPartyCredentialSearchRsp" />
+    </message>
+    
+    <message name="ThirdPartyCredentialModifyRequest">
+        <part name="parameters" element="ns1:ThirdPartyCredentialModifyReq" />
+    </message>
+    
+    <message name="ThirdPartyCredentialModifyResponse">
+        <part name="result" element="ns1:ThirdPartyCredentialModifyRsp" />
+    </message> 
+    
+    <message name="AgencyConfigureRequest">
+        <part name="parameters" element="ns1:AgencyConfigureReq" />
+    </message>
+    
+    <message name="AgencyConfigureResponse">
+        <part name="result" element="ns1:AgencyConfigureRsp" />
+    </message> 
+    
+    <portType name="ProvisioningRetrieveByAgentPortType">
+        <operation name="service">
+            <input message="tns:ProvisioningRetrieveByAgentRequest" />
+            <output message="tns:ProvisioningRetrieveByAgentResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>    
+    
+    <portType name="ProvisioningModifyPortType">
+        <operation name="service">
+            <input message="tns:ProvisioningModifyRequest" />
+            <output message="tns:ProvisioningModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProvisioningRetrievePortType">
+        <operation name="service">
+            <input message="tns:ProvisioningRetrieveRequest" />
+            <output message="tns:ProvisioningRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProvisioningCreatePortType">
+        <operation name="service">
+            <input message="tns:ProvisioningCreateRequest" />
+            <output message="tns:ProvisioningCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProvisioningSearchPortType">
+        <operation name="service">
+            <input message="tns:ProvisioningSearchRequest" />
+            <output message="tns:ProvisioningSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="CustomerContractInfoModifyPortType">
+        <operation name="service">
+            <input message="tns:CustomerContractInfoModifyRequest" />
+            <output message="tns:CustomerContractInfoModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="CustomerContractInfoCreatePortType">
+        <operation name="service">
+            <input message="tns:CustomerContractInfoCreateRequest" />
+            <output message="tns:CustomerContractInfoCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    
+    <portType name="CustomerContractInfoRetrievePortType">
+        <operation name="service">
+            <input message="tns:CustomerContractInfoRetrieveRequest" />
+            <output message="tns:CustomerContractInfoRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+   
+    <portType name="ThirdPartyCredentialCreatePortType">
+        <operation name="service">
+            <input message="tns:ThirdPartyCredentialCreateRequest" />
+            <output message="tns:ThirdPartyCredentialCreateResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ThirdPartyCredentialSearchPortType">
+        <operation name="service">
+            <input message="tns:ThirdPartyCredentialSearchRequest" />
+            <output message="tns:ThirdPartyCredentialSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>    
+ 
+    <portType name="ThirdPartyCredentialModifyPortType">
+        <operation name="service">
+            <input message="tns:ThirdPartyCredentialModifyRequest" />
+            <output message="tns:ThirdPartyCredentialModifyResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ThirdPartyCredentialDeletePortType">
+        <operation name="service">
+            <input message="tns:ThirdPartyCredentialDeleteRequest" />
+            <output message="tns:ThirdPartyCredentialDeleteResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>        
+    
+    <portType name="AgencyConfigurePortType">
+        <operation name="service">
+            <input message="tns:AgencyConfigureRequest" />
+            <output message="tns:AgencyConfigureResponse" />
+            <fault name="ErrorInfoMsg" message="tns:ProvisioningFaultMessage" />
+        </operation>
+    </portType>   
+</definitions>

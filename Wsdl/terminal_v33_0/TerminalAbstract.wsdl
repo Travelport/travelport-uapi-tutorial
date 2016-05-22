@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<definitions name="AbstractTerminalServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/terminal_v33_0"
+             xmlns:ur="http://www.travelport.com/schema/terminal_v33_0"
+             xmlns:ns1="http://www.travelport.com/schema/terminal_v33_0"
+             xmlns:common="http://www.travelport.com/schema/common_v33_0"
+             targetNamespace="http://www.travelport.com/service/terminal_v33_0">
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/terminal_v33_0">
+            <include schemaLocation="Terminal.xsd"/>
+        </schema>
+    </types>
+
+    <message name="TerminalReq">
+        <part name="parameters" element="ur:TerminalReq"/>
+    </message>
+
+    <message name="TerminalRsp">
+        <part name="result" element="ur:TerminalRsp"/>
+    </message>
+
+    <message name="CreateTerminalSessionReq">
+        <part name="parameters" element="ur:CreateTerminalSessionReq"/>
+    </message>
+
+    <message name="CreateTerminalSessionRsp">
+        <part name="result" element="ur:CreateTerminalSessionRsp"/>
+    </message>
+
+    <message name="EndTerminalSessionReq">
+        <part name="parameters" element="ur:EndTerminalSessionReq"/>
+    </message>
+
+    <message name="EndTerminalSessionRsp">
+        <part name="result" element="ur:EndTerminalSessionRsp"/>
+    </message>
+
+    <message name="TerminalFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>
+
+    <portType name="TerminalServicePortType">
+        <operation name="service">
+            <input message="tns:TerminalReq"/>
+            <output message="tns:TerminalRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:TerminalFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="CreateTerminalSessionServicePortType">
+        <operation name="service">
+            <input message="tns:CreateTerminalSessionReq"/>
+            <output message="tns:CreateTerminalSessionRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:TerminalFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="EndTerminalSessionServicePortType">
+        <operation name="service">
+            <input message="tns:EndTerminalSessionReq"/>
+            <output message="tns:EndTerminalSessionRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:TerminalFaultMessage"/>
+        </operation>
+    </portType>
+</definitions>

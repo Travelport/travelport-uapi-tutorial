@@ -38,16 +38,16 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "childProviderReservationInfo"
 })
 @XmlRootElement(name = "ProviderReservationDivideRsp")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
 public class ProviderReservationDivideRsp
     extends BaseRsp
 {
 
     @XmlElement(name = "ParentProviderReservationInfo", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected ParentProviderReservationInfo parentProviderReservationInfo;
     @XmlElement(name = "ChildProviderReservationInfo", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     protected ChildProviderReservationInfo childProviderReservationInfo;
 
     /**
@@ -58,7 +58,7 @@ public class ProviderReservationDivideRsp
      *     {@link ParentProviderReservationInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public ParentProviderReservationInfo getParentProviderReservationInfo() {
         return parentProviderReservationInfo;
     }
@@ -71,7 +71,7 @@ public class ProviderReservationDivideRsp
      *     {@link ParentProviderReservationInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setParentProviderReservationInfo(ParentProviderReservationInfo value) {
         this.parentProviderReservationInfo = value;
     }
@@ -84,7 +84,7 @@ public class ProviderReservationDivideRsp
      *     {@link ChildProviderReservationInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public ChildProviderReservationInfo getChildProviderReservationInfo() {
         return childProviderReservationInfo;
     }
@@ -97,7 +97,7 @@ public class ProviderReservationDivideRsp
      *     {@link ChildProviderReservationInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public void setChildProviderReservationInfo(ChildProviderReservationInfo value) {
         this.childProviderReservationInfo = value;
     }
@@ -108,7 +108,7 @@ public class ProviderReservationDivideRsp
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-08T01:24:05-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T12:41:43-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

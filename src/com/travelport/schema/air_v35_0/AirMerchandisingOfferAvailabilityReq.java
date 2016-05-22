@@ -45,22 +45,22 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "offerAvailabilityModifiers"
 })
 @XmlRootElement(name = "AirMerchandisingOfferAvailabilityReq")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
 public class AirMerchandisingOfferAvailabilityReq
     extends BaseReq
 {
 
     @XmlElement(name = "AgencySellInfo", namespace = "http://www.travelport.com/schema/common_v35_0")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AgencySellInfo agencySellInfo;
     @XmlElement(name = "AirSolution")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected AirSolution airSolution;
     @XmlElement(name = "HostReservation")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<HostReservation> hostReservation;
     @XmlElement(name = "OfferAvailabilityModifiers")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<OfferAvailabilityModifiers> offerAvailabilityModifiers;
 
     /**
@@ -71,7 +71,7 @@ public class AirMerchandisingOfferAvailabilityReq
      *     {@link AgencySellInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AgencySellInfo getAgencySellInfo() {
         return agencySellInfo;
     }
@@ -84,7 +84,7 @@ public class AirMerchandisingOfferAvailabilityReq
      *     {@link AgencySellInfo }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAgencySellInfo(AgencySellInfo value) {
         this.agencySellInfo = value;
     }
@@ -97,7 +97,7 @@ public class AirMerchandisingOfferAvailabilityReq
      *     {@link AirSolution }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public AirSolution getAirSolution() {
         return airSolution;
     }
@@ -110,7 +110,7 @@ public class AirMerchandisingOfferAvailabilityReq
      *     {@link AirSolution }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSolution(AirSolution value) {
         this.airSolution = value;
     }
@@ -137,7 +137,7 @@ public class AirMerchandisingOfferAvailabilityReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<HostReservation> getHostReservation() {
         if (hostReservation == null) {
             hostReservation = new ArrayList<HostReservation>();
@@ -167,7 +167,7 @@ public class AirMerchandisingOfferAvailabilityReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public List<OfferAvailabilityModifiers> getOfferAvailabilityModifiers() {
         if (offerAvailabilityModifiers == null) {
             offerAvailabilityModifiers = new ArrayList<OfferAvailabilityModifiers>();
@@ -181,7 +181,7 @@ public class AirMerchandisingOfferAvailabilityReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:26:38-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-05-15T10:09:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

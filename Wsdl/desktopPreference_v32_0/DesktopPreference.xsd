@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/desktopPreference_v32_0"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v32_0"
+	targetNamespace="http://www.travelport.com/schema/desktopPreference_v32_0"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:documentation>(c) Travelport GDS 2008 All rights reserved.
+			Proprietary Information of Travelport GDS.</xs:documentation>
+	</xs:annotation>
+	<xs:import schemaLocation="../common_v32_0/CommonReqRsp.xsd"
+		namespace="http://www.travelport.com/schema/common_v32_0" />
+	<!--*** Desktop Preference Request Types ***-->
+	<xs:element name="DesktopAgentPreferenceManageReq">
+         <xs:annotation>
+            <xs:documentation>Request to create or modify the Desktop
+                  agent preferences.</xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+            <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                  <xs:sequence>
+                     <xs:element ref="PreferenceData" maxOccurs="unbounded"/>
+                  </xs:sequence>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+    </xs:element>
+      
+	<xs:element name="DesktopAgentPreferenceManageRsp">
+		<xs:annotation>
+			<xs:documentation>Response with the Desktop agent
+				preferences.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="AgentPreference" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="DesktopAgentPreferenceRetrieveReq">
+         <xs:annotation>
+            <xs:documentation>Request to retrieve the Desktop agent
+                  preferences.</xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+            <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                  <xs:attribute name="ModifiedAfter" type="xs:dateTime" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Use to filter out preferences that were
+                              modified after the specified date.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Key" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Key of the key/value pair for the PFKeys and
+                              Macros.</xs:documentation>
+                     </xs:annotation>
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:maxLength value="255"/>
+                           <xs:minLength value="1"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="ProfileType" type="typeProfileType" use="optional" default="Agent">
+                     <xs:annotation>
+                        <xs:documentation>Specifies the profile hierarchy level
+                              at which the preference entry is associated. If omitted will
+                              default to Agent</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ProfileID" type="xs:integer" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Specifies the profile id for which the
+                              preference entry is associated.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:element>
+	
+	
+	<xs:element name="DesktopAgentPreferenceRetrieveRsp">
+		<xs:annotation>
+			<xs:documentation>Response with the Desktop agent
+				preferences.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp">
+					<xs:sequence>
+						<xs:element ref="AgentPreference" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+      <xs:element name="DesktopAgentPreferenceDeleteReq">
+         <xs:annotation>
+            <xs:documentation>Request to delete the Desktop Agent
+                  Preference Items according to the criteria passed.
+               </xs:documentation>
+         </xs:annotation>
+         <xs:complexType mixed="false">
+            <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                  <xs:sequence>
+                     <xs:element ref="DesktopAgentPreferenceDeleteCriteria" maxOccurs="unbounded">
+                        <xs:annotation>
+                           <xs:documentation>Contains key of the data to be
+                                 deleted.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="ProfileType" type="typeProfileType" use="optional" default="Agent">
+                     <xs:annotation>
+                        <xs:documentation>Specifies the profile hierarchy level
+                              at which the preference entry is associated. If omitted will
+                              default to Agent</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ProfileID" type="xs:integer" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>Specifies the profile id for which the
+                              preference entry is associated.</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:extension>
+            </xs:complexContent>
+         </xs:complexType>
+      </xs:element>
+	
+	<xs:element name="DesktopAgentPreferenceDeleteRsp">
+		<xs:annotation>
+			<xs:documentation>Response with no information.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseRsp" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--*** Shared Elements ***-->
+      <xs:element name="AgentPreference">
+         <xs:annotation>
+            <xs:documentation>Desktop agent preferences.
+               </xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+            <xs:sequence>
+               <xs:element ref="PreferenceData" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Preference data uniquely identified by
+                           a key.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+      </xs:element>
+      
+      <xs:element name="PreferenceData" nillable="false">
+         <xs:annotation>
+            <xs:documentation>Preference data to be associated with the Profile ID</xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+            <xs:simpleContent>
+               <xs:extension base="typeValueString">
+                  <xs:attribute name="Key" use="required">
+                     <xs:annotation>
+	                      <xs:documentation>Key identifying the preference item. Key values starting with "TUD_" are reserved for Travelport use.
+	                      </xs:documentation>
+                     </xs:annotation>
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:maxLength value="255"/>
+                           <xs:minLength value="1"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="CreateDate" type="xs:dateTime" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The date the data was created.
+                           </xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ModifiedDate" type="xs:dateTime" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>The date the data was modified.
+                           </xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ProfileID" type="xs:integer" use="optional">
+                     <xs:annotation>
+                        <xs:documentation>specifies the type of the entity with
+                              which the preference entry is associated</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="ProfileType" type="typeProfileType" use="required">
+                     <xs:annotation>
+                        <xs:documentation>specifies the type of the entity with
+                              which the preference entry is associated</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:extension>
+            </xs:simpleContent>
+         </xs:complexType>
+      </xs:element>
+
+	<xs:element name="DesktopAgentPreferenceDeleteCriteria">
+		<xs:annotation>
+			<xs:documentation>This contains the Business Options Data to be
+				deleted</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Key" use="required">
+				<xs:annotation>
+					<xs:documentation>Key name that needs to be deleted
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255" />
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="typeValueString">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	 <xs:simpleType name="typeProfileType">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Agency"/>
+         <xs:enumeration value="Branch"/>
+         <xs:enumeration value="Agent"/>
+         <xs:enumeration value="Account"/>
+         <xs:enumeration value="Global"/>
+         <xs:enumeration value="BranchGroup"/>
+         <xs:enumeration value="TravelerGroup"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
