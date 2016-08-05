@@ -272,6 +272,7 @@ public class Lesson3 {
 				System.getProperty("travelport.gds"), 
 				Helper.RAIL_PROVIDER,
 				Helper.LOW_COST_PROVIDER);
+		
 		request.setAirSearchModifiers(modifiers);
 
 		// need a POS as of v18_0
@@ -282,7 +283,8 @@ public class Lesson3 {
 		SearchAirLeg outbound = AirReq.createLeg(originAirportcode, destAirportCode);
 
 		AirReq.addDepartureDate(outbound,
-				Helper.daysInFuture(departureDaysInFuture));
+				Helper.daysInFuture(departureDaysInFuture));		
+		
 		AirReq.addEconomyPreferred(outbound);
 
 		// coming back, again something near these...
@@ -297,6 +299,9 @@ public class Lesson3 {
 
 		// one adult passenger
 		AirReq.addAdultPassengers(request, 1);
+		
+		// one child passenger		
+		AirReq.addChildPassengers(request, 1);
 
 		// get the point of sale right
 		PointOfSale gdsPOS = new PointOfSale();
