@@ -6,8 +6,10 @@ import com.travelport.schema.air_v35_0.AirLegModifiers;
 import com.travelport.schema.air_v35_0.AirSearchModifiers;
 import com.travelport.schema.air_v35_0.AirSearchModifiers.PreferredProviders;
 import com.travelport.schema.air_v35_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v35_0.FlightType;
 import com.travelport.schema.air_v35_0.PermittedCarriers;
 import com.travelport.schema.air_v35_0.PreferredCabins;
+import com.travelport.schema.air_v35_0.ProhibitedCarriers;
 import com.travelport.schema.air_v35_0.SearchAirLeg;
 import com.travelport.schema.common_v35_0.Carrier;
 import com.travelport.schema.common_v35_0.Airport;
@@ -15,11 +17,13 @@ import com.travelport.schema.common_v35_0.BaseCoreReq;
 import com.travelport.schema.common_v35_0.BaseSearchReq;
 import com.travelport.schema.common_v35_0.BillingPointOfSaleInfo;
 import com.travelport.schema.common_v35_0.CabinClass;
+import com.travelport.schema.common_v35_0.City;
 import com.travelport.schema.common_v35_0.CityOrAirport;
 import com.travelport.schema.common_v35_0.Distance;
 import com.travelport.schema.common_v35_0.Provider;
 import com.travelport.schema.common_v35_0.SearchPassenger;
 import com.travelport.schema.common_v35_0.TypeFlexibleTimeSpec;
+import com.travelport.schema.common_v35_0.TypeFlexibleTimeSpec.SearchExtraDays;
 import com.travelport.schema.common_v35_0.TypeSearchLocation;
 
 /**
@@ -81,6 +85,12 @@ public class AirReq {
 		origin.setCode(originAirportCode);
 		dest.setCode(destAirportCode);
 		
+		
+		// city objects are just wrappers for their codes
+		/*City origin = new City(), dest = new City();
+		origin.setCode(originAirportCode);
+		dest.setCode(destAirportCode);*/
+		
 		// search locations can be things other than airports but we are using
 		// the airport version...
 		originLoc.setAirport(origin);
@@ -102,8 +112,19 @@ public class AirReq {
 
 		// add the origin and dest to the leg
 		leg.getSearchDestination().add(destLoc);
-		leg.getSearchOrigin().add(originLoc);
-
+		leg.getSearchOrigin().add(originLoc);	
+		
+		AirLegModifiers legModifiers = new AirLegModifiers();
+		
+		//maximum journey time
+		legModifiers.setMaxJourneyTime(new Integer("10"));
+		//maximum stops
+		FlightType flightType = new FlightType();
+		flightType.setMaxStops(new Integer("1"));
+		
+		legModifiers.setFlightType(flightType);
+		
+		leg.setAirLegModifiers(legModifiers);
 		
 		return leg;
 	}
@@ -159,7 +180,13 @@ public class AirReq {
 		// flexible time spec is flexible in that it allows you to say
 		// days before or days after
 		TypeFlexibleTimeSpec noFlex = new TypeFlexibleTimeSpec();
+		
+		SearchExtraDays extraDays = new SearchExtraDays();
+		extraDays.setDaysAfter(new Integer("3"));
+		extraDays.setDaysBefore(new Integer("3"));
+		
 		noFlex.setPreferredTime(departureDate);
+		noFlex.setSearchExtraDays(extraDays);
 		outbound.getSearchDepTime().add(noFlex);
 	}
 
@@ -189,6 +216,15 @@ public class AirReq {
 		permittedCarriers.getCarrier().add(c);
 		
 		modifiers.setPermittedCarriers(permittedCarriers);
+		
+		
+		ProhibitedCarriers prohibitedCarriers = new ProhibitedCarriers();
+		
+		Carrier c1 = new Carrier();
+		c1.setCode("JQ");
+		prohibitedCarriers.getCarrier().add(c1);
+		
+		modifiers.setProhibitedCarriers(prohibitedCarriers);
 		
 		return modifiers;
 	}
@@ -243,6 +279,16 @@ public class AirReq {
 		cabins.getCabinClass().add(econ);
 		modifiers.setPreferredCabins(cabins);
 		outbound.setAirLegModifiers(modifiers);
+	}
+
+	public static void addChildPassengers(BaseLowFareSearchReq request, int n) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < n; ++i) {
+			SearchPassenger child = new SearchPassenger();
+			child.setCode("CNN");
+			child.setAge(new BigInteger("10"));
+			request.getSearchPassenger().add(child);
+		}
 	}
 	
 }
