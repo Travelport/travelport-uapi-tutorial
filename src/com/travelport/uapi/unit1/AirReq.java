@@ -3,6 +3,7 @@ package com.travelport.uapi.unit1;
 import java.math.BigInteger;
 
 import com.travelport.schema.air_v35_0.AirLegModifiers;
+import com.travelport.schema.air_v35_0.AirPricingModifiers;
 import com.travelport.schema.air_v35_0.AirSearchModifiers;
 import com.travelport.schema.air_v35_0.AirSearchModifiers.PreferredProviders;
 import com.travelport.schema.air_v35_0.BaseLowFareSearchReq;
@@ -289,6 +290,14 @@ public class AirReq {
 			child.setAge(new BigInteger("10"));
 			request.getSearchPassenger().add(child);
 		}
+	}
+
+	public static AirPricingModifiers createPricingModifiers() {
+		// TODO Auto-generated method stub
+		AirPricingModifiers modifiers = new AirPricingModifiers();
+		modifiers.setCurrencyType("USD");
+		
+		return modifiers;
 	}
 	
 }
