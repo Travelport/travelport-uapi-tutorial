@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import com.travelport.schema.air_v35_0.AirPricingModifiers;
 import com.travelport.schema.air_v35_0.AirPricingSolution;
 import com.travelport.schema.air_v35_0.AirSearchModifiers;
 import com.travelport.schema.air_v35_0.AirSearchRsp;
@@ -273,7 +274,10 @@ public class Lesson3 {
 				Helper.RAIL_PROVIDER,
 				Helper.LOW_COST_PROVIDER);
 		
+		AirPricingModifiers pricingModifiers = AirReq.createPricingModifiers();
+		
 		request.setAirSearchModifiers(modifiers);
+		request.setAirPricingModifiers(pricingModifiers);
 
 		// need a POS as of v18_0
 		AirReq.addPointOfSale(request, MYAPP);
