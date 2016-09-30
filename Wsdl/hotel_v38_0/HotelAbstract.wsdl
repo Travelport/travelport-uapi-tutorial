@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractHotelServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/hotel_v38_0"
+             xmlns:hotel="http://www.travelport.com/schema/hotel_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/hotel_v38_0"
+             xmlns:common="http://www.travelport.com/schema/common_v38_0"
+             targetNamespace="http://www.travelport.com/service/hotel_v38_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/hotel_v38_0">
+            <include schemaLocation="HotelReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="HotelSearchAvailabilityReq">
+        <part name="parameters" element="hotel:HotelSearchAvailabilityReq"/>
+    </message>
+
+    <message name="HotelSearchAvailabilityRsp">
+        <part name="result" element="hotel:HotelSearchAvailabilityRsp"/>
+    </message>
+    
+    <message name="RetrieveHotelSearchAvailabilityReq">
+        <part name="parameters" element="hotel:RetrieveHotelSearchAvailabilityReq"/>
+    </message>
+
+    <message name="RetrieveHotelSearchAvailabilityRsp">
+        <part name="result" element="hotel:RetrieveHotelSearchAvailabilityRsp"/>
+    </message>    
+    
+    <message name="HotelSearchAvailabilityAsynchReq">
+        <part name="parameters" element="hotel:HotelSearchAvailabilityAsynchReq"/>
+    </message>    
+    
+    <message name="HotelSearchAvailabilityAsynchRsp">
+        <part name="result" element="hotel:HotelSearchAvailabilityAsynchRsp"/>
+    </message>         
+
+    <message name="HotelMediaLinksReq">
+        <part name="parameters" element="hotel:HotelMediaLinksReq"/>
+    </message>
+
+    <message name="HotelMediaLinksRsp">
+        <part name="result" element="hotel:HotelMediaLinksRsp"/>
+    </message>
+
+    <message name="HotelDetailsReq">
+        <part name="parameters" element="hotel:HotelDetailsReq"/>
+    </message>
+
+    <message name="HotelDetailsRsp">
+        <part name="result" element="hotel:HotelDetailsRsp"/>
+    </message>
+    
+    <message name="HotelRetrieveReq">
+        <part name="parameters" element="hotel:HotelRetrieveReq"/>
+    </message>
+
+    <message name="HotelRetrieveRsp">
+        <part name="result" element="hotel:HotelRetrieveRsp"/>
+    </message>
+
+    <message name="HotelFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>
+    
+    <message name="HotelRulesReq">
+        <part name="parameters" element="hotel:HotelRulesReq"/>
+    </message>
+
+    <message name="HotelRulesRsp">
+        <part name="result" element="hotel:HotelRulesRsp"/>
+    </message>
+    
+    <message name="HotelUpsellDetailsReq">
+        <part name="parameters" element="hotel:HotelUpsellDetailsReq"/>
+    </message>
+
+    <message name="HotelUpsellDetailsRsp">
+        <part name="result" element="hotel:HotelUpsellDetailsRsp"/>
+    </message>
+    
+    <message name="HotelKeywordsReq">
+        <part name="parameters" element="hotel:HotelKeywordReq"/>
+    </message>
+
+    <message name="HotelKeywordsRsp">
+        <part name="result" element="hotel:HotelKeywordRsp"/>
+    </message>
+    
+     <message name="HotelSuperShopperReq">
+        <part name="parameters" element="hotel:HotelSuperShopperReq"/>
+    </message>
+
+    <message name="HotelSuperShopperRsp">
+        <part name="result" element="hotel:HotelSuperShopperRsp"/>
+    </message>
+
+    <portType name="HotelSearchServicePortType">
+        <operation name="service">
+            <input message="tns:HotelSearchAvailabilityReq"/>
+            <output message="tns:HotelSearchAvailabilityRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="HotelMediaLinksServicePortType">
+        <operation name="service">
+            <input message="tns:HotelMediaLinksReq"/>
+            <output message="tns:HotelMediaLinksRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="HotelSearchAvailabilityAsynchServicePortType">
+        <operation name="service">
+            <input message="tns:HotelSearchAvailabilityAsynchReq"/>
+            <output message="tns:HotelSearchAvailabilityAsynchRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>   
+
+    <portType name="HotelDetailsServicePortType">
+        <operation name="service">
+            <input message="tns:HotelDetailsReq"/>
+            <output message="tns:HotelDetailsRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="HotelRetrieveServicePortType">
+        <operation name="service">
+            <input message="tns:HotelRetrieveReq"/>
+            <output message="tns:HotelRetrieveRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="HotelRulesServicePortType">
+        <operation name="service">
+            <input message="tns:HotelRulesReq"/>
+            <output message="tns:HotelRulesRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="HotelUpsellSearchServicePortType">
+        <operation name="service">
+            <input message="tns:HotelUpsellDetailsReq"/>
+            <output message="tns:HotelUpsellDetailsRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="HotelKeywordsServicePortType">
+        <operation name="service">
+            <input message="tns:HotelKeywordsReq"/>
+            <output message="tns:HotelKeywordsRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+    
+     <portType name="RetrieveHotelSearchAvailabilityServicePortType">
+        <operation name="service">
+            <input message="tns:RetrieveHotelSearchAvailabilityReq"/>
+            <output message="tns:RetrieveHotelSearchAvailabilityRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>    
+    
+     <portType name="HotelSuperShopperServicePortType">
+        <operation name="service">
+            <input message="tns:HotelSuperShopperReq"/>
+            <output message="tns:HotelSuperShopperRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:HotelFaultMessage"/>
+        </operation>
+    </portType>
+    
+</definitions>

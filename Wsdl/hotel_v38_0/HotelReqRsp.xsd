@@ -1,0 +1,539 @@
+<xs:schema xmlns="http://www.travelport.com/schema/hotel_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/hotel_v38_0"
+           xmlns:common="http://www.travelport.com/schema/common_v38_0"
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+
+    <xs:import schemaLocation="../common_v38_0/CommonReqRsp.xsd" namespace="http://www.travelport.com/schema/common_v38_0"/>
+    <xs:include schemaLocation="Hotel.xsd" />   
+    
+    <!--*** Request Types ***-->
+   <xs:element name="HotelSearchAvailabilityReq" >
+      <xs:annotation>
+         <xs:documentation>Request to search for hotel availability</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BaseHotelSearchReq"/>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+    <xs:element name="HotelSearchAvailabilityRsp" type="BaseHotelSearchRsp">
+        <xs:annotation>
+            <xs:documentation>Hotel availablity search response.</xs:documentation>
+        </xs:annotation>
+    </xs:element>    
+    
+    <xs:element name="HotelSearchAvailabilityAsynchReq" type="BaseHotelSearchReq">
+        <xs:annotation>
+            <xs:documentation> Asynchronous hotel Search request.</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="HotelSearchAvailabilityAsynchRsp">
+        <xs:annotation>
+            <xs:documentation> Asynchronous hotel Search response.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseHotelSearchRsp">
+                    <xs:sequence>
+                        <xs:element ref="AsyncProviderSpecificResponse" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Identifies pending responses from a specific provider using MoreResults attribute</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="SearchId" type="xs:string"  use="required" >
+                        <xs:annotation>
+                            <xs:documentation>Indicates the Search Id of the Hotel search</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element> 
+    
+    <xs:element name="RetrieveHotelSearchAvailabilityReq">
+        <xs:annotation>
+            <xs:documentation>Retrieve hotel search responses that were initiated by an asynchronous request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="SearchId" type="xs:string" use="required">
+                        <xs:annotation>
+                            <xs:documentation>SearchID to be used for Asynchronous hotel search Request</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Provider code of a specific host</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RetrieveHotelSearchAvailabilityRsp">
+        <xs:annotation>
+            <xs:documentation>Hotel Search Asynchronous Result response.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseHotelSearchRsp">
+                    <xs:sequence>
+                        <xs:element ref="AsyncProviderSpecificResponse" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Identifies pending responses from a specific provider using MoreResults attribute</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>   
+    <xs:complexType name="BaseHotelSearchReq">
+        <xs:annotation>
+            <xs:documentation>
+                Base hotel Search Request
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="common:BaseSearchReq">
+                <xs:sequence>
+                    <xs:element ref="HotelSearchLocation" minOccurs="0" />
+                    <xs:element ref="HotelSearchModifiers" minOccurs="0"/>
+                    <xs:element ref="HotelStay"/>
+                    <xs:element ref="common:PointOfSale" minOccurs="0" />                         
+                </xs:sequence>
+                <xs:attribute name="PolicyReference" type="common:typePolicyReference" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>This attribute will be used to pass in a value on the request which would be used to link to a ‘Policy Group’ in a policy engine external to UAPI.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ReturnPolicyExclusion" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If “False” (default), items with an Excluded status based on the associated policy settings are not returned in the response. If “True”, items marked as Excluded by the policy are returned.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>            
+    <xs:complexType name="BaseHotelSearchRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Base hotel Search Response
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="common:BaseSearchRsp">
+                <xs:sequence>
+                	<xs:element name="ReferencePoint" type="typeHotelReferencePoint" minOccurs="0">
+	                  <xs:annotation>
+	                     <xs:documentation>Hotel reference point.  Applicable for 1G,1V,1P,1J. </xs:documentation>
+	                  </xs:annotation>  
+	                </xs:element>
+                    <xs:element ref="HotelSearchResult" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="common:MarketingInformation" minOccurs="0" maxOccurs="1" />
+                    <xs:element ref="common:HostToken" minOccurs="0"/>
+                </xs:sequence>                
+                <xs:attribute name="AddressSearchQuality" type="xs:int" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>Indicates the address matching level success for hotel address or Postal Code searches. Valid values: "1"-"8". Providers 1G, 1V.</xs:documentation>
+                  </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>          
+    <xs:element name="HotelDetailsReq">
+      <xs:annotation>
+         <xs:documentation>Request to retrieve the details of a hotel property</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BaseHotelDetailsReq">
+               <xs:sequence>
+                  <xs:element ref="common:HostToken" minOccurs="0"/>
+                  <xs:element ref="common:NextResultReference" minOccurs="0"/>
+               </xs:sequence>
+               <xs:attribute name="ReturnMediaLinks" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If true, return the media links. Not supported by all providers</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ReturnGuestReviews" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If true, return reviews and comments for the hotel property.  Not supported by all providers</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+                <xs:attribute name="PolicyReference" type="common:typePolicyReference" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>This attribute will be used to pass in a value on the request which would be used to link to a ‘Policy Group’ in a policy engine external to UAPI.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ReturnPolicyExclusion" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If “False” (default), items with an Excluded status based on the associated policy settings are not returned in the response. If “True”, items marked as Excluded by the policy are returned.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelDetailsRsp">
+        <xs:annotation>
+            <xs:documentation>Response showing details of a given hotel property</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:NextResultReference" minOccurs="0"/>
+                        <xs:element ref="common:HostToken" minOccurs="0"/>
+                        <xs:choice>
+                            <xs:element ref="RequestedHotelDetails" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Supported Provider GDS – 1G, 1V, 1P, 1J.</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>    
+                            <xs:element name="AggregatorHotelDetails" minOccurs="0" maxOccurs="99">
+                                <xs:annotation>
+                                    <xs:documentation>Supported Provider TRM.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:complexContent>
+                                        <xs:extension base="typeHotelDetails">
+                                            <xs:attributeGroup ref="attrAggregatorHotelDetail"/>
+                                        </xs:extension>
+                                    </xs:complexContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element ref="HotelAlternateProperties"/>
+                        </xs:choice>
+                        <xs:element ref="GuestReviews" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="HotelRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Retrieve request for a hotel booking. Given a provider code and a provider locator code.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attributeGroup ref="common:providerReservation"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelRetrieveRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="HotelReservation" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="HotelMediaLinksReq">
+        <xs:annotation>
+            <xs:documentation>Retrieves all image links from the Galileo Web Services Image Viewer eBL for up to 20 properties. Only the attributes of the HotelProperty are used in this request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:PermittedProviders" minOccurs="0" />
+                        <xs:element ref="HotelProperty" maxOccurs="20"/>
+                    </xs:sequence>
+                    <xs:attribute name="SecureLinks" type="xs:boolean" use="optional" default="true">
+                        <xs:annotation>
+                            <xs:documentation>Request URLs returned use secured site (https) references. Default is true</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="SizeCode" type="typeRequestedImageSize" use="optional" default="A">
+                        <xs:annotation>
+                            <xs:documentation>Requested image size. Default is to get ALL images </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="RichMedia" type="xs:boolean" use="optional" default="true">
+                        <xs:annotation>
+                           <xs:documentation>Request the Rich Media link. Default is true</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Gallery" type="xs:boolean" use="optional" default="true">
+                        <xs:annotation>
+                            <xs:documentation>Request the Image Gallery link. Default is true</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelMediaLinksRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                         <xs:element ref="HotelPropertyWithMediaItems" maxOccurs="20"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelRulesReq">
+        <xs:annotation>
+            <xs:documentation>Retrieves hotel rules using hotel property code, chain code and hotel room rate type.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:choice>
+                        <xs:element name="HotelReservationLocatorCode" type="common:typeLocatorCode">
+                            <xs:annotation>
+                                <xs:documentation>Request hotel rules using Locator code of existing hotel reservation.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="HotelRulesLookup">
+                            <xs:annotation>
+                                <xs:documentation>Details to request Hotel rate rules post shopping request.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="HotelProperty"/>
+                                    <xs:element ref="HotelStay"/>
+                                    <xs:element ref="HotelRulesModifiers" minOccurs="0"/>
+                                </xs:sequence>
+                                <xs:attribute name="RatePlanType" type="xs:string" use="required">
+                                    <xs:annotation>
+                                        <xs:documentation>This is room rate plan type for a particular rate plan</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="Base" type="common:typeMoney" use="required">
+                                    <xs:annotation>
+                                        <xs:documentation>This is the Base Amount for the selected rate plan type as received in Hotel Details/Book/Modify Response.
+                                        </xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+								<xs:attribute name="RulesDetailReqd" use="optional">
+                           			<xs:annotation>
+                              			<xs:documentation>Request details for Rules, Details, or All.  Default is All. Applicable for 1p/1j.</xs:documentation>
+                           			</xs:annotation>
+                          			<xs:simpleType>
+		                              	<xs:restriction base="xs:string">
+			                                 <xs:enumeration value="Rules"/>
+			                                 <xs:enumeration value="Details"/>
+			                                 <xs:enumeration value="All"/>
+		                              	</xs:restriction>
+                           			</xs:simpleType>
+                        		</xs:attribute>                                
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelRulesRsp">
+        <xs:annotation>
+            <xs:documentation>Response showing rule details of a given
+                hotel property and room rate code</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="HotelRateDetail" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Returns hotels rate and rule details.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="HotelRuleItem" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Return rules and policies related to the
+                                    property (Like Cancellation, Accepted FOP etc.).
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="HotelType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Supported Providers:1G/1V/1P/1J.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:attributeGroup name="PriceRange">
+        <xs:attribute name="Low" type="common:typeMoney" use="required"/>
+        <xs:attribute name="High" type="common:typeMoney" use="required"/>
+    </xs:attributeGroup>
+    <xs:attributeGroup name="DateRange">
+        <xs:attribute name="Start" type="typeDate" use="required"/>
+        <xs:attribute name="End" type="typeDate" use="required"/>
+    </xs:attributeGroup>
+    <xs:element name="RatesAndDates">
+        <xs:annotation>
+            <xs:documentation>Contains the rates that apply over a date range, all with the same status. May represent multiple rooms.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Status" type="xs:string" use="required"/>
+            <xs:attributeGroup ref="DateRange"/>
+            <xs:attributeGroup ref="PriceRange"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="HotelUpsellDetailsReq">
+      <xs:annotation>
+         <xs:documentation>Upsell Request to retrieve the details of a hotel property.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+        <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+            <xs:sequence>
+            <xs:element ref="HotelProperty" />
+            <xs:element ref="HotelRateDetail" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Only returned if number of adults and   checkin/checkout given on request</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>     
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="HotelUpsellDetailsRsp">
+        <xs:annotation>
+            <xs:documentation>Upsell Response showing details of a given hotel property.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseHotelDetailsRsp"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="BaseHotelDetailsReq">
+        <xs:annotation>
+            <xs:documentation>Base request for all hotel details search request..</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+                <xs:sequence>
+                    <xs:element ref="HotelProperty"/>
+                    <xs:element ref="HotelDetailsModifiers" minOccurs="0"/>
+                    <xs:element ref="common:PointOfSale" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BaseHotelDetailsRsp">
+        <xs:annotation>
+            <xs:documentation>Base response for all hotel details search response.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+                <xs:sequence>
+                    <xs:element ref="HotelProperty"/>
+                    <xs:element ref="HotelDetailItem" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element ref="HotelRateDetail" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Only returned if number of adults and checkin/checkout given on request</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:element name="HotelKeywordReq">
+        <xs:annotation>
+            <xs:documentation>Request to retrieve the hotel keyword details of a hotel chain or property</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:Keyword" minOccurs="0" maxOccurs="15">
+                            <xs:annotation>
+                                <xs:documentation>Used to request specific keyword details.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:PermittedProviders" minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attribute name="HotelChain" type="common:typeHotelChainCode" use="required" />
+                    <xs:attribute name="HotelCode" type="common:typeHotelCode" use="optional" />
+                    <xs:attribute name="CheckinDate" type="typeDate" use="optional" />
+                    <xs:attribute name="ReturnKeywordList" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>When true, a list of keyword names should
+                                be returned. If false then list of keyword details should be
+                                returned</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelKeywordRsp">
+        <xs:annotation>
+            <xs:documentation>Response showing keyword details of a given
+                hotel chain or property</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:MarketingInformation" minOccurs="0" maxOccurs="1" />
+                        <xs:element ref="common:Keyword" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A word that a vendor uses to describe corporate policy/information.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>    
+     <xs:element name="HotelSuperShopperReq">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseSearchReq">
+                    <xs:sequence>
+                        <xs:element ref="HotelSearchLocation" minOccurs="0"/>
+                        <xs:element ref="HotelSearchModifiers" minOccurs="0" />
+                        <xs:element ref="HotelStay" />                        
+                        <xs:element ref="QuickResponse" minOccurs="0"/>                        
+                    </xs:sequence>                   
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelSuperShopperRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseSearchRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:VendorLocation" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="CurrencyRateConversion" minOccurs="0" maxOccurs="999"/>
+                        <xs:element ref="HotelSuperShopperResults" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="QuickResponse" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>    
+</xs:schema>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by Sudhakar Panda -->
+<xs:schema xmlns="http://www.travelport.com/schema/passive_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v38_0" xmlns:ns1="http://www.travelport.com/schema/passive_v38_0" targetNamespace="http://www.travelport.com/schema/passive_v38_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/Common.xsd"/>
+	<xs:element name="PassiveReservation">
+		<xs:annotation>
+			<xs:documentation>
+                    The parent container for all passive booking data
+                </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReservation">
+					<xs:sequence>
+						<xs:element ref="common:SupplierLocator" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="common:ThirdPartyInformation" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="common:BookingTravelerRef" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="PassiveSegment" maxOccurs="unbounded"/>
+						<xs:element ref="PassiveRemark" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element ref="AssociatedRemark" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:attribute name="ProviderReservationInfoRef" type="common:typeRef" use="required">
+						<xs:annotation>
+							<xs:documentation>Provider Reservation reference key.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PassiveSegment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Amount" minOccurs="0">
+					<xs:complexType>
+						<xs:attribute name="Type">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Due">
+										<xs:annotation>
+											<xs:documentation>Amount is Due</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Paid">
+										<xs:annotation>
+											<xs:documentation>Amount is Paid</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="Text">
+										<xs:annotation>
+											<xs:documentation>Amount field has text.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="AmountDuePaid" type="common:typeMoney"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="SupplierCode" type="typePassiveSupplierCode" use="optional">
+				<xs:annotation>
+					<xs:documentation>Vendor Code. This could have values outside what is defined as a carrier. (eg:ZZ as in case for vendor in case of Due paid)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status" type="xs:string"/>
+			<xs:attribute name="StartDate" type="xs:string"/>
+			<xs:attribute name="EndDate" type="xs:string"/>
+			<xs:attribute name="Origin" type="common:typeIATACode">
+				<xs:annotation>
+					<xs:documentation>
+                                Origin for Air, but City for all other Types.
+                            </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Destination" type="common:typeIATACode">
+				<xs:annotation>
+					<xs:documentation>
+                                This optional, except when Type is Air, then it is required.
+                            </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			 <xs:attribute name="AvailabilitySource" type="xs:string">
+	            <xs:annotation>
+	                <xs:documentation>Indicates Availability source of AirSegment.</xs:documentation>
+	            </xs:annotation>
+	        </xs:attribute>
+	        <xs:attribute name="PolledAvailabilityOption" type="xs:string">
+	            <xs:annotation>
+	                <xs:documentation>Indicates if carrier has inside(polled) availability option.</xs:documentation>
+	            </xs:annotation>
+	        </xs:attribute>
+	        <xs:attribute name="AvailabilityDisplayType" type="xs:string">
+	            <xs:annotation>
+	                <xs:documentation>The type of availability from which the segment is sold. E.g., General, Carrier Specific/Direct Access, Fare Shop/Optimal Shop, etc.</xs:documentation>
+	            </xs:annotation>
+	        </xs:attribute>
+			<xs:attribute name="FlightNumber" type="xs:string"/>
+			<xs:attribute name="ClassOfService" type="xs:string"/>
+			<xs:attribute name="NumberOfItems" type="xs:integer"/>
+			<xs:attribute name="SegmentType" type="xs:string" use="required"> 
+				<xs:annotation> 
+					<xs:documentation> The Type of Passive segment being entered (
+					Car,Hotel,Tour,Air,Surface,Bus,Rail,Cruise,Helicopter,Limousine,Transfers,Miscellaneous,ProcessingFee,Insurance,
+					AirTaxi,Currency,Fees,Forms,Group,Include,Leisure,Land,Other,Package,RailRoad,SeaPlane,Software,Supply,Service,
+					Theater,Ticket,Transfer,Taxi,Charter,CorporatePlane,UnitedPassive,AccountingInfo,BookingFee,ServiceCharge,ServiceFee,TicketFees
+					,TelexCharge)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Key" type="common:typeRef">
+				<xs:annotation>
+					<xs:documentation>
+                            The Key of Passive Segment.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VehicleType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+                            The Type of Vehicle in Passive Segment.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PassiveProviderReservationInfoRef" type="common:typeRef" use="optional">
+				<xs:annotation>
+					<xs:documentation>Passive Provider Reservation reference
+                        key.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Group" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:documentation>Unique Identifier used for grouping together identical segments.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TravelOrder" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:documentation>To identify the appropriate travel sequence for Air/Car/Hotel/Passive segments/reservations based on travel dates. This ordering is applicable across the UR not provider or traveler specific</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="common:attrElementKeyResults"/>
+			<xs:attribute name="PassiveGroup" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Used for grouping 2 sets of identical passive segments with different remark information.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:group name="BasePassiveRemarkGroup">
+		<xs:sequence>
+			<xs:element name="Text" type="xs:string" minOccurs="0"/>
+			<xs:element name="Type" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="PassiveRemark">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="BasePassiveRemarkGroup"/>
+			</xs:sequence>
+			<xs:attribute name="PassiveSegmentRef" type="common:typeRef" use="required">
+				<xs:annotation>
+					<xs:documentation>The Passive Segment key that this remark refers to.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PassiveSegmentRef">
+		<xs:complexType>
+			<xs:attribute name="Key" type="common:typeRef" use="required">
+				<xs:annotation>
+					<xs:documentation>
+                            The Key of Passive Segment.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="typePassiveSupplierCode">
+		<xs:annotation>
+			<xs:documentation>2 Character vendor code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="AssociatedRemark">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:typeAssociatedRemarkWithSegmentRef"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

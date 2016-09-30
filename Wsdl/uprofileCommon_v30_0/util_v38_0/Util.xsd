@@ -1,0 +1,2640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/util_v38_0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.travelport.com/schema/util_v38_0"
+    xmlns:air="http://www.travelport.com/schema/air_v38_0"
+    xmlns:common="http://www.travelport.com/schema/common_v38_0"
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>
+            (c) Travelport GDS 2008 All rights reserved. Proprietary
+            Information of Travelport GDS.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:import schemaLocation="../common_v38_0/CommonReqRsp.xsd"
+        namespace="http://www.travelport.com/schema/common_v38_0" />
+    <xs:import namespace="http://www.travelport.com/schema/common_v38_0"
+        schemaLocation="../common_v38_0/Common.xsd" />
+    <xs:import namespace="http://www.travelport.com/schema/air_v38_0"
+        schemaLocation="../air_v38_0/Air.xsd" />
+
+    <!-- Upsell Req/Rsp Start-->
+
+    <xs:element name="UpsellAdminReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to add/delete/update qualify/offer.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:choice>
+                        <xs:element ref="AirUpsellCriteria" minOccurs="0" maxOccurs="1"/>
+                        <xs:element ref="VehicleUpsellCriteria" minOccurs="0" maxOccurs="1"/>
+                        <xs:element ref="HotelUpsellCriteria" minOccurs="0"  maxOccurs="1"/>                                                    
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpsellAdminRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Response to add/delete/update of offer/qualify.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:choice>
+                        <xs:element ref="AirUpsellRule" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="VehicleUpsellRule" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="HotelUpsellRule" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="UpsellSearchReq">
+        <xs:annotation>
+            <xs:documentation>Request to retrieve all upsell qualify/offers based on search criteria for air,hotel and vehicle.
+            </xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+                <xs:complexContent>
+                    <xs:extension base="common:BaseReq">
+                        <xs:sequence>
+                            <xs:choice>
+                                <xs:element ref="AirUpsellSearchCriteria" minOccurs="0"/>
+                                <xs:element ref="HotelUpsellSearchCriteria" minOccurs="0"/>
+                                <xs:element ref="VehicleUpsellSearchCriteria" minOccurs="0"/>
+                            </xs:choice>
+                            <xs:element ref="UpsellSearchModifier" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+    </xs:element>
+     <xs:element name="UpsellSearchRsp">
+         <xs:annotation>
+             <xs:documentation>
+                         Response containing qualify and offer for the matching search criteria.
+             </xs:documentation>
+         </xs:annotation>
+         <xs:complexType>
+             <xs:complexContent>
+                 <xs:extension base="common:BaseRsp">
+                      <xs:choice>
+                          <xs:element ref="AirUpsellSearchResult" minOccurs="0" maxOccurs="unbounded"/>
+                          <xs:element ref="HotelUpsellSearchResult" minOccurs="0" maxOccurs="unbounded"/>
+                          <xs:element ref="VehicleUpsellSearchResult" minOccurs="0" maxOccurs="unbounded"/>
+                      </xs:choice>
+                      <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required"/>
+                 </xs:extension>
+             </xs:complexContent>
+       </xs:complexType>
+    </xs:element>
+    
+    <!-- Upsell Req/Rsp Ends -->
+
+    <!--*** Request Types ***-->
+    <xs:element name="CreditCardAuthReq">
+        <xs:annotation>
+            <xs:documentation>
+                Performs a credit card authorization to validate a
+                credit card for use during booking
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:LocatorCode"
+                            minOccurs="0" />
+                        <xs:element ref="CreditCardPaymentAuth"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="PlatingCarrier"
+                        type="common:typeCarrier" use="required" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CreditCardAuthRsp">
+        <xs:annotation>
+            <xs:documentation>
+                The response to the CreditCardAuthReq.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:CreditCardAuth"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CurrencyConversionReq">
+        <xs:annotation>
+            <xs:documentation>
+                Performs A Currency Conversion between two Currencies
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="CurrencyConversion"
+                            minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CurrencyConversionRsp">
+        <xs:annotation>
+            <xs:documentation>
+                The response to the CurrencyConversionReq.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="CurrencyConversion"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CreateAgencyFeeMcoReq">
+        <xs:annotation>
+            <xs:documentation>
+                Manually create an Agency Fee MCO.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:Name" />
+                        <xs:choice>
+                            <xs:element ref="common:FormOfPayment"
+                                minOccurs="0" />
+                            <xs:element ref="common:FormOfPaymentRef"
+                                minOccurs="0" />
+                        </xs:choice>
+                        <xs:element ref="common:GeneralRemark"
+                            minOccurs="0" maxOccurs="unbounded" />
+                        <xs:element ref="common:AccountingRemark"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="Amount" type="common:typeMoney"
+                        use="required" />
+                    <xs:attribute name="LocationCode"
+                        type="common:typeAirport" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The airport code where the MCO will be
+                                accepted, or the City code where the
+                                requesting agency resides. If not
+                                entered, the default location of the
+                                agency will be selected.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="LocatorCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The locator code of the PNR that the MCO
+                                is created for.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="8" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="TicketNumber" type="xs:string"
+                        use="optional">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The ticket that this MCO was issued in
+                                connection with. Could be the ticket
+                                that caused the fee, a residual from an
+                                exchange, or an airline service fee.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+   	<xs:element name="CreateAgencyFeeMcoRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:MCO" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- there is not binding for this element -->
+    <xs:element name="CreateAirlineFeeMcoReq">
+        <xs:annotation>
+            <xs:documentation>
+                Manually create an Airline Fee MCO.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:Name" />
+                        <xs:choice>
+                            <xs:element ref="common:FormOfPayment"
+                                minOccurs="0" />
+                            <xs:element ref="common:FormOfPaymentRef"
+                                minOccurs="0" />
+                        </xs:choice>
+                        <xs:element ref="common:GeneralRemark"
+                            minOccurs="0" maxOccurs="unbounded" />
+                        <xs:element ref="common:AccountingRemark"
+                            minOccurs="0" maxOccurs="unbounded" />
+                        <xs:element ref="common:Endorsement"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="Amount" type="common:typeMoney"
+                        use="required" />
+                    <xs:attribute name="LocationCode"
+                        type="common:typeAirport" use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The airport code where the MCO will be
+                                accepted, or the City code where the
+                                requesting agency resides. If not
+                                entered, the default location of the
+                                agency will be selected.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="LocatorCode" use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The locator code of the PNR that the MCO
+                                is created for.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="8" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="TicketNumber" type="xs:string"
+                        use="optional">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The ticket that this MCO was issued in
+                                connection with. Could be the ticket
+                                that caused the fee, a residual from an
+                                exchange, or an airline service fee.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CreateAirlineFeeMcoRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:MCO" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MirReportRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>Retrieve a report</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="LocatorCode" use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The locator code of the PNR that the MIR
+                                is created for.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="8" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="ReportFormat" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>
+                                MIR report format type
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="TRAMS" />
+                                <xs:enumeration value="CLIENTBASE" />
+                                <xs:enumeration value="TRISEPT" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MirReportRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Carries the report payload
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:annotation>
+                            <xs:documentation>
+                                The text of the MIR report.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:element name="Report" type="xs:string" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="McoSearchReq">
+        <xs:annotation>
+            <xs:documentation>
+                Search for MCOs by certain criteria and return a list.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:Name" minOccurs="0" />
+                        <xs:element ref="common:Carrier" minOccurs="0"
+                            maxOccurs="10" />
+                        <xs:element ref="common:Airport" minOccurs="0"
+                            maxOccurs="10" />
+                        <xs:element ref="common:TicketNumber"
+                            minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    The ticket that this MCO was issued
+                                    in connection with. Could be the
+                                    ticket that caused the fee, a
+                                    residual from an exchange, or an
+                                    airline service fee.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="McoCreateDate" minOccurs="0" />
+                        <xs:element ref="McoSearchModifiers"
+                            minOccurs="0" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="McoSearchRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="McoSearchResult" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="McoVoidReq">
+        <xs:annotation>
+            <xs:documentation>
+                Void an MCO (of any type).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="common:GeneralRemark"
+                            minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="Number" type="xs:string"
+                        use="required">
+                        <xs:annotation>
+                            <xs:documentation>
+                                The number of the MCO to void
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ReturnMCO" type="xs:boolean"
+                        use="optional" default="false" />
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="McoVoidRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="common:MCO" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctLookupReq">
+        <xs:annotation>
+            <xs:documentation>
+                Search for MCT time values
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:choice>
+                        <xs:element ref="MctSearch" minOccurs="0" />
+                        <xs:element ref="MctQuery" minOccurs="0" />
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctLookupRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="MctStandard" minOccurs="0"
+                            maxOccurs="4" />
+                        <xs:element ref="MctException" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctCountReq">
+        <xs:annotation>
+            <xs:documentation>
+                Determine how many MCT exceptions exist for the search
+                criteria
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="MctSearch" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctCountRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="MctCount" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ReferenceDataRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to retrieve code, name and description for  a specific reference data type.
+             </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                         <xs:element ref="ReferenceDataSearchModifiers" minOccurs="0" />     
+                         <xs:element ref="RequestReferenceDataItem" minOccurs="0" maxOccurs="1"/>                                   
+                    </xs:sequence>
+                    <xs:attribute name="TypeCode" type="common:typeTypeCode" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The code of the reference data type. Valid values are 'PaymentType', 'PaymentFormatType', 'MerchandisingOfferType', 'HotelTaxType', 'HotelAmenities','Airport','City','Country','CityAirport','BusinessType','Currency','PosChannel','StateProvince','SupplierType','RoleCategoryType','ResourceCategoryType','PaymentType','EmailType','HotelRateCategory','FulfillmentType','HotelRoomViewType', 'HotelMealPlans' , 'GeoPoliticalAreaType', 'AirAndRailMiscType', 'AirAndRailSupplierType', 'HotelMiscType' , 'HotelSupplierType' , 'VehicleMiscType' , 'VehicleSupplierType' , 'AccountingReferenceType' , 'TRMLocation' , 'Title' , 'PassengerTypeCode' , 'Gender' , 'PostalAddressType' , 'AccountingRemarkType' , 'VehicleSpecialEquipment', 'ReferencePointSearch', 'RailStationLocation', 'RailAccommodation', and 'RailDiscountLoyalty'.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>                 
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="RailStationLocationModifiers">
+	<xs:annotation>
+		<xs:documentation>Request object used to request specific rail station
+			locations.</xs:documentation>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="common:RailLocation" minOccurs="0" />
+		</xs:sequence>
+		<xs:attribute name="CountryCode" type="common:typeCountry" use="optional">
+			<xs:annotation>
+				<xs:documentation>2 character country code such as FR.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Distributor" type="common:typeSupplierCode" use="optional">
+			<xs:annotation>
+				<xs:documentation>2 character Rail distributor code such as TL or
+					2C.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Description" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>A city name or station name such as Paris or Paris
+					Nord.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Active" type="xs:boolean" use="optional"
+			default="true">
+			<xs:annotation>
+				<xs:documentation>The value “false” will return stations that are no
+					longer active but remain on the table because existing bookings may
+					reference them. The default is “true” which returns only active
+					locations.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:element>
+            
+    <xs:element name="RequestReferenceDataItem">
+      <xs:annotation>
+         <xs:documentation>
+                Limits the responses to the requested subcategories for a specific Reference Data Type, Currently supported only for @TypeCode="HotelAmenities".
+            </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="RequestAmenity" minOccurs="0" maxOccurs="9">
+               <xs:annotation>
+                  <xs:documentation>
+                         Requested decoded values only for the specified Hotel Amenity codes.
+                     </xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:attribute name="Type" use="required">
+                     <xs:annotation>
+                        <xs:documentation>Limits to the response to the requested amenity type. Can be a general type: “HA” (Hotel Property Amenity) or “RA” (Room Amenity). Or, a specific type, for example: “TR” (Transportation) or “BT” (Bed Type). If no type is specified, all amenity types are returned.</xs:documentation>
+                     </xs:annotation>
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:length value="2"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:attribute>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+
+    <xs:element name="ReferenceDataRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Response to retrieve code, name and description for a specific reference data type. 
+                </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ReferenceDataItem" minOccurs="0" maxOccurs="unbounded" />
+                    </xs:sequence>
+                    <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ReferenceDataSearchReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to lookup a specific reference data item
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="ReferenceDataSearchModifiers"
+                            minOccurs="0" />
+                        <xs:element ref="ReferenceDataSearchItem"
+                            minOccurs="1" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ReferenceDataSearchRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Response the sought reference data item
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:choice>
+                        <xs:element name="Airport" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typeAirport" use="required" />
+                                <xs:attribute name="Name"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="CityCode"
+                                    type="common:typeIATACode" use="optional" />
+                                <xs:attribute name="CountryCode"
+                                    type="common:typeCountry" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Carrier" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typeCarrier" use="required" />
+                                <xs:attribute name="Name"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="Type"
+                                    type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="City" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typeIATACode" use="required" />
+                                <xs:attribute name="Name"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="StateCode"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="CountryCode"
+                                    type="common:typeCountry" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Country" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typeCountry" use="required" />
+                                <xs:attribute name="Name"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="ExtendedCode"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="CurrencyCode"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="IataCode"
+                                    type="common:typeIATACode" use="optional" />
+                                <xs:attribute name="Continent"
+                                    type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Currency" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typeCurrency" use="required" />
+                                <xs:attribute name="Name"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="Decimal"
+                                    type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="Equipment" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="Description"
+                                    type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PassengerType" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typePTC" use="required" />
+                                <xs:attribute name="Description"
+                                    type="xs:string" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="State" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="common:typeState" use="required" />
+                                <xs:attribute name="Name"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="CountryCode"
+                                    type="common:typeCountry" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="SsrType" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="Description"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="Providers"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="Level"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="FreeTextRequired"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="Pattern"
+                                    type="xs:string" use="optional" />
+                                <xs:attribute name="HelpText"
+                                    type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="TaxCategory" minOccurs="0"
+                            maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="Code"
+                                    type="xs:string" use="required" />
+                                <xs:attribute name="Description"
+                                    type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <!--*** Common Reference Elements ***-->
+    <xs:element name="CreditCardPaymentAuth">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="common:CreditCard" minOccurs="0" />
+                <xs:element ref="common:FormOfPaymentRef" minOccurs="0" />
+            </xs:choice>
+            <xs:attribute name="SecurityCode" use="optional">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="3" />
+                        <xs:maxLength value="5" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Amount" type="common:typeMoney"
+                use="required" />
+            <xs:attribute name="PerformAVS" type="xs:boolean"
+                use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="CurrencyConversion">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>
+                    Currency Conversion Entry Parameters
+                </xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="From" type="common:typeCurrency"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        From Currency Value for the Conversion
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="To" type="common:typeCurrency"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        To Currency Value for the Conversion
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="OriginalAmount" type="xs:float"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Amount to be converted
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ConvertedAmount" type="xs:float"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Amount after the convertion
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="BankSellingRate" type="xs:float"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Currency Conversion Rate
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="McoCreateDate" type="common:typeTimeRange" />
+    <xs:element name="McoSearchModifiers">
+        <xs:annotation>
+            <xs:documentation>
+                Modifiers to narrow the MCO search results.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Type" type="common:typeMCOType"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Find all MCOs of a particular type
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Status" type="common:typeMCOStatus"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Find all MCOs of a particular status.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MaxResults" use="optional"
+                default="20">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used to limit the number of results returned,
+                        particularly in more 200809 searches that may
+                        return a large result set.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="StartFromResult" use="optional"
+                default="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used to browse beyond the maximum number of
+                        results specified with the MaxResults parameter.
+                        Acts as an offset to skip the specified number
+                        of items from the begining of the result set.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="IncludeName" type="xs:boolean"
+                use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>
+                        Should the McoSearchResult include the name on
+                        the MCO
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="McoSearchResult">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:Name" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="CreateDate" type="xs:dateTime"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The date the MCO was issued
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Number" type="xs:string"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>The MCO number</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Status" type="common:typeMCOStatus"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The status of the MCO
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Type" type="common:typeMCOType"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The Type of the MCO
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="LocatorCode" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        The locator code that the MCO is linked to
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctSearch">
+        <xs:annotation>
+            <xs:documentation>
+                Search the MCT data for exceptions
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="ArriveStation"
+                type="common:typeIATACode" use="required" />
+            <xs:attribute name="DepartStation"
+                type="common:typeIATACode" use="optional" />
+            <xs:attribute name="Connection" type="typeMctConnection"
+                use="optional" />
+            <xs:attribute name="ArriveCarrier" type="common:typeCarrier"
+                use="optional" />
+            <xs:attribute name="DepartCarrier" type="common:typeCarrier"
+                use="optional" />
+            <xs:attribute name="ArriveFlight" type="xs:string"
+                use="optional" />
+            <xs:attribute name="DepartFlight" type="xs:string"
+                use="optional" />
+            <xs:attribute name="PreviousStation"
+                type="common:typeIATACode" use="optional" />
+            <xs:attribute name="NextStation" type="common:typeIATACode"
+                use="optional" />
+            <xs:attribute name="PreviousCountry"
+                type="common:typeCountry" use="optional" />
+            <xs:attribute name="NextCountry" type="common:typeCountry"
+                use="optional" />
+            <xs:attribute name="PreviousState" type="common:typeState"
+                use="optional" />
+            <xs:attribute name="NextState" type="common:typeState"
+                use="optional" />
+            <xs:attribute name="TravelDate" type="xs:date"
+                use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctQuery">
+        <xs:annotation>
+            <xs:documentation>
+                Lookup the particular MCT time between two segments
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="air:AirSegment" minOccurs="2"
+                    maxOccurs="2" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctException">
+        <xs:annotation>
+            <xs:documentation>MCT Exception details</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Time" type="xs:int" use="required" />
+            <xs:attribute name="ArriveStation"
+                type="common:typeIATACode" use="required" />
+            <xs:attribute name="DepartStation"
+                type="common:typeIATACode" use="optional" />
+            <xs:attribute name="Connection" type="typeMctConnection"
+                use="required" />
+            <xs:attribute name="ArriveCarrier" type="common:typeCarrier"
+                use="optional" />
+            <xs:attribute name="DepartCarrier" type="common:typeCarrier"
+                use="optional" />
+            <xs:attribute name="ArriveFlightRangeBegin" type="xs:string"
+                use="optional" />
+            <xs:attribute name="ArriveFlightRangeEnd" type="xs:string"
+                use="optional" />
+            <xs:attribute name="DepartFlightRangeBegin" type="xs:string"
+                use="optional" />
+            <xs:attribute name="DepartFlightRangeEnd" type="xs:string"
+                use="optional" />
+            <xs:attribute name="ArriveEquipment" type="xs:string"
+                use="optional" />
+            <xs:attribute name="DepartEquipment" type="xs:string"
+                use="optional" />
+            <xs:attribute name="PreviousStation"
+                type="common:typeIATACode" use="optional" />
+            <xs:attribute name="NextStation" type="common:typeIATACode"
+                use="optional" />
+            <xs:attribute name="PreviousCountry"
+                type="common:typeCountry" use="optional" />
+            <xs:attribute name="NextCountry" type="common:typeCountry"
+                use="optional" />
+            <xs:attribute name="PreviousState" type="common:typeState"
+                use="optional" />
+            <xs:attribute name="NextState" type="common:typeState"
+                use="optional" />
+            <xs:attribute name="ArriveTerminal" type="xs:string"
+                use="optional" />
+            <xs:attribute name="DepartTerminal" type="xs:string"
+                use="optional" />
+            <xs:attribute name="EffectiveDate" type="xs:date"
+                use="optional" />
+            <xs:attribute name="DiscontinueDate" type="xs:date"
+                use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctCount">
+        <xs:annotation>
+            <xs:documentation>
+                The count of MCT exceptions for the given search
+                criteria
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Connection" type="typeMctConnection"
+                use="required" />
+            <xs:attribute name="Carrier" type="common:typeCarrier"
+                use="optional" />
+            <xs:attribute name="Count" type="xs:int" use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MctStandard">
+        <xs:annotation>
+            <xs:documentation>
+                The standard MCT time for the given search criteria
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Type" type="typeMctConnection"
+                use="required" />
+            <xs:attribute name="Time" type="xs:int" use="required" />
+        </xs:complexType>
+    </xs:element>
+
+    <!--*** Common Type ***-->
+    <xs:simpleType name="typeMctConnection">
+        <xs:annotation>
+            <xs:documentation>
+                Enumeration of the types of MCT exceptions (domestic or
+                international)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="DD" />
+            <xs:enumeration value="DI" />
+            <xs:enumeration value="ID" />
+            <xs:enumeration value="II" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!--  Tax Service Elements -->
+    <xs:element name="TaxCalcInfo">
+        <xs:annotation>
+            <xs:documentation>
+                Container for a single segment for tax calculation
+                purposes
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Origin" type="common:typeIATACode"
+                use="required" />
+            <xs:attribute name="Destination" type="common:typeIATACode"
+                use="required" />
+            <xs:attribute name="BaseFare" type="common:typeMoney"
+                use="required" />
+            <xs:attribute name="QSurcharge" type="common:typeMoney"
+                use="optional" />
+            <xs:attribute name="StopOverFee" type="common:typeMoney"
+                use="optional" />
+            <xs:attribute name="Tax" type="common:typeMoney"
+                use="optional" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CalculateTaxResult">
+        <xs:annotation>
+            <xs:documentation>
+                Result container for a tax calculation
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="TaxCalcInfo" minOccurs="0"
+                    maxOccurs="unbounded" />
+            </xs:sequence>
+            <xs:attribute name="TotalBaseFare" type="common:typeMoney"
+                use="required" />
+            <xs:attribute name="TotalTax" type="common:typeMoney"
+                use="required" />
+            <xs:attribute name="TotalFare" type="common:typeMoney"
+                use="required" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CalculateTaxReq">
+        <xs:annotation>
+            <xs:documentation>
+                Request to calculate US taxes based on a series of
+                segments
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="TaxCalcInfo" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CalculateTaxRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Response containg calculated total of base prices and
+                taxes
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="CalculateTaxResult" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ContentProviderRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>
+                Retrieves all available providers with their suppliers.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>If ProviderCode present, Retruns Data for the ProviderCode</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="SupplierCode" type="common:typeSupplierCode" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Represents SupplierCode or Carrier code. If SupplierCode Presents, returns Data for the SupplierCode.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ShowProviders"
+                        type="typeShowProvidersType" default="Provisioned">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Enumeration of reqested type of Provider
+                                Configuration requested - default is
+                                "Provisioned". An error may be returned
+                                if 'All' is requested and the user
+                                security level is not allowed this
+                                access
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ContentProviderRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>
+                Response with all available providers with their
+                suppliers.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ContentProvider" minOccurs="0"
+                            maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ContentProvider">
+        <xs:annotation>
+            <xs:documentation>
+                A content provider uniquely identified with its provider
+                code and supplier code.If a given provider provides
+                content for multiple suppliers, multiple elements will
+                be returned for that provider.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="ProviderCode" type="xs:string"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        The host for the content
+                        (e.g.1G,1P,1S,1A,ACH,MCH).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="SupplierCode" type="xs:string"
+                use="optional">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicates the direct connect supplier (e.g. U2)
+                        when the provider is a hub (e.g. ACH).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="AgencyCredentials" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicates whether agency (or agent ) credentials
+                        are required to connect to the given
+                        provider/supplier.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Required" />
+                        <xs:enumeration value="Optional" />
+                        <xs:enumeration value="Prohibited" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="Active" type="xs:boolean"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Status of the given provider/supplier . If not
+                        currently active, a user cannot connect to the
+                        given provider/supplier.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Provisionable" type="xs:boolean"
+                use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Indicates whether the given provider/supplier
+                        can be provisioned to an agency/branch/agent.
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MerchandisingACHAdapter" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>ACH adapter for Merchandising ACH carrier.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="StaticDataCarrier" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Returns "true" if it is StaticDataCarrier otherwise "false". Default value is "false".</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MerchandisingACHCarrier" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Returns "true" if it is MerchandisingACHCarrier otherwise "false". Default value is "false".</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MerchandisingHubCarrier" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:documentation>Returns "true" if it is MerchandisingHubCarrier otherwise "false". Default value is "false".</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attributeGroup ref="attrProviderSupplierCapabilities" />
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ReferenceDataItem">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="AdditionalInfo" minOccurs="0" maxOccurs="unbounded">
+               <xs:annotation>
+                  <xs:documentation>Any additional information specific to a type of value being returned.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:simpleContent>
+                     <xs:extension base="common:StringLength1to255">
+                        <xs:attribute name="Type" type="xs:string" use="optional">
+                           <xs:annotation>
+                              <xs:documentation>This will identify different additionalInfo.</xs:documentation>
+                           </xs:annotation>
+                        </xs:attribute>
+                     </xs:extension>
+                  </xs:simpleContent>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attributeGroup ref="attrReferenceDataItem"/>
+         <xs:attribute name="Deprecated" type="xs:boolean" use="required">
+            <xs:annotation>
+               <xs:documentation>Indicates if the reference data item is deprecated.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+   
+    <xs:attributeGroup name="attrReferenceDataItem">
+      <xs:attribute name="Code" type="common:StringLength1to128" use="required">
+         <xs:annotation>
+            <xs:documentation>The code of the reference data item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Name" type="common:StringLength1to128">
+         <xs:annotation>
+            <xs:documentation>The name of the reference data item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="common:StringLength1to255">
+         <xs:annotation>
+            <xs:documentation>The description of the reference data item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:attributeGroup>
+    
+    <xs:element name="ReferenceDataSearchModifiers">
+        <xs:annotation>
+            <xs:documentation>
+                Modifiers to narrow the reference data search results.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+        	<xs:sequence>
+            	<xs:element ref="RailStationLocationModifiers" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="MaxResults" use="optional"
+                default="20">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used to limit the number of results returned.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="StartFromResult" use="optional"
+                default="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Used to browse beyond the maximum number of
+                        results specified with the MaxResults parameter.
+                        Acts as an offset to skip the specified number
+                        of items from the begining of the result set.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="optional">
+	            <xs:annotation>
+	               <xs:documentation>Provider Specific restriction(e.g. 1G, 1P etc) .</xs:documentation>
+	            </xs:annotation>
+	       </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ReferenceDataSearchItem">
+        <xs:annotation>
+            <xs:documentation>
+                Container for a Reference Data search item that includes
+                its type and how to search / identify the item either
+                via code or value.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Code" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Code uniquely identifying the reference data
+                            item (e.g. ORD for Airport item).
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:whiteSpace value="collapse" />
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Name" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Value of the reference data item that may
+                            not uniquely identify a single Reference
+                            Data item (e.g. Chicago for Airport would
+                            return ORD and MDW).
+                        </xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:whiteSpace value="collapse" />
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="Type" use="required">
+                <xs:annotation>
+                    <xs:documentation>
+                        Reference data type
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Airport" />
+                        <xs:enumeration value="Carrier" />
+                        <xs:enumeration value="City" />
+                        <xs:enumeration value="Country" />
+                        <xs:enumeration value="Currency" />
+                        <xs:enumeration value="Equipment" />
+                        <xs:enumeration value="PassengerType" />
+                        <xs:enumeration value="SsrType" />
+                        <xs:enumeration value="State" />
+                        <xs:enumeration value="TaxCategory" />
+                        <xs:enumeration value="FulfillmentType" />                        
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="typeEmailRecipientType">
+        <xs:annotation>
+            <xs:documentation>
+                Enumeration of the types of email recipients available
+                for use (TO, CC, BCC)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TO" />
+            <xs:enumeration value="CC" />
+            <xs:enumeration value="BCC" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="typeEmailAddress">
+        <xs:sequence>
+            <xs:element ref="common:Email" />
+            <xs:element ref="common:SimpleName" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="typeShowProvidersType">
+        <xs:annotation>
+            <xs:documentation>
+                Enumeration of reqested type of Provider Configuration
+                requested. An error may be returned if 'All' and the
+                user security level is not allowed this access
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="All" />
+            <xs:enumeration value="Provisioned" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="typeProviderSupplierCapabilityType">
+        <xs:annotation>
+            <xs:documentation>
+                Enumeration of ProviderSupplier capability
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Yes" />
+            <xs:enumeration value="No" />
+            <xs:enumeration value="Partial" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:attributeGroup name="attrProviderSupplierCapabilities">
+        <xs:annotation>
+            <xs:documentation>
+                Indications of Provider and/or Supplier capabilities.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="BookingRetrieve"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has booking
+                    retrieve capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="SegmentModify"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has booking
+                    segment modify capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OptionalServicesModify"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has booking
+                    optional service modify capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="TravelerInfoModify"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has
+                    traveler information modify capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="AdditionalPayment"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has
+                    additional payment capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="BookingCancel"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has booking
+                    cancel capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="SeatMap"
+            type="typeProviderSupplierCapabilityType" use="optional"
+            default="Yes">
+            <xs:annotation>
+                <xs:documentation>
+                    Indication if a Provider and/or Supplier has SeatMap
+                    capability.
+                </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    
+    <!--  Upsell Elements -->
+    
+    <xs:element name="AirUpsellCriteria">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AirUpsellAdd" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="AirUpsellUpdate" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="AirUpsellDelete" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="VehicleUpsellCriteria">
+        <xs:annotation>
+            <xs:documentation>Wraps all Upsell Admin commands related to Vehicle.</xs:documentation>
+        </xs:annotation>    
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleUpsellAdd" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="VehicleUpsellUpdate" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="VehicleUpsellDelete" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+        
+    <xs:element name="HotelUpsellCriteria">
+        <xs:annotation>
+            <xs:documentation>Wraps all Upsell Admin commands related to Hotel.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelUpsellAdd" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="HotelUpsellUpdate" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="HotelUpsellDelete" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>       
+    <xs:element name="AirUpsellAdd">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AirUpsellQualify" maxOccurs="1" />
+                <xs:element ref="AirUpsellOffer" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirUpsellUpdate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AirUpsellQualify" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="AirUpsellOffer" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirUpsellDelete">
+        <xs:complexType>
+            <xs:attribute name="QualifyRef" type="common:typeRef" use="optional"/>
+            <xs:attribute name="OfferRef" type="common:typeRef" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirUpsellRule">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AirUpsellQualify" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="AirUpsellOffer" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="VehicleUpsellAdd">
+        <xs:annotation>
+            <xs:documentation>Add command for adding VehicleUpsellQualify,VehicleUpsellOffer </xs:documentation>
+        </xs:annotation>            
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleUpsellQualify"/>
+                <xs:element ref="VehicleUpsellOffer" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleUpsellUpdate">
+        <xs:annotation>
+            <xs:documentation>Update command for updating VehicleUpsellQualify,VehicleUpsellOffer </xs:documentation>
+        </xs:annotation>            
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleUpsellQualify" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="VehicleUpsellOffer" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleUpsellDelete">
+        <xs:annotation>
+            <xs:documentation>Delete command for deleting VehicleUpsellQualify,VehicleUpsellOffer using there persisted keys.</xs:documentation>
+        </xs:annotation>    
+        <xs:complexType>
+            <xs:attribute name="QualifyRef" type="common:typeRef" use="optional"/>
+            <xs:attribute name="OfferRef" type="common:typeRef" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleUpsellRule">
+        <xs:annotation>
+            <xs:documentation>Binds an VehicleUpsellQualify and VehicleUpsellOffer</xs:documentation>
+        </xs:annotation>            
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="VehicleUpsellQualify" minOccurs="0" maxOccurs="1"/>
+                <xs:element ref="VehicleUpsellOffer" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelUpsellAdd">
+        <xs:annotation>
+            <xs:documentation>Add command for adding HotelUpsellQualify,HotelUpsellOffer </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelUpsellQualify"/>
+                <xs:element ref="HotelUpsellOffer" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelUpsellUpdate">
+        <xs:annotation>
+            <xs:documentation>Update command for updating HotelUpsellQualify,HotelUpsellOffer </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelUpsellQualify" minOccurs="0"/>
+                <xs:element ref="HotelUpsellOffer" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelUpsellDelete">
+        <xs:annotation>
+            <xs:documentation>Delete command for deleting HotelUpsellQualify,HotelUpsellOffer using there persisted keys.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="QualifyRef" type="common:typeRef" use="optional"/>
+            <xs:attribute name="OfferRef" type="common:typeRef" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelUpsellRule">
+        <xs:annotation>
+            <xs:documentation>Binds an HotelUpsellQualify and HotelUpsellOffer</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="HotelUpsellQualify" minOccurs="0"/>
+                <xs:element ref="HotelUpsellOffer" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>       
+    <xs:element name="FlightSpec" type="typeFlightSpec">
+        <xs:annotation>
+            <xs:documentation>
+                Operating Flight number or Flight Range.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="OperatingFlightSpec" type="typeFlightSpec">
+        <xs:annotation>
+            <xs:documentation>
+                Marketing Flight number or Flight Range.
+            </xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    
+    <xs:element name="AirUpsellQualify">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DepartureTime" type="common:typeTimeSpec" minOccurs="0"/>
+                <xs:element ref="FlightSpec" minOccurs="0" />
+                <xs:element ref="OperatingFlightSpec" minOccurs="0" />
+                <xs:element ref="common:AccountCode" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="Carrier" type="common:typeCarrier"
+                use="required" />
+            <xs:attribute name="EffectiveDate" type="common:typeDate" use="required" />
+            <xs:attribute name="ExpirationDate" type="common:typeDate" use="required" />
+            <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="optional"/>               
+            <xs:attribute name="Origin" type="common:typeIATACode" use="optional"/>
+            <xs:attribute name="Destination" type="common:typeIATACode" use="optional"/>
+            <xs:attribute name="ClassOfService" type="typeClassOfService" use="optional"/>
+            <xs:attribute name="OperatingCarrier" type="common:typeCarrier" use="optional"/>
+            <xs:attribute name="OfferRef" type="common:typeRef" use="optional"/>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            <xs:attribute name="FareBasis" type="common:typeFareBasisCode" use="optional"/>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+            </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AirUpsellOffer">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:AccountCode" minOccurs="0" />
+            </xs:sequence>
+            <xs:attribute name="ClassOfService" type="typeClassOfService" use="required"/>
+            <xs:attribute name="CabinClass" type="xs:string" use="optional"/>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+        </xs:complexType>
+    </xs:element>
+    
+   <xs:complexType name="typeFlightSpec">
+      <xs:annotation>
+         <xs:documentation>
+            Specifies flight number as either specific flight number
+            or a flight number range
+         </xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:element name="FlightNumberRange"  type="typeFlightNumberRange" minOccurs="0"/>
+         <xs:element name="SpecificFlightNumber"  type="typeSpecificFlightNumber" minOccurs="0"/>
+      </xs:choice>
+   </xs:complexType> 
+   
+   <xs:complexType name="typeSpecificFlightNumber">
+        <xs:annotation>
+            <xs:documentation>
+                Specify exact flight number.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="FlightNumber" type="common:typeFlightNumber"
+            use="required" />       
+    </xs:complexType>
+        
+    <xs:complexType name="typeFlightNumberRange">
+        <xs:annotation>
+            <xs:documentation>
+                Specify a range of flight numbers.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="FlightNumberRangeStart" type="common:typeFlightNumber"
+            use="required"/>
+            
+        <xs:attribute name="FlightNumberRangeEnd" type="common:typeFlightNumber"
+            use="required" />
+    </xs:complexType>   
+   
+    <xs:simpleType name="typeClassOfService">
+        <xs:annotation>
+            <xs:documentation>Class of service code (Booking code) usually one letter, rarely two.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="2"/>
+        </xs:restriction>
+    </xs:simpleType>    
+    
+    <xs:element name="VehicleUpsellQualify">
+        <xs:annotation>
+            <xs:documentation>Qualify data of Vehicle against which Vehicle Availability search is matched to get an upsell Offer. Each qualify should have an offer.</xs:documentation>
+        </xs:annotation>        
+        <xs:complexType>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            <xs:attribute name="VendorCode" type="common:typeSupplierCode" use="required"/>
+            <xs:attribute name="EffectiveDate" type="common:typeDate" use="required"/>
+            <xs:attribute name="ExpirationDate" type="common:typeDate" use="required"/>
+            <xs:attribute name="ProviderCode" type="common:typeProviderCode" use="optional"/>
+            <xs:attribute name="PickupDateTime" type="xs:string" use="optional"/>
+            <xs:attribute name="PickupLocation" type="common:typeIATACode" use="optional"/>
+            <xs:attribute name="ReturnDateTime" type="xs:string" use="optional"/>
+            <xs:attribute name="ReturnLocation" type="common:typeIATACode" use="optional"/>
+            <xs:attribute name="PickupLocationType" type="common:typeVehicleLocation" use="optional"/>
+            <xs:attribute name="ReturnLocationType" type="common:typeVehicleLocation" use="optional"/>
+            <xs:attribute name="PickupLocationNumber" type="xs:string" use="optional"/>
+            <xs:attribute name="ReturnLocationNumber" type="xs:string" use="optional"/>
+            <xs:attribute name="AirConditioning" type="xs:boolean" use="optional"/>
+            <xs:attribute name="TransmissionType" type="common:typeVehicleTransmission" use="optional"/>
+            <xs:attribute name="VehicleClass" type="common:typeVehicleClass" use="optional"/>
+            <xs:attribute name="Category" type="common:typeVehicleCategory" use="optional"/>
+            <xs:attribute name="DoorCount" type="common:typeDoorCount" use="optional"/>
+            <xs:attribute name="RateCode" type="common:typeRateCode" use="optional"/>
+            <xs:attribute name="RateCategory" type="common:typeRateCategory" use="optional"/>
+            <xs:attribute name="DiscountNumber" type="common:typeDiscountNumber" use="optional"/>
+            <xs:attribute name="OfferRef" type="common:typeRef" use="optional"/>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleUpsellOffer">
+        <xs:annotation>
+            <xs:documentation>Offer data of Vehicle which is used to send an upsell request. Offer is found for a matching qualify.</xs:documentation>  
+        </xs:annotation>        
+        <xs:complexType>
+            <xs:attribute name="AirConditioning" type="xs:boolean" use="required"/>
+            <xs:attribute name="TransmissionType" type="common:typeVehicleTransmission" use="required"/>
+            <xs:attribute name="VehicleClass" type="common:typeVehicleClass" use="required">
+                <xs:annotation>
+                    <xs:documentation>Class of vehicle</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="Category" type="common:typeVehicleCategory" use="required">
+                <xs:annotation>
+                    <xs:documentation>Category of vehicle. Each supplier decides how these categories map to a vehicle class.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DoorCount" type="common:typeDoorCount" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The number of doors on the vehicle. Could be a range like '2-4'</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="RateCode" type="common:typeRateCode" use="optional"/>
+            <xs:attribute name="RateCategory" type="common:typeRateCategory" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The category of this rate (Best, etc)</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DiscountNumber" type="common:typeDiscountNumber" use="optional"/>
+            <xs:attribute name="FuelType" type="common:typeFuel" use="optional"/>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelUpsellQualify">
+        <xs:annotation>
+            <xs:documentation>Qualify data of Hotel against which Hotel property details search is matched to get an upsell Offer. Each qualify should have an offer.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="HotelChainCode" type="common:typeHotelChainCode" use="required"/>
+            <xs:attribute name="HotelCode" type="common:typeHotelCode" use="optional"/>
+            <xs:attribute name="HotelLocation" type="common:typeIATACode" use="optional">
+                <xs:annotation>
+                    <xs:documentation>The IATA location code for this entity.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="RatePlanType" type="common:typeRatePlanType" use="optional"/>
+            <xs:attribute name="EffectiveDate" type="common:typeDate" use="required"/>
+            <xs:attribute name="ExpirationDate" type="common:typeDate" use="required"/>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+            <xs:attribute name="OfferRef" type="common:typeRef" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Reference to the Offer.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="HotelUpsellOffer">
+        <xs:annotation>
+            <xs:documentation>Offer data of Hotel which is used to send a Hotel Upsell request and match a hotel property in the response. Offer is found for a matching qualify.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="common:CorporateDiscountID" minOccurs="0" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute name="RatePlanType" type="common:typeRatePlanType" use="required"/>
+            <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+            <xs:attributeGroup ref="common:attrElementKeyResults"/>
+        </xs:complexType>
+    </xs:element>       
+
+    <!--  Branded fares related elements start -->
+    <xs:element name="FareFamily">
+      <xs:annotation>
+         <xs:documentation>It is a branded Fare for a carrier and given fare basis code.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+          <xs:sequence>
+         <xs:element ref="FlightSpec" minOccurs="0" >
+                             <xs:annotation>
+                                  <xs:documentation>Flight number range or specific flight number for which this fare family would qualify.</xs:documentation>
+                              </xs:annotation>
+                         </xs:element>
+         </xs:sequence>
+         <xs:attribute name="Carrier" type="common:typeCarrier" use="required"/>
+         <xs:attribute name="Label" type="common:typeFareFamily" use="required"/>
+                                   <xs:attribute name="FareBasis" type="common:typeFareBasisCode" use="required"/>
+         <xs:attribute name="Key" type="common:typeRef" use="optional"/>
+         <xs:attribute name="Version" type="common:typeURVersion" use="required"/> 
+      </xs:complexType>
+   </xs:element>
+    <xs:element name="FareFamilyAdd">
+      <xs:annotation>
+         <xs:documentation>Branded fare admin request element to add a FareFamily.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="FareFamily"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="FareFamilyUpdate">
+      <xs:annotation>
+         <xs:documentation>Branded fare admin request element to Update a FareFamily.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="FareFamily"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="FareFamilyDelete">
+      <xs:annotation>
+         <xs:documentation>Branded fare admin request element to delete a FareFamily for the given FareFamilyRef.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="FareFamilyRef" type="common:typeRef" use="required"/>
+         <xs:attribute name="Version" type="common:typeURVersion" use="required"/> 
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BrandedFareAdminReq">
+      <xs:annotation>
+         <xs:documentation>Admin request to add/update or delete Branded fare.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                     <xs:sequence>
+                        <xs:element ref="FareFamilyAdd" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="FareFamilyUpdate" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="FareFamilyDelete" minOccurs="0" maxOccurs="unbounded"/>
+                     </xs:sequence>
+                </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BrandedFareAdminRsp">
+      <xs:annotation>
+         <xs:documentation>Response to BrandedFareAdminReq containing the FareFamily being added, deleted or updated.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+        <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+                 <xs:sequence>
+                    <xs:element ref="FareFamily" maxOccurs="unbounded"/>
+                 </xs:sequence>
+             </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>    
+    <!--  Branded fares related elements start -->
+    <xs:element name="AirUpsellOfferSearchCriteria">
+      <xs:annotation>
+         <xs:documentation>
+            Search criteria for AirUpsellOffers.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="common:AccountCode" minOccurs="0"/>
+         </xs:sequence>
+         <xs:attribute name="ClassOfService" type="typeClassOfService" use="required"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AirUpsellQualifySearchCriteria">
+      <xs:annotation>
+         <xs:documentation>Search criteria for AirUpsellQualify.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="UpsellSearchCriteria">
+               <xs:sequence>
+                  <xs:element ref="common:AccountCode" minOccurs="0"/>
+               </xs:sequence>
+               <xs:attribute name="Carrier" type="common:typeCarrier" use="required"/>
+               <xs:attribute name="Origin" type="common:typeIATACode" use="optional"/>
+               <xs:attribute name="Destination" type="common:typeIATACode" use="optional"/>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+
+    
+   <xs:element name="VehicleUpsellOfferSearchCriteria">
+      <xs:annotation>
+         <xs:documentation>
+            Search criteria for VehicleUpsellOffers.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="VehicleClass" type="common:typeVehicleClass" use="required">
+            <xs:annotation>
+               <xs:documentation>Class of vehicle</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Category" type="common:typeVehicleCategory" use="optional">
+            <xs:annotation>
+               <xs:documentation>
+                  Category of vehicle. Each supplier decides how these
+                  categories map to a vehicle class.
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="AirConditioning" type="xs:boolean" use="optional"/>
+         <xs:attribute name="TransmissionType" type="common:typeVehicleTransmission" use="optional"/>
+         <xs:attribute name="DoorCount" type="common:typeDoorCount" use="optional">
+            <xs:annotation>
+               <xs:documentation>
+                  The number of doors on the vehicle. Could be a range
+                  like '2-4'
+               </xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+    
+   <xs:element name="VehicleUpsellQualifySearchCriteria">
+      <xs:annotation>
+         <xs:documentation>Search criteria for VehicleUpsellQualify.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="UpsellSearchCriteria">
+               <xs:attribute name="VendorCode" type="common:typeSupplierCode" use="required"/>
+               <xs:attribute name="VehicleClass" type="common:typeVehicleClass" use="optional"/>
+               <xs:attribute name="Category" type="common:typeVehicleCategory" use="optional"/>
+               <xs:attribute name="AirConditioning" type="xs:boolean" use="optional"/>
+               <xs:attribute name="TransmissionType" type="common:typeVehicleTransmission" use="optional"/>
+               <xs:attribute name="DoorCount" type="common:typeDoorCount" use="optional"/>
+               <xs:attribute name="RateCode" type="common:typeRateCode" use="optional"/>
+               <xs:attribute name="DiscountNumber" type="common:typeDiscountNumber" use="optional"/>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+    <xs:element name="HotelUpsellOfferSearchCriteria">
+      <xs:annotation>
+         <xs:documentation>
+            Search criteria for HotelUpsellOffer.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="common:CorporateDiscountID" minOccurs="0"/>
+         </xs:sequence>
+         <xs:attribute name="RatePlanType" type="common:typeRatePlanType" use="required"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="HotelUpsellQualifySearchCriteria">
+      <xs:annotation>
+         <xs:documentation>Search criteria for HotelUpsellQualify.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="UpsellSearchCriteria">
+               <xs:sequence>
+                  <xs:element ref="common:CorporateDiscountID" minOccurs="0"/>
+               </xs:sequence>
+               <xs:attribute name="HotelChainCode" type="common:typeHotelChainCode" use="required"/>
+               <xs:attribute name="HotelCode" type="common:typeHotelCode" use="optional"/>
+               <xs:attribute name="HotelLocation" type="common:typeIATACode" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>The IATA location code for this entity.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="RatePlanType" type="common:typeRatePlanType" use="optional"/>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+    
+    <xs:element name="AirUpsellSearchCriteria">
+      <xs:annotation>
+         <xs:documentation>
+            Search criteria for AirUpsell.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="AirUpsellOfferSearchCriteria" minOccurs="0"/>
+            <xs:element ref="AirUpsellQualifySearchCriteria" minOccurs="1"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VehicleUpsellSearchCriteria">
+      <xs:annotation>
+         <xs:documentation>
+            Search criteria for VehicleUpsell.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="VehicleUpsellOfferSearchCriteria" minOccurs="0"/>
+            <xs:element ref="VehicleUpsellQualifySearchCriteria" minOccurs="1"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="HotelUpsellSearchCriteria">
+      <xs:annotation>
+         <xs:documentation>
+            Search criteria for HotelUpsell.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="HotelUpsellOfferSearchCriteria" minOccurs="0"/>
+            <xs:element ref="HotelUpsellQualifySearchCriteria" minOccurs="1"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   
+  <xs:element name="AirUpsellSearchResult">
+      <xs:annotation>
+         <xs:documentation>
+            Air upsell search criteria result having matching offer and
+            qualifies.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="AirUpsellQualify" maxOccurs="unbounded"/>
+            <xs:element ref="AirUpsellOffer"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="HotelUpsellSearchResult">
+      <xs:annotation>
+         <xs:documentation>
+            Hotel upsell search criteria result having matching offer
+            and qualifies.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="HotelUpsellQualify" maxOccurs="unbounded"/>
+            <xs:element ref="HotelUpsellOffer"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VehicleUpsellSearchResult">
+      <xs:annotation>
+         <xs:documentation>
+            Vehicle upsell search criteria result having matching offer
+            and qualifies.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="VehicleUpsellQualify" maxOccurs="unbounded"/>
+            <xs:element ref="VehicleUpsellOffer"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+    <xs:element name="UpsellSearchModifier">
+        <xs:annotation>
+            <xs:documentation>
+                Upsell search modifier to hold values for start and max results
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="MaxResults" type="common:typeMaxResults" use="optional" default="20"/>
+            <xs:attribute name="StartFromResult" type="common:typeStartFromResult" use="optional" default="1"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="EffectiveDate">
+        <xs:annotation>
+           <xs:documentation>Effective Date range. For specific date usage set both limits to same value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="EarliestDate" type="common:typeDate" use="required">
+                <xs:annotation>
+                    <xs:documentation>Earliest date of the Effective date</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="LatestDate" type="common:typeDate" default="9999-12-31">
+                <xs:annotation>
+                    <xs:documentation>Latest date of the Effective date</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+     </xs:element>
+     <xs:element name="ExpirationDate">
+        <xs:annotation>
+           <xs:documentation>Expiration Date range. For specific date usage set both limits to same value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="EarliestDate" type="common:typeDate"  use="required">
+                <xs:annotation>
+                    <xs:documentation>Earliest date of the Expiration date</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="LatestDate" type="common:typeDate" default="9999-12-31">
+                <xs:annotation>
+                    <xs:documentation>Latest date of the Expiration date</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+     </xs:element>
+    
+    <xs:complexType name="UpsellSearchCriteria">
+        <xs:annotation>
+            <xs:documentation>Search Element for Effective and Expiration
+                dates</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+                <xs:element ref="EffectiveDate" maxOccurs="1" />
+                <xs:element ref="ExpirationDate" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>       
+    
+    <xs:element name="FareFamilyCriteria">
+        <xs:annotation>
+            <xs:documentation>It is a branded Fare for a carrier and given fare basis code.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="Carrier" type="common:typeCarrier" use="required"/>
+            <xs:attribute name="Label" type="common:typeFareFamily" use="optional"/>
+            <xs:attribute name="FareBasis" type="common:typeFareBasisCode" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    
+   <xs:element name="BrandedFareSearchModifier">
+      <xs:annotation>
+         <xs:documentation>Search modifiers for Upsell.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="MaxResults" type="common:typeMaxResults" use="optional" default="20"/>
+         <xs:attribute name="StartFromResult" type="common:typeStartFromResult" use="optional" default="1"/>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="BrandedFareSearchReq">
+        <xs:annotation>
+            <xs:documentation>Branded Fare search request.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="FareFamilyCriteria" />
+                        <xs:element ref="BrandedFareSearchModifier" />
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="BrandedFareSearchRsp">
+        <xs:annotation>
+            <xs:documentation>Branded Fare search response.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="FareFamily" maxOccurs="unbounded" />
+                    </xs:sequence>  
+                    <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required"/>
+                  </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    
+    <xs:element name="AgencyServiceFeeCreateReq">
+      <xs:annotation>
+         <xs:documentation>
+            Creates an Agency Service Fee to be charged through BSP or Airline Reporting Corporation (ARC)..
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:element ref="common:ServiceFeeInfo" maxOccurs="unbounded"/>
+               </xs:sequence>
+               <xs:attribute name="UniversalRecordLocatorCode" type="common:typeLocatorCode" use="required">
+                  <xs:annotation>
+                     <xs:documentation>Service Fee to be applied to the UniversalRecord. </xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ProviderLocatorCode" type="common:typeLocatorCode" use="required">
+                  <xs:annotation>
+                     <xs:documentation>
+                        Service Fees to be applied to the provider locator code of the PNR .
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ProviderCode" type="xs:string" use="required">
+                  <xs:annotation>
+                     <xs:documentation>To be used with ProviderLocatorCode, which host the reservation being added to belongs to.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="AgencyServiceFeeCreateRsp">
+      <xs:annotation>
+         <xs:documentation>
+            Agency Service Fee issued through BSP or Airline Reporting Corporation (ARC)..
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="common:ServiceFeeInfo" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+
+    <!-- FindEmployeesOnFlight | Service to fetch maximum employees in a flight -->
+    
+    <xs:element name="FindEmployeesOnFlightReq">
+        <xs:annotation>
+            <xs:documentation> Request to retrieve the number of employees in a flight</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="FlightCriteria" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attribute name="AccountID" type="typeAccountID" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Identifier of the account owner of the employees</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="FindEmployeesOnFlightRsp">
+        <xs:annotation>
+            <xs:documentation>Response to retrieve the number of employees in a flight</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element name="EmployeesOnFlight" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="common:Name" maxOccurs="unbounded" />
+                                </xs:sequence>
+                                <xs:attribute name="UniversalRecordLocator" type="common:typeLocatorCode" use="required">
+                                    <xs:annotation>
+                                        <xs:documentation>UniversalRecord Locator</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="Destination" use="required" type="common:typeIATACode">
+                                   <xs:annotation>
+                                      <xs:documentation>Airsegment Destination</xs:documentation>
+                                   </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="Origin" use="required" type="common:typeIATACode">
+                                   <xs:annotation>
+                                      <xs:documentation>Airsegment Origin</xs:documentation>
+                                   </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="DepartureDate" use="required" type="xs:date">
+                                   <xs:annotation>
+                                      <xs:documentation>Airsegment departure date</xs:documentation>
+                                   </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="FlightNumber" use="required" type="xs:string">
+                                   <xs:annotation>
+                                      <xs:documentation>Air segment flight number</xs:documentation>
+                                   </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="Carrier" use="required" type="common:typeCarrier">
+                                   <xs:annotation>
+                                      <xs:documentation>Air Segment Carrier</xs:documentation>
+                                   </xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:simpleType name="typeAccountID">
+        <xs:annotation>
+            <xs:documentation> Applied profile account profile ID</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:long" />
+    </xs:simpleType>
+    
+    <xs:element name="FlightCriteria">
+        <xs:annotation>
+            <xs:documentation>Search criterion for UniversalRecordPolicyDataReq</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="Carrier" type="common:typeCarrier" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Air segment carrier</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="FlightNumber" type="xs:string" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Air segment flight number</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="DepartureDate" type="xs:date" use="required">
+                        <xs:annotation>
+                            <xs:documentation>AirSegment Departure date
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Origin" type="common:typeIATACode" use="required">
+                        <xs:annotation>
+                            <xs:documentation>AirSegment Origin</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Destination" type="common:typeIATACode" use="required">
+                        <xs:annotation>
+                            <xs:documentation>AirSegment destination</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ReferenceDataUpdateReq">
+        <xs:annotation>
+            <xs:documentation>Request to update reference data</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:annotation>
+                     <xs:documentation>Specifiy details either to update reference data or reference data master records.</xs:documentation>
+                  </xs:annotation>
+                  <xs:element name="Item" maxOccurs="unbounded">
+                     <xs:complexType>
+                        <xs:complexContent>
+                           <xs:extension base="typeReferenceData">
+                              <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                 <xs:element ref="AdditionalElement" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:annotation>
+                                       <xs:documentation>To provide other optional values.</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                              </xs:sequence>
+                           </xs:extension>
+                        </xs:complexContent>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+               <xs:attribute name="Action" use="required">
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:enumeration value="Add"/>
+                        <xs:enumeration value="Modify"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:attribute>
+               <xs:attribute name="TypeCode" type="common:typeTypeCode" use="required">
+                  <xs:annotation>
+                     <xs:documentation>The type code of the reference data to update.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="ReferenceDataUpdateRsp">
+      <xs:annotation>
+         <xs:documentation>An empty response indicates success.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp"/>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="ReferenceDataItemUpdate">
+      <xs:annotation>
+         <xs:documentation>To add or update reference data items for a particular type.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType/>
+   </xs:element>
+   <xs:complexType name="typeReferenceData">
+      <xs:attributeGroup ref="attrReferenceDataItem"/>
+      <xs:attribute name="DeprecatedDate" type="xs:date">
+         <xs:annotation>
+            <xs:documentation>Used to set deprecated date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:element name="AdditionalElement">
+      <xs:annotation>
+         <xs:documentation>To add or update reference data master records.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="Name" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>Please provide other column names. This should match with exact database column name</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Value" type="xs:string" use="required">
+            <xs:annotation>
+               <xs:documentation>Please provide corresponding value of the Name field</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

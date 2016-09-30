@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sc="http://www.travelport.com/soa/common/security/SessionContext_v1" xmlns:tns="http://www.travelport.com/service/sharedBooking_v38_0" xmlns:ns1="http://www.travelport.com/schema/sharedBooking_v38_0" xmlns:common="http://www.travelport.com/schema/common_v38_0" xmlns:ns2="http://www.travelport.com/schema/air_v38_0"  xmlns:ns3="http://www.travelport.com/schema/hotel_v38_0"  xmlns:ns4="http://www.travelport.com/schema/rail_v38_0"  xmlns:ns5="http://www.travelport.com/schema/universal_v38_0" xmlns:ns6="http://www.travelport.com/schema/vehicle_v38_0"  xmlns:ns7="http://www.travelport.com/schema/cruise_v38_0" xmlns:ns8="http://www.travelport.com/schema/passive_v38_0" xmlns:ns9="http://www.travelport.com/schema/universal_v38_0"  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="SharedBookingService" targetNamespace="http://www.travelport.com/service/sharedBooking_v38_0">
+	<import namespace="http://www.travelport.com/soa/common/security/SessionContext_v1" location="../SessionContext_v1/SessionContext_v1.xsd"/>
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.travelport.com/schema/sharedBooking_v38_0">
+			<include schemaLocation="SharedBookingReqRsp.xsd"/>
+		</schema>
+	</types>
+	<message name="SystemFaultMessage">
+		<part name="fault" element="common:ErrorInfo"/>
+	</message>
+	<message name="SessionContext">
+		<part name="sessionContext" element="sc:SessionContext"/>
+	</message>
+	<message name="BookingStartReq">
+		<part name="parameters" element="ns1:BookingStartReq"/>
+	</message>
+	<message name="BookingStartRsp">
+		<part name="result" element="ns1:BookingStartRsp"/>
+	</message>
+	<message name="BookingTravelerReq">
+		<part name="parameters" element="ns1:BookingTravelerReq"/>
+	</message>
+	<message name="BookingTravelerRsp">
+		<part name="result" element="ns1:BookingTravelerRsp"/>
+	</message>
+	<message name="BookingAirPnrElementReq">
+		<part name="parameters" element="ns1:BookingAirPnrElementReq"/>
+	</message>
+	<message name="BookingAirPnrElementRsp">
+		<part name="result" element="ns1:BookingAirPnrElementRsp"/>
+	</message>
+	<message name="BookingAirSegmentReq">
+		<part name="parameters" element="ns1:BookingAirSegmentReq"/>
+	</message>
+	<message name="BookingAirSegmentRsp">
+		<part name="result" element="ns1:BookingAirSegmentRsp"/>
+	</message>
+	<message name="BookingSeatAssignmentReq">
+		<part name="parameters" element="ns1:BookingSeatAssignmentReq"/>
+	</message>
+	<message name="BookingSeatAssignmentRsp">
+		<part name="result" element="ns1:BookingSeatAssignmentRsp"/>
+	</message>
+	<message name="BookingEndReq">
+		<part name="parameters" element="ns1:BookingEndReq"/>
+	</message>
+	<message name="BookingEndRsp">
+		<part name="result" element="ns1:BookingEndRsp"/>
+	</message>
+	<message name="BookingPnrElementReq">
+		<part name="parameters" element="ns1:BookingPnrElementReq"/>
+	</message>
+	<message name="BookingPnrElementRsp">
+		<part name="result" element="ns1:BookingPnrElementRsp"/>
+	</message>
+	<message name="BookingPricingReq">
+		<part name="parameters" element="ns1:BookingPricingReq"/>
+	</message>
+	<message name="BookingPricingRsp">
+		<part name="result" element="ns1:BookingPricingRsp"/>
+	</message>
+	<message name="BookingDisplayReq">
+		<part name="parameters" element="ns1:BookingDisplayReq"/>
+	</message>
+	<message name="BookingDisplayRsp">
+		<part name="result" element="ns1:BookingDisplayRsp"/>
+	</message>
+	<message name="BookingTerminalReq">
+		<part name="parameters" element="ns1:BookingTerminalReq"/>
+	</message>
+	<message name="BookingTerminalRsp">
+		<part name="result" element="ns1:BookingTerminalRsp"/>
+	</message>
+	<message name="BookingHotelSegmentReq">
+		<part name="parameters" element="ns1:BookingHotelSegmentReq"/>
+	</message>
+	<message name="BookingHotelSegmentRsp">
+		<part name="result" element="ns1:BookingHotelSegmentRsp"/>
+	</message>
+	<message name="BookingHotelPnrElementReq">
+		<part name="parameters" element="ns1:BookingHotelPnrElementReq"/>
+	</message>
+	<message name="BookingHotelPnrElementRsp">
+		<part name="result" element="ns1:BookingHotelPnrElementRsp"/>
+	</message>
+	<message name="BookingAirExchangeQuoteReq">
+		<part name="parameters" element="ns1:BookingAirExchangeQuoteReq"/>
+	</message>
+	<message name="BookingAirExchangeQuoteRsp">
+		<part name="result" element="ns1:BookingAirExchangeQuoteRsp"/>
+	</message>
+	<message name="BookingRetrieveDocumentReq">
+		<part name="result" element="ns1:BookingRetrieveDocumentReq" />
+	</message>
+	<message name="BookingRetrieveDocumentRsp">
+		<part name="result" element="ns1:BookingRetrieveDocumentRsp" />
+	</message>
+	<message name="BookingAirExchangeReq">
+		<part name="parameters" element="ns1:BookingAirExchangeReq"/>
+	</message>
+	<message name="BookingAirExchangeRsp">
+		<part name="result" element="ns1:BookingAirExchangeRsp"/>
+	</message>
+	<portType name="BookingStartPortType">
+		<operation name="service">
+			<input message="tns:BookingStartReq"/>
+			<output message="tns:BookingStartRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingTravelerPortType">
+		<operation name="service">
+			<input message="tns:BookingTravelerReq"/>
+			<output message="tns:BookingTravelerRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingAirPnrElementPortType">
+		<operation name="service">
+			<input message="tns:BookingAirPnrElementReq"/>
+			<output message="tns:BookingAirPnrElementRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingAirSegmentPortType">
+		<operation name="service">
+			<input message="tns:BookingAirSegmentReq"/>
+			<output message="tns:BookingAirSegmentRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingSeatAssignmentPortType">
+		<operation name="service">
+			<input message="tns:BookingSeatAssignmentReq"/>
+			<output message="tns:BookingSeatAssignmentRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingEndPortType">
+		<operation name="service">
+			<input message="tns:BookingEndReq"/>
+			<output message="tns:BookingEndRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingPnrElementPortType">
+		<operation name="service">
+			<input message="tns:BookingPnrElementReq"/>
+			<output message="tns:BookingPnrElementRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingPricingPortType">
+		<operation name="service">
+			<input message="tns:BookingPricingReq"/>
+			<output message="tns:BookingPricingRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingDisplayPortType">
+		<operation name="service">
+			<input message="tns:BookingDisplayReq"/>
+			<output message="tns:BookingDisplayRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingTerminalCommandPortType">
+		<operation name="service">
+			<input message="tns:BookingTerminalReq"/>
+			<output message="tns:BookingTerminalRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingHotelSegmentPortType">
+		<operation name="service">
+			<input message="tns:BookingHotelSegmentReq"/>
+			<output message="tns:BookingHotelSegmentRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingHotelPnrElementPortType">
+		<operation name="service">
+			<input message="tns:BookingHotelPnrElementReq"/>
+			<output message="tns:BookingHotelPnrElementRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingAirExchangeQuotePortType">
+		<operation name="service">
+			<input message="tns:BookingAirExchangeQuoteReq"/>
+			<output message="tns:BookingAirExchangeQuoteRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingAirExchangePortType">
+		<operation name="service">
+			<input message="tns:BookingAirExchangeReq"/>
+			<output message="tns:BookingAirExchangeRsp"/>
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage"/>
+		</operation>
+	</portType>
+	<portType name="BookingRetrieveDocumentPortType">
+		<operation name="service">
+			<input message="tns:BookingRetrieveDocumentReq" />
+			<output message="tns:BookingRetrieveDocumentRsp" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+</definitions>

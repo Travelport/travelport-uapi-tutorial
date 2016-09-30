@@ -135,32 +135,32 @@ import org.xml.sax.Locator;
     "secondaryTypeRules",
     "remarks"
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
 public class ServiceRuleType
     implements Locatable
 {
 
     @XmlElement(name = "ApplicationRules")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected ServiceRuleType.ApplicationRules applicationRules;
     @XmlElement(name = "ApplicationLevel")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected ServiceRuleType.ApplicationLevel applicationLevel;
     @XmlElement(name = "ModifyRules")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected ServiceRuleType.ModifyRules modifyRules;
     @XmlElement(name = "SecondaryTypeRules")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected ServiceRuleType.SecondaryTypeRules secondaryTypeRules;
     @XmlElement(name = "Remarks")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected List<FormattedTextTextType> remarks;
     @XmlAttribute(name = "Key", required = true)
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected String key;
     @XmlLocation
     @XmlTransient
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected Locator locator;
 
     /**
@@ -171,7 +171,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.ApplicationRules }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public ServiceRuleType.ApplicationRules getApplicationRules() {
         return applicationRules;
     }
@@ -184,7 +184,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.ApplicationRules }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setApplicationRules(ServiceRuleType.ApplicationRules value) {
         this.applicationRules = value;
     }
@@ -197,7 +197,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.ApplicationLevel }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public ServiceRuleType.ApplicationLevel getApplicationLevel() {
         return applicationLevel;
     }
@@ -210,7 +210,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.ApplicationLevel }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setApplicationLevel(ServiceRuleType.ApplicationLevel value) {
         this.applicationLevel = value;
     }
@@ -223,7 +223,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.ModifyRules }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public ServiceRuleType.ModifyRules getModifyRules() {
         return modifyRules;
     }
@@ -236,7 +236,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.ModifyRules }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setModifyRules(ServiceRuleType.ModifyRules value) {
         this.modifyRules = value;
     }
@@ -249,7 +249,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.SecondaryTypeRules }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public ServiceRuleType.SecondaryTypeRules getSecondaryTypeRules() {
         return secondaryTypeRules;
     }
@@ -262,7 +262,7 @@ public class ServiceRuleType
      *     {@link ServiceRuleType.SecondaryTypeRules }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setSecondaryTypeRules(ServiceRuleType.SecondaryTypeRules value) {
         this.secondaryTypeRules = value;
     }
@@ -289,7 +289,7 @@ public class ServiceRuleType
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public List<FormattedTextTextType> getRemarks() {
         if (remarks == null) {
             remarks = new ArrayList<FormattedTextTextType>();
@@ -305,7 +305,7 @@ public class ServiceRuleType
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String getKey() {
         return key;
     }
@@ -318,7 +318,7 @@ public class ServiceRuleType
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setKey(String value) {
         this.key = value;
     }
@@ -329,17 +329,17 @@ public class ServiceRuleType
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public Locator sourceLocation() {
         return locator;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setSourceLocation(Locator newLocator) {
         locator = newLocator;
     }
@@ -386,26 +386,26 @@ public class ServiceRuleType
         "applicationLimits",
         "serviceData"
     })
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class ApplicationLevel
         implements Locatable
     {
 
         @XmlElement(name = "ApplicationLimits")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected ServiceRuleType.ApplicationLevel.ApplicationLimits applicationLimits;
         @XmlElement(name = "ServiceData")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected List<ServiceData> serviceData;
         @XmlAttribute(name = "ApplicableLevels")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected List<OptionalServiceApplicabilityType> applicableLevels;
         @XmlAttribute(name = "ProviderDefinedApplicableLevels")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected String providerDefinedApplicableLevels;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -416,7 +416,7 @@ public class ServiceRuleType
          *     {@link ServiceRuleType.ApplicationLevel.ApplicationLimits }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public ServiceRuleType.ApplicationLevel.ApplicationLimits getApplicationLimits() {
             return applicationLimits;
         }
@@ -429,7 +429,7 @@ public class ServiceRuleType
          *     {@link ServiceRuleType.ApplicationLevel.ApplicationLimits }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setApplicationLimits(ServiceRuleType.ApplicationLevel.ApplicationLimits value) {
             this.applicationLimits = value;
         }
@@ -456,7 +456,7 @@ public class ServiceRuleType
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public List<ServiceData> getServiceData() {
             if (serviceData == null) {
                 serviceData = new ArrayList<ServiceData>();
@@ -486,7 +486,7 @@ public class ServiceRuleType
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public List<OptionalServiceApplicabilityType> getApplicableLevels() {
             if (applicableLevels == null) {
                 applicableLevels = new ArrayList<OptionalServiceApplicabilityType>();
@@ -502,7 +502,7 @@ public class ServiceRuleType
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String getProviderDefinedApplicableLevels() {
             return providerDefinedApplicableLevels;
         }
@@ -515,7 +515,7 @@ public class ServiceRuleType
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setProviderDefinedApplicableLevels(String value) {
             this.providerDefinedApplicableLevels = value;
         }
@@ -526,17 +526,17 @@ public class ServiceRuleType
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }
@@ -565,17 +565,17 @@ public class ServiceRuleType
         @XmlType(name = "", propOrder = {
             "applicationLimit"
         })
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public static class ApplicationLimits
             implements Locatable
         {
 
             @XmlElement(name = "ApplicationLimit", required = true)
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected List<OptionalServiceApplicationLimitType> applicationLimit;
             @XmlLocation
             @XmlTransient
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Locator locator;
 
             /**
@@ -600,7 +600,7 @@ public class ServiceRuleType
              * 
              * 
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public List<OptionalServiceApplicationLimitType> getApplicationLimit() {
                 if (applicationLimit == null) {
                     applicationLimit = new ArrayList<OptionalServiceApplicationLimitType>();
@@ -614,17 +614,17 @@ public class ServiceRuleType
              * 
              */
             @Override
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public String toString() {
                 return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
             }
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public Locator sourceLocation() {
                 return locator;
             }
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setSourceLocation(Locator newLocator) {
                 locator = newLocator;
             }
@@ -657,29 +657,29 @@ public class ServiceRuleType
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class ApplicationRules
         implements Locatable
     {
 
         @XmlAttribute(name = "RequiredForAllTravelers")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Boolean requiredForAllTravelers;
         @XmlAttribute(name = "RequiredForAllSegments")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Boolean requiredForAllSegments;
         @XmlAttribute(name = "RequiredForAllSegmentsInOD")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Boolean requiredForAllSegmentsInOD;
         @XmlAttribute(name = "UnselectedOptionRequired")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Boolean unselectedOptionRequired;
         @XmlAttribute(name = "SecondaryOptionCodeRequired")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Boolean secondaryOptionCodeRequired;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -690,7 +690,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Boolean isRequiredForAllTravelers() {
             return requiredForAllTravelers;
         }
@@ -703,7 +703,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setRequiredForAllTravelers(Boolean value) {
             this.requiredForAllTravelers = value;
         }
@@ -716,7 +716,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Boolean isRequiredForAllSegments() {
             return requiredForAllSegments;
         }
@@ -729,7 +729,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setRequiredForAllSegments(Boolean value) {
             this.requiredForAllSegments = value;
         }
@@ -742,7 +742,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Boolean isRequiredForAllSegmentsInOD() {
             return requiredForAllSegmentsInOD;
         }
@@ -755,7 +755,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setRequiredForAllSegmentsInOD(Boolean value) {
             this.requiredForAllSegmentsInOD = value;
         }
@@ -768,7 +768,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Boolean isUnselectedOptionRequired() {
             return unselectedOptionRequired;
         }
@@ -781,7 +781,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setUnselectedOptionRequired(Boolean value) {
             this.unselectedOptionRequired = value;
         }
@@ -794,7 +794,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Boolean isSecondaryOptionCodeRequired() {
             return secondaryOptionCodeRequired;
         }
@@ -807,7 +807,7 @@ public class ServiceRuleType
          *     {@link Boolean }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSecondaryOptionCodeRequired(Boolean value) {
             this.secondaryOptionCodeRequired = value;
         }
@@ -818,17 +818,17 @@ public class ServiceRuleType
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }
@@ -873,23 +873,23 @@ public class ServiceRuleType
     @XmlType(name = "", propOrder = {
         "modifyRule"
     })
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class ModifyRules
         implements Locatable
     {
 
         @XmlElement(name = "ModifyRule", required = true)
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected List<ServiceRuleType.ModifyRules.ModifyRule> modifyRule;
         @XmlAttribute(name = "SupportedModifications")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected List<ModificationType> supportedModifications;
         @XmlAttribute(name = "ProviderDefinedModificationType")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected String providerDefinedModificationType;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -914,7 +914,7 @@ public class ServiceRuleType
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public List<ServiceRuleType.ModifyRules.ModifyRule> getModifyRule() {
             if (modifyRule == null) {
                 modifyRule = new ArrayList<ServiceRuleType.ModifyRules.ModifyRule>();
@@ -944,7 +944,7 @@ public class ServiceRuleType
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public List<ModificationType> getSupportedModifications() {
             if (supportedModifications == null) {
                 supportedModifications = new ArrayList<ModificationType>();
@@ -960,7 +960,7 @@ public class ServiceRuleType
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String getProviderDefinedModificationType() {
             return providerDefinedModificationType;
         }
@@ -973,7 +973,7 @@ public class ServiceRuleType
          *     {@link String }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setProviderDefinedModificationType(String value) {
             this.providerDefinedModificationType = value;
         }
@@ -984,17 +984,17 @@ public class ServiceRuleType
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }
@@ -1019,32 +1019,32 @@ public class ServiceRuleType
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public static class ModifyRule
             implements Locatable
         {
 
             @XmlAttribute(name = "Modification", required = true)
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected ModificationType modification;
             @XmlAttribute(name = "AutomaticallyAppliedOnAdd")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Boolean automaticallyAppliedOnAdd;
             @XmlAttribute(name = "CanDelete")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Boolean canDelete;
             @XmlAttribute(name = "CanAdd")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Boolean canAdd;
             @XmlAttribute(name = "Refundable")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Boolean refundable;
             @XmlAttribute(name = "ProviderDefinedModificationType")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected String providerDefinedModificationType;
             @XmlLocation
             @XmlTransient
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Locator locator;
 
             /**
@@ -1055,7 +1055,7 @@ public class ServiceRuleType
              *     {@link ModificationType }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public ModificationType getModification() {
                 return modification;
             }
@@ -1068,7 +1068,7 @@ public class ServiceRuleType
              *     {@link ModificationType }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setModification(ModificationType value) {
                 this.modification = value;
             }
@@ -1081,7 +1081,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public boolean isAutomaticallyAppliedOnAdd() {
                 if (automaticallyAppliedOnAdd == null) {
                     return false;
@@ -1098,7 +1098,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setAutomaticallyAppliedOnAdd(Boolean value) {
                 this.automaticallyAppliedOnAdd = value;
             }
@@ -1111,7 +1111,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public Boolean isCanDelete() {
                 return canDelete;
             }
@@ -1124,7 +1124,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setCanDelete(Boolean value) {
                 this.canDelete = value;
             }
@@ -1137,7 +1137,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public Boolean isCanAdd() {
                 return canAdd;
             }
@@ -1150,7 +1150,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setCanAdd(Boolean value) {
                 this.canAdd = value;
             }
@@ -1163,7 +1163,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public Boolean isRefundable() {
                 return refundable;
             }
@@ -1176,7 +1176,7 @@ public class ServiceRuleType
              *     {@link Boolean }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setRefundable(Boolean value) {
                 this.refundable = value;
             }
@@ -1189,7 +1189,7 @@ public class ServiceRuleType
              *     {@link String }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public String getProviderDefinedModificationType() {
                 return providerDefinedModificationType;
             }
@@ -1202,7 +1202,7 @@ public class ServiceRuleType
              *     {@link String }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setProviderDefinedModificationType(String value) {
                 this.providerDefinedModificationType = value;
             }
@@ -1213,17 +1213,17 @@ public class ServiceRuleType
              * 
              */
             @Override
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public String toString() {
                 return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
             }
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public Locator sourceLocation() {
                 return locator;
             }
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setSourceLocation(Locator newLocator) {
                 locator = newLocator;
             }
@@ -1267,17 +1267,17 @@ public class ServiceRuleType
     @XmlType(name = "", propOrder = {
         "secondaryTypeRule"
     })
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class SecondaryTypeRules
         implements Locatable
     {
 
         @XmlElement(name = "SecondaryTypeRule", required = true)
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected List<ServiceRuleType.SecondaryTypeRules.SecondaryTypeRule> secondaryTypeRule;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -1302,7 +1302,7 @@ public class ServiceRuleType
          * 
          * 
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public List<ServiceRuleType.SecondaryTypeRules.SecondaryTypeRule> getSecondaryTypeRule() {
             if (secondaryTypeRule == null) {
                 secondaryTypeRule = new ArrayList<ServiceRuleType.SecondaryTypeRules.SecondaryTypeRule>();
@@ -1316,17 +1316,17 @@ public class ServiceRuleType
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }
@@ -1356,20 +1356,20 @@ public class ServiceRuleType
         @XmlType(name = "", propOrder = {
             "applicationLimit"
         })
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public static class SecondaryTypeRule
             implements Locatable
         {
 
             @XmlElement(name = "ApplicationLimit")
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected List<OptionalServiceApplicationLimitType> applicationLimit;
             @XmlAttribute(name = "SecondaryType", required = true)
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected String secondaryType;
             @XmlLocation
             @XmlTransient
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             protected Locator locator;
 
             /**
@@ -1394,7 +1394,7 @@ public class ServiceRuleType
              * 
              * 
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public List<OptionalServiceApplicationLimitType> getApplicationLimit() {
                 if (applicationLimit == null) {
                     applicationLimit = new ArrayList<OptionalServiceApplicationLimitType>();
@@ -1410,7 +1410,7 @@ public class ServiceRuleType
              *     {@link String }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public String getSecondaryType() {
                 return secondaryType;
             }
@@ -1423,7 +1423,7 @@ public class ServiceRuleType
              *     {@link String }
              *     
              */
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setSecondaryType(String value) {
                 this.secondaryType = value;
             }
@@ -1434,17 +1434,17 @@ public class ServiceRuleType
              * 
              */
             @Override
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public String toString() {
                 return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
             }
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public Locator sourceLocation() {
                 return locator;
             }
 
-            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+            @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
             public void setSourceLocation(Locator newLocator) {
                 locator = newLocator;
             }

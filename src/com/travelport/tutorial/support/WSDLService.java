@@ -3,27 +3,28 @@ package com.travelport.tutorial.support;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.travelport.service.air_v35_0.AirAvailabilitySearchPortType;
-import com.travelport.service.air_v35_0.AirLowFareSearchAsynchPortType;
-import com.travelport.service.air_v35_0.AirLowFareSearchPortType;
-import com.travelport.service.air_v35_0.AirPricePortType;
-import com.travelport.service.air_v35_0.AirRetrieveLowFareSearchPortType;
-import com.travelport.service.air_v35_0.AirService;
-import com.travelport.service.hotel_v35_0.HotelDetailsServicePortType;
-import com.travelport.service.hotel_v35_0.HotelMediaLinksServicePortType;
-import com.travelport.service.hotel_v35_0.HotelSearchServicePortType;
-import com.travelport.service.hotel_v35_0.HotelService;
+import com.travelport.service.air_v38_0.AirAvailabilitySearchPortType;
+import com.travelport.service.air_v38_0.AirLowFareSearchAsynchPortType;
+import com.travelport.service.air_v38_0.AirLowFareSearchPortType;
+import com.travelport.service.air_v38_0.AirPricePortType;
+import com.travelport.service.air_v38_0.AirRetrieveLowFareSearchPortType;
+import com.travelport.service.air_v38_0.AirService;
+import com.travelport.service.air_v38_0.AirTicketingPortType;
+import com.travelport.service.hotel_v38_0.HotelDetailsServicePortType;
+import com.travelport.service.hotel_v38_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v38_0.HotelSearchServicePortType;
+import com.travelport.service.hotel_v38_0.HotelService;
 import com.travelport.service.system_v32_0.SystemInfoPortType;
 import com.travelport.service.system_v32_0.SystemPingPortType;
 import com.travelport.service.system_v32_0.SystemService;
 import com.travelport.service.system_v32_0.SystemTimePortType;
-import com.travelport.service.universal_v35_0.AirCreateReservationPortType;
-import com.travelport.service.universal_v35_0.HotelCancelServicePortType;
-import com.travelport.service.universal_v35_0.HotelReservationServicePortType;
-import com.travelport.service.universal_v35_0.UniversalRecordRetrieveServicePortType;
-import com.travelport.service.universal_v35_0.UniversalRecordService;
-import com.travelport.service.vehicle_v35_0.VehicleSearchServicePortType;
-import com.travelport.service.vehicle_v35_0.VehicleService;
+import com.travelport.service.universal_v38_0.AirCreateReservationPortType;
+import com.travelport.service.universal_v38_0.HotelCancelServicePortType;
+import com.travelport.service.universal_v38_0.HotelReservationServicePortType;
+import com.travelport.service.universal_v38_0.UniversalRecordRetrieveServicePortType;
+import com.travelport.service.universal_v38_0.UniversalRecordService;
+import com.travelport.service.vehicle_v38_0.VehicleSearchServicePortType;
+import com.travelport.service.vehicle_v38_0.VehicleService;
 
 
 /**
@@ -33,14 +34,14 @@ import com.travelport.service.vehicle_v35_0.VehicleService;
  */
 public class WSDLService {
 	// make this point to the right path for you
-	static public String URLPREFIX = "file:///C://Travelport_1//SamplesAutoMation//AutoWork//travelport-uapi-tutorial-v35/";
+	static public String URLPREFIX = "file:///C://Travelport_1//SamplesAutoMation//AutoWork//travelport-uapi-tutorial-v38/";
 
 	// location of the WSDL files within this repository
 	static public String SYSTEM_WSDL = "wsdl/system_v32_0/System.wsdl";
-	static public String AIR_WSDL = "wsdl/air_v35_0/Air.wsdl";
-	static public String HOTEL_WSDL = "wsdl/hotel_v35_0/Hotel.wsdl";
-	static public String VEHICLE_WSDL = "wsdl/vehicle_v35_0/Vehicle.wsdl";
-	static public String UNIVERSAL_WSDL = "wsdl/universal_v35_0/UniversalRecord.wsdl";
+	static public String AIR_WSDL = "wsdl/air_v38_0/Air.wsdl";
+	static public String HOTEL_WSDL = "wsdl/hotel_v38_0/Hotel.wsdl";
+	static public String VEHICLE_WSDL = "wsdl/vehicle_v38_0/Vehicle.wsdl";
+	static public String UNIVERSAL_WSDL = "wsdl/universal_v38_0/UniversalRecord.wsdl";
 
 	// these endpoint parameters vary based on which region you are
 	// in...check your travelport sign up to see which url you should use...
@@ -67,11 +68,11 @@ public class WSDLService {
 			WSDLService.SYSTEM_WSDL, SystemService.class);
 	public static ServiceWrapper<VehicleService> vehicle = new ServiceWrapper<VehicleService>(
 			WSDLService.VEHICLE_WSDL, VehicleService.class);
-	public static ServiceWrapper<com.travelport.service.universal_v35_0.HotelService> universalHotel = new ServiceWrapper<com.travelport.service.universal_v35_0.HotelService>(
-			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v35_0.HotelService.class);
+	public static ServiceWrapper<com.travelport.service.universal_v38_0.HotelService> universalHotel = new ServiceWrapper<com.travelport.service.universal_v38_0.HotelService>(
+			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v38_0.HotelService.class);
 	
-	public static ServiceWrapper<com.travelport.service.universal_v35_0.AirService> universalAir = new ServiceWrapper<com.travelport.service.universal_v35_0.AirService>(
-			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v35_0.AirService.class);
+	public static ServiceWrapper<com.travelport.service.universal_v38_0.AirService> universalAir = new ServiceWrapper<com.travelport.service.universal_v38_0.AirService>(
+			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v38_0.AirService.class);
 	public static ServiceWrapper<UniversalRecordService> universal = new ServiceWrapper<UniversalRecordService>(
 			WSDLService.UNIVERSAL_WSDL, UniversalRecordService.class);
 
@@ -86,8 +87,10 @@ public class WSDLService {
 			air, AirRetrieveLowFareSearchPortType.class, AIR_ENDPOINT);
 	public static PortWrapper<AirPricePortType, AirService> airPrice = new PortWrapper<AirPricePortType, AirService>(
 			air, AirPricePortType.class, AIR_ENDPOINT);
-	public static PortWrapper<AirCreateReservationPortType, com.travelport.service.universal_v35_0.AirService> airReserve = new PortWrapper<AirCreateReservationPortType, com.travelport.service.universal_v35_0.AirService>(
+	public static PortWrapper<AirCreateReservationPortType, com.travelport.service.universal_v38_0.AirService> airReserve = new PortWrapper<AirCreateReservationPortType, com.travelport.service.universal_v38_0.AirService>(
 			universalAir, AirCreateReservationPortType.class, AIR_ENDPOINT);
+	public static PortWrapper<AirTicketingPortType, AirService> airTicket = new PortWrapper<AirTicketingPortType, AirService>(
+			air, AirTicketingPortType.class, AIR_ENDPOINT);
 
 	// system ports
 	public static PortWrapper<SystemPingPortType, SystemService> sysPing = new PortWrapper<SystemPingPortType, SystemService>(
@@ -98,7 +101,7 @@ public class WSDLService {
 			sys, SystemTimePortType.class, SYSTEM_ENDPOINT);
 
 	// hotel ports
-	public static PortWrapper<HotelReservationServicePortType, com.travelport.service.universal_v35_0.HotelService> hotelReserve = new PortWrapper<HotelReservationServicePortType, com.travelport.service.universal_v35_0.HotelService>(
+	public static PortWrapper<HotelReservationServicePortType, com.travelport.service.universal_v38_0.HotelService> hotelReserve = new PortWrapper<HotelReservationServicePortType, com.travelport.service.universal_v38_0.HotelService>(
 			universalHotel, HotelReservationServicePortType.class, HOTEL_ENDPOINT);
 	public static PortWrapper<HotelSearchServicePortType, HotelService> hotelShop = new PortWrapper<HotelSearchServicePortType, HotelService>(
 			hotel, HotelSearchServicePortType.class, HOTEL_ENDPOINT);

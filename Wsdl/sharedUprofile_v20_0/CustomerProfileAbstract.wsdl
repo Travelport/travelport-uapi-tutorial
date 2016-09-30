@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UProfileSharedService" 
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.travelport.com/service/sharedUprofile_v20_0" 
+	xmlns:ns1="http://www.travelport.com/soa/common/security/SessionContext_v1"
+	xmlns:ns2="http://www.travelport.com/schema/sharedUprofile_v20_0"
+	xmlns:common="http://www.travelport.com/schema/uprofileCommon_v30_0"
+	targetNamespace="http://www.travelport.com/service/sharedUprofile_v20_0">
+
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+			targetNamespace="http://www.travelport.com/schema/sharedUprofile_v20_0">
+			 <include schemaLocation="UProfileShared.xsd" />
+			 <include schemaLocation="UProfileAdminReqRsp.xsd" />
+			 <include schemaLocation="UProfileSearchReqRsp.xsd" />
+			 <include schemaLocation="UProfileCoreReqRsp.xsd"/>
+			 <import namespace="http://www.travelport.com/soa/common/security/SessionContext_v1" schemaLocation="../SessionContext_v1/SessionContext_v1.xsd"/>
+		</schema>
+	</types>
+
+	<message name="SessionContext">
+		<part name="sessioncontext" element="ns1:SessionContext" />
+	</message>
+
+	<message name="ProfileCreateRequest">
+		<part name="parameters" element="ns2:ProfileCreateReq" />
+	</message>
+
+	<message name="ProfileCreateResponse">
+		<part name="result" element="ns2:ProfileCreateRsp" />
+	</message>
+
+	<message name="ProfileModifyRequest">
+		<part name="parameters" element="ns2:ProfileModifyReq" />
+	</message>
+
+	<message name="ProfileModifyResponse">
+		<part name="result" element="ns2:ProfileModifyRsp" />
+	</message>
+
+	<message name="ProfileRetrieveRequest">
+		<part name="parameters" element="ns2:ProfileRetrieveReq" />
+	</message>
+
+	<message name="ProfileRetrieveResponse">
+		<part name="result" element="ns2:ProfileRetrieveRsp" />
+	</message>
+
+	<message name="ProfileDeleteRequest">
+		<part name="parameters" element="ns2:ProfileDeleteReq" />
+	</message>
+
+	<message name="ProfileDeleteResponse">
+		<part name="result" element="ns2:ProfileDeleteRsp" />
+	</message>
+	
+	<message name="ProfileSearchRequest">
+		<part name="parameters" element="ns2:ProfileSearchReq" />
+	</message>
+
+	<message name="ProfileSearchResponse">
+		<part name="result" element="ns2:ProfileSearchRsp" />
+	</message>
+	
+	<message name="ProfileChildSearchRequest">
+        <part name="parameters" element="ns2:ProfileChildSearchReq" />
+    </message>
+
+    <message name="ProfileChildSearchResponse">
+        <part name="result" element="ns2:ProfileChildSearchRsp" />
+    </message> 
+	
+	<message name="ProfileCreateFieldRequest">
+        <part name="parameters" element="ns2:ProfileCreateFieldReq" />
+    </message>
+
+    <message name="ProfileCreateFieldResponse">
+        <part name="result" element="ns2:ProfileCreateFieldRsp" />
+    </message>
+    
+    <message name="ProfileModifyFieldRequest">
+        <part name="parameters" element="ns2:ProfileModifyFieldReq" />
+    </message>
+
+    <message name="ProfileModifyFieldResponse">
+        <part name="result" element="ns2:ProfileModifyFieldRsp" />
+    </message>
+    
+    <message name="ProfileSearchFieldRequest">
+        <part name="parameters" element="ns2:ProfileSearchFieldReq" />
+    </message>
+
+    <message name="ProfileSearchFieldResponse">
+        <part name="result" element="ns2:ProfileSearchFieldRsp" />
+    </message>
+    
+    <message name="ProfileRetrieveHistoryRequest">
+        <part name="parameters" element="ns2:ProfileRetrieveHistoryReq" />
+    </message>
+    <message name="ProfileRetrieveHistoryResponse">
+        <part name="result" element="ns2:ProfileRetrieveHistoryRsp" />
+    </message>
+    
+     <message name="ProfileSearchTagsRequest">
+        <part name="parameters" element="ns2:ProfileSearchTagsReq" />
+    </message>
+
+    <message name="ProfileSearchTagsResponse">
+        <part name="result" element="ns2:ProfileSearchTagsRsp" />
+    </message> 
+    
+    <message name="ProfileDeleteTagRequest">
+        <part name="parameters" element="ns2:ProfileDeleteTagReq" />
+    </message>
+
+    <message name="ProfileDeleteTagResponse">
+        <part name="result" element="ns2:ProfileDeleteTagRsp" />
+    </message> 
+    
+     <message name="ProfileCreateTagsRequest">
+        <part name="parameters" element="ns2:ProfileCreateTagsReq" />
+    </message>
+
+    <message name="ProfileCreateTagsResponse">
+        <part name="result" element="ns2:ProfileCreateTagsRsp" />
+    </message>     
+
+    <message name="ProfileModifyTagsRequest">
+        <part name="parameters" element="ns2:ProfileModifyTagsReq" />
+    </message>
+
+    <message name="ProfileModifyTagsResponse">
+        <part name="result" element="ns2:ProfileModifyTagsRsp" />
+    </message> 
+    
+    <message name="ProfileSummaryFaultMessage">
+        <part name="fault" element="ns2:ProfileSummaryErrorInfo" />
+    </message>
+    
+	<message name="SystemFaultMessage">
+		<part name="fault" element="common:ErrorInfo" />
+	</message>
+	
+	<message name="SingleProfileMigrationRequest">
+        <part name="parameters" element="ns2:SingleProfileMigrationReq" />
+    </message>
+    
+    <message name="SingleProfileMigrationResponse">
+        <part name="result" element="ns2:SingleProfileMigrationRsp" />
+    </message>
+
+	<message name="ProfileRetrieveParentRequest">
+		<part name="parameters" element="ns2:ProfileRetrieveParentReq" />
+	</message>
+
+	<message name="ProfileRetrieveParentResponse">
+		<part name="result" element="ns2:ProfileRetrieveParentRsp" />
+	</message>
+	
+	<message name="UIMetaDataCreateReq">
+		<part name="result" element="ns2:UIMetaDataCreateReq" />
+	</message>
+	<message name="UIMetaDataCreateRsp">
+		<part name="result" element="ns2:UIMetaDataCreateRsp" />
+	</message>
+	<message name="UIMetaDataModifyReq">
+		<part name="result" element="ns2:UIMetaDataModifyReq" />
+	</message>
+	<message name="UIMetaDataModifyRsp">
+		<part name="result" element="ns2:UIMetaDataModifyRsp" />
+	</message>
+	<message name="UIMetaDataRetrieveReq">
+		<part name="result" element="ns2:UIMetaDataRetrieveReq" />
+	</message>
+	<message name="UIMetaDataRetrieveRsp">
+		<part name="result" element="ns2:UIMetaDataRetrieveRsp" />
+	</message>
+	<message name="UIMetaDataDeleteReq">
+		<part name="result" element="ns2:UIMetaDataDeleteReq" />
+	</message>
+	<message name="UIMetaDataDeleteRsp">
+		<part name="result" element="ns2:UIMetaDataDeleteRsp" />
+	</message>
+	
+	<portType name="ProfileCreatePortType">
+		<operation name="service">
+			<input message="tns:ProfileCreateRequest" />
+			<output message="tns:ProfileCreateResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileModifyPortType">
+		<operation name="service">
+			<input message="tns:ProfileModifyRequest" />
+			<output message="tns:ProfileModifyResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileRetrievePortType">
+		<operation name="service">
+			<input message="tns:ProfileRetrieveRequest" />
+			<output message="tns:ProfileRetrieveResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+	<portType name="ProfileDeletePortType">
+		<operation name="service">
+			<input message="tns:ProfileDeleteRequest" />
+			<output message="tns:ProfileDeleteResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+	
+	<portType name="ProfileSearchPortType">
+		<operation name="service">
+			<input message="tns:ProfileSearchRequest" />
+			<output message="tns:ProfileSearchResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+	
+	<portType name="ProfileChildSearchPortType">
+        <operation name="service">
+            <input message="tns:ProfileChildSearchRequest" />
+            <output message="tns:ProfileChildSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProfileSearchFieldPortType">
+        <operation name="service">
+            <input message="tns:ProfileSearchFieldRequest" />
+            <output message="tns:ProfileSearchFieldResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProfileModifyFieldPortType">
+        <operation name="service">
+            <input message="tns:ProfileModifyFieldRequest" />
+            <output message="tns:ProfileModifyFieldResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProfileCreateFieldPortType">
+        <operation name="service">
+            <input message="tns:ProfileCreateFieldRequest" />
+            <output message="tns:ProfileCreateFieldResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProfileRetrieveHistoryPortType">
+        <operation name="service">
+            <input message="tns:ProfileRetrieveHistoryRequest" />
+            <output message="tns:ProfileRetrieveHistoryResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProfileSearchTagsPortType">
+        <operation name="service">
+            <input message="tns:ProfileSearchTagsRequest" />
+            <output message="tns:ProfileSearchTagsResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType> 
+    
+    <portType name="ProfileDeleteTagPortType">
+        <operation name="service">
+            <input message="tns:ProfileDeleteTagRequest" />
+            <output message="tns:ProfileDeleteTagResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+            <fault name="ProfileSummaryErrorInfoMsg" message="tns:ProfileSummaryFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="ProfileCreateTagsPortType">
+        <operation name="service">
+            <input message="tns:ProfileCreateTagsRequest" />
+            <output message="tns:ProfileCreateTagsResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ProfileModifyTagsPortType">
+        <operation name="service">
+            <input message="tns:ProfileModifyTagsRequest" />
+            <output message="tns:ProfileModifyTagsResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="SingleProfileMigrationPortType">
+        <operation name="service">
+            <input message="tns:SingleProfileMigrationRequest" />
+            <output message="tns:SingleProfileMigrationResponse" />
+            <fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+        </operation>
+    </portType>
+
+    
+    <portType name="ProfileRetrieveParentPortType">
+		<operation name="service">
+			<input message="tns:ProfileRetrieveParentRequest" />
+			<output message="tns:ProfileRetrieveParentResponse" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+	
+	<portType name="UIMetaDataCreatePortType">
+		<operation name="service">
+			<input message="tns:UIMetaDataCreateReq" />
+			<output message="tns:UIMetaDataCreateRsp" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+	<portType name="UIMetaDataModifyPortType">
+		<operation name="service">
+			<input message="tns:UIMetaDataModifyReq" />
+			<output message="tns:UIMetaDataModifyRsp" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+	<portType name="UIMetaDataRetrievePortType">
+		<operation name="service">
+			<input message="tns:UIMetaDataRetrieveReq" />
+			<output message="tns:UIMetaDataRetrieveRsp" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+	<portType name="UIMetaDataDeletePortType">
+		<operation name="service">
+			<input message="tns:UIMetaDataDeleteReq" />
+			<output message="tns:UIMetaDataDeleteRsp" />
+			<fault name="ErrorInfoMsg" message="tns:SystemFaultMessage" />
+		</operation>
+	</portType>
+
+</definitions>

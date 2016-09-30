@@ -70,26 +70,26 @@ import org.xml.sax.Locator;
     "nextSegment"
 })
 @XmlRootElement(name = "ProviderARNKSegment")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
 public class ProviderARNKSegment
     implements Locatable
 {
 
     @XmlElement(name = "PreviousSegment")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected ProviderARNKSegment.PreviousSegment previousSegment;
     @XmlElement(name = "NextSegment")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected ProviderARNKSegment.NextSegment nextSegment;
     @XmlAttribute(name = "Key")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected String key;
     @XmlAttribute(name = "ProviderReservationInfoRef")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected String providerReservationInfoRef;
     @XmlLocation
     @XmlTransient
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected Locator locator;
 
     /**
@@ -100,7 +100,7 @@ public class ProviderARNKSegment
      *     {@link ProviderARNKSegment.PreviousSegment }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public ProviderARNKSegment.PreviousSegment getPreviousSegment() {
         return previousSegment;
     }
@@ -113,7 +113,7 @@ public class ProviderARNKSegment
      *     {@link ProviderARNKSegment.PreviousSegment }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setPreviousSegment(ProviderARNKSegment.PreviousSegment value) {
         this.previousSegment = value;
     }
@@ -126,7 +126,7 @@ public class ProviderARNKSegment
      *     {@link ProviderARNKSegment.NextSegment }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public ProviderARNKSegment.NextSegment getNextSegment() {
         return nextSegment;
     }
@@ -139,7 +139,7 @@ public class ProviderARNKSegment
      *     {@link ProviderARNKSegment.NextSegment }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setNextSegment(ProviderARNKSegment.NextSegment value) {
         this.nextSegment = value;
     }
@@ -152,7 +152,7 @@ public class ProviderARNKSegment
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String getKey() {
         return key;
     }
@@ -165,7 +165,7 @@ public class ProviderARNKSegment
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setKey(String value) {
         this.key = value;
     }
@@ -178,7 +178,7 @@ public class ProviderARNKSegment
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String getProviderReservationInfoRef() {
         return providerReservationInfoRef;
     }
@@ -191,7 +191,7 @@ public class ProviderARNKSegment
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setProviderReservationInfoRef(String value) {
         this.providerReservationInfoRef = value;
     }
@@ -202,17 +202,17 @@ public class ProviderARNKSegment
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public Locator sourceLocation() {
         return locator;
     }
 
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setSourceLocation(Locator newLocator) {
         locator = newLocator;
     }
@@ -247,26 +247,26 @@ public class ProviderARNKSegment
         "vehicleReservationRef",
         "passiveSegmentRef"
     })
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class NextSegment
         implements Locatable
     {
 
         @XmlElement(name = "AirSegmentRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeSegmentRef airSegmentRef;
         @XmlElement(name = "HotelReservationRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeNonAirReservationRef hotelReservationRef;
         @XmlElement(name = "VehicleReservationRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeNonAirReservationRef vehicleReservationRef;
         @XmlElement(name = "PassiveSegmentRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeSegmentRef passiveSegmentRef;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -277,7 +277,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeSegmentRef getAirSegmentRef() {
             return airSegmentRef;
         }
@@ -290,7 +290,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setAirSegmentRef(TypeSegmentRef value) {
             this.airSegmentRef = value;
         }
@@ -303,7 +303,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeNonAirReservationRef getHotelReservationRef() {
             return hotelReservationRef;
         }
@@ -316,7 +316,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setHotelReservationRef(TypeNonAirReservationRef value) {
             this.hotelReservationRef = value;
         }
@@ -329,7 +329,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeNonAirReservationRef getVehicleReservationRef() {
             return vehicleReservationRef;
         }
@@ -342,7 +342,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setVehicleReservationRef(TypeNonAirReservationRef value) {
             this.vehicleReservationRef = value;
         }
@@ -355,7 +355,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeSegmentRef getPassiveSegmentRef() {
             return passiveSegmentRef;
         }
@@ -368,7 +368,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setPassiveSegmentRef(TypeSegmentRef value) {
             this.passiveSegmentRef = value;
         }
@@ -379,17 +379,17 @@ public class ProviderARNKSegment
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }
@@ -426,26 +426,26 @@ public class ProviderARNKSegment
         "vehicleReservationRef",
         "passiveSegmentRef"
     })
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class PreviousSegment
         implements Locatable
     {
 
         @XmlElement(name = "AirSegmentRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeSegmentRef airSegmentRef;
         @XmlElement(name = "HotelReservationRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeNonAirReservationRef hotelReservationRef;
         @XmlElement(name = "VehicleReservationRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeNonAirReservationRef vehicleReservationRef;
         @XmlElement(name = "PassiveSegmentRef")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected TypeSegmentRef passiveSegmentRef;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -456,7 +456,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeSegmentRef getAirSegmentRef() {
             return airSegmentRef;
         }
@@ -469,7 +469,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setAirSegmentRef(TypeSegmentRef value) {
             this.airSegmentRef = value;
         }
@@ -482,7 +482,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeNonAirReservationRef getHotelReservationRef() {
             return hotelReservationRef;
         }
@@ -495,7 +495,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setHotelReservationRef(TypeNonAirReservationRef value) {
             this.hotelReservationRef = value;
         }
@@ -508,7 +508,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeNonAirReservationRef getVehicleReservationRef() {
             return vehicleReservationRef;
         }
@@ -521,7 +521,7 @@ public class ProviderARNKSegment
          *     {@link TypeNonAirReservationRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setVehicleReservationRef(TypeNonAirReservationRef value) {
             this.vehicleReservationRef = value;
         }
@@ -534,7 +534,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public TypeSegmentRef getPassiveSegmentRef() {
             return passiveSegmentRef;
         }
@@ -547,7 +547,7 @@ public class ProviderARNKSegment
          *     {@link TypeSegmentRef }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setPassiveSegmentRef(TypeSegmentRef value) {
             this.passiveSegmentRef = value;
         }
@@ -558,17 +558,17 @@ public class ProviderARNKSegment
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }

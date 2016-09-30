@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (http://www.altova.com) by Utsab Roy (Travelport) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.travelport.com/soa/common/security/SessionContext_v1" targetNamespace="http://www.travelport.com/soa/common/security/SessionContext_v1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="SessionContext">
+		<xs:annotation>
+			<xs:documentation>A XML payload that contains either the Session Context Token or the Session Properties</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="SessTok">
+					<xs:annotation>
+						<xs:documentation>A Session Token provided by Travelport</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>ID of the Session Token</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SessProp" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>A session property combination</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="nm" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Name of the Session Property</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="val" type="xs:string" use="required">
+							<xs:annotation>
+								<xs:documentation>Value of the Session Property</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,460 @@
+<xs:schema xmlns="http://www.travelport.com/schema/sharedBooking_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v38_0" xmlns:hotel="http://www.travelport.com/schema/hotel_v38_0" xmlns:air="http://www.travelport.com/schema/air_v38_0" xmlns:universal="http://www.travelport.com/schema/universal_v38_0" targetNamespace="http://www.travelport.com/schema/sharedBooking_v38_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+   <xs:annotation>
+      <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+   </xs:annotation>
+   <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/CommonReqRsp.xsd"/>
+   <xs:import namespace="http://www.travelport.com/schema/air_v38_0" schemaLocation="../air_v38_0/Air.xsd"/>
+   <xs:import namespace="http://www.travelport.com/schema/universal_v38_0" schemaLocation="../universal_v38_0/UniversalRecord.xsd"/>
+   <xs:import namespace="http://www.travelport.com/schema/hotel_v38_0" schemaLocation="../hotel_v38_0/Hotel.xsd"/>
+   <xs:include schemaLocation="SharedBooking.xsd"/>
+   <xs:complexType name="BookingBaseReq">
+      <xs:annotation>
+         <xs:documentation>Context for Requests</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="common:BaseReq">
+            <xs:attribute name="SessionKey" type="typeSessionKey" use="optional">
+               <xs:annotation>
+                  <xs:documentation>System generated session token. Token contains the session information of the user. User must supply this in the resquest to use the current session they are working on.  
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="BookingBaseRsp">
+      <xs:annotation>
+         <xs:documentation> Context for Responses</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="common:BaseRsp">
+            <xs:sequence>
+               <xs:element ref="universal:UniversalRecord" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="SessionKey" type="typeSessionKey" use="required">
+               <xs:annotation>
+                  <xs:documentation>Session Token that was used to do the transaction echoed back.  
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="BookingStartReq">
+      <xs:annotation>
+         <xs:documentation>Used to start session.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+            	<xs:attribute name="ProviderCode" type="common:typeProviderCode" use="required">
+               		<xs:annotation>
+                  		<xs:documentation>Provider with which session needs to be started.  
+                  		</xs:documentation>
+               		</xs:annotation>
+            	</xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingStartRsp" type="BookingBaseRsp">
+      <xs:annotation>
+         <xs:documentation>Returns the session key. User must use the session key in the subsequent transactions to use the created session.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="BookingTravelerReq">
+      <xs:annotation>
+         <xs:documentation>Used to add update delete booking traveler and its contents.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:choice>
+                     <xs:element ref="AddTraveler"/>
+                     <xs:element ref="UpdateTraveler"/>
+                     <xs:element ref="DeleteTraveler"/>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingTravelerRsp" type="BookingBaseRsp"/>
+   <xs:element name="BookingAirSegmentReq">
+      <xs:annotation>
+         <xs:documentation>Used for Air Segment Sell and modification.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:choice>
+                     <xs:element ref="AddAirSegment"/>
+                     <xs:element ref="UpdateAirSegment"/>
+                     <xs:element ref="DeleteAirSegment"/>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingAirSegmentRsp">
+      <xs:annotation>
+         <xs:documentation>Returns sold segments and sell messages.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseRsp">
+               <xs:sequence>
+                  <xs:element ref="air:AirSegmentSellFailureInfo" minOccurs="0"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingPricingReq">
+      <xs:annotation>
+         <xs:documentation>Stores/Modifies pricing</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:choice>
+                     <xs:element ref="AddPricing"/>
+                     <xs:element ref="DeletePricing"/>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingPricingRsp" type="BookingBaseRsp"/>
+   <xs:element name="BookingSeatAssignmentReq">
+      <xs:annotation>
+         <xs:documentation>Used to request auto or specific seat assignments.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:choice>
+                  <xs:element ref="AddSeats"/>
+                  <xs:element ref="UpdateSeats"/>
+                  <xs:element ref="DeleteSeats"/>
+               </xs:choice>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingSeatAssignmentRsp" type="BookingBaseRsp"/>
+   <xs:element name="BookingPnrElementReq">
+      <xs:annotation>
+         <xs:documentation>Adds, Modifies PNR elemnts like OSI, FOP, review booking, remarks, and action status.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:choice>
+                     <xs:element ref="AddPnrElement"/>
+                     <xs:element ref="UpdatePnrElement"/>
+                     <xs:element ref="DeletePnrElement"/>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingPnrElementRsp" type="BookingBaseRsp"/>
+   <xs:element name="BookingAirPnrElementReq">
+      <xs:annotation>
+         <xs:documentation>Adds, Modifies air elements like Stored fare FOP, Credit Card Auth, Ticketing Modifiers etc.      </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:choice>
+                     <xs:element ref="AddAirPnrElement"/>
+                     <xs:element ref="UpdateAirPnrElement"/>
+                     <xs:element ref="DeleteAirPnrElement"/>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingAirPnrElementRsp" type="BookingBaseRsp"/>
+   <xs:element name="BookingTerminalReq">
+      <xs:annotation>
+         <xs:documentation>Allow terminal commands to be run in the session.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:element ref="Command"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingTerminalRsp">
+      <xs:annotation>
+         <xs:documentation>Returns the terminal response and UR with the changes based on the Terminal Req.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseRsp">
+               <xs:sequence>
+                  <xs:element ref="CommandResponse" minOccurs="0"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingDisplayReq">
+      <xs:annotation>
+         <xs:documentation>Retrieves the current contents of data in session , or PNR if it is specified.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:element name="ProviderReservationInfo" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Bring an existent PNR in session to work on it.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:attributeGroup ref="common:ProviderReservation"/>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingDisplayRsp" type="BookingBaseRsp"/>
+   <xs:element name="BookingEndReq">
+      <xs:annotation>
+         <xs:documentation>Ends the session.  Will end transact the booking on the host and create a UR, or will ignore the current activity.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:element name="SessionActivity">
+                     <xs:annotation>
+                        <xs:documentation>Current values supported are  Ignore, End and EndQueue (QueueNumber must follow)</xs:documentation>
+                     </xs:annotation>
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:enumeration value="End"/>
+                           <xs:enumeration value="EndQueue"/>
+                           <xs:enumeration value="Ignore"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:element>
+                  <xs:element ref="common:QueueSelector" minOccurs="0" maxOccurs="4"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingEndRsp" type="BookingBaseRsp"/>
+	<xs:element name="BookingHotelSegmentReq">
+		<xs:annotation>
+			<xs:documentation>Used for Hotel Segment Sell and modification.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BookingBaseReq">
+					<xs:sequence>
+						<xs:choice>
+							<xs:element ref="AddHotelSegment" />
+							<xs:element ref="DeleteHotelSegment" />
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BookingHotelSegmentRsp" type="BookingBaseRsp" />
+	
+	<xs:element name="BookingHotelPnrElementReq">
+		<xs:annotation>
+			<xs:documentation>Adds, Modifies hotel elements like Guarantee,
+				BookingSource, etc.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BookingBaseReq">
+					<xs:sequence>
+						<xs:choice>
+							<xs:element ref="AddHotelPnrElement" />
+							<xs:element ref="UpdateHotelPnrElement" />
+							<xs:element ref="DeleteHotelPnrElement" />
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BookingHotelPnrElementRsp" type="BookingBaseRsp" />
+	<xs:element name="BookingAirExchangeQuoteReq">
+      <xs:annotation>
+         <xs:documentation>Quotes the new exchange based on the new segments.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:element ref="common:TicketNumber" minOccurs="0" maxOccurs="99"/>
+                  <xs:element ref="air:AirPricingSolution" minOccurs="1" maxOccurs="5"/>
+                  <xs:element ref="air:RepricingModifiers" minOccurs="1" maxOccurs="5"/>
+                  <xs:element ref="air:OriginalItineraryDetails" minOccurs="1" maxOccurs="1"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingAirExchangeQuoteRsp">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseRsp">
+               <xs:sequence>
+                  <xs:element ref="common:TicketNumber" minOccurs="0" maxOccurs="99"/>
+                  <xs:element ref="air:AirPricingSolution" minOccurs="1" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Provider: 1G/1V/1P/1S/1A.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="air:AirExchangeBundleTotal" minOccurs="0" maxOccurs="1"/>
+                  <xs:element ref="air:AirExchangeBundle" minOccurs="0" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Bundle exchange, pricing, and penalty information. Providers ACH/1G/1V/1P</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="common:HostToken" minOccurs="0" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Encrypted data from the host. Required to send the HostToken from the AirExchangeQuoteRsp in the AirExchangeReq. Providers ACH/1G/1V/1P.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingAirExchangeReq">
+      <xs:annotation>
+         <xs:documentation>Performs exchange on existing reservations.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:sequence>
+                  <xs:element ref="air:AirReservationLocatorCode">
+                     <xs:annotation>
+                        <xs:documentation>Identifies the PNR locator code. Providers 1G/1V/1P/1J</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="common:TicketNumber" minOccurs="0" maxOccurs="unbounded"/>
+                  <xs:element ref="air:AirPricingSolution" minOccurs="1" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Providers ACH/1G/1V/1P.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="air:AirExchangeBundleTotal" minOccurs="0" maxOccurs="1">
+                     <xs:annotation>
+                        <xs:documentation>Provider: 1G/1V/1P/1S/1A.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="air:AirExchangeBundle" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Bundle exchange, pricing, and penalty information. Providers ACH/1G/1V/1P.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="common:HostToken" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Encrypted data from the host. Required to send the HostToken from the AirExchangeQuoteRsp in the AirExchangeReq. Providers ACH/1G/1V/1P</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+               <xs:attribute name="OverrideWarnings" type="xs:boolean" use="optional">
+	               <xs:annotation>
+	                  <xs:documentation>Set to true will allow multiple end transact attempts. Set to false only one end transact is done and warnings are returned for follow up action. Supported Providers: 1G/1V</xs:documentation>
+	               </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingAirExchangeRsp">
+      <xs:annotation>
+         <xs:documentation>Returns exchanged itinerary.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseRsp">
+               <xs:sequence>
+                  <xs:element ref="air:AirExchangeBundleTotal" minOccurs="0" maxOccurs="1"/>
+                  <xs:element ref="air:AirExchangeBundle" minOccurs="0" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Bundle exchange, pricing, and penalty information. Providers ACH/1G/1V/1P</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingRetrieveDocumentReq">
+      <xs:annotation>
+         <xs:documentation>Used view Ticket Details of the PNR.
+      </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseReq">
+               <xs:choice>
+                  <xs:element ref="air:AirReservationLocatorCode" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Provider: 1G,1V,1P,1J.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="common:TicketNumber" minOccurs="0" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Provider: 1G,1V,1P,1J.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:choice>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="BookingRetrieveDocumentRsp">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BookingBaseRsp">
+               <xs:sequence>
+                  <xs:element ref="air:ETR" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Provider: 1G,1V,1P,1J.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="DocumentFailureInfo" type="air:typeFailureInfo" minOccurs="0" maxOccurs="99">
+                     <xs:annotation>
+                        <xs:documentation>Provider: 1G,1V,1P,1J-Will be optionally returned if there are duplicate ticket numbers.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

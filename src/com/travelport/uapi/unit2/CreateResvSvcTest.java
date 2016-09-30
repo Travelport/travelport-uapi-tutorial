@@ -13,38 +13,47 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v35_0.AirPricingSolution;
-import com.travelport.schema.air_v35_0.AirReservation;
-import com.travelport.schema.common_v35_0.ActionStatus;
-import com.travelport.schema.common_v35_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v35_0.BookingTraveler;
-import com.travelport.schema.common_v35_0.BookingTravelerName;
-import com.travelport.schema.common_v35_0.ContinuityCheckOverride;
-import com.travelport.schema.common_v35_0.CreditCard;
-import com.travelport.schema.common_v35_0.Email;
-import com.travelport.schema.common_v35_0.FormOfPayment;
-import com.travelport.schema.common_v35_0.Payment;
-import com.travelport.schema.common_v35_0.PhoneNumber;
-import com.travelport.schema.common_v35_0.Remark;
-import com.travelport.schema.universal_v35_0.AirCreateReservationReq;
-import com.travelport.schema.universal_v35_0.AirCreateReservationRsp;
-import com.travelport.schema.universal_v35_0.ProviderReservationInfo;
-import com.travelport.schema.universal_v35_0.TypeRetainReservation;
-import com.travelport.service.air_v35_0.AirFaultMessage;
-import com.travelport.service.universal_v35_0.AirCreateReservationPortType;
-import com.travelport.service.universal_v35_0.AvailabilityFaultMessage;
+import com.travelport.schema.air_v38_0.AirPricingInfoRef;
+import com.travelport.schema.air_v38_0.AirPricingSolution;
+import com.travelport.schema.air_v38_0.AirReservation;
+import com.travelport.schema.air_v38_0.AirReservationLocatorCode;
+import com.travelport.schema.air_v38_0.AirTicketingReq;
+import com.travelport.schema.air_v38_0.AirTicketingRsp;
+import com.travelport.schema.air_v38_0.ETR;
+import com.travelport.schema.air_v38_0.Ticket;
+import com.travelport.schema.common_v38_0.ActionStatus;
+import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v38_0.BookingTraveler;
+import com.travelport.schema.common_v38_0.BookingTravelerName;
+import com.travelport.schema.common_v38_0.ContinuityCheckOverride;
+import com.travelport.schema.common_v38_0.CreditCard;
+import com.travelport.schema.common_v38_0.Email;
+import com.travelport.schema.common_v38_0.FormOfPayment;
+import com.travelport.schema.common_v38_0.Payment;
+import com.travelport.schema.common_v38_0.PhoneNumber;
+import com.travelport.schema.common_v38_0.Remark;
+import com.travelport.schema.universal_v38_0.AirCreateReservationReq;
+import com.travelport.schema.universal_v38_0.AirCreateReservationRsp;
+import com.travelport.schema.universal_v38_0.ProviderReservationInfo;
+import com.travelport.schema.universal_v38_0.TypeRetainReservation;
+import com.travelport.service.air_v38_0.AirFaultMessage;
+import com.travelport.service.air_v38_0.AirTicketingPortType;
+import com.travelport.service.universal_v38_0.AirCreateReservationPortType;
+import com.travelport.service.universal_v38_0.AvailabilityFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class CreateResvSvcTest {
 	public static final String FORM_OF_PAYMENT_REF="jwt2mcK1Qp27I2xfpcCtAw==";
 	
 	@Test
-	public void createCancelTest() throws DatatypeConfigurationException, AirFaultMessage, AvailabilityFaultMessage, FileNotFoundException {
+	public AirCreateReservationRsp createCancelTest() throws DatatypeConfigurationException, AirFaultMessage, AvailabilityFaultMessage, FileNotFoundException {
 		AirCreateReservationPortType create = WSDLService.airReserve.get();
 		WSDLService.airReserve.showXML(true);
 		
 		AirCreateReservationReq req = new AirCreateReservationReq();
 		req.setAuthorizedBy("TEST");
+		
+		AirCreateReservationRsp rsp = null;
 		
 		//if there are changes to schedule or price, tell us about it
 		//in the returned result
@@ -175,7 +184,7 @@ public class CreateResvSvcTest {
 		 * the values passed here...null seems to me "I accept the defauls"
 		 */
 		try {
-			AirCreateReservationRsp rsp = create.service(req, null);
+			rsp = create.service(req, null);
 			if(rsp != null){				
 				System.out.println("UR : " + rsp.getUniversalRecord().getLocatorCode());
 				List<ProviderReservationInfo> pnrList = rsp.getUniversalRecord().getProviderReservationInfo();
@@ -192,9 +201,78 @@ public class CreateResvSvcTest {
 					System.out.println("Air Reservation Locator : " + airRes.getLocatorCode());
 				}
 			}
-		} catch (com.travelport.service.universal_v35_0.AirFaultMessage e) {
+		} catch (com.travelport.service.universal_v38_0.AirFaultMessage e) {
 			// TODO Auto-generated catch block
 			System.err.println("unable to create service: " + e.getMessage());
+		}
+		
+		return rsp;
+	}
+
+	public void createTicketTest(AirCreateReservationRsp rsp) {
+		// TODO Auto-generated method stub
+		if(rsp != null){				
+			System.out.println("UR : " + rsp.getUniversalRecord().getLocatorCode());
+			List<ProviderReservationInfo> pnrList = rsp.getUniversalRecord().getProviderReservationInfo();
+			Iterator<ProviderReservationInfo> pnrIte = pnrList.iterator();
+			while(pnrIte.hasNext()){
+				ProviderReservationInfo pnrInfo = pnrIte.next();
+				System.out.println("PNR : " + pnrInfo.getLocatorCode());
+			}
+			
+			List<AirReservation> airList = rsp.getUniversalRecord().getAirReservation();
+			Iterator<AirReservation> airIte = airList.iterator();
+			AirReservation airRes = null;
+			String ref = null;
+			while(airIte.hasNext()){
+				airRes = airIte.next();
+				System.out.println("Air Reservation Locator : " + airRes.getLocatorCode());
+				ref = airRes.getAirPricingInfo().get(0).getKey();
+			}
+			if(airRes != null){
+				AirTicketingReq tktReq = new AirTicketingReq();
+				AirTicketingRsp tktRsp = null;
+				
+				tktReq.setAuthorizedBy("TEST");
+				tktReq.setTargetBranch(System.getProperty("travelport.targetBranch"));
+				
+				tktReq.getBillingPointOfSaleInfo().setOriginApplication("UAPI");
+			    
+				AirReservationLocatorCode code = new AirReservationLocatorCode();
+				code.setValue(airRes.getLocatorCode());
+				
+				tktReq.setAirReservationLocatorCode(code);
+				
+                com.travelport.schema.air_v38_0.AirTicketingReq.AirPricingInfoRef infoRef = new com.travelport.schema.air_v38_0.AirTicketingReq.AirPricingInfoRef();
+                infoRef.setKey(ref);
+                
+                tktReq.getAirPricingInfoRef().add(infoRef);
+                
+                AirTicketingPortType ticket = WSDLService.airTicket.get();
+                
+                try {
+                	tktRsp = ticket.service(tktReq);
+                	if(tktRsp != null){
+                		Iterator<ETR> etrIte = tktRsp.getETR().iterator();
+                		while (etrIte.hasNext()) {							
+							ETR etr = etrIte.next();
+							if(etr != null){
+								Iterator<Ticket> tktIte = etr.getTicket().iterator();
+								while(tktIte.hasNext()){
+									Ticket tkt = tktIte.next();
+									if(tkt != null){
+										String number = tkt.getTicketNumber();
+										System.out.println("Ticket Number : "+number);
+									}
+								}
+							}
+						}
+                		
+                	}
+                }catch(AirFaultMessage fault){
+                	System.err.println("unable to ticket: " + fault.getMessage());
+                }
+			}
 		}
 	}
 }

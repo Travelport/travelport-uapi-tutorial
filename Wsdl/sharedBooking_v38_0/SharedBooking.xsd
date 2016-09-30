@@ -1,0 +1,396 @@
+<xs:schema xmlns="http://www.travelport.com/schema/sharedBooking_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v38_0" xmlns:air="http://www.travelport.com/schema/air_v38_0" xmlns:hotel="http://www.travelport.com/schema/hotel_v38_0" targetNamespace="http://www.travelport.com/schema/sharedBooking_v38_0">
+   <xs:annotation>
+      <xs:documentation>(c) Travelport GDS 2012 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+   </xs:annotation>
+   <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/Common.xsd"/>
+   <xs:import namespace="http://www.travelport.com/schema/air_v38_0" schemaLocation="../air_v38_0/Air.xsd"/>
+   <xs:import namespace="http://www.travelport.com/schema/hotel_v38_0" schemaLocation="../hotel_v38_0/Hotel.xsd"/>
+   <xs:element name="AddTraveler">
+      <xs:annotation>
+         <xs:documentation>Container for Travelers or its contents to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="common:BookingTraveler" maxOccurs="18"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UpdateTraveler">
+      <xs:annotation>
+         <xs:documentation>Container for Travelers or its contents to be updated.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="common:BookingTraveler" maxOccurs="18"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeleteTraveler">
+      <xs:annotation>
+         <xs:documentation>Container for Booking Traveler or its contents to be deleted.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="Element" type="typeBookingTravelerElement" use="required"/>
+         <xs:attribute name="Key" type="common:typeRef" use="required"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:simpleType name="typeBookingTravelerElement">
+      <xs:annotation>
+         <xs:documentation>Defines the list of available data types for modifications</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="BookingTraveler"/>
+         <xs:enumeration value="PhoneNumber"/>
+         <xs:enumeration value="Email"/>
+         <xs:enumeration value="NameRemark"/>
+         <xs:enumeration value="DeliveryInfo"/>
+         <xs:enumeration value="Address"/>
+         <xs:enumeration value="AppliedProfile"/>
+         <xs:enumeration value="CustomizedNameData"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="AddAirSegment">
+      <xs:annotation>
+         <xs:documentation>Container for Air Segment to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="air:AirSegment" maxOccurs="8"/>
+            <xs:element ref="common:HostToken" minOccurs="0" maxOccurs="8"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UpdateAirSegment">
+      <xs:annotation>
+         <xs:documentation>Container for Air Segment to be updated
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="air:AirSegment" maxOccurs="8"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeleteAirSegment">
+      <xs:annotation>
+         <xs:documentation>Container for Air Segment to be deleted
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="AirSegmentRef" type="common:typeSegmentRef" maxOccurs="8"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AddPricing">
+      <xs:annotation>
+         <xs:documentation>Container for Pricing to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="air:AirPricingInfo" maxOccurs="100"/>
+               <xs:element ref="air:AutoPricingInfo" maxOccurs="100"/>
+            </xs:choice>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeletePricing">
+      <xs:annotation>
+         <xs:documentation>Container for Pricing to be deleted.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="AirPricingInfoRef" type="common:typeSegmentRef" maxOccurs="8"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AddSeats">
+      <xs:annotation>
+         <xs:documentation>Container for Seats to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="air:AutoSeatAssignment" maxOccurs="20"/>
+               <xs:element ref="air:SpecificSeatAssignment" maxOccurs="20"/>
+            </xs:choice>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UpdateSeats">
+      <xs:annotation>
+         <xs:documentation>Container for Seats to be updated
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="air:AutoSeatAssignment" maxOccurs="20"/>
+               <xs:element ref="air:SpecificSeatAssignment" maxOccurs="20"/>
+            </xs:choice>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeleteSeats">
+      <xs:annotation>
+         <xs:documentation>Container for Seats to be deleted
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="SeatAssignmentRef" type="common:typeSegmentRef" maxOccurs="20"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AddPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for PNR elements to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="common:FormOfPayment" maxOccurs="99"/>
+               <xs:element ref="common:ActionStatus"/>
+               <xs:element ref="common:OSI" maxOccurs="99"/>
+               <xs:element ref="common:AccountingRemark" maxOccurs="99"/>
+               <xs:element ref="common:GeneralRemark" maxOccurs="99"/>
+               <xs:element ref="common:UnassociatedRemark" maxOccurs="99"/>
+            </xs:choice>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UpdatePnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for PNR elements to be updated.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="common:FormOfPayment" maxOccurs="99"/>
+               <xs:element ref="common:ActionStatus"/>
+               <xs:element ref="common:OSI" maxOccurs="99"/>
+               <xs:element ref="common:AccountingRemark" maxOccurs="99"/>
+               <xs:element ref="common:GeneralRemark" maxOccurs="99"/>
+               <xs:element ref="common:UnassociatedRemark" maxOccurs="99"/>
+            </xs:choice>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeletePnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for PNR elements to be deleted.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="Element" type="typePnrElement" use="required"/>
+         <xs:attribute name="Key" type="common:typeRef" use="required"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:simpleType name="typePnrElement">
+      <xs:annotation>
+         <xs:documentation>Defines the list of available data types for modifications</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="FormOfPayment"/>
+         <xs:enumeration value="OSI"/>
+         <xs:enumeration value="AccountingRemark"/>
+         <xs:enumeration value="GeneralRemark"/>
+         <xs:enumeration value="UnassociatedRemark"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="AddAirPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for PNR elements to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="air:AirPricingPayment" maxOccurs="30"/>
+               <xs:element ref="air:AssociatedRemark" maxOccurs="99"/>
+               <xs:element ref="air:AirPricingTicketingModifiers" maxOccurs="99"/>
+               <xs:element ref="common:CreditCardAuth" maxOccurs="99"/>
+               <xs:element ref="common:SSR" maxOccurs="99"/>
+               <xs:element ref="common:LoyaltyCard" maxOccurs="99"/>
+               <xs:element ref="common:TravelComplianceData" maxOccurs="99"/>
+            </xs:choice>
+         <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UpdateAirPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for Air PNR elements to be updated.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="air:AirPricingPayment" maxOccurs="30"/>
+               <xs:element ref="air:AssociatedRemark" maxOccurs="99"/>
+               <xs:element ref="air:AirPricingTicketingModifiers" maxOccurs="99"/>
+               <xs:element ref="common:CreditCardAuth" maxOccurs="99"/>
+               <xs:element ref="air:AirPricingAdjustment" maxOccurs="99"/>
+               <xs:element ref="common:LoyaltyCard" maxOccurs="99"/>
+               <xs:element ref="common:TravelComplianceData" maxOccurs="99"/>
+            </xs:choice>
+         <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeleteAirPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for Air PNR elements to be deleted.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="Element" type="typeAirPnrElement" use="required"/>
+         <xs:attribute name="Key" type="common:typeRef" use="required"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:simpleType name="typeAirPnrElement">
+      <xs:annotation>
+         <xs:documentation>Defines the list of available data types for modifications</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Payment"/>
+         <xs:enumeration value="AssociatedRemark"/>
+         <xs:enumeration value="TicketingModifiers"/>
+         <xs:enumeration value="CreditCardAuthorization"/>
+         <xs:enumeration value="SSR"/>
+         <xs:enumeration value="LoyaltyCard"/>
+         <xs:enumeration value="TravelCompliance"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:element name="Command" type="xs:string">
+      <xs:annotation>
+         <xs:documentation>The command to pass to the host</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:element name="CommandResponse" type="typeTextBlock">
+      <xs:annotation>
+         <xs:documentation>The response from the host. Usually pre-formatted.</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="typeTextBlock">
+      <xs:sequence>
+         <xs:element name="Text" maxOccurs="100">
+            <xs:simpleType>
+               <xs:restriction base="xs:string"/>
+            </xs:simpleType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="typeSessionKey">
+      <xs:annotation>
+         <xs:documentation>Reference to active session</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="common:typeRef"/>
+   </xs:simpleType>
+   <xs:simpleType name="typeFareChanged">
+      <xs:annotation>
+         <xs:documentation>Will be true if the fare has changed.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:boolean"/>
+   </xs:simpleType>
+   <xs:element name="AddHotelSegment">
+      <xs:annotation>
+         <xs:documentation>Container for Hotel Segment to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element ref="hotel:HotelRateDetail"/>
+            <xs:element ref="hotel:HotelProperty"/>
+            <xs:element ref="hotel:HotelStay"/>
+            <xs:element ref="hotel:HotelBedding" minOccurs="0" maxOccurs="4"/>
+            <xs:element ref="hotel:GuestInformation" minOccurs="0"/>
+            <xs:element ref="hotel:PromotionCode" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Used to specify promotional code include in the booking</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element ref="common:Guarantee" minOccurs="0"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeleteHotelSegment">
+      <xs:annotation>
+         <xs:documentation>Container for Hotel Segment to be deleted
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="HotelReservationRef" type="common:typeNonAirReservationRef"/>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="AddHotelPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for Hotel PNR elements to be added.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="common:Guarantee"/>
+               <xs:element ref="hotel:GuestInformation"/>
+               <xs:element ref="hotel:AssociatedRemark" maxOccurs="99"/>
+               <xs:element ref="common:BookingSource" maxOccurs="1"/>
+               <xs:element ref="hotel:HotelSpecialRequest" maxOccurs="1"/>
+               <xs:element ref="common:CorporateDiscountID" maxOccurs="1"/>
+               <xs:element ref="common:ReservationName" maxOccurs="1"/>
+               <xs:element ref="common:TravelComplianceData" maxOccurs="99"/>
+               <xs:element ref="hotel:HotelBedding" maxOccurs="99"/>
+               <xs:element ref="common:LoyaltyCard" maxOccurs="99"/>
+            </xs:choice>
+         <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode" use="required"/>
+         <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="UpdateHotelPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for Hotel PNR elements to be updated.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+            <xs:choice>
+               <xs:element ref="common:Guarantee"/>
+               <xs:element ref="hotel:GuestInformation"/>
+               <xs:element ref="hotel:AssociatedRemark" maxOccurs="99"/>
+               <xs:element ref="common:BookingSource" maxOccurs="1"/>
+               <xs:element ref="hotel:HotelSpecialRequest" maxOccurs="1"/>
+               <xs:element ref="hotel:HotelRateInfo"/>
+               <xs:element ref="hotel:HotelStay"/>
+               <xs:element ref="hotel:HotelCommission" maxOccurs="1"/>
+               <xs:element ref="common:CorporateDiscountID" maxOccurs="1"/>
+               <xs:element ref="common:ReservationName" maxOccurs="1"/>
+               <xs:element ref="common:TravelComplianceData" maxOccurs="99"/>
+               <xs:element ref="hotel:HotelBedding" maxOccurs="99"/>
+               <xs:element ref="common:LoyaltyCard" maxOccurs="99"/>
+            </xs:choice>
+         <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode" use="required"/>
+         <xs:attribute name="BookingTravelerRef" type="common:typeRef" use="optional"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="DeleteHotelPnrElement">
+      <xs:annotation>
+         <xs:documentation>Container for Hotel PNR elements to be deleted.
+         </xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:attribute name="ReservationLocatorCode" type="common:typeLocatorCode" use="required" />
+         <xs:attribute name="Element" type="typeHotelPnrElement" use="required"/>
+         <xs:attribute name="Key" type="common:typeRef" use="required"/>
+      </xs:complexType>
+   </xs:element>
+   <xs:simpleType name="typeHotelPnrElement">
+      <xs:annotation>
+         <xs:documentation>Defines the list of available data types for modifications</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Guarantee"/>
+         <xs:enumeration value="AssociatedRemark"/>
+         <xs:enumeration value="HotelSpecialRequest"/>
+         <xs:enumeration value="CorporateDiscountID"/>
+         <xs:enumeration value="TravelPurpose"/>
+         <xs:enumeration value="LoyaltyCard"/>
+         <xs:enumeration value="TravelCompliance"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

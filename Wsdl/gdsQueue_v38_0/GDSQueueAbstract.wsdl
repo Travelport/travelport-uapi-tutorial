@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractGdsQueueServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/gdsQueue_v38_0"
+             xmlns:queue="http://www.travelport.com/schema/gdsQueue_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/gdsQueue_v38_0"
+             xmlns:common="http://www.travelport.com/schema/common_v38_0"
+             xmlns:ur="http://www.travelport.com/schema/universal_v38_0"
+             targetNamespace="http://www.travelport.com/service/gdsQueue_v38_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/gdsQueue_v38_0">
+            <include schemaLocation="GDSQueue.xsd"/>
+        </schema>
+    </types>
+
+    <message name="GdsQueueCountReq">
+        <part name="parameters" element="queue:GdsQueueCountReq"/>
+    </message>
+
+    <message name="GdsQueueCountRsp">
+        <part name="result" element="queue:GdsQueueCountRsp"/>
+    </message>
+
+    <message name="GdsQueueListReq">
+        <part name="parameters" element="queue:GdsQueueListReq"/>
+    </message>
+
+    <message name="GdsQueueListRsp">
+        <part name="result" element="queue:GdsQueueListRsp"/>
+    </message>
+
+    <message name="GdsQueuePlaceReq">
+        <part name="parameters" element="queue:GdsQueuePlaceReq"/>
+    </message>
+
+    <message name="GdsQueuePlaceRsp">
+        <part name="result" element="queue:GdsQueuePlaceRsp"/>
+    </message>
+
+    <message name="GdsEnterQueueReq">
+        <part name="parameters" element="queue:GdsEnterQueueReq"/>
+    </message>
+
+    <message name="GdsEnterQueueRsp">
+        <part name="result" element="queue:GdsEnterQueueRsp"/>
+    </message>
+
+    <message name="GdsExitQueueReq">
+        <part name="parameters" element="queue:GdsExitQueueReq"/>
+    </message>
+
+    <message name="GdsExitQueueRsp">
+        <part name="result" element="queue:GdsExitQueueRsp"/>
+    </message>
+
+    <message name="GdsNextOnQueueReq">
+        <part name="parameters" element="queue:GdsNextOnQueueReq"/>
+    </message>
+
+    <message name="GdsNextOnQueueRsp">
+        <part name="result" element="queue:GdsNextOnQueueRsp"/>
+    </message>
+
+    <message name="GdsQueueRemoveReq">
+        <part name="parameters" element="queue:GdsQueueRemoveReq"/>
+    </message>
+
+    <message name="GdsQueueRemoveRsp">
+        <part name="result" element="queue:GdsQueueRemoveRsp"/>
+    </message>
+    
+    <message name="GdsQueueAgentListReq">
+        <part name="parameters" element="queue:GdsQueueAgentListReq"/>
+    </message>
+
+    <message name="GdsQueueAgentListRsp">
+        <part name="result" element="queue:GdsQueueAgentListRsp"/>
+    </message>
+
+    <message name="GdsQueueFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>
+
+    <message name="UniversalRecordSupportedVersions">
+        <part name="supportedVersions" element="ur:SupportedVersions"/>
+    </message>
+
+    <portType name="GdsQueueCountServicePortType">
+        <operation name="service">
+            <input message="tns:GdsQueueCountReq"/>
+            <output message="tns:GdsQueueCountRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsQueueListServicePortType">
+        <operation name="service">
+            <input message="tns:GdsQueueListReq"/>
+            <output message="tns:GdsQueueListRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsQueuePlaceServicePortType">
+        <operation name="service">
+            <input message="tns:GdsQueuePlaceReq"/>
+            <output message="tns:GdsQueuePlaceRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsEnterQueueServicePortType">
+        <operation name="service">
+            <input message="tns:GdsEnterQueueReq"/>
+            <output message="tns:GdsEnterQueueRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsExitQueueServicePortType">
+        <operation name="service">
+            <input message="tns:GdsExitQueueReq"/>
+            <output message="tns:GdsExitQueueRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsNextOnQueueServicePortType">
+        <operation name="service">
+            <input message="tns:GdsNextOnQueueReq"/>
+            <output message="tns:GdsNextOnQueueRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsQueueRemoveServicePortType">
+        <operation name="service">
+            <input message="tns:GdsQueueRemoveReq"/>
+            <output message="tns:GdsQueueRemoveRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    <portType name="GdsQueueAgentListServicePortType">
+        <operation name="service">
+            <input message="tns:GdsQueueAgentListReq"/>
+            <output message="tns:GdsQueueAgentListRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:GdsQueueFaultMessage"/>
+        </operation>
+    </portType>
+    
+</definitions>

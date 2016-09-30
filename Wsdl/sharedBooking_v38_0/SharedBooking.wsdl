@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:sc="http://www.travelport.com/soa/common/security/SessionContext_v1" xmlns:tns="http://www.travelport.com/service/sharedBooking_v38_0" xmlns:ns1="http://www.travelport.com/schema/sharedBooking_v38_0" name="SharedBookingService" targetNamespace="http://www.travelport.com/service/sharedBooking_v38_0">
+	<import namespace="http://www.travelport.com/service/sharedBooking_v38_0" location="SharedBookingAbstract.wsdl"/>
+	<binding name="BookingStartBinding" type="tns:BookingStartPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingTravelerBinding" type="tns:BookingTravelerPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingAirPnrElementBinding" type="tns:BookingAirPnrElementPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingAirSegmentBinding" type="tns:BookingAirSegmentPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingSeatAssignmentBinding" type="tns:BookingSeatAssignmentPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingEndBinding" type="tns:BookingEndPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingPnrElementBinding" type="tns:BookingPnrElementPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingPricingBinding" type="tns:BookingPricingPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingDisplayBinding" type="tns:BookingDisplayPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingTerminalCommandBinding" type="tns:BookingTerminalCommandPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingHotelSegmentBinding" type="tns:BookingHotelSegmentPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingHotelPnrElementBinding" type="tns:BookingHotelPnrElementPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingAirExchangeQuoteBinding" type="tns:BookingAirExchangeQuotePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingAirExchangeBinding" type="tns:BookingAirExchangePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+			<input>
+				<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+	<binding name="BookingRetrieveDocumentBinding" type="tns:BookingRetrieveDocumentPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService" />
+			<input>
+				<soap:operation soapAction="http://localhost:8080/kestrel/SharedBookingService"/>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<service name="SharedBookingService">
+		<port name="BookingStartPort" binding="tns:BookingStartBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingTravelerPort" binding="tns:BookingTravelerBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingAirSegmentPort" binding="tns:BookingAirSegmentBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingAirPnrElementPort" binding="tns:BookingAirPnrElementBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingSeatAssignmentPort" binding="tns:BookingSeatAssignmentBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingEndPort" binding="tns:BookingEndBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingPnrElementPort" binding="tns:BookingPnrElementBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingPricingPort" binding="tns:BookingPricingBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingDisplayPort" binding="tns:BookingDisplayBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingTerminalCommandPort" binding="tns:BookingTerminalCommandBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingHotelSegmentPort" binding="tns:BookingHotelSegmentBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingHotelPnrElementPort" binding="tns:BookingHotelPnrElementBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingAirExchangeQuotePort" binding="tns:BookingAirExchangeQuoteBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingAirExchangePort" binding="tns:BookingAirExchangeBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService"/>
+		</port>
+		<port name="BookingRetrieveDocumentPort" binding="tns:BookingRetrieveDocumentBinding">
+			<soap:address location="http://localhost:8080/kestrel/SharedBookingService" />
+		</port>
+	</service>
+</definitions>

@@ -6,19 +6,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.travelport.schema.air_v35_0.AirPricingModifiers;
-import com.travelport.schema.air_v35_0.AirPricingSolution;
-import com.travelport.schema.air_v35_0.AirSearchModifiers;
-import com.travelport.schema.air_v35_0.AirSearchRsp;
-import com.travelport.schema.air_v35_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v35_0.LowFareSearchReq;
-import com.travelport.schema.air_v35_0.LowFareSearchRsp;
-import com.travelport.schema.air_v35_0.PCC;
-import com.travelport.schema.air_v35_0.SearchAirLeg;
-import com.travelport.schema.common_v35_0.PointOfSale;
-import com.travelport.schema.common_v35_0.ResponseMessage;
-import com.travelport.schema.rail_v35_0.RailPricingSolution;
-import com.travelport.service.air_v35_0.AirFaultMessage;
+import com.travelport.schema.air_v38_0.AirPricingModifiers;
+import com.travelport.schema.air_v38_0.AirPricingSolution;
+import com.travelport.schema.air_v38_0.AirSearchModifiers;
+import com.travelport.schema.air_v38_0.AirSearchRsp;
+import com.travelport.schema.air_v38_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v38_0.LowFareSearchReq;
+import com.travelport.schema.air_v38_0.LowFareSearchRsp;
+import com.travelport.schema.air_v38_0.PCC;
+import com.travelport.schema.air_v38_0.SearchAirLeg;
+import com.travelport.schema.common_v38_0.PointOfSale;
+import com.travelport.schema.common_v38_0.ResponseMessage;
+import com.travelport.schema.rail_v38_0.RailPricingSolution;
+import com.travelport.service.air_v38_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson3 {
@@ -39,7 +39,7 @@ public class Lesson3 {
 			System.out.println("waiting for first response from a provider...");
 			WSDLService.airShop.showXML(true);
 			//LowFareSearchAsynchRsp lowCostRsp = WSDLService.airShopAsync.get().service(req);			
-			LowFareSearchRsp lowCostRsp = WSDLService.airShop.get().service(req);
+			LowFareSearchRsp lowCostRsp = WSDLService.airShop.get().service(req, null);
 			HashMap<String, Boolean> partMap = new HashMap<String, Boolean>();
 
 			//List<BaseAsyncProviderSpecificResponse> specificResponses = lowCostRsp.getAsyncProviderSpecificResponse();			

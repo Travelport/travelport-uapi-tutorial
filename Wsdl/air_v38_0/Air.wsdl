@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AirService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/air_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/air_v38_0"
+             targetNamespace="http://www.travelport.com/service/air_v38_0">
+
+    <import namespace="http://www.travelport.com/service/air_v38_0"
+          location="AirAbstract.wsdl" />
+
+     <binding name="AirPrePayBinding"
+             type="tns:AirPrePayPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>     
+
+     <binding name="FlightDetailsBinding"
+             type="tns:FlightDetailsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FlightService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+     <binding name="AirLowFareSearchBinding"
+             type="tns:AirLowFareSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+    <binding name="AirLowFareSearchAsynchBinding"
+             type="tns:AirLowFareSearchAsynchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+    
+
+    <binding name="AirRetrieveLowFareSearchBinding" 
+             type="tns:AirRetrieveLowFareSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+
+    
+    <binding name="AirScheduleSearchBinding"
+             type="tns:AirScheduleSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirAvailabilitySearchBinding"
+             type="tns:AirAvailabilitySearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+     <binding name="AirRepriceSearchBinding"
+             type="tns:AirRepriceSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+     <binding name="AirPriceBinding"
+             type="tns:AirPricePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirTicketingBinding"
+             type="tns:AirTicketingPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirExchangeQuoteBinding"
+             type="tns:AirExchangeQuotePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirExchangeProcessBinding"
+             type="tns:AirExchangeProcessPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirExchangeTicketingBinding"
+             type="tns:AirExchangeTicketingPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirRefundTicketBinding"
+             type="tns:AirRefundTicketPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirRefundQuoteBinding"
+             type="tns:AirRefundQuotePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+
+        </operation>
+    </binding>
+
+    <binding name="AirFareDisplayBinding"
+        type="tns:AirFareDisplayPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+            	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="AirFareRulesBinding"
+        type="tns:AirFareRulesPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+            	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="SeatMapBinding"
+        type="tns:SeatMapPortType">
+        <soap:binding style="document"
+            transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+            	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+     <binding name="AirVoidDocumentBinding"
+             type="tns:AirVoidDocumentPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>
+
+    <binding name="AirRetrieveDocumentBinding" type="tns:AirRetrieveDocumentPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="AirMerchandisingOfferAvailabilityBinding" type="tns:AirMerchandisingOfferAvailabilityPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="AirUpsellSearchBinding" type="tns:AirUpsellSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="FlightInfoBinding" type="tns:FlightInfoPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/FlightService"/>
+         <input>
+        <soap:body use="literal" />
+        </input>
+        <output>
+        <soap:body use="literal" />
+        </output>
+        <fault name="ErrorInfoMsg">
+        <soap:fault name="ErrorInfoMsg" use="literal" />
+        </fault>
+    </operation>
+    </binding>
+
+    <binding name="FlightTimeTableBinding" type="tns:FlightTimeTablePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+            <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="EMDIssuanceBinding" type="tns:EMDIssuancePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+            <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>    
+    
+    
+    <binding name="AirMerchandisingDetailsBinding" type="tns:AirMerchandisingDetailsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+
+    <!-- Service -->
+    
+    <service name="AirService">
+        <port name="AirRepriceSearchPort"
+              binding="tns:AirRepriceSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirScheduleSearchPort"
+              binding="tns:AirScheduleSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirLowFareSearchPort"
+              binding="tns:AirLowFareSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirLowFareSearchAsynchPort"
+              binding="tns:AirLowFareSearchAsynchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirRetrieveLowFareSearchPort"
+              binding="tns:AirRetrieveLowFareSearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirPricePort"
+              binding="tns:AirPriceBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirFareRulesPort"
+              binding="tns:AirFareRulesBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirAvailabilitySearchPort"
+              binding="tns:AirAvailabilitySearchBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirFareDisplayPort"
+            binding="tns:AirFareDisplayBinding">
+            <soap:address
+                location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="SeatMapPort"
+              binding="tns:SeatMapBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirRefundQuotePort"
+              binding="tns:AirRefundQuoteBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirRefundTicketPort"
+              binding="tns:AirRefundTicketBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirTicketingPort"
+              binding="tns:AirTicketingBinding">
+            <soap:address
+                location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirVoidDocumentPort"
+              binding="tns:AirVoidDocumentBinding">
+            <soap:address
+                location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirRetrieveDocumentBindingPort"
+              binding="tns:AirRetrieveDocumentBinding">
+            <soap:address
+                location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirExchangeProcessPort"
+              binding="tns:AirExchangeProcessBinding">
+            <soap:address
+                 location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirExchangeQuotePort"
+              binding="tns:AirExchangeQuoteBinding">
+            <soap:address
+                 location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirExchangeTicketingPort"
+              binding="tns:AirExchangeTicketingBinding">
+            <soap:address
+                 location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirMerchandisingOfferAvailabilityPort"
+              binding="tns:AirMerchandisingOfferAvailabilityBinding">
+            <soap:address
+                 location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirUpsellSearchPort"
+            binding="tns:AirUpsellSearchBinding">
+            <soap:address
+                location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="FlightTimeTablePort"
+            binding="tns:FlightTimeTableBinding">
+            <soap:address
+                location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="AirPrePayPort"
+              binding="tns:AirPrePayBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>  
+        
+        <port name="EMDRetrievePort"
+              binding="tns:EMDRetrieveBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>
+        
+        <port name="EMDIssuancePort"
+              binding="tns:EMDIssuanceBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/AirService" />
+        </port>    
+       
+       <port name="AirMerchandisingDetailsPort"
+              binding="tns:AirMerchandisingDetailsBinding">
+            <soap:address
+                 location="http://localhost:8080/kestrel/AirService" />
+        </port>  
+    </service>
+    
+    <binding name="EMDRetrieveBinding"
+             type="tns:EMDRetrievePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/AirService"/>
+                <input>
+                    <soap:body use="literal" />
+                </input>
+                <output>
+                    <soap:body use="literal" />
+                </output>
+                <fault name="ErrorInfoMsg">
+                    <soap:fault name="ErrorInfoMsg" use="literal" />
+                </fault>
+        </operation>
+    </binding>     
+
+    <service name="FlightService">
+        <port name="FlightInfoPort"
+                binding="tns:FlightInfoBinding">
+                <soap:address
+                        location="http://localhost:8080/kestrel/FlightService" />
+        </port>
+        
+        <port name="FlightDetailsPort"
+              binding="tns:FlightDetailsBinding">
+            <soap:address
+                    location="http://localhost:8080/kestrel/FlightService" />
+        </port>
+    </service>
+    
+    
+
+</definitions>

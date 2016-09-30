@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/sharedUprofile_v20_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/sharedUprofile_v20_0"
+           xmlns:common="http://www.travelport.com/schema/uprofileCommon_v30_0" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    
+    <xs:import schemaLocation="../uprofileCommon_v30_0/UprofileCommonReqRsp.xsd"
+	namespace="http://www.travelport.com/schema/uprofileCommon_v30_0" />
+   <xs:include schemaLocation="UProfileShared.xsd" />
+
+   <!-- *** Profile Core Request Types *** -->
+   <xs:element name="ProfileCreateReq">
+      <xs:annotation>
+         <xs:documentation>Creates a new profile.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:element name="ProfileParent" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Most profiles will have a single parent.AgencyGroup Profiles will have no parents and Agency profile may not have a parent.  This data is not returned in the response.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:group ref="ProfileSpecification"/>
+                    </xs:complexType>
+                  </xs:element>
+                  <xs:element ref="ProfileData">
+                     <xs:annotation>
+                        <xs:documentation>Profile data.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="ProfileLink" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>A unidirectional link from one profile to another.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+               <xs:attribute name="ProfileType" type="typeProfileType" use="required" >
+                  <xs:annotation>
+                     <xs:documentation>The type of the Profile to be created.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="Status" type="common:typeProfileEntityStatus" use="optional" default="Active">
+                  <xs:annotation>
+                    <xs:documentation>Status of the profile entity (e.g., Active, Inactive). Any status other than Active implies that the entity cannot perform most transactions.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ReturnProfile" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If true, will return basic information with the ProfileData element and its associated data.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ShowDataUnmasked" type="xs:boolean" default="false">
+                  <xs:annotation>
+                    <xs:documentation>Set to true to show in the response all data in the requested profile, without masking applied. (Any such data in parent profiles will still be masked.) Requires special authorization.</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="ProfileCreateRsp">
+      <xs:annotation>
+         <xs:documentation>Response with the newly created profile.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="Profile"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="ProfileModifyReq">
+      <xs:annotation>
+         <xs:documentation>Request to add, change, or remove data on a specific profile.  Either ProfileID or ProvisioningCode are mandatory.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:group ref="ProfileSpecification"/>
+                  <xs:element ref="ProfileModifyCmd" maxOccurs="unbounded"/>
+               </xs:sequence>
+               <xs:attribute name="Version" type="common:typeVersion" use="required">
+                  <xs:annotation>
+                     <xs:documentation>Version number of the profile. Required with every modify request.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ReturnProfile" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If false will only return basic Profile information, without the updated profile data. If true, will return the entire profile and all its data (including data not modified by this transaction).</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ShowDataUnmasked" type="xs:boolean" default="false">
+                  <xs:annotation>
+                    <xs:documentation>Set to true to show in the response all data in the requested profile, without masking applied. (Any such data in parent profiles will still be masked.) Requires special authorization.</xs:documentation>
+                </xs:annotation>
+              </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="ProfileModifyRsp">
+      <xs:annotation>
+         <xs:documentation>Response with the newly modified profile.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="Profile" minOccurs="0"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+    <xs:element name="ProfileRetrieveReq">
+      <xs:annotation>
+         <xs:documentation>Request to retrieve a particular profile. Either the full parent profiles or a summary can also be requested on the response.  Either ProfileID or ProvisioningCode are mandatory.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+                <xs:sequence>
+                   <xs:group ref="ProfileSpecification"/>
+                   <xs:element ref="ProfileDataFilter" minOccurs="0"/>
+                </xs:sequence>
+               <xs:attribute name="ShowDataUnmasked" type="xs:boolean" default="false">
+                        <xs:annotation>
+                            <xs:documentation>Set to true to show in the response all data in the requested profile, without masking applied. (Any such data in parent profiles will still be masked.) Requires special authorization.</xs:documentation>
+                        </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+    
+   
+    <xs:element name="ProfileRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the profile.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="Profile"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ProfileDeleteReq">
+             <xs:annotation>
+                      <xs:documentation>Request to delete a particular profile.  Either ProfileID or ProvisioningCode are mandatory. </xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                      <xs:complexContent>
+                              <xs:extension base="common:BaseReq">
+                                      <xs:group ref="ProfileSpecification"/>
+                                     	<xs:attribute name="Force" type="xs:boolean" use="optional" default="false">
+                    					<xs:annotation>
+                        					<xs:documentation>To specify that this is a Force Delete.  With a Force Delete, the profile specified and any children below that profile will be deleted.</xs:documentation>
+                    					</xs:annotation>
+                						</xs:attribute>                                      
+                              </xs:extension>
+                      </xs:complexContent>
+              </xs:complexType>
+      </xs:element>
+      
+      <xs:element name="ProfileDeleteRsp">
+              <xs:annotation>
+                      <xs:documentation>Response will only include warnings if they exist.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                      <xs:complexContent>
+                             <xs:extension base="common:BaseRsp"/>
+                      </xs:complexContent>
+              </xs:complexType>
+     </xs:element>
+          
+</xs:schema>      

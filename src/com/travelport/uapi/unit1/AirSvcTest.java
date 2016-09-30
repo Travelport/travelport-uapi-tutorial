@@ -11,14 +11,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v35_0.AirSearchModifiers;
-import com.travelport.schema.air_v35_0.AvailabilitySearchReq;
-import com.travelport.schema.air_v35_0.AvailabilitySearchRsp;
-import com.travelport.schema.air_v35_0.LowFareSearchReq;
-import com.travelport.schema.air_v35_0.LowFareSearchRsp;
-import com.travelport.schema.air_v35_0.SearchAirLeg;
-import com.travelport.schema.common_v35_0.BaseReq;
-import com.travelport.service.air_v35_0.AirFaultMessage;
+import com.travelport.schema.air_v38_0.AirSearchModifiers;
+import com.travelport.schema.air_v38_0.AvailabilitySearchReq;
+import com.travelport.schema.air_v38_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v38_0.LowFareSearchReq;
+import com.travelport.schema.air_v38_0.LowFareSearchRsp;
+import com.travelport.schema.air_v38_0.SearchAirLeg;
+import com.travelport.schema.common_v38_0.BaseReq;
+import com.travelport.service.air_v38_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class AirSvcTest {
@@ -32,7 +32,7 @@ public class AirSvcTest {
 		
 		setupRequestForSearch(request);
 		
-		rsp=WSDLService.airAvailability.get().service(request);
+		rsp=WSDLService.airAvailability.get().service(request, null);
 		//these checks are just sanity that we can make an availability request
 		assertThat(rsp.getAirItinerarySolution().size(), is(not(0)));
 		assertThat(rsp.getAirSegmentList().getAirSegment().size(), is(not(0)));
@@ -80,7 +80,7 @@ public class AirSvcTest {
 		AirReq.addAdultPassengers(request, 2);
 
 		//do the work
-		response = WSDLService.airShop.get().service(request);
+		response = WSDLService.airShop.get().service(request, null);
 		
 		//sanity cechk
 		assertThat(myTraceId, is(equalTo(request.getTraceId())));

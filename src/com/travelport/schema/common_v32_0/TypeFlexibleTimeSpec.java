@@ -49,13 +49,13 @@ import org.xml.sax.Locator;
 @XmlType(name = "typeFlexibleTimeSpec", propOrder = {
     "searchExtraDays"
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
 public class TypeFlexibleTimeSpec
     extends TypeTimeSpec
 {
 
     @XmlElement(name = "SearchExtraDays")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected TypeFlexibleTimeSpec.SearchExtraDays searchExtraDays;
 
     /**
@@ -66,7 +66,7 @@ public class TypeFlexibleTimeSpec
      *     {@link TypeFlexibleTimeSpec.SearchExtraDays }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public TypeFlexibleTimeSpec.SearchExtraDays getSearchExtraDays() {
         return searchExtraDays;
     }
@@ -79,7 +79,7 @@ public class TypeFlexibleTimeSpec
      *     {@link TypeFlexibleTimeSpec.SearchExtraDays }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setSearchExtraDays(TypeFlexibleTimeSpec.SearchExtraDays value) {
         this.searchExtraDays = value;
     }
@@ -90,7 +90,7 @@ public class TypeFlexibleTimeSpec
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }
@@ -116,20 +116,20 @@ public class TypeFlexibleTimeSpec
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public static class SearchExtraDays
         implements Locatable
     {
 
         @XmlAttribute(name = "DaysBefore")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Integer daysBefore;
         @XmlAttribute(name = "DaysAfter")
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Integer daysAfter;
         @XmlLocation
         @XmlTransient
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         protected Locator locator;
 
         /**
@@ -140,7 +140,7 @@ public class TypeFlexibleTimeSpec
          *     {@link Integer }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Integer getDaysBefore() {
             return daysBefore;
         }
@@ -153,7 +153,7 @@ public class TypeFlexibleTimeSpec
          *     {@link Integer }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setDaysBefore(Integer value) {
             this.daysBefore = value;
         }
@@ -166,7 +166,7 @@ public class TypeFlexibleTimeSpec
          *     {@link Integer }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Integer getDaysAfter() {
             return daysAfter;
         }
@@ -179,7 +179,7 @@ public class TypeFlexibleTimeSpec
          *     {@link Integer }
          *     
          */
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setDaysAfter(Integer value) {
             this.daysAfter = value;
         }
@@ -190,17 +190,17 @@ public class TypeFlexibleTimeSpec
          * 
          */
         @Override
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public String toString() {
             return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public Locator sourceLocation() {
             return locator;
         }
 
-        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+        @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
         public void setSourceLocation(Locator newLocator) {
             locator = newLocator;
         }

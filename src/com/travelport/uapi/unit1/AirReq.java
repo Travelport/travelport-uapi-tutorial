@@ -2,30 +2,30 @@ package com.travelport.uapi.unit1;
 
 import java.math.BigInteger;
 
-import com.travelport.schema.air_v35_0.AirLegModifiers;
-import com.travelport.schema.air_v35_0.AirPricingModifiers;
-import com.travelport.schema.air_v35_0.AirSearchModifiers;
-import com.travelport.schema.air_v35_0.AirSearchModifiers.PreferredProviders;
-import com.travelport.schema.air_v35_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v35_0.FlightType;
-import com.travelport.schema.air_v35_0.PermittedCarriers;
-import com.travelport.schema.air_v35_0.PreferredCabins;
-import com.travelport.schema.air_v35_0.ProhibitedCarriers;
-import com.travelport.schema.air_v35_0.SearchAirLeg;
-import com.travelport.schema.common_v35_0.Carrier;
-import com.travelport.schema.common_v35_0.Airport;
-import com.travelport.schema.common_v35_0.BaseCoreReq;
-import com.travelport.schema.common_v35_0.BaseSearchReq;
-import com.travelport.schema.common_v35_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v35_0.CabinClass;
-import com.travelport.schema.common_v35_0.City;
-import com.travelport.schema.common_v35_0.CityOrAirport;
-import com.travelport.schema.common_v35_0.Distance;
-import com.travelport.schema.common_v35_0.Provider;
-import com.travelport.schema.common_v35_0.SearchPassenger;
-import com.travelport.schema.common_v35_0.TypeFlexibleTimeSpec;
-import com.travelport.schema.common_v35_0.TypeFlexibleTimeSpec.SearchExtraDays;
-import com.travelport.schema.common_v35_0.TypeSearchLocation;
+import com.travelport.schema.air_v38_0.AirLegModifiers;
+import com.travelport.schema.air_v38_0.AirPricingModifiers;
+import com.travelport.schema.air_v38_0.AirSearchModifiers;
+import com.travelport.schema.air_v38_0.AirSearchModifiers.PreferredProviders;
+import com.travelport.schema.air_v38_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v38_0.FlightType;
+import com.travelport.schema.air_v38_0.PermittedCarriers;
+import com.travelport.schema.air_v38_0.PreferredCabins;
+import com.travelport.schema.air_v38_0.ProhibitedCarriers;
+import com.travelport.schema.air_v38_0.SearchAirLeg;
+import com.travelport.schema.common_v38_0.Carrier;
+import com.travelport.schema.common_v38_0.Airport;
+import com.travelport.schema.common_v38_0.BaseCoreReq;
+import com.travelport.schema.common_v38_0.BaseSearchReq;
+import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v38_0.CabinClass;
+import com.travelport.schema.common_v38_0.City;
+import com.travelport.schema.common_v38_0.CityOrAirport;
+import com.travelport.schema.common_v38_0.Distance;
+import com.travelport.schema.common_v38_0.Provider;
+import com.travelport.schema.common_v38_0.SearchPassenger;
+import com.travelport.schema.common_v38_0.TypeFlexibleTimeSpec;
+import com.travelport.schema.common_v38_0.TypeFlexibleTimeSpec.SearchExtraDays;
+import com.travelport.schema.common_v38_0.TypeSearchLocation;
 
 /**
  * Namespace for static functions that can manipulate an air request in
@@ -165,8 +165,8 @@ public class AirReq {
 		CabinClass econ = new CabinClass();
 		econ.setType("Economy");
 		
-		cabins.getCabinClass().add(econ);
-		//cabins.setCabinClass(econ);
+		//cabins.getCabinClass().add(econ);
+		cabins.setCabinClass(econ);
 		modifiers.setPreferredCabins(cabins);
 		outbound.setAirLegModifiers(modifiers);
 	}
@@ -225,7 +225,7 @@ public class AirReq {
 		c1.setCode("JQ");
 		prohibitedCarriers.getCarrier().add(c1);
 		
-		modifiers.setProhibitedCarriers(prohibitedCarriers);
+		//modifiers.setProhibitedCarriers(prohibitedCarriers);
 		
 		return modifiers;
 	}
@@ -277,7 +277,8 @@ public class AirReq {
 		CabinClass econ = new CabinClass();
 		econ.setType("Economy");
 
-		cabins.getCabinClass().add(econ);
+		//cabins.getCabinClass().add(econ);
+		cabins.setCabinClass(econ);
 		modifiers.setPreferredCabins(cabins);
 		outbound.setAirLegModifiers(modifiers);
 	}

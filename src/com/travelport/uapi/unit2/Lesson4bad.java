@@ -6,17 +6,18 @@ import java.util.List;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 
-import com.travelport.schema.air_v35_0.AirItinerary;
-import com.travelport.schema.air_v35_0.AirItinerarySolution;
-import com.travelport.schema.air_v35_0.AirPriceResult;
-import com.travelport.schema.air_v35_0.AirPriceRsp;
-import com.travelport.schema.air_v35_0.AirPricingSolution;
-import com.travelport.schema.air_v35_0.AirSegmentRef;
-import com.travelport.schema.air_v35_0.AvailabilitySearchRsp;
-import com.travelport.schema.air_v35_0.FlightDetails;
-import com.travelport.schema.air_v35_0.TypeBaseAirSegment;
-import com.travelport.service.air_v35_0.AirFaultMessage;
-import com.travelport.service.universal_v35_0.AvailabilityFaultMessage;
+import com.travelport.schema.air_v38_0.AirItinerary;
+import com.travelport.schema.air_v38_0.AirItinerarySolution;
+import com.travelport.schema.air_v38_0.AirPriceResult;
+import com.travelport.schema.air_v38_0.AirPriceRsp;
+import com.travelport.schema.air_v38_0.AirPricingSolution;
+import com.travelport.schema.air_v38_0.AirSegmentRef;
+import com.travelport.schema.air_v38_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v38_0.FlightDetails;
+import com.travelport.schema.air_v38_0.TypeBaseAirSegment;
+import com.travelport.schema.universal_v38_0.AirCreateReservationRsp;
+import com.travelport.service.air_v38_0.AirFaultMessage;
+import com.travelport.service.universal_v38_0.AvailabilityFaultMessage;
 import com.travelport.uapi.unit1.Helper;
 import com.travelport.uapi.unit1.Lesson2;
 
@@ -30,7 +31,10 @@ public class Lesson4bad {
 	public static void main(String[] args) throws FileNotFoundException{
 		CreateResvSvcTest resv = new CreateResvSvcTest();
 		try {
-			resv.createCancelTest();
+			AirCreateReservationRsp rsp = resv.createCancelTest();
+			if(rsp != null){
+				resv.createTicketTest(rsp);
+			}
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			System.err.println("unable to parse Air request: " + e.getMessage());

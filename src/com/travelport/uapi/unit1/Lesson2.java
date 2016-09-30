@@ -15,42 +15,42 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.travelport.schema.air_v35_0.AirItinerary;
-import com.travelport.schema.air_v35_0.AirItinerarySolution;
-import com.travelport.schema.air_v35_0.AirPriceReq;
-import com.travelport.schema.air_v35_0.AirPriceResult;
-import com.travelport.schema.air_v35_0.AirPriceRsp;
-import com.travelport.schema.air_v35_0.AirPricingCommand;
-import com.travelport.schema.air_v35_0.AirPricingSolution;
-import com.travelport.schema.air_v35_0.AirSearchModifiers;
-import com.travelport.schema.air_v35_0.AirSegmentRef;
-import com.travelport.schema.air_v35_0.AvailabilitySearchReq;
-import com.travelport.schema.air_v35_0.AvailabilitySearchRsp;
-import com.travelport.schema.air_v35_0.Connection;
-import com.travelport.schema.air_v35_0.FlightDetails;
-import com.travelport.schema.air_v35_0.FlightDetailsRef;
-import com.travelport.schema.air_v35_0.SearchAirLeg;
-import com.travelport.schema.air_v35_0.TypeBaseAirSegment;
-import com.travelport.schema.common_v35_0.ActionStatus;
-import com.travelport.schema.common_v35_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v35_0.BookingTraveler;
-import com.travelport.schema.common_v35_0.BookingTravelerName;
-import com.travelport.schema.common_v35_0.DeliveryInfo;
-import com.travelport.schema.common_v35_0.DeliveryInfo.ShippingAddress;
-import com.travelport.schema.common_v35_0.Email;
-import com.travelport.schema.common_v35_0.FormOfPayment;
-import com.travelport.schema.common_v35_0.PhoneNumber;
-import com.travelport.schema.common_v35_0.ResponseMessage;
-import com.travelport.schema.common_v35_0.SSR;
-import com.travelport.schema.common_v35_0.SearchPassenger;
-import com.travelport.schema.common_v35_0.State;
-import com.travelport.schema.common_v35_0.TypeResultMessage;
-import com.travelport.schema.common_v35_0.TypeStructuredAddress;
-import com.travelport.schema.universal_v35_0.AirCreateReservationReq;
-import com.travelport.schema.universal_v35_0.AirCreateReservationRsp;
-import com.travelport.service.air_v35_0.AirFaultMessage;
-import com.travelport.service.universal_v35_0.AirCreateReservationPortType;
-import com.travelport.service.universal_v35_0.AvailabilityFaultMessage;
+import com.travelport.schema.air_v38_0.AirItinerary;
+import com.travelport.schema.air_v38_0.AirItinerarySolution;
+import com.travelport.schema.air_v38_0.AirPriceReq;
+import com.travelport.schema.air_v38_0.AirPriceResult;
+import com.travelport.schema.air_v38_0.AirPriceRsp;
+import com.travelport.schema.air_v38_0.AirPricingCommand;
+import com.travelport.schema.air_v38_0.AirPricingSolution;
+import com.travelport.schema.air_v38_0.AirSearchModifiers;
+import com.travelport.schema.air_v38_0.AirSegmentRef;
+import com.travelport.schema.air_v38_0.AvailabilitySearchReq;
+import com.travelport.schema.air_v38_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v38_0.Connection;
+import com.travelport.schema.air_v38_0.FlightDetails;
+import com.travelport.schema.air_v38_0.FlightDetailsRef;
+import com.travelport.schema.air_v38_0.SearchAirLeg;
+import com.travelport.schema.air_v38_0.TypeBaseAirSegment;
+import com.travelport.schema.common_v38_0.ActionStatus;
+import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v38_0.BookingTraveler;
+import com.travelport.schema.common_v38_0.BookingTravelerName;
+import com.travelport.schema.common_v38_0.DeliveryInfo;
+import com.travelport.schema.common_v38_0.DeliveryInfo.ShippingAddress;
+import com.travelport.schema.common_v38_0.Email;
+import com.travelport.schema.common_v38_0.FormOfPayment;
+import com.travelport.schema.common_v38_0.PhoneNumber;
+import com.travelport.schema.common_v38_0.ResponseMessage;
+import com.travelport.schema.common_v38_0.SSR;
+import com.travelport.schema.common_v38_0.SearchPassenger;
+import com.travelport.schema.common_v38_0.State;
+import com.travelport.schema.common_v38_0.TypeResultMessage;
+import com.travelport.schema.common_v38_0.TypeStructuredAddress;
+import com.travelport.schema.universal_v38_0.AirCreateReservationReq;
+import com.travelport.schema.universal_v38_0.AirCreateReservationRsp;
+import com.travelport.service.air_v38_0.AirFaultMessage;
+import com.travelport.service.universal_v38_0.AirCreateReservationPortType;
+import com.travelport.service.universal_v38_0.AvailabilityFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 
@@ -60,7 +60,7 @@ public class Lesson2 {
 	//
 	// PROGRAM ENTRY POINT
 	//
-	public static void main(String[] argv) throws FileNotFoundException, AvailabilityFaultMessage, com.travelport.service.universal_v35_0.AirFaultMessage {
+	public static void main(String[] argv) throws FileNotFoundException, AvailabilityFaultMessage, com.travelport.service.universal_v38_0.AirFaultMessage {
 		
 		try {
 			//make the request... paris to chattanooga TN USA
@@ -308,7 +308,7 @@ public class Lesson2 {
 		return priceRsp;
 	}
 
-	private static AirCreateReservationRsp bookItinerary(AirPriceRsp priceRsp) throws FileNotFoundException, AvailabilityFaultMessage, com.travelport.service.universal_v35_0.AirFaultMessage {
+	private static AirCreateReservationRsp bookItinerary(AirPriceRsp priceRsp) throws FileNotFoundException, AvailabilityFaultMessage, com.travelport.service.universal_v38_0.AirFaultMessage {
 		// TODO Auto-generated method stub
 		AirCreateReservationReq airBookReq = new AirCreateReservationReq();
 		
@@ -514,7 +514,7 @@ public class Lesson2 {
 		
 		//make the request to tport
 		//WSDLService.airPrice.showXML(true);
-		return WSDLService.airPrice.get().service(priceReq);
+		return WSDLService.airPrice.get().service(priceReq, null);
 }
 
 	/**
@@ -560,7 +560,7 @@ public class Lesson2 {
 		
 		//to show the XML you are sendinging and receiving on this port
 		//WSDLService.airAvailability.showXML(true);
-		response = WSDLService.airAvailability.get().service(request);
+		response = WSDLService.airAvailability.get().service(request, null);
 
 		//print out any messages that the GDS sends back
 		for (Iterator<ResponseMessage> iterator = response.getResponseMessage().iterator(); iterator.hasNext();) {

@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/sharedUprofile_v20_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/sharedUprofile_v20_0"
+           xmlns:common="http://www.travelport.com/schema/uprofileCommon_v30_0" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    
+    <xs:import schemaLocation="../uprofileCommon_v30_0/UprofileCommonReqRsp.xsd"
+	namespace="http://www.travelport.com/schema/uprofileCommon_v30_0" />
+   <xs:include schemaLocation="UProfileShared.xsd" />
+   
+
+   
+     <!-- *** Profile Admin Core Request Types *** -->
+     
+      <!--*** Custom Field Request Types ***-->
+
+     <xs:element name="ProfileCreateFieldReq"> 
+     	<xs:annotation> 
+     		<xs:documentation>Creates one or multiple custom fields and/or field groups.</xs:documentation> 
+     	</xs:annotation> 
+     	<xs:complexType> 
+     		<xs:complexContent> 
+     			<xs:extension base="common:BaseReq"> 
+     				<xs:sequence> 
+     					<xs:element ref="CreateField" minOccurs="0" maxOccurs="unbounded"> 
+     						<xs:annotation> 
+     							<xs:documentation>Defines the attributes of a new custom field.</xs:documentation> 
+     						</xs:annotation> 
+     					</xs:element> 
+     					<xs:element ref="CreateFieldGroup" minOccurs="0" maxOccurs="unbounded"> 
+     						<xs:annotation> 
+     							<xs:documentation>Defines the attributes and structure of a new custom field group, and the custom fields that belong to it.</xs:documentation> 
+     						</xs:annotation> 
+     					</xs:element> 
+     				</xs:sequence> 
+     				<xs:attribute name="ProfileID" type="common:typeProfileID" use="required"> 
+     					<xs:annotation> 
+     						<xs:documentation>The ID of the agency or account profile that will own the field(s) and group(s) to be created.</xs:documentation> 
+     					</xs:annotation> 
+     				</xs:attribute> 
+     			</xs:extension> 
+     		</xs:complexContent> 
+     	</xs:complexType> 
+     </xs:element>    
+   <xs:element name="ProfileCreateFieldRsp">
+      <xs:annotation>
+         <xs:documentation>Response containing details of new fields and/or groups created.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="Field" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Defines a field.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="FieldGroup" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Defines a field group.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>   
+   
+   <xs:element name="ProfileModifyFieldReq">
+       <xs:annotation>
+           <xs:documentation>Modifies a custom field or field group. Note that some modifications are not permitted once a field or field group is in use (i.e., is associated to a template).</xs:documentation>
+       </xs:annotation>
+       <xs:complexType>
+          <xs:complexContent>
+               <xs:extension base="common:BaseReq">
+                   <xs:sequence>
+                       <xs:element ref="ModifyField" minOccurs="0" maxOccurs="unbounded"/>
+                       <xs:element ref="ModifyFieldGroup" minOccurs="0" maxOccurs="unbounded"/>
+                   </xs:sequence>
+               </xs:extension>
+           </xs:complexContent>
+       </xs:complexType>
+   </xs:element>
+   
+   
+   <xs:element name="ProfileModifyFieldRsp">
+       <xs:annotation>
+           <xs:documentation>Response reflecting changes made to the custom field or field group.</xs:documentation>
+       </xs:annotation>
+        <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="Field" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Defines a field.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element ref="FieldGroup" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Defines a field group.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>       
+   </xs:element>
+   
+   <xs:element name="ProfileSearchFieldReq">
+    	<xs:annotation>
+    		<xs:documentation>Request to retrieve the fields and field groups owned by a specified agency.</xs:documentation>
+    	</xs:annotation>
+    	<xs:complexType>
+    		<xs:complexContent>
+    			<xs:extension base="common:BaseReq">
+    				<xs:sequence>
+    					<xs:element ref="ProfileSearchModifiers" minOccurs="0"/>
+    				</xs:sequence>
+    				<xs:attribute name="ProfileID" type="common:typeProfileID" use="required">
+    					<xs:annotation>
+    						<xs:documentation>The ID of the agency or account that owns the fields/groups to be retrieved.</xs:documentation>
+    					</xs:annotation>
+    				</xs:attribute>
+    			</xs:extension>
+    		</xs:complexContent>
+    	</xs:complexType>
+    </xs:element>
+    
+   <xs:element name="ProfileSearchFieldRsp">
+        <xs:annotation>
+            <xs:documentation>Response showing details of the requested field or field group.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="Field" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element ref="FieldGroup" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Defines the structure of a field group, which can be based on existing fields and groups (referred to by Id) and/or new fields and groups (referred to by FieldGroupRef or FieldRef and defined in FieldList or FieldGroupList).</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether more results are available that match the search parameters.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+   
+    <!--*** History Request Types ***-->
+    <xs:element name="ProfileRetrieveHistoryReq">
+        <xs:annotation>
+            <xs:documentation>Request to retrieve history for the whole profile, a particular element, or a date range.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element name="ProfileID" type="common:typeProfileID">
+                            <xs:annotation>
+                                <xs:documentation>Specify the unique ID of the profile whose history is being retrieved.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="ProfileHistoryRetrieveCriteria" minOccurs="0"/>
+                        <xs:element ref="ProfileSearchModifiers" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="ShowDataUnmasked" type="xs:boolean" default="false">
+                        <xs:annotation>
+                            <xs:documentation>Set to true to show data unmasked in the profile history retrieve response. Requires special authorization.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ProfileRetrieveHistoryRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the profile history filtered as specified in the request.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ProfileHistory"/>
+                    </xs:sequence>
+                    <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether more results are available that match the search parameters.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+     
+   
+   <!--*** Custom Tag Request & Response ***-->
+   <xs:element name="ProfileCreateTagsReq">
+      <xs:annotation>
+         <xs:documentation>Request to create tags for an agency.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:element name="CreateTag" maxOccurs="15">
+                     <xs:annotation>
+                        <xs:documentation/>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:attributeGroup ref="attrsTag"/>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+               <xs:attribute name="AgencyID" type="common:typeProfileID" use="required">
+                  <xs:annotation>
+                     <xs:documentation>The ID of the agency that the tags are created for.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="ProfileCreateTagsRsp">
+    <xs:annotation>
+     <xs:documentation>Response with all the tags for the agency.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+     <xs:complexContent>
+      <xs:extension base="common:BaseRsp">
+       <xs:sequence>
+        <xs:element ref="Tag" maxOccurs="15">
+         <xs:annotation>
+          <xs:documentation>A tag that belongs to the agency.</xs:documentation>
+         </xs:annotation>
+        </xs:element>
+       </xs:sequence>
+      </xs:extension>
+     </xs:complexContent>
+    </xs:complexType>
+   </xs:element>   
+
+   <xs:element name="ProfileDeleteTagReq">
+    <xs:annotation>
+     <xs:documentation>Request to delete tags.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+     <xs:complexContent>
+      <xs:extension base="common:BaseReq">
+        <xs:sequence>
+          <xs:element ref="TagRef">
+               <xs:annotation>
+                <xs:documentation>The tag to be deleted</xs:documentation>
+              </xs:annotation>
+           </xs:element>
+        </xs:sequence>
+         <xs:attribute name="Override" type="xs:boolean" default="false">
+            <xs:annotation>
+                <xs:documentation>Indicator to override the delete when the tag is "in use" by profiles in the agency.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+     </xs:complexContent>
+    </xs:complexType>
+   </xs:element> 
+    
+   <xs:element name="ProfileDeleteTagRsp" type="common:BaseRsp">
+      <xs:annotation>
+             <xs:documentation>Successful Response that the tag has been deleted.</xs:documentation>
+     </xs:annotation>
+   </xs:element>
+
+   <xs:element name="ProfileSearchTagsReq">
+    <xs:annotation>
+     <xs:documentation>Request to retrieve tags for an agency.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+     <xs:complexContent>
+      <xs:extension base="common:BaseReq">
+       <xs:attribute name="AgencyID" type="common:typeProfileID" use="required">
+        <xs:annotation>
+         <xs:documentation>The ID of the agency that the tags belong to.</xs:documentation>
+        </xs:annotation>
+       </xs:attribute>
+      </xs:extension>
+     </xs:complexContent>
+    </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="ProfileSearchTagsRsp">
+    <xs:annotation>
+     <xs:documentation>Response with all the tags for the agency.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+     <xs:complexContent>
+      <xs:extension base="common:BaseRsp">
+       <xs:sequence>
+        <xs:element ref="Tag" minOccurs="0" maxOccurs="15">
+         <xs:annotation>
+          <xs:documentation>A tag that belongs to the agency.</xs:documentation>
+         </xs:annotation>
+        </xs:element>
+       </xs:sequence>
+      </xs:extension>
+     </xs:complexContent>
+    </xs:complexType>
+   </xs:element>  
+   
+   <xs:element name="ProfileModifyTagsReq">
+      <xs:annotation>
+         <xs:documentation>Request to modify tags for an agency.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                    <xs:element ref="ModifyTag" maxOccurs="15"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="ProfileModifyTagsRsp">
+      <xs:annotation>
+         <xs:documentation>Response with the modified tags.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element name="Tag" maxOccurs="15">
+                     <xs:annotation>
+                        <xs:documentation/>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:attributeGroup ref="attrsTagWithID"/>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="SingleProfileMigrationReq">
+        <xs:annotation>
+            <xs:documentation>Request to initiate the migration process of a single Account or Traveler profile from host to uProfile.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attribute name="ExternalSystem" type="common:StringLength1to10" use="required">
+                        <xs:annotation>
+                            <xs:documentation>ExternalSystem to indicate the origin  system of profile. Currently supported for 1G,1V. Future enhancement may include TDS, CSV, 1P. </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ProfileType" type="common:typeProfileType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The type of the Profile to be migrated.e.g- Account , Traveler</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="PCC" type="common:typePCC" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The PCC of the Profile to be migrated.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="AccountProfileTitle" type="common:StringLength1to50" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Account Profile Title which need to be migrated.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="TravelerProfileTitle" type="common:StringLength1to50" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>Traveler Profile Title which need to be migrated. </xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    
+     <xs:element name="SingleProfileMigrationRsp">
+        <xs:annotation>
+            <xs:documentation>Response of migration process of a single Account or Traveler profile from host to uProfile.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+                <xs:attribute name="ProfileID" type="common:typeProfileID" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>The system-assigned, unique ID of the profile.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="Status" type="common:StringLength1to128" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>Status of the migration process.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ProfileType" type="common:typeProfileType" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>The type of the migrated Profile e.g-Account,Traveler</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ProfileRetrieveParentReq">
+      <xs:annotation>
+         <xs:documentation>Service to retrieve parent data.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+            	<xs:sequence>
+            	   <xs:group ref="ProfileSpecification"/>
+                   <xs:element ref="ProfileDataFilter" minOccurs="0"/>
+                </xs:sequence>
+               <xs:attribute name="ParentProfileID" type="common:typeProfileID">
+                  <xs:annotation>
+                     <xs:documentation>Unique ID of the Parent profile for which the data will be returned.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ParentSummary" type="xs:boolean" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If specified ‘true’ then it just returns the summary information of profile's parents.  If it is false, then it returns the entire hierarchy.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="ShowDataUnmasked" type="xs:boolean" default="false">
+                        <xs:annotation>
+                            <xs:documentation>Set to true to show in the response all data in the requested profile, without masking applied. (Any such data in parent profiles will still be masked.) Requires special authorization.</xs:documentation>
+                        </xs:annotation>
+               </xs:attribute>               
+               <xs:attribute name="ParentLevelToReturn" type="common:typeParentProfileLevel" default="Agency">
+                  <xs:annotation>
+                     <xs:documentation>Returns parent’s data up to specified hierarchy. Valid values are ‘Agency’, ‘AgencyGroup’, ‘BranchGroup’, ‘Branch’, ‘Account’ and ‘Traveler Group’.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>               
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+
+    <xs:element name="ProfileRetrieveParentRsp">
+        <xs:annotation>
+            <xs:documentation>Response of parent profile data.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="Profile"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="UIMetaDataCreateReq">
+      <xs:annotation>
+         <xs:documentation>Service for Request to create the entry in action by Admin in Admin login view in Profile Settings.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+         <xs:extension base="common:BaseReq">
+               <xs:sequence>
+                  <xs:element ref="MetaData" minOccurs="1" maxOccurs="99">
+                    <xs:annotation>
+                        <xs:documentation>An element created under the service which will store all settings for the selected profile.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+              </xs:sequence>
+                  <xs:attribute name="ProfileID" type="common:typeProfileID" use="required" >
+                  <xs:annotation>
+                     <xs:documentation>This attribute would pass the ID of the required profile selected(say, Agency or Account name) for which the change in setting will be done.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="Description" type="common:StringLength1to128" use="optional">
+                  <xs:annotation>
+                    <xs:documentation>This optional attribute is for any description if the user wants to pass.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+             </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="UIMetaDataCreateRsp">
+      <xs:annotation>
+         <xs:documentation>Service for Response to create the entry in action by Admin in Admin login view in Profile Settings</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="MetaData" minOccurs="1" maxOccurs="99">
+                    <xs:annotation>
+                        <xs:documentation>An element created under the service which will store all settings for the selected profile.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+              </xs:sequence>
+              <xs:attributeGroup ref="attrsUIMetaData"/>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="UIMetaDataModifyReq">
+      <xs:annotation>
+         <xs:documentation>Service for Request to modify the entry in action by Admin in Admin login view in Profile Settings.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+         <xs:extension base="common:BaseReq">
+         		<xs:sequence>
+                  <xs:element ref="MetaDataModifyCmd" minOccurs="1" maxOccurs="unbounded"/>
+               </xs:sequence>            
+                  <xs:attribute name="ProfileID" type="common:typeProfileID" use="required" >
+                  <xs:annotation>
+                     <xs:documentation>This attribute would pass the ID of the required profile selected(say, Agency or Account name) for which change in the settings will be done.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="MetaDataVersion" type="common:typeVersion" use="required">
+            		<xs:annotation>
+               	<xs:documentation>This attribute updates the version of the change or any updates done.</xs:documentation>
+            		</xs:annotation>
+         		</xs:attribute>
+               <xs:attribute name="Description" type="common:StringLength1to128" use="optional">
+                  <xs:annotation>
+                    <xs:documentation>This optional attribute is for any description if the user wants to pass.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+          </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="UIMetaDataModifyRsp">
+      <xs:annotation>
+         <xs:documentation>Service for Response to modify the entry in action by Admin in Admin login view in Profile Settings.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="MetaData" minOccurs="1" maxOccurs="99">
+                    <xs:annotation>
+                        <xs:documentation>Stores the MetaData details of the applicable profile.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+              </xs:sequence>
+               <xs:attributeGroup ref="attrsUIMetaData"/>        
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="UIMetaDataRetrieveReq">
+      <xs:annotation>
+         <xs:documentation>Service for Request to retrieve the settings by user in Profile Settings.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+              <xs:sequence>
+                     <xs:element name="ProfileID" type="common:typeProfileID" minOccurs="1">
+                		 <xs:annotation>
+                    		 <xs:documentation>This attribute would pass the ID of the required profile selected(say, Agency or Account name) for which the change in settings will be done.</xs:documentation>
+                		 </xs:annotation>
+            		</xs:element> 
+             </xs:sequence> 
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   
+   <xs:element name="UIMetaDataRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Service for Response to retrieve the settings by user in Profile Settings.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                  <xs:element ref="MetaData" minOccurs="1" maxOccurs="99">
+                    <xs:annotation>
+                        <xs:documentation>An element created under the service which will store all settings for the selected profile.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+              </xs:sequence>
+               <xs:attributeGroup ref="attrsUIMetaData"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="UIMetaDataDeleteReq">
+            <xs:annotation>
+                      <xs:documentation>Service for Request to delete any settings by user in Profile Settings.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                   <xs:complexContent>
+                          <xs:extension base="common:BaseReq">
+                          	<xs:sequence>
+                                 <xs:element name="ProfileID" type="common:typeProfileID" minOccurs="1">
+                					<xs:annotation>
+                    						<xs:documentation>This attribute would pass the ID of the required profile selected (say, Agency or Account name) for which the change in settings will be done.</xs:documentation>
+                					</xs:annotation>
+            					</xs:element> 
+            			  	</xs:sequence>                                  
+                          </xs:extension>
+                      </xs:complexContent>
+              </xs:complexType>
+      </xs:element>
+      
+      <xs:element name="UIMetaDataDeleteRsp">
+              <xs:annotation>
+                      <xs:documentation>Service for Response to delete any settings by user in Profile Settings.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                      <xs:complexContent>
+                             <xs:extension base="common:BaseRsp"/>
+                      </xs:complexContent>
+              </xs:complexType>
+     </xs:element>
+          
+</xs:schema>      

@@ -31,13 +31,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "typeAssociatedRemarkWithSegmentRef")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
 public class TypeAssociatedRemarkWithSegmentRef
     extends TypeAssociatedRemark
 {
 
     @XmlAttribute(name = "SegmentRef")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected String segmentRef;
 
     /**
@@ -48,7 +48,7 @@ public class TypeAssociatedRemarkWithSegmentRef
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String getSegmentRef() {
         return segmentRef;
     }
@@ -61,7 +61,7 @@ public class TypeAssociatedRemarkWithSegmentRef
      *     {@link String }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public void setSegmentRef(String value) {
         this.segmentRef = value;
     }
@@ -72,7 +72,7 @@ public class TypeAssociatedRemarkWithSegmentRef
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

@@ -37,13 +37,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
 @XmlType(name = "BaseCreateWithFormOfPaymentReq", propOrder = {
     "formOfPayment"
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
 public class BaseCreateWithFormOfPaymentReq
     extends BaseCreateReservationReq
 {
 
     @XmlElement(name = "FormOfPayment")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     protected List<FormOfPayment> formOfPayment;
 
     /**
@@ -68,7 +68,7 @@ public class BaseCreateWithFormOfPaymentReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public List<FormOfPayment> getFormOfPayment() {
         if (formOfPayment == null) {
             formOfPayment = new ArrayList<FormOfPayment>();
@@ -82,7 +82,7 @@ public class BaseCreateWithFormOfPaymentReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

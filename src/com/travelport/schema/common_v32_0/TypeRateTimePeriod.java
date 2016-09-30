@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlType(name = "typeRateTimePeriod")
 @XmlEnum
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-03-02T04:28:25-07:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
 public enum TypeRateTimePeriod {
 
     @XmlEnumValue("Hourly")

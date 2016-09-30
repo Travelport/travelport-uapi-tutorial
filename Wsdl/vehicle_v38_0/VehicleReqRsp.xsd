@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    xmlns="http://www.travelport.com/schema/vehicle_v38_0" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"     
+    xmlns:common="http://www.travelport.com/schema/common_v38_0" 
+    targetNamespace="http://www.travelport.com/schema/vehicle_v38_0" 
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/CommonReqRsp.xsd"/>    
+    <xs:include schemaLocation="../vehicle_v38_0/Vehicle.xsd"/>
+    <xs:element name="VehicleSearchAvailabilityReq">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BaseVehicleSearchAvailabilityReq">
+               <xs:attribute name="ReturnMediaLinks" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>Set indicator to true to retrieve the media links. Default False</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+                <xs:attribute name="ReturnAllRates" type="xs:boolean" use="optional" default="false">
+                 <xs:annotation>
+                        <xs:documentation>Default, false.  If true, all available rates are returned if applicable for the specified provider.</xs:documentation>
+                 </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ReturnApproximateTotal" type="xs:boolean" use="optional" default="false">
+                   <xs:annotation>
+                       <xs:documentation>Applies only if ReturnAllRates is set to true.  If false, base rates are returned. If true, approximate total rates are returned as supported by the car vendor.  Default is false. </xs:documentation>
+                   </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="ReturnExtraRateInfo" type="xs:boolean" use="optional" default="false">
+                   <xs:annotation>
+                       <xs:documentation>Applies only if ReturnAllRates is set to true. If false, basic rate details are returned. If true, additional rate information is returned.  Default is false.</xs:documentation>
+                   </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="PolicyReference" use="optional" type="common:typePolicyReference">
+                  <xs:annotation>
+                     <xs:documentation>This attribute will be used to pass in a value on the request which would be used to link to a ‘Policy Group’ in a policy engine external to UAPI.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+			   <xs:attribute name="ReturnPolicyExclusion" type="xs:boolean" use="optional" default="false">
+                  <xs:annotation>
+                     <xs:documentation>If "False" (default), items with an Excluded status based on the associated policy settings are not returned in the response. If "True", items marked as Excluded by the policy are returned.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>  
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VehicleSearchAvailabilityRsp">
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="BaseVehicleSearchAvailabilityRsp">
+            	<xs:sequence>
+                   <xs:element ref="common:MarketingInformation"  minOccurs="0" maxOccurs="1">
+                      <xs:annotation>
+                        <xs:documentation>Marketing text or notices by Suppliers. 1P/1J only.</xs:documentation>
+                      </xs:annotation>
+                   </xs:element>
+               </xs:sequence>
+               <xs:attribute name="MediaLinksSearchId" type="xs:string" use="optional">
+                  <xs:annotation>
+                     <xs:documentation>Unique search id to retrieve the media links using VehicleMediaLinksReq.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VehicleLocationDetailReq">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="Vendor"/>
+                        <xs:element ref="VehicleDateLocation"/>
+                        <xs:element ref="common:PointOfSale" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="PolicyReference" type="common:typePolicyReference" use="optional">
+	                  <xs:annotation>
+	                     <xs:documentation>This attribute will be used to pass in a value on the request which would be used to link to a ‘Policy Group’ in a policy engine external to UAPI.</xs:documentation>
+	                  </xs:annotation>
+               		</xs:attribute>
+               		<xs:attribute name="ReturnPolicyExclusion" type="xs:boolean" use="optional" default="false">
+	                  <xs:annotation>
+	                     <xs:documentation>If “False” (default), items with an Excluded status based on the associated policy settings are not returned in the response. If “True”, items marked as Excluded by the policy are returned.</xs:documentation>
+	                  </xs:annotation>
+               		</xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleLocationDetailRsp">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="VendorInfo"/>
+                        <xs:element ref="LocationInfo" minOccurs="0" maxOccurs="2"/>
+                        <xs:element ref="VehiclePolicy" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleRetrieveReq">
+        <xs:annotation>
+            <xs:documentation>PNR Retrieve request for a vehicle booking. Given a provider code and a provider locator code.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:attributeGroup ref="common:providerReservation"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleRetrieveRsp">
+        <xs:annotation>
+            <xs:documentation>Response to a VehicleRetrieveReq.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="VehicleReservation" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="VehicleRulesReq">
+        <xs:annotation>
+            <xs:documentation>Used to request  rules for a specific vehicle and rate.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseSearchReq">
+                    <xs:choice>
+                        <xs:element name="VehicleReservationLocatorCode" type="common:typeLocatorCode">
+                            <xs:annotation>
+                                <xs:documentation>Request vehicle rules using Locator code of existing vehicle reservation.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="VehicleRulesLookup">
+                            <xs:annotation>
+                                <xs:documentation>Details to request Vehicle rate rules post shopping request.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element ref="VehicleDateLocation"/>
+                                    <xs:element ref="VehicleSearchModifiers"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleRulesRsp">
+        <xs:annotation>
+            <xs:documentation>The rules associated with a vehicle rental rate.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseSearchRsp">
+                    <xs:sequence>
+                        <xs:element ref="Vehicle"/>
+                        <xs:element ref="OperationTime" minOccurs="0" maxOccurs="2"/>
+                        <xs:element name="StartEndTimes" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>The earliest and latest pickup and dropoff times for this vehicle rental rate.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="EarliestStart" type="typeStartEndTime" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The earliest a vehicle may be picked up.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="LatestStart" type="typeStartEndTime" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation xml:lang="en">The latest a vehicle may be picked up.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="LatestEnd" type="typeStartEndTime" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The latest a vehicle may be dropped off.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="RentalPeriodRules" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>The maximum and minimum rental periods. </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="MaxRental" type="typeRentalPeriod" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The maximum rental period for this rate.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="MinRental" type="typeRentalPeriod" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The minimum rental period for this rate.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="AbsoluteMax" type="typeRentalPeriod" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>The absolute maximum rental period for this rate.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PrePayCancelInfo" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                                <xs:documentation>PrePayment cancellation Advisory Values use to construct custom Advisory text. 1P, 1J only.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:attribute name="Code" type="xs:int" use="required">
+                                    <xs:annotation>
+                                        <xs:documentation>Code value associated to policy line advisory cancellation text (values 001 up to 999) 1P, 1J only.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="Amount" type="common:typeMoney" use="optional">
+                                    <xs:annotation>
+                                        <xs:documentation>Rate amount preceded by the ISO currency code charged to cancel, e.g. USD25.00 1P, 1J only.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="Percent" type="xs:int" use="optional">
+                                    <xs:annotation>
+                                        <xs:documentation>Percentage value (e.g. 010=10%     025=25%      050=50%       100) 1P, 1J only.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="NumberOfDaysHours" type="xs:int" use="optional">
+                                    <xs:annotation>
+                                        <xs:documentation>Number of Days or Hours (e.g. 002 days  024 hours), 1P, 1J only.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="RentalDays" type="xs:int" use="optional">
+                                    <xs:annotation>
+                                        <xs:documentation>Number of rental days (e.g. 001 up to 365), 1P, 1J only.</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PaymentRule" minOccurs="0" maxOccurs="2">
+                            <xs:annotation>
+                                <xs:documentation>The Deposit, Guarantee or PrePayment rule for the vehicle rental.</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:complexContent>
+                                    <xs:extension base="typeDepositGuarantee">
+                                        <xs:sequence>
+                                            <xs:element name="CreditCard" minOccurs="0" maxOccurs="13">
+                                                <xs:annotation>
+                                                    <xs:documentation>The two character credit card code.</xs:documentation>
+                                                </xs:annotation>
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:length value="2"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:extension>
+                                </xs:complexContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="PaymentCreditCard" minOccurs="0" maxOccurs="13">
+                            <xs:annotation>
+                                <xs:documentation>The two character code of a credit card accepted for payment.</xs:documentation>
+                            </xs:annotation>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:length value="2"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="VehicleCharge" type="typeVehicleCharge" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Charges associated with the vehicle rental.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:MarketingInformation" minOccurs="0" maxOccurs="1"/>
+                        <xs:element ref="Policy" minOccurs="0" maxOccurs="999"/>
+                        <xs:element name="PickupLocationInformation" type="typeVehicleLocationInformation" minOccurs="0">
+                         <xs:annotation>
+                                <xs:documentation>Pickup Location  Information ,  1P, 1J only.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ReturnLocationInformation" type="typeVehicleLocationInformation" minOccurs="0">
+                         <xs:annotation>
+                                <xs:documentation>Return Location  Information ,  1P, 1J only.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleLocationReq">
+        <xs:annotation>
+            <xs:documentation>Used to request a list of vendors for a location (airport or city code).</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="Vendor" minOccurs="0" maxOccurs="3"/>
+                        <xs:element name="PickupDateLocation" type="typePickupDateLocation">
+                            <xs:annotation>
+                                <xs:documentation>The date and location for which a list of vendors is requested.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:ReferencePoint" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Search Car by reference point</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="SearchDistance" type="typeVehicleSearchDistance" minOccurs="0">
+                            <xs:annotation>
+		                        <xs:documentation>Distance from search location. Providers: 1g/1v</xs:documentation>
+		                    </xs:annotation>
+		                </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="PolicyReference" use="optional" type="common:typePolicyReference">
+	                    <xs:annotation>
+	                        <xs:documentation>This attribute will be used to pass in a value on the request which would be used to link to a ‘Policy Group’ in a policy engine external to UAPI.</xs:documentation>
+	                    </xs:annotation>
+	               	</xs:attribute>
+				    <xs:attribute name="ReturnPolicyExclusion" type="xs:boolean" use="optional" default="false">
+	                    <xs:annotation>
+	                        <xs:documentation>If "False" (default), items with an Excluded status based on the associated policy settings are not returned in the response. If "True", items marked as Excluded by the policy are returned.</xs:documentation>
+	                    </xs:annotation>
+	                </xs:attribute> 
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleLocationRsp">
+        <xs:annotation>
+            <xs:documentation>Returns a list of vendors and their locations for an airport or city code.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="VehicleLocation" minOccurs="0" maxOccurs="999"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleKeywordReq">
+        <xs:annotation>
+            <xs:documentation>Used to request a list of keywords or specific keyword information for a car vendor.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseSearchReq">
+                    <xs:sequence>
+                        <xs:element ref="Vendor"/>
+                        <xs:element name="PickupDateLocation" type="typePickupDateLocation">
+                            <xs:annotation>
+                                <xs:documentation>The date and location for which a list of vendors is requested.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:Keyword" minOccurs="0" maxOccurs="3">
+                            <xs:annotation>
+                                <xs:documentation>Used to request specific keyword details</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="KeywordList" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>When true, a list of keywords should be returned.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleKeywordRsp">
+        <xs:annotation>
+            <xs:documentation>Used to respond with a list of keywords or specific keyword information.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element name="Text" type="xs:string" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                                <xs:documentation>Information for this vendor not related to a keyword.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="common:Keyword" minOccurs="0" maxOccurs="99">
+                            <xs:annotation>
+                                <xs:documentation>A word that a vendor uses to describe corporate policy/information.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="BaseVehicleSearchAvailabilityReq">
+        <xs:annotation>
+            <xs:documentation>Base request to search for vehicle availability.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="common:BaseSearchReq">
+                <xs:sequence>
+                    <xs:element ref="VehicleDateLocation"/>
+                    <xs:element ref="VehicleSearchModifiers" minOccurs="0"/>
+                    <xs:element ref="common:PointOfSale" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BaseVehicleSearchAvailabilityRsp">
+        <xs:annotation>
+            <xs:documentation>Base response of vehicle availability response.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="common:BaseSearchRsp">
+                <xs:sequence>
+                    <xs:element ref="VehicleDateLocation"/>
+                    <xs:element ref="Vehicle" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="VehicleUpsellSearchAvailabilityReq">
+        <xs:annotation>
+            <xs:documentation>Request to search Upsell offer availability for Vehicle.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseVehicleSearchAvailabilityReq"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleUpsellSearchAvailabilityRsp">
+        <xs:annotation>
+            <xs:documentation>Response of search Vehicle Upsell offer availability.</xs:documentation>
+        </xs:annotation>    
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="BaseVehicleSearchAvailabilityRsp"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VehicleMediaLinksReq">
+      <xs:annotation>
+         <xs:documentation>Used to request a list of images for a location (airport or city code) and vendor.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:choice>
+                  <xs:element ref="VehicleSearchId"/>
+                  <xs:element ref="VehiclePickupLocation" maxOccurs="unbounded"/>
+               </xs:choice>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+   <xs:element name="VehicleMediaLinksRsp">
+      <xs:annotation>
+         <xs:documentation>Response for vehicle image search results.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="VehicleWithMediaItems" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>

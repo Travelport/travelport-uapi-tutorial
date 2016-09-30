@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="HotelServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/hotel_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/hotel_v38_0"
+             targetNamespace="http://www.travelport.com/service/hotel_v38_0">
+
+    <import namespace="http://www.travelport.com/service/hotel_v38_0"
+            location="HotelAbstract.wsdl"/>
+
+    <binding name="HotelSearchServiceBinding" type="tns:HotelSearchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="HotelSearchAvailabilityAsynchServiceBinding" type="tns:HotelSearchAvailabilityAsynchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>    
+     
+
+    <binding name="HotelMediaLinksServiceBinding" type="tns:HotelMediaLinksServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="HotelDetailsServiceBinding" type="tns:HotelDetailsServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="HotelRetrieveServiceBinding" type="tns:HotelRetrieveServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="HotelRulesServiceBinding" type="tns:HotelRulesServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="HotelUpsellSearchServiceBinding" type="tns:HotelUpsellSearchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="HotelKeywordsServiceBinding" type="tns:HotelKeywordsServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+      <binding name="HotelSuperShopperServiceBinding" type="tns:HotelSuperShopperServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    <binding name="RetrieveHotelSearchAvailabilityServiceBinding" type="tns:RetrieveHotelSearchAvailabilityServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/HotelService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="HotelService">
+        <port name="HotelSearchServicePort" binding="tns:HotelSearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelMediaLinksServicePort" binding="tns:HotelMediaLinksServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelDetailsServicePort" binding="tns:HotelDetailsServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelRetrieveServicePort" binding="tns:HotelRetrieveServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelRulesServicePort" binding="tns:HotelRulesServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelUpsellSearchServicePort" binding="tns:HotelUpsellSearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelSearchAvailabilityAsynchServicePort" binding="tns:HotelSearchAvailabilityAsynchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        
+        <port name="HotelKeywordsServicePort" binding="tns:HotelKeywordsServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        <port name="HotelSuperShopperServicePort" binding="tns:HotelSuperShopperServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService"/>
+        </port>
+        <port name="RetrieveHotelSearchAvailabilityServicePort" binding="tns:RetrieveHotelSearchAvailabilityServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/HotelService "/>
+        </port>
+    </service>
+</definitions>

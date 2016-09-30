@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractVehicleServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:sc="http://www.travelport.com/soa/common/security/SessionContext_v1"
+             xmlns:tns="http://www.travelport.com/service/vehicle_v38_0"
+             xmlns:car="http://www.travelport.com/schema/vehicle_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/vehicle_v38_0"
+             xmlns:common="http://www.travelport.com/schema/common_v38_0"
+             targetNamespace="http://www.travelport.com/service/vehicle_v38_0">
+	<import namespace="http://www.travelport.com/soa/common/security/SessionContext_v1" location="../SessionContext_v1/SessionContext_v1.xsd"/>
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/vehicle_v38_0">
+            <include schemaLocation="VehicleReqRsp.xsd"/>
+        </schema>
+    </types>
+    
+    <message name="SessionContext">
+		<part name="sessionContext" element="sc:SessionContext"/>
+	</message>
+
+    <message name="VehicleSearchAvailabilityReq">
+        <part name="parameters" element="car:VehicleSearchAvailabilityReq"/>
+    </message>
+
+    <message name="VehicleSearchAvailabilityRsp">
+        <part name="result" element="car:VehicleSearchAvailabilityRsp"/>
+    </message>
+    
+    <message name="VehicleUpsellSearchAvailabilityReq">
+        <part name="parameters" element="car:VehicleUpsellSearchAvailabilityReq"></part>
+    </message>
+    
+    <message name="VehicleUpsellSearchAvailabilityRsp">
+        <part name="result" element="car:VehicleUpsellSearchAvailabilityRsp"></part>
+    </message>
+
+    <message name="VehicleRetrieveReq">
+        <part name="parameters" element="car:VehicleRetrieveReq"/>
+    </message>
+
+    <message name="VehicleRetrieveRsp">
+        <part name="result" element="car:VehicleRetrieveRsp"/>
+    </message>
+
+    <message name="VehicleLocationDetailReq">
+        <part name="parameters" element="car:VehicleLocationDetailReq"></part>
+    </message>
+
+    <message name="VehicleLocationDetailRsp">
+        <part name="result" element="car:VehicleLocationDetailRsp"></part>
+    </message>
+
+    <message name="VehicleRulesReq">
+        <part name="parameters" element="car:VehicleRulesReq"></part>
+    </message>
+
+    <message name="VehicleRulesRsp">
+        <part name="result" element="car:VehicleRulesRsp"></part>
+    </message>
+    
+    <message name="VehicleLocationReq">
+        <part name="parameters" element="car:VehicleLocationReq"></part>
+    </message>
+
+    <message name="VehicleLocationRsp">
+        <part name="result" element="car:VehicleLocationRsp"></part>
+    </message>
+    
+    <message name="VehicleKeywordReq">
+        <part name="parameters" element="car:VehicleKeywordReq"></part>
+    </message>
+    
+    <message name="VehicleKeywordRsp">
+        <part name="result" element="car:VehicleKeywordRsp"></part>
+    </message>
+
+    <message name="VehicleFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>
+
+    <message name="VehicleMediaLinksReq">
+        <part name="parameters" element="car:VehicleMediaLinksReq"></part>
+    </message>
+    
+    <message name="VehicleMediaLinksRsp">
+        <part name="result" element="car:VehicleMediaLinksRsp"></part>
+    </message>
+    
+    <portType name="VehicleSearchServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleSearchAvailabilityReq"/>
+            <output message="tns:VehicleSearchAvailabilityRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="VehicleRetrieveServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleRetrieveReq"/>
+            <output message="tns:VehicleRetrieveRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="VehicleLocationDetailServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleLocationDetailReq"/>
+            <output message="tns:VehicleLocationDetailRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="VehicleRulesServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleRulesReq"/>
+            <output message="tns:VehicleRulesRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+
+    <portType name="VehicleLocationServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleLocationReq"/>
+            <output message="tns:VehicleLocationRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="VehicleKeywordsServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleKeywordReq"/>
+            <output message="tns:VehicleKeywordRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="VehicleUpsellSearchServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleUpsellSearchAvailabilityReq"/>
+            <output message="tns:VehicleUpsellSearchAvailabilityRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="VehicleMediaLinksServicePortType">
+        <operation name="service">
+            <input message="tns:VehicleMediaLinksReq"/>
+            <output message="tns:VehicleMediaLinksRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:VehicleFaultMessage"/>
+        </operation>
+    </portType>
+
+</definitions>

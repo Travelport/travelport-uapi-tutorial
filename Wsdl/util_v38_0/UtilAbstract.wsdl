@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UtilService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/util_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/util_v38_0"
+             xmlns:common="http://www.travelport.com/schema/common_v38_0"
+             targetNamespace="http://www.travelport.com/service/util_v38_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/util_v38_0">
+            <include schemaLocation="Util.xsd"/>
+        </schema>
+    </types>
+    
+    <message name="UpsellAdminReq">
+        <part name="parameters" element="ns1:UpsellAdminReq" />
+    </message>
+
+    <message name="UpsellAdminRsp">
+        <part name="result" element="ns1:UpsellAdminRsp" />
+    </message>
+    
+    <message name="BrandedFareAdminReq">
+        <part name="parameters" element="ns1:BrandedFareAdminReq" />
+    </message>
+    
+    <message name="BrandedFareAdminRsp">
+        <part name="result" element="ns1:BrandedFareAdminRsp" />
+    </message>
+
+    <message name="UpsellSearchReq">
+        <part name="parameters" element="ns1:UpsellSearchReq" />
+    </message>
+
+    <message name="UpsellSearchRsp">
+        <part name="result" element="ns1:UpsellSearchRsp" />
+    </message>
+        
+    <message name="BrandedFareSearchReq">
+        <part name="parameters" element="ns1:BrandedFareSearchReq" />
+    </message>
+
+    <message name="BrandedFareSearchRsp">
+        <part name="result" element="ns1:BrandedFareSearchRsp" />
+    </message>
+    
+    <message name="UtilCreditCardAuthRequest">
+        <part name="parameters" element="ns1:CreditCardAuthReq" />
+    </message>
+
+    <message name="UtilCreditCardAuthResponse">
+        <part name="result" element="ns1:CreditCardAuthRsp" />
+    </message>
+
+    <message name="McoCreateAgencyFeeRequest">
+        <part name="parameters" element="ns1:CreateAgencyFeeMcoReq" />
+    </message>
+
+    <message name="McoCreateAgencyFeeResponse">
+        <part name="result" element="ns1:CreateAgencyFeeMcoRsp" />
+    </message>
+
+    <message name="McoVoidRequest">
+        <part name="parameters" element="ns1:McoVoidReq" />
+    </message>
+
+    <message name="McoVoidResponse">
+        <part name="result" element="ns1:McoVoidRsp" />
+    </message>
+
+    <message name="MirReportRetrieveRequest">
+        <part name="parameters" element="ns1:MirReportRetrieveReq" />
+    </message>
+
+    <message name="MirReportRetrieveResponse">
+        <part name="result" element="ns1:MirReportRetrieveRsp" />
+    </message>
+
+    <message name="McoSearchRequest">
+        <part name="parameters" element="ns1:McoSearchReq" />
+    </message>
+
+    <message name="McoSearchResponse">
+        <part name="result" element="ns1:McoSearchRsp" />
+    </message>
+
+    <message name="MctCountRequest">
+        <part name="parameters" element="ns1:MctCountReq" />
+    </message>
+
+    <message name="MctCountResponse">
+        <part name="result" element="ns1:MctCountRsp" />
+    </message>
+
+    <message name="MctLookupRequest">
+        <part name="parameters" element="ns1:MctLookupReq" />
+    </message>
+
+    <message name="MctLookupResponse">
+        <part name="result" element="ns1:MctLookupRsp" />
+    </message>
+
+    <message name="UtilFaultMessage">
+        <part name="fault" element="common:ErrorInfo" />
+    </message>
+
+    <message name="CalculateTaxRequest">
+        <part name="parameters" element="ns1:CalculateTaxReq" />
+    </message>
+
+    <message name="CalculateTaxResponse">
+        <part name="result" element="ns1:CalculateTaxRsp" />
+    </message>
+
+    <message name="ContentProviderRetrieveRequest">
+        <part name="parameters" element="ns1:ContentProviderRetrieveReq" />
+    </message>
+
+    <message name="ContentProviderRetrieveResponse">
+        <part name="result" element="ns1:ContentProviderRetrieveRsp" />
+    </message>
+
+    <message name="UtilCurrencyConversionRequest">
+        <part name="parameters" element="ns1:CurrencyConversionReq" />
+    </message>
+
+    <message name="UtilCurrencyConversionResponse">
+        <part name="result" element="ns1:CurrencyConversionRsp" />
+    </message>
+    
+    <message name="ReferenceDataLookupRequest">
+        <part name="parameters" element="ns1:ReferenceDataSearchReq" />
+    </message>
+
+    <message name="ReferenceDataLookupResponse">
+        <part name="result" element="ns1:ReferenceDataSearchRsp" />
+    </message>
+    
+    <message name="ReferenceDataRetrieveRequest">
+        <part name="parameters" element="ns1:ReferenceDataRetrieveReq" />
+    </message>
+
+    <message name="ReferenceDataRetrieveResponse">
+        <part name="result" element="ns1:ReferenceDataRetrieveRsp" />
+    </message>
+    
+    <message name="AgencyServiceFeeCreateReq">
+        <part name="parameters" element="ns1:AgencyServiceFeeCreateReq" />
+    </message>
+
+    <message name="AgencyServiceFeeCreateRsp">
+        <part name="result" element="ns1:AgencyServiceFeeCreateRsp" />
+    </message>    
+
+    <message name="FindEmployeesOnFlightReq">
+        <part name="parameters" element="ns1:FindEmployeesOnFlightReq"/>
+    </message>
+
+    <message name="FindEmployeesOnFlightRsp">
+        <part name="result" element="ns1:FindEmployeesOnFlightRsp"/>
+    </message>
+    
+    <message name="ReferenceDataUpdateReq">
+        <part name="parameters" element="ns1:ReferenceDataUpdateReq"/>
+    </message>
+    
+    <message name="ReferenceDataUpdateRsp">
+        <part name="result" element="ns1:ReferenceDataUpdateRsp"/>
+    </message>
+    
+    <!--  Port Types  -->
+    
+    <portType name="UpsellAdminPortType">
+        <operation name="service">
+            <input message="tns:UpsellAdminReq" />
+            <output message="tns:UpsellAdminRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="BrandedFareAdminPortType">
+        <operation name="service">
+            <input message="tns:BrandedFareAdminReq" />
+            <output message="tns:BrandedFareAdminRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="UpsellAdminSearchPortType">
+        <operation name="service">
+            <input message="tns:UpsellSearchReq" />
+            <output message="tns:UpsellSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="UtilCreditCardAuthPortType">
+        <operation name="service">
+            <input message="tns:UtilCreditCardAuthRequest" />
+            <output message="tns:UtilCreditCardAuthResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="McoCreateAgencyFeePortType">
+        <operation name="service">
+            <input message="tns:McoCreateAgencyFeeRequest" />
+            <output message="tns:McoCreateAgencyFeeResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="McoVoidPortType">
+        <operation name="service">
+            <input message="tns:McoVoidRequest" />
+            <output message="tns:McoVoidResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="ReportRetrievePortType">
+        <operation name="service">
+            <input message="tns:MirReportRetrieveRequest" />
+            <output message="tns:MirReportRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="McoSearchPortType">
+        <operation name="service">
+            <input message="tns:McoSearchRequest" />
+            <output message="tns:McoSearchResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="MctCountPortType">
+        <operation name="service">
+            <input message="tns:MctCountRequest" />
+            <output message="tns:MctCountResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="MctLookupPortType">
+        <operation name="service">
+            <input message="tns:MctLookupRequest" />
+            <output message="tns:MctLookupResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="CalculateTaxPortType">
+        <operation name="service">
+            <input message="tns:CalculateTaxRequest" />
+            <output message="tns:CalculateTaxResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="ContentProviderRetrievePortType">
+        <operation name="service">
+            <input message="tns:ContentProviderRetrieveRequest" />
+            <output message="tns:ContentProviderRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="UtilCurrencyConversionPortType">
+        <operation name="service">
+            <input message="tns:UtilCurrencyConversionRequest" />
+            <output message="tns:UtilCurrencyConversionResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ReferenceDataRetrievePortType">
+        <operation name="service">
+            <input message="tns:ReferenceDataRetrieveRequest" />
+            <output message="tns:ReferenceDataRetrieveResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="ReferenceDataLookupPortType">
+        <operation name="service">
+            <input message="tns:ReferenceDataLookupRequest" />
+            <output message="tns:ReferenceDataLookupResponse" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+        <portType name="BrandedFareSearchPortType">
+        <operation name="service">
+            <input message="tns:BrandedFareSearchReq" />
+            <output message="tns:BrandedFareSearchRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+    
+    <portType name="AgencyCreateServiceFeePortType">
+        <operation name="service">
+            <input message="tns:AgencyServiceFeeCreateReq" />
+            <output message="tns:AgencyServiceFeeCreateRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+    <portType name="FindEmployeesOnFlightServicePortType">
+        <operation name="service">
+            <input message="tns:FindEmployeesOnFlightReq"/>
+            <output message="tns:FindEmployeesOnFlightRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage"/>
+        </operation>
+    </portType>
+    
+    <portType name="ReferenceDataUpdatePortType">
+        <operation name="service">
+            <input message="tns:ReferenceDataUpdateReq" />
+            <output message="tns:ReferenceDataUpdateRsp" />
+            <fault name="ErrorInfoMsg" message="tns:UtilFaultMessage" />
+        </operation>
+    </portType>
+
+</definitions>

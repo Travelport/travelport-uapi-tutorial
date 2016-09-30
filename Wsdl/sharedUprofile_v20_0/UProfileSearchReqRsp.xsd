@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/sharedUprofile_v20_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.travelport.com/schema/sharedUprofile_v20_0"
+           xmlns:common="http://www.travelport.com/schema/uprofileCommon_v30_0" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    
+    <xs:import schemaLocation="../uprofileCommon_v30_0/UprofileCommonReqRsp.xsd"
+	namespace="http://www.travelport.com/schema/uprofileCommon_v30_0" />
+   <xs:include schemaLocation="UProfileShared.xsd" />
+
+   
+     <!-- *** Profile Search Core Request Types *** -->
+     <xs:element name="ProfileSearchReq">
+        <xs:annotation>
+            <xs:documentation>Request to search for profiles of a specified type, within a specified parent. No more than 5 parameters can be specified for a given search request (in addition to ProfileSearchModifiers and a parent ID and Type). Returns any profiles that match all the parameters specified.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                        <xs:element ref="ProfileTypeSearch" minOccurs="0"/>
+                        <xs:element ref="ProfileSearch" minOccurs="0"/>
+                        <xs:element ref="ProfileSearchModifiers" minOccurs="0"/>
+                    </xs:sequence>
+                    <xs:attribute name="ProfileType" type="typeProfileType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Limit the search to specific profile type.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ProfileParentID">
+                        <xs:annotation>
+                            <xs:documentation>The ID of the profile parent or ancestor to search within.This will be used to constrain the scope of the search to a given account, branch, etc. If none is specified, the system will infer the scope based on the user's permissions and emulation.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ReturnParentSummary" type="xs:boolean" default="false">
+                        <xs:annotation>
+                            <xs:documentation>If true, the response will include profile summary information from this profile's parents.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="SearchToken" type="common:StringLength1to128">
+                        <xs:annotation>
+                            <xs:documentation>Search token to retrieve search result from cache, if present.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="ProfileSearchRsp">
+        <xs:annotation>
+            <xs:documentation>Response with the profile.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="ProfileSummary" minOccurs="0" maxOccurs="unbounded"/>              
+                        <xs:element ref="ProfileParentSearchSummary" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attribute name="SearchToken" type="common:StringLength1to128">
+                        <xs:annotation>
+                            <xs:documentation>Search token generated after caching the results. Use this token in ProfileSearchReq to get the same result back in future profile search calls, if the cache still exists.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Indicates whether more results are available that match the search parameters.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+     <xs:element name="ProfileChildSearchReq">
+      <xs:annotation>
+         <xs:documentation>Request to allow a user to retrieve the immediate children of a given profile.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseReq">
+               <xs:sequence>
+               <xs:group ref="ProfileSpecification"/>
+                <xs:choice minOccurs="0">
+                    <xs:element name="OrganizationName" type="common:typeWildcard">
+                        <xs:annotation>
+                            <xs:documentation>Name of the organization to filter for.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:sequence>
+                        <xs:element name="GivenName" type="common:typeWildcard" minOccurs="0"/>
+                        <xs:element name="Surname" type="common:typeWildcard" minOccurs="0"/>
+                    </xs:sequence>
+                  </xs:choice>
+                  <xs:element ref="ProfileSearchModifiers" minOccurs="0"/>
+               </xs:sequence>
+               <xs:attribute name="HierarchyType">
+                        <xs:annotation>
+                            <xs:documentation>The type of hierarchy in which to search for children. If not specified search result will include profiles of all types.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="typeProfileType">
+                                <xs:enumeration value="Agency"/>
+                                <xs:enumeration value="Account"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+              </xs:attribute>
+              <xs:attribute name="IncludeAgentsAndTravelers" type="xs:boolean" default="false">
+                        <xs:annotation>
+                            <xs:documentation>Indicator to include or exclude Travelers and Agent profiles when doing a this search.  The default is false, no Travelers or Agents will be returned.</xs:documentation>
+                        </xs:annotation>
+             </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+    
+   <xs:element name="ProfileChildSearchRsp">
+      <xs:annotation>
+         <xs:documentation>Response to allow a user to retrieve the immediate children of a given profile.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="common:BaseRsp">
+               <xs:sequence>
+                  <xs:element ref="ProfileChildSummary" minOccurs="0" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Summary of each Profile Child</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+               <xs:attribute name="MoreResults" type="common:typeMoreResults" use="required">
+                  <xs:annotation>
+                     <xs:documentation>Indicates whether more results are available that match the search parameters.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="NumberOfChildren" type="xs:int">
+                  <xs:annotation>
+                     <xs:documentation>Total number of children that the profile searched under has,</xs:documentation>
+                  </xs:annotation>
+             </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+          
+</xs:schema>      

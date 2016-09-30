@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 ( [[http://www.altova.com][http://www.altova.com]]) by Utsab Roy (Travelport) -->
+<xs:schema xmlns="http://www.travelport.com/schema/cruise_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v38_0" xmlns:ns1="http://www.travelport.com/schema/cruise_v38_0" targetNamespace="http://www.travelport.com/schema/cruise_v38_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+ <xs:annotation>
+  <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+ </xs:annotation>
+ <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/Common.xsd"/>
+	<xs:element name="CruiseReservation">
+		<xs:annotation>
+			<xs:documentation>The parent container for all cruise booking data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:BaseReservation">
+					<xs:sequence>
+						<xs:element ref="CruiseSegment" minOccurs="0" />
+						<xs:element ref="CruiseItinerary" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="CruisePricingInfo" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Cruise pricing Information. Contains all	related pricing data for travelers.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="OptionalService" minOccurs="0" maxOccurs="unbounded" />
+						<xs:element ref="common:BookingTravelerRef" maxOccurs="unbounded" />
+						<xs:element ref="common:ProviderReservationInfoRef"	minOccurs="0" maxOccurs="1" />
+						<xs:element ref="common:Payment" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CruisePricingInfo">
+		<xs:annotation>
+			<xs:documentation>Cruise pricing Information. Contains all related
+				pricing data for travelers.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Fare" minOccurs="0" />
+				<xs:element ref="Charges" minOccurs="0" />
+				<xs:element ref="Discount" minOccurs="0" maxOccurs="2" />
+				<xs:element ref="Deposit" minOccurs="0" maxOccurs="2" />
+				<xs:element ref="Balance" minOccurs="0" />
+				<xs:element ref="Commission" minOccurs="0" />
+				<xs:element ref="CruiseFees" minOccurs="0" />
+				<xs:element ref="CruiseBookingTravelerRef" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attributeGroup ref="common:attrPrices" />
+			<xs:attributeGroup ref="common:attrProviderSupplier" />
+			<xs:attribute name="NetFare" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Net Fare amount (Base price plus miscellaneouscharges less discounts)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ReceivedAmount" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Amount of money Recieved</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Deposit">
+		<xs:annotation>
+			<xs:documentation>Indicates Deposit dates.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Amount" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Amount of Deposit</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="attrDueReceivedDates" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Balance">
+		<xs:annotation>
+			<xs:documentation>Indicates balance dates.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attributeGroup ref="attrDueReceivedDates" />
+			<xs:attribute name="CreditCardDueAmount" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Balance due via credit card payment
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CheckDueAmount" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Balance due via personal check</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Discount">
+		<xs:annotation>
+			<xs:documentation>Cruise Discount Amount.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Amount" type="common:typeMoney" use="required">
+				<xs:annotation>
+					<xs:documentation>Amount of Discount</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Description" type="common:StringLength1to13" use="optional">
+				<xs:annotation>
+					<xs:documentation>Text explaining discount amount
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Charges">
+		<xs:annotation>
+			<xs:documentation>Container for various Charges assocaited with the
+				Cruise Booking</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="AirCharge" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Total Amount of Air Charges associated with
+						Cruise</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OptionalCharge" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Total Amount of Optional Charges associated with
+						Cruise</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="WaiverCharge" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Total Waiver/Insurance charges associated with
+						Cruise</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="WaiverChargeType" type="common:StringLength1" use="optional">
+				<xs:annotation>
+					<xs:documentation>Use to determine if the amount is Waiver Charges
+						or Insurance Charges.(Values - Waiver/Insurance)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PortCharge" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Amount of Port tax associated with Cruise
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PortChargeDescription" type="common:StringLength1to13" use="optional">
+				<xs:annotation>
+					<xs:documentation>Text explaining Port charges</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PenaltyCharge" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Amount of penalty charged with Cruise
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Commission">
+		<xs:annotation>
+			<xs:documentation>Cruise Commission.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Amount" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Total amount of commission associated with cruise
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MiscellaneousAmount" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Total amount of other Commission associated with
+						cruise</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MiscellaneousDescription" type="common:StringLength1to13" use="optional">
+				<xs:annotation>
+					<xs:documentation>Text explaining other Commission amount
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CruiseFees">
+		<xs:annotation>
+			<xs:documentation>Cruise Fees amount.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Amount" type="common:typeMoney" use="required">
+				<xs:annotation>
+					<xs:documentation>Total amount of fees associated for cruise
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Description" type="common:StringLength1to13" use="optional">
+				<xs:annotation>
+					<xs:documentation>Text explaining fee amount</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Fare">
+		<xs:annotation>
+			<xs:documentation>Cruise Fare info.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="FareSpecific" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Category is fare specific or not
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MultipleFareIndicator" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Multiple fare are used or not</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RateCode" type="common:StringLength1to8" use="optional">
+				<xs:annotation>
+					<xs:documentation>Vendor defined rate code</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Due">
+		<xs:annotation>
+			<xs:documentation>Due balance Amount on Booking.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType />
+	</xs:element>
+	<xs:element name="CruiseItinerary">
+		<xs:annotation>
+			<xs:documentation>Contains one day's journey Record.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="DepartureDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>The date at which this entity departs.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DepartureTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>The  time at which this entity departs.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ArrivalDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>The date at which this entity arrives at
+						the destination.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ArrivalTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>The time at which this entity arrives at
+						the destination.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BoardingDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>The date at which this passenger boards
+						the entity.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BoardingTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>The time at which this passenger boards
+						the entity.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status" type="common:typeStatusCode" 	use="optional">
+				<xs:annotation>
+					<xs:documentation>Port of call status .Possible Values (List): SS -
+						New item, LL - Waitlisted item, NN - Item is no need/need status,
+						IX - Canceled item, HK - Booked item, HL - Booked item, HN -
+						Booked item, UC - Unconfirmed item </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PortName" type="common:StringLength1to20" use="optional">
+				<xs:annotation>
+					<xs:documentation>Port of call name</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PortIndicator" type="common:StringLength1" use="optional">
+				<xs:annotation>
+					<xs:documentation>Port of call type. Can be of the following values
+						: P - Port of Cal, S - At Sea, E - Embarkation Port, D -
+						Disembarkation Port
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OptionalService">
+		<xs:annotation>
+			<xs:documentation>Featues/Optionals supported with the cruise booked.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OptionJourneyDetails" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Contains PickUp Return Details for that Cruise
+							Option Service.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="common:BookingTravelerRef" minOccurs="1" maxOccurs="5" />
+			</xs:sequence>
+			<xs:attribute name="FeatureType" type="common:StringLength1" use="required">
+				<xs:annotation>
+					<xs:documentation>Type of Optional Service. F: Feature, O: Option
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status" type="common:typeStatusCode" use="optional">
+				<xs:annotation>
+					<xs:documentation>Status of of the Optional Service
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Quantity" type="xs:positiveInteger" use="optional">
+				<xs:annotation>
+					<xs:documentation>Number of Features/Options Requested.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ProviderDefinedType" type="common:StringLength1to10" use="optional">
+				<xs:annotation>
+					<xs:documentation>Unique ID on vendors system</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Description" type="common:StringLength1to25" use="optional">
+				<xs:annotation>
+					<xs:documentation>Descriptive Name of Feature or Option
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StartDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Feature/Option Begin Date</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="EndDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Feature/Option End Date</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BookingDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Date Cruise Booked</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SetIdentifier" type="common:StringLength1to10" use="optional">
+				<xs:annotation>
+					<xs:documentation>Feature/Option Unique ID Examples: B2NOXFR
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SetName" type="common:StringLength1to20" use="optional">
+				<xs:annotation>
+					<xs:documentation>Feature/Option Set Name Examples: PRE-CRUISE
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TotalPrice" type="common:typeMoney" use="optional">
+				<xs:annotation>
+					<xs:documentation>Feature/Option Price</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TransportIndicator" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Whether Features/ Options Affects
+						TransportationIndicator. True - This Feature or Option group affects
+						transportation
+						False - This Feature or Option group does not affect transportation.
+					</xs:documentation>
+				</xs:annotation>
+         	</xs:attribute>
+			<xs:attribute name="AirCityIndicator" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Feature/option is air or city dependent.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PurchaseIndicator" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Option purchased by someone other than the
+						passenger</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OptionJourneyDetails">
+		<xs:annotation>
+			<xs:documentation>Contains PickUp Return Details for that Cruise
+				Feature/Option Service.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="PickUpLocation" type="common:StringLength1to5" use="optional">
+				<xs:annotation>
+					<xs:documentation>IATA/Non-IATA Location Code for Pickup.
+						Examples:YVR</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PickUpTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>PickUp Time</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PickUpDescription" type="common:StringLength1to30" use="optional">
+				<xs:annotation>
+					<xs:documentation>PickUp Location Description</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PickUpCarrier" type="common:typeCarrier" use="optional">
+				<xs:annotation>
+					<xs:documentation>The carrier that is marketing this segment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PickUpFlightNumber" type="common:typeFlightNumber" use="optional">
+				<xs:annotation>
+					<xs:documentation>The flight number under which the marketing
+						carrier is marketing carrier is marketing this flight
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ReturnLocation" type="common:StringLength1to5" use="optional">
+				<xs:annotation>
+					<xs:documentation>IATA/Non-IATA Location Code for Drop Off.
+						Examples:YVR</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ReturnTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>Return time</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ReturnDescription" type="common:StringLength1to30" use="optional">
+				<xs:annotation>
+					<xs:documentation>Return Location Description</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ReturnCarrier" type="common:typeCarrier" use="optional">
+				<xs:annotation>
+					<xs:documentation>The carrier that is marketing this segment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ReturnFlightNumber" type="common:typeFlightNumber" use="optional">
+				<xs:annotation>
+					<xs:documentation>The flight number under which the marketing
+						carrier is marketing carrier is marketing this flight
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CruiseSegment">
+		<xs:annotation>
+			<xs:documentation>An Cruise marketable travel segment.	</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="common:Segment">
+					<xs:sequence>
+						<xs:element ref="CruiseStay" minOccurs="1" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attribute name="Vendor" type="common:StringLength1to3" use="optional">
+						<xs:annotation>
+							<xs:documentation>Cruise Vendor Code.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="VendorName" type="common:StringLength1to30" use="optional">
+						<xs:annotation>
+							<xs:documentation>Cruise Vendor Name.</xs:documentation>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="Origin" type="common:StringLength1to5" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The location code for the origin of cruise segment.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Destination" type="common:StringLength1to5" use="required">
+                        <xs:annotation>
+                            <xs:documentation>The location code for the destination of cruise segment.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="DepartureTime" type="xs:string" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>The date and time at which this cruise segment departs from the origin.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="ArrivalTime" type="xs:string" use="optional">
+                        <xs:annotation>
+                            <xs:documentation>The date and time at which this cruise segment arrives at the destination.</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+					
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CruiseStay">
+		<xs:annotation>
+			<xs:documentation>Provides Cruise information.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Package" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Cruise package Details</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="Name" type="common:StringLength1to30" use="optional">
+							<xs:annotation>
+								<xs:documentation>Cruise package Name</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="Identifier" use="optional">
+							<xs:annotation>
+								<xs:documentation>Vendor Package/Tour identifier	</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="30" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="PassengerCount" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:documentation>Number in party</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="PackageIdentifier" type="common:StringLength1to14" use="optional">
+							<xs:annotation>
+								<xs:documentation>Vendor Package/Tour Identifier	</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="CabinInfo" minOccurs="0" maxOccurs="1" />
+				<xs:element name="DiningInfo" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:documentation>Cruise Dining Details</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="Seating" type="common:StringLength1" use="optional">
+							<xs:annotation>
+								<xs:documentation>Seating Arrangement. Can be of the following
+									values : '1' - First seating, '2' - Second seating
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="Status" type="common:typeStatusCode" use="optional">
+							<xs:annotation>
+								<xs:documentation>Status of this dining</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="TableSize" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:documentation>Size of the table in number of persons
+								</xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ShipName" type="common:StringLength1to25" use="optional">
+				<xs:annotation>
+					<xs:documentation>Ship name</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DurationOfStay" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:documentation>Length of stay</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UnitOfStay" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Unit of duration of stay in Days or Night(Value -
+						Day/Night)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BookingDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>Date when cruise was booked</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BookingAgent" type="common:StringLength1to12" use="optional">
+				<xs:annotation>
+					<xs:documentation>Name of the travel agent booking itinerary.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BookingCredit" type="common:StringLength1to10" use="optional">
+				<xs:annotation>
+					<xs:documentation>Credit Paid at the time of booking
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OtherPartyConfNbr" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:documentation>Confirm number of the other parties travelling
+						with this party.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PassengerOrigin" type="common:StringLength1to5" use="optional">
+				<xs:annotation>
+					<xs:documentation>Origination city for passenger (not necessarily
+						the city from which the cruise embarks).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ConfirmationNumber" type="common:StringLength1to16" use="optional">
+				<xs:annotation>
+					<xs:documentation>Confirmation number of cruise segment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LinkedConfNumber" type="common:StringLength1to16" use="optional">
+				<xs:annotation>
+					<xs:documentation>Linked Cruise Confirmation Number.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CancellationNumber" type="common:StringLength1to16" use="optional">
+				<xs:annotation>
+					<xs:documentation>Cancellation Number of Cruise Segment.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CancellationDate" type="xs:date" use="optional">
+				<xs:annotation>
+					<xs:documentation>The date  at which the booking was
+						cancelled.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CancellationTime" type="xs:time" use="optional">
+				<xs:annotation>
+					<xs:documentation>The time at which the booking was
+						cancelled.</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CabinInfo">
+		<xs:annotation>
+			<xs:documentation>Cruise Cabin Details</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Category" type="common:StringLength1to3" use="optional">
+				<xs:annotation>
+					<xs:documentation>Vendor defined Cabin category</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Number" type="common:StringLength1to5" use="optional">
+				<xs:annotation>
+					<xs:documentation>Vendor defined cabin designator Or Cabin Number
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Location" type="common:StringLength1" use="optional">
+				<xs:annotation>
+					<xs:documentation>Cabin Category , can be of the following values :
+						''I' - Inside Cabins, 'O' - Outside Cabins, 'M' - Inside and
+						Outside Cabins (mixed) </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RelativeLocation" type="common:StringLength1to12" use="optional">
+				<xs:annotation>
+					<xs:documentation>Position of the cabin relative to the layout of
+						the ship, e.g. OUT,AFT,PORT</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DeckName" type="common:StringLength1to15" use="optional">
+				<xs:annotation>
+					<xs:documentation>Ship's deck on which cabin resides.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BedConfiguration" type="common:StringLength1to10" use="optional">
+				<xs:annotation>
+					<xs:documentation>Description of the cabin bed configuration e.g.
+						TWIN BEDS </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SmokingIndicator" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Whether user has specified his smoking
+						preference.Can be of the following values : true' - Smoking' 'false' -
+						Non-smoking
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="attrDueReceivedDates">
+		<xs:annotation>
+			<xs:documentation>Due and Received Dates for Payments
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="DueDate" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation>Date when deposit or balance is due.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ReceivedDate" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation>Date when deposit or balance is received, if
+					received.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:element name="CruiseBookingTravelerRef">
+		<xs:annotation>
+			<xs:documentation>Reference Element for Booking Traveler and Loyalty
+				cards
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="common:LoyaltyCardRef" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="Key" type="common:typeRef" use="optional" />
+			<xs:attribute name="WaiverIndicator" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:documentation>Indicates Passenger accepts/rejects waiver or
+						insurance from vendor.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

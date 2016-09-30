@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+		   xmlns="http://www.travelport.com/schema/uprofileCommon_v30_0" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://www.travelport.com/schema/uprofileCommon_v30_0" 
+           elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2008 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    
+    <xs:include schemaLocation="UprofileCommon.xsd"/>
+    
+    <!--*** Request Types ***-->
+     <xs:complexType name="BaseReq">    	           
+		<xs:complexContent>
+			<xs:extension base="BaseCoreReq">
+				<xs:sequence>
+					<xs:element ref="OverridePCC" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:attribute name="RetrieveProviderReservationDetails" type="xs:boolean" use="optional" default="false"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+    <xs:complexType name="BaseCoreReq">    	           
+        <xs:sequence>
+        	<xs:element ref="BillingPointOfSaleInfo"/>
+        	<xs:element ref="AgentIDOverride" minOccurs="0"  maxOccurs="unbounded"/>
+        	<xs:element ref="TerminalSessionInfo" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="TraceId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Unique identifier for this atomic transaction traced by the user. Use is optional.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="TokenId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Authentication Token ID used when running in statefull operation. Obtained from the LoginRsp. Use is optional.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="AuthorizedBy" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Used in showing who authorized the request. Use is optional.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+       
+        <xs:attribute name="TargetBranch" type="typeBranchCode" use="optional">
+            <xs:annotation>
+                <xs:documentation>Used for Emulation - If authorised will execute the request as if the agent's parent branch is the TargetBranch specified.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OverrideLogging" type="typeLoggingLevel" use="optional">
+            <xs:annotation>
+                <xs:documentation>Use to override the default logging level</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="LanguageCode" type="xs:language" use="optional">
+            <xs:annotation>
+                <xs:documentation>ISO  639 Language Code used to receive specific information in the requested  language. Supported  Provider: ACH. Supported Carriers:U2</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="BaseSearchReq">
+        <xs:complexContent>
+              <xs:extension base="BaseReq">
+              <xs:sequence>
+                  <xs:element ref="NextResultReference" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+              </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+   <xs:complexType name="BaseCoreSearchReq">
+      <xs:annotation>
+         <xs:documentation>Base Request for Air Search</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BaseCoreReq">
+            <xs:sequence>
+               <xs:element ref="NextResultReference" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>     
+    <xs:complexType name="BaseSearchRsp">
+        <xs:complexContent>
+              <xs:extension base="BaseRsp">
+              <xs:sequence>
+                  <xs:element ref="NextResultReference" minOccurs="0" maxOccurs="unbounded"/>
+              </xs:sequence>
+              </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BaseRsp">
+        <xs:annotation>
+            <xs:documentation>The base type for all responses.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="ResponseMessage" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="TraceId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>Unique identifier for this atomic transaction traced by the user. Use is optional.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="TransactionId" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>System generated unique identifier for this atomic transaction.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="ResponseTime" type="xs:integer" use="optional">
+            <xs:annotation>
+                <xs:documentation>The time (in ms) the system spent processing this request, not including transmission times.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="CommandHistory" type="xs:string" use="optional">
+            <xs:annotation>
+                <xs:documentation>HTTP link to download command history and debugging information of the request that generated this response. Must be enabled on the system.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    
+    <xs:element name="ErrorInfo">
+        <xs:annotation>
+            <xs:documentation>Container for error data when there is an application error.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="typeErrorInfo"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="typeLoggingLevel">
+        <xs:annotation>
+            <xs:documentation>The type of various Logging levels</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRACE"/>
+            <xs:enumeration value="DEBUG"/>
+            <xs:enumeration value="INFO"/>
+            <xs:enumeration value="WARN"/>
+            <xs:enumeration value="ERROR"/>
+            <xs:enumeration value="FATAL"/>
+       </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="typeParentProfileLevel">
+        <xs:annotation>
+            <xs:documentation>Returns parent’s data up to specified hierarchy. Valid values are ‘Agency’, ‘AgencyGroup’, ‘BranchGroup’, ‘Branch’, ‘Account’ and ‘Traveler Group’.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+        	<xs:enumeration value="AgencyGroup"/>
+            <xs:enumeration value="Agency"/>
+            <xs:enumeration value="BranchGroup"/>
+            <xs:enumeration value="Branch"/>
+            <xs:enumeration value="Account"/>
+            <xs:enumeration value="TravelerGroup"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

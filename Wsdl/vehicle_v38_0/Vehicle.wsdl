@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="VehicleServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/vehicle_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/vehicle_v38_0"
+             targetNamespace="http://www.travelport.com/service/vehicle_v38_0">
+
+    <import namespace="http://www.travelport.com/service/vehicle_v38_0"
+            location="VehicleAbstract.wsdl"/>
+
+    <binding name="VehicleSearchServiceBinding" type="tns:VehicleSearchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="VehicleRetrieveServiceBinding" type="tns:VehicleRetrieveServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="VehicleLocationDetailBinding" type="tns:VehicleLocationDetailServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+            	<soap:header use="literal" part="sessionContext" message="tns:SessionContext"/>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="VehicleRulesServiceBinding" type="tns:VehicleRulesServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="VehicleKeywordsServiceBinding" type="tns:VehicleKeywordsServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="VehicleLocationServiceBinding" type="tns:VehicleLocationServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <binding name="VehicleUpsellSearchServiceBinding" type="tns:VehicleUpsellSearchServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="VehicleMediaLinksServiceBinding" type="tns:VehicleMediaLinksServicePortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:8080/kestrel/VehicleService"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="VehicleService">
+        <port name="VehicleSearchServicePort" binding="tns:VehicleSearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+
+        <port name="VehicleRetrieveServicePort" binding="tns:VehicleRetrieveServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+
+        <port name="VehicleLocationDetailServicePort" binding="tns:VehicleLocationDetailBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+
+        <port name="VehicleRulesServicePort" binding="tns:VehicleRulesServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+    
+        <port name="VehicleKeywordsServicePort" binding="tns:VehicleKeywordsServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+
+        <port name="VehicleLocationServicePort" binding="tns:VehicleLocationServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService"/>
+        </port>
+
+        <port name="VehicleUpsellSearchServicePort" binding="tns:VehicleUpsellSearchServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService" />
+        </port>
+    
+        <port name="VehicleMediaLinksServicePort"   binding="tns:VehicleMediaLinksServiceBinding">
+            <soap:address location="http://localhost:8080/kestrel/VehicleService" />
+        </port>
+    </service>
+</definitions>
