@@ -25,6 +25,8 @@ import com.travelport.service.universal_v38_0.UniversalRecordRetrieveServicePort
 import com.travelport.service.universal_v38_0.UniversalRecordService;
 import com.travelport.service.vehicle_v38_0.VehicleSearchServicePortType;
 import com.travelport.service.vehicle_v38_0.VehicleService;
+import com.travelport.service.util_v38_0.ReferenceDataRetrievePortType;
+import com.travelport.service.util_v38_0.ReferenceDataRetrieveService;;
 
 
 /**
@@ -42,6 +44,7 @@ public class WSDLService {
 	static public String HOTEL_WSDL = "wsdl/hotel_v38_0/Hotel.wsdl";
 	static public String VEHICLE_WSDL = "wsdl/vehicle_v38_0/Vehicle.wsdl";
 	static public String UNIVERSAL_WSDL = "wsdl/universal_v38_0/UniversalRecord.wsdl";
+	static public String UTIL_WSDL = "wsdl/util_v38_0/Util.wsdl";
 
 	// these endpoint parameters vary based on which region you are
 	// in...check your travelport sign up to see which url you should use...
@@ -57,6 +60,7 @@ public class WSDLService {
 	static public String HOTEL_ENDPOINT = ENDPOINT_PREFIX + "HotelService";
 	static public String VEHICLE_ENDPOINT = ENDPOINT_PREFIX + "VehicleService";
 	static public String UNIVERSAL_ENDPOINT = ENDPOINT_PREFIX + "UniversalRecordService";
+	static public String UTIL_ENDPOINT = ENDPOINT_PREFIX + "UtilService";
 	
 
 	// the services... these are not normally useful to most developers
@@ -75,6 +79,9 @@ public class WSDLService {
 			WSDLService.UNIVERSAL_WSDL, com.travelport.service.universal_v38_0.AirService.class);
 	public static ServiceWrapper<UniversalRecordService> universal = new ServiceWrapper<UniversalRecordService>(
 			WSDLService.UNIVERSAL_WSDL, UniversalRecordService.class);
+	public static ServiceWrapper<ReferenceDataRetrieveService> referenceDataRetrieve = new ServiceWrapper<ReferenceDataRetrieveService>(
+			WSDLService.UTIL_WSDL, ReferenceDataRetrieveService.class);
+	
 
 	// air ports
 	public static PortWrapper<AirLowFareSearchPortType, AirService> airShop = new PortWrapper<AirLowFareSearchPortType, AirService>(
@@ -118,6 +125,9 @@ public class WSDLService {
 	// universalrecord ports
 	public static PortWrapper<UniversalRecordRetrieveServicePortType, UniversalRecordService> universalRetrieve = new PortWrapper<UniversalRecordRetrieveServicePortType, UniversalRecordService>(
 			universal, UniversalRecordRetrieveServicePortType.class, UNIVERSAL_ENDPOINT);
+	// util ports
+	public static PortWrapper<ReferenceDataRetrievePortType, ReferenceDataRetrieveService> referenceRetrieve = new PortWrapper<ReferenceDataRetrievePortType, ReferenceDataRetrieveService>(
+			referenceDataRetrieve, ReferenceDataRetrievePortType.class, UTIL_ENDPOINT);
 	// names of the environment properties
 	static protected String USERNAME_PROP = "travelport.username";
 	static protected String PASSWORD_PROP = "travelport.password";
