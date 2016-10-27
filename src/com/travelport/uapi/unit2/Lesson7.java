@@ -61,6 +61,7 @@ public class Lesson7 {
 		modifiers.setMaxResults(new BigInteger("20000"));
 		modifiers.setProviderCode(System.getProperty("travelport.gds"));
 		modifiers.setStartFromResult(new BigInteger("1"));		
+		refRetrieveReq.setReferenceDataSearchModifiers(modifiers);
 		
 		ReferenceDataRetrievePortType refRetrieve = WSDLService.referenceRetrieve.get();
 		
