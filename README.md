@@ -1,3 +1,16 @@
+
+
+<a>
+<b>We are conducting a card sort to inform our communications with developers. If you are an API Developer, we would appreciate it if you would take 10-15 minutes to complete this card sort.
+ 
+Thank you for your help.</b>
+
+http://ows.io/os/rymf2c6k
+
+</a>
+
+
+
 Java travelport-uapi-tutorial
 ========================
 
