@@ -4,14 +4,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import com.travelport.schema.air_v38_0.*;
-import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v38_0.VendorLocation;
-import com.travelport.schema.hotel_v38_0.HotelSearchResult;
-import com.travelport.schema.rail_v38_0.RailJourney;
-import com.travelport.schema.rail_v38_0.RailJourneyRef;
-import com.travelport.schema.rail_v38_0.RailSegment;
-import com.travelport.schema.universal_v38_0.SavedTripActivity.VendorLocationRef;
+import com.travelport.schema.air_v42_0.*;
+import com.travelport.schema.common_v42_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v42_0.VendorLocation;
+import com.travelport.schema.hotel_v42_0.HotelSearchResult;
+import com.travelport.schema.rail_v42_0.RailJourney;
+import com.travelport.schema.rail_v42_0.RailJourneyRef;
+import com.travelport.schema.rail_v42_0.RailSegment;
+import com.travelport.schema.universal_v42_0.SavedTripActivity.VendorLocationRef;
 
 public class Helper {
     /**

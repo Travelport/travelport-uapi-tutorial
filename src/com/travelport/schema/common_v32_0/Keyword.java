@@ -23,7 +23,7 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://www.travelport.com/schema/common_v32_0}typeKeyword"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="Text" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="Text" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="999" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -37,13 +37,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "text"
 })
 @XmlRootElement(name = "Keyword")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
 public class Keyword
     extends TypeKeyword
 {
 
     @XmlElement(name = "Text")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<String> text;
 
     /**
@@ -68,7 +68,7 @@ public class Keyword
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public List<String> getText() {
         if (text == null) {
             text = new ArrayList<String>();
@@ -82,7 +82,7 @@ public class Keyword
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

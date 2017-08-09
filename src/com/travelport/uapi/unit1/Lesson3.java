@@ -6,19 +6,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import com.travelport.schema.air_v38_0.AirPricingModifiers;
-import com.travelport.schema.air_v38_0.AirPricingSolution;
-import com.travelport.schema.air_v38_0.AirSearchModifiers;
-import com.travelport.schema.air_v38_0.AirSearchRsp;
-import com.travelport.schema.air_v38_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v38_0.LowFareSearchReq;
-import com.travelport.schema.air_v38_0.LowFareSearchRsp;
-import com.travelport.schema.air_v38_0.PCC;
-import com.travelport.schema.air_v38_0.SearchAirLeg;
-import com.travelport.schema.common_v38_0.PointOfSale;
-import com.travelport.schema.common_v38_0.ResponseMessage;
-import com.travelport.schema.rail_v38_0.RailPricingSolution;
-import com.travelport.service.air_v38_0.AirFaultMessage;
+import com.travelport.schema.air_v42_0.AirPricingModifiers;
+import com.travelport.schema.air_v42_0.AirPricingSolution;
+import com.travelport.schema.air_v42_0.AirSearchModifiers;
+import com.travelport.schema.air_v42_0.AirSearchRsp;
+import com.travelport.schema.air_v42_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v42_0.LowFareSearchReq;
+import com.travelport.schema.air_v42_0.LowFareSearchRsp;
+import com.travelport.schema.air_v42_0.PCC;
+import com.travelport.schema.air_v42_0.SearchAirLeg;
+import com.travelport.schema.common_v42_0.PointOfSale;
+import com.travelport.schema.common_v42_0.ResponseMessage;
+import com.travelport.schema.rail_v42_0.RailPricingSolution;
+import com.travelport.service.air_v42_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson3 {

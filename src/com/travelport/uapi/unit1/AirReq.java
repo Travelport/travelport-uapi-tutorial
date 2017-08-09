@@ -2,30 +2,30 @@ package com.travelport.uapi.unit1;
 
 import java.math.BigInteger;
 
-import com.travelport.schema.air_v38_0.AirLegModifiers;
-import com.travelport.schema.air_v38_0.AirPricingModifiers;
-import com.travelport.schema.air_v38_0.AirSearchModifiers;
-import com.travelport.schema.air_v38_0.AirSearchModifiers.PreferredProviders;
-import com.travelport.schema.air_v38_0.BaseLowFareSearchReq;
-import com.travelport.schema.air_v38_0.FlightType;
-import com.travelport.schema.air_v38_0.PermittedCarriers;
-import com.travelport.schema.air_v38_0.PreferredCabins;
-import com.travelport.schema.air_v38_0.ProhibitedCarriers;
-import com.travelport.schema.air_v38_0.SearchAirLeg;
-import com.travelport.schema.common_v38_0.Carrier;
-import com.travelport.schema.common_v38_0.Airport;
-import com.travelport.schema.common_v38_0.BaseCoreReq;
-import com.travelport.schema.common_v38_0.BaseSearchReq;
-import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
-import com.travelport.schema.common_v38_0.CabinClass;
-import com.travelport.schema.common_v38_0.City;
-import com.travelport.schema.common_v38_0.CityOrAirport;
-import com.travelport.schema.common_v38_0.Distance;
-import com.travelport.schema.common_v38_0.Provider;
-import com.travelport.schema.common_v38_0.SearchPassenger;
-import com.travelport.schema.common_v38_0.TypeFlexibleTimeSpec;
-import com.travelport.schema.common_v38_0.TypeFlexibleTimeSpec.SearchExtraDays;
-import com.travelport.schema.common_v38_0.TypeSearchLocation;
+import com.travelport.schema.air_v42_0.AirLegModifiers;
+import com.travelport.schema.air_v42_0.AirPricingModifiers;
+import com.travelport.schema.air_v42_0.AirSearchModifiers;
+import com.travelport.schema.air_v42_0.AirSearchModifiers.PreferredProviders;
+import com.travelport.schema.air_v42_0.BaseLowFareSearchReq;
+import com.travelport.schema.air_v42_0.FlightType;
+import com.travelport.schema.air_v42_0.PermittedCarriers;
+import com.travelport.schema.air_v42_0.PreferredCabins;
+import com.travelport.schema.air_v42_0.ProhibitedCarriers;
+import com.travelport.schema.air_v42_0.SearchAirLeg;
+import com.travelport.schema.common_v42_0.Carrier;
+import com.travelport.schema.common_v42_0.Airport;
+import com.travelport.schema.common_v42_0.BaseCoreReq;
+import com.travelport.schema.common_v42_0.BaseSearchReq;
+import com.travelport.schema.common_v42_0.BillingPointOfSaleInfo;
+import com.travelport.schema.common_v42_0.CabinClass;
+import com.travelport.schema.common_v42_0.City;
+import com.travelport.schema.common_v42_0.CityOrAirport;
+import com.travelport.schema.common_v42_0.Distance;
+import com.travelport.schema.common_v42_0.Provider;
+import com.travelport.schema.common_v42_0.SearchPassenger;
+import com.travelport.schema.common_v42_0.TypeFlexibleTimeSpec;
+import com.travelport.schema.common_v42_0.TypeFlexibleTimeSpec.SearchExtraDays;
+import com.travelport.schema.common_v42_0.TypeSearchLocation;
 
 /**
  * Namespace for static functions that can manipulate an air request in
@@ -187,7 +187,7 @@ public class AirReq {
 		extraDays.setDaysBefore(new Integer("3"));
 		
 		noFlex.setPreferredTime(departureDate);
-		noFlex.setSearchExtraDays(extraDays);
+		//noFlex.setSearchExtraDays(extraDays);
 		outbound.getSearchDepTime().add(noFlex);
 	}
 
@@ -207,6 +207,7 @@ public class AirReq {
 			p.setCode(providerCode[i]);
 			// can be many providers, but we just use one
 			providers.getProvider().add(p);
+			break;
 		}
 		modifiers.setPreferredProviders(providers);
 		
@@ -218,12 +219,25 @@ public class AirReq {
 		
 		modifiers.setPermittedCarriers(permittedCarriers);
 		
+		/*FlightType ft = new FlightType();
+		ft.setMaxStops(1);
+		ft.setSingleOnlineCon(true);
+        ft.setNonStopDirects(false);
+        ft.setStopDirects(true);        
+        ft.setDoubleOnlineCon(true);
+        ft.setTripleOnlineCon(true);
+        ft.setSingleInterlineCon(false);
+        ft.setDoubleInterlineCon(false);
+        ft.setTripleInterlineCon(false);
+
+		modifiers.setFlightType(ft);*/
 		
 		ProhibitedCarriers prohibitedCarriers = new ProhibitedCarriers();
 		
 		Carrier c1 = new Carrier();
 		c1.setCode("JQ");
-		prohibitedCarriers.getCarrier().add(c1);
+		prohibitedCarriers.getCarrier().add(c1);		
+		
 		
 		//modifiers.setProhibitedCarriers(prohibitedCarriers);
 		
@@ -255,7 +269,8 @@ public class AirReq {
 
 		// add the origin and dest to the leg
 		leg.getSearchDestination().add(destLoc);
-		leg.getSearchOrigin().add(originLoc);
+		leg.getSearchOrigin().add(originLoc);	
+		
 		
 		return leg;
 	}

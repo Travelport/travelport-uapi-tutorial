@@ -24,6 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _TerminalSessionInfo_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "TerminalSessionInfo");
     private final static QName _TicketNumber_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "TicketNumber");
     private final static QName _AgencyPayment_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "AgencyPayment");
     private final static QName _LocatorCode_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "LocatorCode");
@@ -33,7 +34,6 @@ public class ObjectFactory {
     private final static QName _ConnectionPoint_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "ConnectionPoint");
     private final static QName _ReferencePoint_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "ReferencePoint");
     private final static QName _SellMessage_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "SellMessage");
-    private final static QName _TerminalSessionInfo_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "TerminalSessionInfo");
     private final static QName _ProviderReservationDetail_QNAME = new QName("http://www.travelport.com/schema/common_v32_0", "ProviderReservationDetail");
 
     /**
@@ -193,6 +193,62 @@ public class ObjectFactory {
      */
     public TypeFeeInfo createTypeFeeInfo() {
         return new TypeFeeInfo();
+    }
+
+    /**
+     * Create an instance of {@link BaseReq }
+     * 
+     */
+    public BaseReq createBaseReq() {
+        return new BaseReq();
+    }
+
+    /**
+     * Create an instance of {@link BaseCoreReq }
+     * 
+     */
+    public BaseCoreReq createBaseCoreReq() {
+        return new BaseCoreReq();
+    }
+
+    /**
+     * Create an instance of {@link BillingPointOfSaleInfo }
+     * 
+     */
+    public BillingPointOfSaleInfo createBillingPointOfSaleInfo() {
+        return new BillingPointOfSaleInfo();
+    }
+
+    /**
+     * Create an instance of {@link AgentIDOverride }
+     * 
+     */
+    public AgentIDOverride createAgentIDOverride() {
+        return new AgentIDOverride();
+    }
+
+    /**
+     * Create an instance of {@link OverridePCC }
+     * 
+     */
+    public OverridePCC createOverridePCC() {
+        return new OverridePCC();
+    }
+
+    /**
+     * Create an instance of {@link BaseRsp }
+     * 
+     */
+    public BaseRsp createBaseRsp() {
+        return new BaseRsp();
+    }
+
+    /**
+     * Create an instance of {@link ResponseMessage }
+     * 
+     */
+    public ResponseMessage createResponseMessage() {
+        return new ResponseMessage();
     }
 
     /**
@@ -761,14 +817,6 @@ public class ObjectFactory {
      */
     public TravelInfo createTravelInfo() {
         return new TravelInfo();
-    }
-
-    /**
-     * Create an instance of {@link ResponseMessage }
-     * 
-     */
-    public ResponseMessage createResponseMessage() {
-        return new ResponseMessage();
     }
 
     /**
@@ -1420,30 +1468,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BillingPointOfSaleInfo }
-     * 
-     */
-    public BillingPointOfSaleInfo createBillingPointOfSaleInfo() {
-        return new BillingPointOfSaleInfo();
-    }
-
-    /**
-     * Create an instance of {@link AgentIDOverride }
-     * 
-     */
-    public AgentIDOverride createAgentIDOverride() {
-        return new AgentIDOverride();
-    }
-
-    /**
-     * Create an instance of {@link OverridePCC }
-     * 
-     */
-    public OverridePCC createOverridePCC() {
-        return new OverridePCC();
-    }
-
-    /**
      * Create an instance of {@link Keyword }
      * 
      */
@@ -1908,22 +1932,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BaseReq }
-     * 
-     */
-    public BaseReq createBaseReq() {
-        return new BaseReq();
-    }
-
-    /**
-     * Create an instance of {@link BaseCoreReq }
-     * 
-     */
-    public BaseCoreReq createBaseCoreReq() {
-        return new BaseCoreReq();
-    }
-
-    /**
      * Create an instance of {@link BaseSearchReq }
      * 
      */
@@ -1945,14 +1953,6 @@ public class ObjectFactory {
      */
     public BaseSearchRsp createBaseSearchRsp() {
         return new BaseSearchRsp();
-    }
-
-    /**
-     * Create an instance of {@link BaseRsp }
-     * 
-     */
-    public BaseRsp createBaseRsp() {
-        return new BaseRsp();
     }
 
     /**
@@ -2017,6 +2017,15 @@ public class ObjectFactory {
      */
     public TypeFeeInfo.TaxInfoRef createTypeFeeInfoTaxInfoRef() {
         return new TypeFeeInfo.TaxInfoRef();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.travelport.com/schema/common_v32_0", name = "TerminalSessionInfo")
+    public JAXBElement<String> createTerminalSessionInfo(String value) {
+        return new JAXBElement<String>(_TerminalSessionInfo_QNAME, String.class, null, value);
     }
 
     /**
@@ -2098,15 +2107,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.travelport.com/schema/common_v32_0", name = "SellMessage")
     public JAXBElement<String> createSellMessage(String value) {
         return new JAXBElement<String>(_SellMessage_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.travelport.com/schema/common_v32_0", name = "TerminalSessionInfo")
-    public JAXBElement<String> createTerminalSessionInfo(String value) {
-        return new JAXBElement<String>(_TerminalSessionInfo_QNAME, String.class, null, value);
     }
 
     /**

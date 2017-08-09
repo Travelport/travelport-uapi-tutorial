@@ -11,14 +11,14 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.travelport.schema.air_v38_0.AirSearchModifiers;
-import com.travelport.schema.air_v38_0.AvailabilitySearchReq;
-import com.travelport.schema.air_v38_0.AvailabilitySearchRsp;
-import com.travelport.schema.air_v38_0.LowFareSearchReq;
-import com.travelport.schema.air_v38_0.LowFareSearchRsp;
-import com.travelport.schema.air_v38_0.SearchAirLeg;
-import com.travelport.schema.common_v38_0.BaseReq;
-import com.travelport.service.air_v38_0.AirFaultMessage;
+import com.travelport.schema.air_v42_0.AirSearchModifiers;
+import com.travelport.schema.air_v42_0.AvailabilitySearchReq;
+import com.travelport.schema.air_v42_0.AvailabilitySearchRsp;
+import com.travelport.schema.air_v42_0.LowFareSearchReq;
+import com.travelport.schema.air_v42_0.LowFareSearchRsp;
+import com.travelport.schema.air_v42_0.SearchAirLeg;
+import com.travelport.schema.common_v42_0.BaseReq;
+import com.travelport.service.air_v42_0.AirFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class AirSvcTest {

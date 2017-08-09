@@ -24,7 +24,7 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://www.travelport.com/schema/common_v32_0}BaseCreateReservationReq"&gt;
  *       &lt;sequence&gt;
- *         &lt;element ref="{http://www.travelport.com/schema/common_v32_0}FormOfPayment" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element ref="{http://www.travelport.com/schema/common_v32_0}FormOfPayment" maxOccurs="999" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -37,13 +37,13 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
 @XmlType(name = "BaseCreateWithFormOfPaymentReq", propOrder = {
     "formOfPayment"
 })
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
 public class BaseCreateWithFormOfPaymentReq
     extends BaseCreateReservationReq
 {
 
     @XmlElement(name = "FormOfPayment")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     protected List<FormOfPayment> formOfPayment;
 
     /**
@@ -68,7 +68,7 @@ public class BaseCreateWithFormOfPaymentReq
      * 
      * 
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public List<FormOfPayment> getFormOfPayment() {
         if (formOfPayment == null) {
             formOfPayment = new ArrayList<FormOfPayment>();
@@ -82,7 +82,7 @@ public class BaseCreateWithFormOfPaymentReq
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

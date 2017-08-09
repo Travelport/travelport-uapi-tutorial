@@ -4720,7 +4720,7 @@
 			</xs:attribute>
 			<xs:attribute name="Type" use="required">
 				<xs:annotation>
-					<xs:documentation>Type of booking source sent in the Code attribute. Possible values are “PseudoCityCode”,” ArcNumber”,” IataNumber”, “CustomerId” and “BookingSourceOverrride”. “BookingSourceOverrride” is only applicable in VehicleCreateReservationReq. 1P/1J.</xs:documentation>
+					<xs:documentation>Type of booking source sent in the Code attribute. Possible values are “PseudoCityCode”,“ArcNumber”,“IataNumber”, “CustomerId” and “BookingSourceOverrride”. “BookingSourceOverrride” is only applicable in VehicleCreateReservationReq. 1P/1J.</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:string">

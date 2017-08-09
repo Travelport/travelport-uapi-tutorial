@@ -8,14 +8,14 @@ import javax.xml.datatype.DatatypeConfigurationException;
 
 import org.junit.Test;
 
-import com.travelport.schema.hotel_v38_0.BaseHotelSearchRsp;
-import com.travelport.schema.hotel_v38_0.HotelLocation;
-import com.travelport.schema.hotel_v38_0.HotelSearchAvailabilityReq;
-import com.travelport.schema.hotel_v38_0.HotelSearchModifiers;
-import com.travelport.schema.hotel_v38_0.HotelStay;
-import com.travelport.schema.hotel_v38_0.TypeHotelReferencePoint;
-import com.travelport.service.hotel_v38_0.HotelFaultMessage;
-import com.travelport.service.hotel_v38_0.HotelSearchServicePortType;
+import com.travelport.schema.hotel_v42_0.BaseHotelSearchRsp;
+import com.travelport.schema.hotel_v42_0.HotelLocation;
+import com.travelport.schema.hotel_v42_0.HotelSearchAvailabilityReq;
+import com.travelport.schema.hotel_v42_0.HotelSearchModifiers;
+import com.travelport.schema.hotel_v42_0.HotelStay;
+import com.travelport.schema.hotel_v42_0.TypeHotelReferencePoint;
+import com.travelport.service.hotel_v42_0.HotelFaultMessage;
+import com.travelport.service.hotel_v42_0.HotelSearchServicePortType;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
 

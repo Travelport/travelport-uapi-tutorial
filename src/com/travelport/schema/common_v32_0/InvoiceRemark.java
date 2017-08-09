@@ -41,22 +41,22 @@ import org.apache.cxf.xjc.runtime.JAXBToStringStyle;
     "passiveSegmentRef"
 })
 @XmlRootElement(name = "InvoiceRemark")
-@Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+@Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
 public class InvoiceRemark
     extends TypeAssociatedRemark
 {
 
     @XmlElement(name = "AirSegmentRef")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     protected TypeSegmentRef airSegmentRef;
     @XmlElement(name = "HotelReservationRef")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     protected TypeNonAirReservationRef hotelReservationRef;
     @XmlElement(name = "VehicleReservationRef")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     protected TypeNonAirReservationRef vehicleReservationRef;
     @XmlElement(name = "PassiveSegmentRef")
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     protected TypeSegmentRef passiveSegmentRef;
 
     /**
@@ -67,7 +67,7 @@ public class InvoiceRemark
      *     {@link TypeSegmentRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public TypeSegmentRef getAirSegmentRef() {
         return airSegmentRef;
     }
@@ -80,7 +80,7 @@ public class InvoiceRemark
      *     {@link TypeSegmentRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public void setAirSegmentRef(TypeSegmentRef value) {
         this.airSegmentRef = value;
     }
@@ -93,7 +93,7 @@ public class InvoiceRemark
      *     {@link TypeNonAirReservationRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public TypeNonAirReservationRef getHotelReservationRef() {
         return hotelReservationRef;
     }
@@ -106,7 +106,7 @@ public class InvoiceRemark
      *     {@link TypeNonAirReservationRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public void setHotelReservationRef(TypeNonAirReservationRef value) {
         this.hotelReservationRef = value;
     }
@@ -119,7 +119,7 @@ public class InvoiceRemark
      *     {@link TypeNonAirReservationRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public TypeNonAirReservationRef getVehicleReservationRef() {
         return vehicleReservationRef;
     }
@@ -132,7 +132,7 @@ public class InvoiceRemark
      *     {@link TypeNonAirReservationRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public void setVehicleReservationRef(TypeNonAirReservationRef value) {
         this.vehicleReservationRef = value;
     }
@@ -145,7 +145,7 @@ public class InvoiceRemark
      *     {@link TypeSegmentRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public TypeSegmentRef getPassiveSegmentRef() {
         return passiveSegmentRef;
     }
@@ -158,7 +158,7 @@ public class InvoiceRemark
      *     {@link TypeSegmentRef }
      *     
      */
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public void setPassiveSegmentRef(TypeSegmentRef value) {
         this.passiveSegmentRef = value;
     }
@@ -169,7 +169,7 @@ public class InvoiceRemark
      * 
      */
     @Override
-    @Generated(value = "com.sun.tools.xjc.Driver", date = "2016-09-13T11:35:35-06:00", comment = "JAXB RI v2.2.11")
+    @Generated(value = "com.sun.tools.xjc.Driver", date = "2017-07-31T03:54:46-06:00", comment = "JAXB RI v2.2.11")
     public String toString() {
         return ToStringBuilder.reflectionToString(this, JAXBToStringStyle.MULTI_LINE_STYLE);
     }

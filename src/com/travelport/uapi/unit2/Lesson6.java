@@ -3,17 +3,17 @@ package com.travelport.uapi.unit2;
 import java.util.List;
 import java.util.ListIterator;
 
-import com.travelport.schema.air_v38_0.AirReservation;
-import com.travelport.schema.air_v38_0.TypeBaseAirSegment;
-import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
-import com.travelport.schema.hotel_v38_0.HotelProperty;
-import com.travelport.schema.hotel_v38_0.HotelReservation;
-import com.travelport.schema.universal_v38_0.UniversalRecord;
-import com.travelport.schema.universal_v38_0.UniversalRecordRetrieveReq;
-import com.travelport.schema.universal_v38_0.UniversalRecordRetrieveRsp;
-import com.travelport.service.universal_v38_0.UniversalRecordArchivedFaultMessage;
-import com.travelport.service.universal_v38_0.UniversalRecordFaultMessage;
-import com.travelport.service.universal_v38_0.UniversalRecordRetrieveServicePortType;
+import com.travelport.schema.air_v42_0.AirReservation;
+import com.travelport.schema.air_v42_0.TypeBaseAirSegment;
+import com.travelport.schema.common_v42_0.BillingPointOfSaleInfo;
+import com.travelport.schema.hotel_v42_0.HotelProperty;
+import com.travelport.schema.hotel_v42_0.HotelReservation;
+import com.travelport.schema.universal_v42_0.UniversalRecord;
+import com.travelport.schema.universal_v42_0.UniversalRecordRetrieveReq;
+import com.travelport.schema.universal_v42_0.UniversalRecordRetrieveRsp;
+import com.travelport.service.universal_v42_0.UniversalRecordArchivedFaultMessage;
+import com.travelport.service.universal_v42_0.UniversalRecordFaultMessage;
+import com.travelport.service.universal_v42_0.UniversalRecordRetrieveServicePortType;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson6 {

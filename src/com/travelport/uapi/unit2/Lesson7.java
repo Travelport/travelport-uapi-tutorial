@@ -3,13 +3,13 @@ package com.travelport.uapi.unit2;
 import java.math.BigInteger;
 import java.util.ListIterator;
 
-import com.travelport.schema.common_v38_0.BillingPointOfSaleInfo;
-import com.travelport.schema.util_v38_0.ReferenceDataItem;
-import com.travelport.schema.util_v38_0.ReferenceDataRetrieveReq;
-import com.travelport.schema.util_v38_0.ReferenceDataRetrieveRsp;
-import com.travelport.schema.util_v38_0.ReferenceDataSearchModifiers;
-import com.travelport.service.util_v38_0.ReferenceDataRetrievePortType;
-import com.travelport.service.util_v38_0.UtilFaultMessage;
+import com.travelport.schema.common_v42_0.BillingPointOfSaleInfo;
+import com.travelport.schema.util_v42_0.ReferenceDataItem;
+import com.travelport.schema.util_v42_0.ReferenceDataRetrieveReq;
+import com.travelport.schema.util_v42_0.ReferenceDataRetrieveRsp;
+import com.travelport.schema.util_v42_0.ReferenceDataSearchModifiers;
+import com.travelport.service.util_v42_0.ReferenceDataRetrievePortType;
+import com.travelport.service.util_v42_0.UtilFaultMessage;
 import com.travelport.tutorial.support.WSDLService;
 
 public class Lesson7 {
@@ -62,7 +62,6 @@ public class Lesson7 {
 		modifiers.setProviderCode(System.getProperty("travelport.gds"));
 		modifiers.setStartFromResult(new BigInteger("1"));		
 		refRetrieveReq.setReferenceDataSearchModifiers(modifiers);
-		
 		ReferenceDataRetrievePortType refRetrieve = WSDLService.referenceRetrieve.get();
 		
 		try {

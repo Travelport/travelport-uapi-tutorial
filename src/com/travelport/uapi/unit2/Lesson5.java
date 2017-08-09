@@ -15,39 +15,40 @@ import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.travelport.schema.common_v38_0.BookingTraveler;
-import com.travelport.schema.common_v38_0.BookingTravelerName;
-import com.travelport.schema.common_v38_0.CreditCard;
-import com.travelport.schema.common_v38_0.Email;
-import com.travelport.schema.common_v38_0.Guarantee;
-import com.travelport.schema.common_v38_0.HostToken;
-import com.travelport.schema.common_v38_0.PermittedProviders;
-import com.travelport.schema.common_v38_0.PhoneNumber;
-import com.travelport.schema.common_v38_0.Provider;
-import com.travelport.schema.common_v38_0.State;
-import com.travelport.schema.common_v38_0.TypeStructuredAddress;
-import com.travelport.schema.hotel_v38_0.GuestInformation;
-import com.travelport.schema.hotel_v38_0.HotelDetailsModifiers;
-import com.travelport.schema.hotel_v38_0.HotelDetailsReq;
-import com.travelport.schema.hotel_v38_0.HotelDetailsRsp;
-import com.travelport.schema.hotel_v38_0.HotelProperty;
-import com.travelport.schema.hotel_v38_0.HotelRateDetail;
-import com.travelport.schema.hotel_v38_0.HotelReservation;
-import com.travelport.schema.hotel_v38_0.HotelSearchResult;
-import com.travelport.schema.hotel_v38_0.HotelStay;
-import com.travelport.schema.hotel_v38_0.NumberOfAdults;
-import com.travelport.schema.hotel_v38_0.TypeHotelRateDescription;
-import com.travelport.schema.hotel_v38_0.TypeHotelReferencePoint;
-import com.travelport.schema.hotel_v38_0.TypeRateRuleDetail;
-import com.travelport.schema.universal_v38_0.HotelCreateReservationReq;
-import com.travelport.schema.universal_v38_0.HotelCreateReservationRsp;
-import com.travelport.schema.universal_v38_0.UniversalRecord;
-import com.travelport.service.hotel_v38_0.HotelDetailsServicePortType;
-import com.travelport.service.hotel_v38_0.HotelFaultMessage;
-import com.travelport.service.hotel_v38_0.HotelMediaLinksServicePortType;
-import com.travelport.service.hotel_v38_0.HotelSearchServicePortType;
-import com.travelport.service.hotel_v38_0.HotelService;
-import com.travelport.service.universal_v38_0.HotelReservationServicePortType;
+import com.travelport.schema.common_v42_0.BookingTraveler;
+import com.travelport.schema.common_v42_0.BookingTravelerName;
+import com.travelport.schema.common_v42_0.CreditCard;
+import com.travelport.schema.common_v42_0.Email;
+import com.travelport.schema.common_v42_0.Guarantee;
+import com.travelport.schema.common_v42_0.HostToken;
+import com.travelport.schema.common_v42_0.PermittedProviders;
+import com.travelport.schema.common_v42_0.PhoneNumber;
+import com.travelport.schema.common_v42_0.Provider;
+import com.travelport.schema.common_v42_0.State;
+import com.travelport.schema.common_v42_0.TypeStructuredAddress;
+import com.travelport.schema.hotel_v42_0.GuestInformation;
+import com.travelport.schema.hotel_v42_0.HotelDetailsModifiers;
+import com.travelport.schema.hotel_v42_0.HotelDetailsReq;
+import com.travelport.schema.hotel_v42_0.HotelDetailsRsp;
+import com.travelport.schema.hotel_v42_0.HotelProperty;
+import com.travelport.schema.hotel_v42_0.HotelRateDetail;
+import com.travelport.schema.hotel_v42_0.HotelReservation;
+import com.travelport.schema.hotel_v42_0.HotelSearchResult;
+import com.travelport.schema.hotel_v42_0.HotelStay;
+import com.travelport.schema.hotel_v42_0.NumberOfAdults;
+import com.travelport.schema.hotel_v42_0.TypeHotelRateDescription;
+import com.travelport.schema.hotel_v42_0.TypeHotelReferencePoint;
+import com.travelport.schema.hotel_v42_0.TypeRateRuleDetail;
+import com.travelport.schema.universal_v42_0.HotelCreateReservationReq;
+import com.travelport.schema.universal_v42_0.HotelCreateReservationRsp;
+import com.travelport.schema.universal_v42_0.UniversalRecord;
+import com.travelport.service.hotel_v42_0.HotelDetailsServicePortType;
+import com.travelport.service.hotel_v42_0.HotelFaultMessage;
+import com.travelport.service.hotel_v42_0.HotelMediaLinksServicePortType;
+import com.travelport.service.hotel_v42_0.HotelSearchServicePortType;
+import com.travelport.service.hotel_v42_0.HotelService;
+import com.travelport.service.universal_v42_0.HotelReservationServicePortType;
+import com.travelport.service.universal_v42_0.PriceFaultMessage;
 import com.travelport.tutorial.support.ServiceWrapper;
 import com.travelport.tutorial.support.WSDLService;
 import com.travelport.uapi.unit1.Helper;
@@ -416,7 +417,13 @@ public class Lesson5 {
             
             //System.out.println("HotelReservationCreateReq :  " +req);
             
-            HotelCreateReservationRsp createRsp = resv.service(req, null);
+            HotelCreateReservationRsp createRsp = null;
+			try {
+				createRsp = resv.service(req, null);
+			} catch (PriceFaultMessage e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             UniversalRecord rec = createRsp.getUniversalRecord();
             System.out.println("Universal Record Locator: "+rec.getLocatorCode());
             HotelReservation rez = rec.getHotelReservation().get(0);
@@ -430,7 +437,7 @@ public class Lesson5 {
             System.err.println("unable to parse hotel price: " + e.getMessage());
         } catch (HotelFaultMessage e) {
             System.err.println("error reading hotel data: " + e.getMessage());
-        } catch (com.travelport.service.universal_v38_0.HotelFaultMessage e) {
+        } catch (com.travelport.service.universal_v42_0.HotelFaultMessage e) {
 			// TODO Auto-generated catch block
         	System.err.println("error in service: " + e.getMessage());
 		}
