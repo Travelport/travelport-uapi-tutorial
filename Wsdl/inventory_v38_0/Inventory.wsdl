@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="SeamlessInventoryService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/inventory_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/inventory_v38_0"
+             targetNamespace="http://www.travelport.com/service/inventory_v38_0">
+
+    <import namespace="http://www.travelport.com/service/inventory_v38_0"
+            location="InventoryAbstract.wsdl"/>
+
+    <binding name="SeamlessInventorySearchBinding" type="tns:SeamlessInventorySearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="service">
+            <soap:operation/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="SeamlessInventorySearchService">
+        <port name="SeamlessInventorySearchServicePort" binding="tns:SeamlessInventorySearchBinding">
+            <soap:address location="http://localhost:8080/kestrel/SeamlessInventoryService"/>
+        </port>
+    </service>
+</definitions>

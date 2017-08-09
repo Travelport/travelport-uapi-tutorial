@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.travelport.com/schema/inventory_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v38_0" targetNamespace="http://www.travelport.com/schema/inventory_v38_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2011 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/Common.xsd"/>
+    
+    <xs:element name="ClassOfServiceData">
+        <xs:annotation>
+            <xs:documentation>Class of service information returned for Inventory Search.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="ClassOfServiceCode" type="xs:string" use="required">
+                <xs:annotation>
+                    <xs:documentation>Class Of Service Code returned in response</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ClassBookingModifier" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Class Booking Modifier returned in response</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ClassChangeIndicator" type="xs:string" use="optional">
+                <xs:annotation>
+                    <xs:documentation>Class Change Modifier returned in response. Possible values are
+                        ‘A’- No change in class of service
+                        ‘B’- Class of service not available at origin
+                        ‘C’ – Class of service not available down-line
+                        ‘D’ – Class of service is unavailable; waitlist closed
+                        ‘E’ – Unknown availability; seats must be requested at booking
+                        ‘F’ – class unavailable/schedule flight not operating                        
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="AvailableSeat" type="xs:nonNegativeInteger" use="required">
+                <xs:annotation>
+                    <xs:documentation>Number of Seat Available to Reserve.</xs:documentation>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:simpleType name="typeInventoryRequestType">
+        <xs:annotation>
+            <xs:documentation>Used to specify type of Inventory Search request. Mapped to Worldspan DIR node INVQ.F</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SEAMLESS_NORMAL">
+                <xs:annotation>
+                    <xs:documentation>‘A’- Seamless, for AIRLINE SOURCE  Participants and Host Carriers Only</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SEAMLESS_NO_AVS">
+                <xs:annotation>
+                    <xs:documentation>‘B’- Seamless, for AIRLINE SOURCE  Participants and Host Carriers, AVS for Non-AIRLINE SOURCE .  No AVS for failed seamless.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SEAMLESS_AVS">
+                <xs:annotation>
+                    <xs:documentation>‘C’ – Seamless for AIRLINE SOURCE  Participants and Hosts, AVS for Non-AIRLINE SOURCE  and for failed seamless.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="typeSegment">
+        <xs:attribute name="Carrier" type="common:typeCarrier" use="required">
+            <xs:annotation>
+                <xs:documentation>The carrier that is marketing this segment.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="FlightNumber" type="common:typeFlightNumber" use="required">
+            <xs:annotation>
+                <xs:documentation>The flight number under which the marketing carrier is marketing this flight.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OriginCity" type="common:typeIATACode" use="required">
+            <xs:annotation>
+                <xs:documentation>The IATA city code for this origination of this entity.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="DestinationCity" type="common:typeIATACode" use="required">
+            <xs:annotation>
+                <xs:documentation>The IATA city code for this destination of this entity.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="OriginAirport" type="common:typeIATACode" use="required">
+            <xs:annotation>
+                <xs:documentation>The IATA airport code for this origination of this entity.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="DestinationAirport" type="common:typeIATACode" use="required">
+            <xs:annotation>
+                <xs:documentation>The IATA airport code for this destination of this entity.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="DepartureDate" type="xs:date" use="required">
+            <xs:annotation>
+                <xs:documentation>The date at which this segment departs.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:element name="Trips">
+      <xs:complexType>
+          <xs:sequence>
+              <xs:element name="Segment" maxOccurs="unbounded">
+                  <xs:complexType>
+                      <xs:complexContent>
+                          <xs:extension base="typeSegment">
+                              <xs:attribute name="Seamless" type="xs:boolean" use="required">
+                                  <xs:annotation>
+                                      <xs:documentation>Used to specify type of Inventory Type Indicator.                     
+                                           true  - Means it's seamless request. 1P value - ‘A’-Seamless (Requesting Inventory)
+                                           false - Means it's non-seamless request. 1P value - ‘B’-Non-Seamless (Not Requesting Inventory)            
+                                      </xs:documentation>
+                                  </xs:annotation>
+                              </xs:attribute>                                             
+                              <xs:attribute name="LegCount" type="xs:nonNegativeInteger" use="optional" default="0">
+                                  <xs:annotation>
+                                      <xs:documentation>Number of flight legs for trip.
+                                                 Example Scenarios of Use:
+                                                  Single leg trip: Set to ‘1’.
+                                                  Two leg trip: Set first leg to ‘2’, second leg set to ‘0’.
+                                                  Three leg trip: Set first leg to ‘3’, second leg set to ‘0’, third leg set to ‘0’.</xs:documentation>
+                                  </xs:annotation>
+                              </xs:attribute>
+                          </xs:extension>
+                      </xs:complexContent>
+                  </xs:complexType>
+              </xs:element>
+          </xs:sequence>
+      </xs:complexType>
+    </xs:element> 
+    
+    <xs:element name="TripResults">
+      <xs:complexType>
+          <xs:sequence>
+              <xs:element name="Segment" maxOccurs="unbounded">
+                  <xs:complexType>
+                      <xs:complexContent>
+                          <xs:extension base="typeSegment">
+                              <xs:sequence>
+                                  <xs:element ref="ClassOfServiceData" minOccurs="0" maxOccurs="unbounded"/> 
+                              </xs:sequence>
+                              <xs:attribute name="ResponseStatus" type="xs:string" use="required">
+                                  <xs:annotation>
+                                      <xs:documentation>Response Status Indicator.
+                                                Possible values are,
+                                                'A' - 'Item Processed'
+                                                'B' - 'Flight Item Not Found'
+                                                'C' - 'No Response from Vendor'
+                                                'D' - 'Item Not Processed'
+                                      </xs:documentation>
+                                  </xs:annotation>
+                              </xs:attribute>                                                    
+                          </xs:extension>
+                      </xs:complexContent>
+                  </xs:complexType>
+              </xs:element>
+          </xs:sequence>
+      </xs:complexType>                         
+    </xs:element>       
+</xs:schema>

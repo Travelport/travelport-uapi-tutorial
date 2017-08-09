@@ -1,0 +1,48 @@
+<xs:schema xmlns="http://www.travelport.com/schema/inventory_v38_0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:common="http://www.travelport.com/schema/common_v38_0" targetNamespace="http://www.travelport.com/schema/inventory_v38_0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:documentation>(c) Travelport GDS 2011 All rights reserved. Proprietary Information of Travelport GDS.</xs:documentation>
+    </xs:annotation>
+    <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/CommonReqRsp.xsd"/>
+    <xs:import namespace="http://www.travelport.com/schema/common_v38_0" schemaLocation="../common_v38_0/Common.xsd"/>
+    <xs:include schemaLocation="Inventory.xsd"/>
+    <xs:element name="SeamlessInventorySearchReq">
+        <xs:annotation>
+            <xs:documentation>Request to search for Worldspan Seamless Inventory.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseReq">
+                    <xs:sequence>
+                    	<xs:element ref="common:PointOfCommencement" minOccurs="0" maxOccurs="1"/>
+                        <xs:element ref="Trips" maxOccurs="unbounded"/>                        
+                    </xs:sequence>
+                    <xs:attribute name="RequestType" type="typeInventoryRequestType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Used to specify type of Inventory Search request. Mapped to Worldspan DIR node INVQ.F</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="SeamlessInventorySearchRsp">
+        <xs:annotation>
+            <xs:documentation>Response for Worldspan Seamless Inventory search.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="common:BaseRsp">
+                    <xs:sequence>
+                        <xs:element ref="TripResults" maxOccurs="unbounded"/>                            
+                    </xs:sequence>
+                    <xs:attribute name="RequestType" type="typeInventoryRequestType" use="required">
+                        <xs:annotation>
+                            <xs:documentation>Used to return in Inventory Search response. Mapped from Worldspan DIR node INV.F</xs:documentation>
+                        </xs:annotation>
+                    </xs:attribute>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

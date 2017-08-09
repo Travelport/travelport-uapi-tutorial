@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="AbstractSeamlessInventoryServices"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.travelport.com/service/inventory_v38_0"
+             xmlns:inventory="http://www.travelport.com/schema/inventory_v38_0"
+             xmlns:ns1="http://www.travelport.com/schema/inventory_v38_0"
+             xmlns:common="http://www.travelport.com/schema/common_v38_0"
+             targetNamespace="http://www.travelport.com/service/inventory_v38_0">
+
+    <types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://www.travelport.com/schema/inventory_v38_0">
+            <include schemaLocation="InventoryReqRsp.xsd"/>
+        </schema>
+    </types>
+
+    <message name="SeamlessInventorySearchReq">
+        <part name="parameters" element="inventory:SeamlessInventorySearchReq"/>
+    </message>
+
+    <message name="SeamlessInventorySearchRsp">
+        <part name="result" element="inventory:SeamlessInventorySearchRsp"/>
+    </message>
+    
+    <message name="SeamlessInventoryFaultMessage">
+        <part name="fault" element="common:ErrorInfo"/>
+    </message>    
+
+    <portType name="SeamlessInventorySearchPortType">
+        <operation name="service">
+            <input message="tns:SeamlessInventorySearchReq"/>
+            <output message="tns:SeamlessInventorySearchRsp"/>
+            <fault name="ErrorInfoMsg" message="tns:SeamlessInventoryFaultMessage"/>
+        </operation>
+    </portType>
+</definitions>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<definitions name="UProfileSharedService" xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.travelport.com/service/sharedUprofile_v20_0" 
+	targetNamespace="http://www.travelport.com/service/sharedUprofile_v20_0">
+
+	<import namespace="http://www.travelport.com/service/sharedUprofile_v20_0"
+		location="CustomerProfileAbstract.wsdl" />
+
+	<binding name="ProfileCreateBinding" type="tns:ProfileCreatePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+
+	<binding name="ProfileModifyBinding" type="tns:ProfileModifyPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+				<input>
+					<soap:header message="tns:SessionContext" part="sessioncontext"
+						use="literal" />
+					<soap:body use="literal" />
+				</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+
+	<binding name="ProfileRetrieveBinding" type="tns:ProfileRetrievePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+
+	
+
+	<binding name="ProfileDeleteBinding" type="tns:ProfileDeletePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	<!-- UprofileSearchCore -->
+	<binding name="ProfileSearchBinding" type="tns:ProfileSearchPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	
+	<binding name="ProfileChildSearchBinding" type="tns:ProfileChildSearchPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+				<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    <!-- CustomField -->
+    <binding name="ProfileCreateFieldBinding" type="tns:ProfileCreateFieldPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProfileModifyFieldBinding" type="tns:ProfileModifyFieldPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding> 
+    
+    <binding name="ProfileSearchFieldBinding" type="tns:ProfileSearchFieldPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+	
+	<!-- History -->
+	
+	<binding name="ProfileRetrieveHistoryBinding" type="tns:ProfileRetrieveHistoryPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding> 
+    
+    <!-- Tags -->
+    
+     <binding name="ProfileCreateTagsBinding" type="tns:ProfileCreateTagsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProfileModifyTagsBinding" type="tns:ProfileModifyTagsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProfileSearchTagsBinding" type="tns:ProfileSearchTagsPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="ProfileDeleteTagBinding" type="tns:ProfileDeleteTagPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+            	<soap:header part="sessioncontext" message="tns:SessionContext"
+					use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+            <fault name="ProfileSummaryErrorInfoMsg">
+                 <soap:fault name="ProfileSummaryErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding>
+    
+    <binding name="SingleProfileMigrationBinding" type="tns:SingleProfileMigrationPortType">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="service">
+            <soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService"/>
+            <input>
+                <soap:header part="sessioncontext" message="tns:SessionContext"
+                    use="literal" />
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+            <fault name="ErrorInfoMsg">
+                <soap:fault name="ErrorInfoMsg" use="literal" />
+            </fault>
+        </operation>
+    </binding> 
+
+    <binding name="ProfileRetrieveParentBinding" type="tns:ProfileRetrieveParentPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	
+	<binding name="UIMetaDataCreateBinding" type="tns:UIMetaDataCreatePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	
+	<binding name="UIMetaDataModifyBinding" type="tns:UIMetaDataModifyPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	
+	<binding name="UIMetaDataRetrieveBinding" type="tns:UIMetaDataRetrievePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	
+	<binding name="UIMetaDataDeleteBinding" type="tns:UIMetaDataDeletePortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="service">
+			<soap:operation soapAction="http://localhost:9080/kestrel/UProfileSharedService" />
+			<input>
+				<soap:header message="tns:SessionContext" part="sessioncontext"
+					use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="ErrorInfoMsg">
+				<soap:fault name="ErrorInfoMsg" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+	
+	<service name="UProfileSharedService">
+		<port name="ProfileCreatePort" binding="tns:ProfileCreateBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+		</port>
+		<port name="ProfileModifyPort" binding="tns:ProfileModifyBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+		</port>
+		<port name="ProfileRetrievePort" binding="tns:ProfileRetrieveBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+		</port>
+		<port name="ProfileDeletePort" binding="tns:ProfileDeleteBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+		</port>
+		<port name="ProfileSearchPort" binding="tns:ProfileSearchBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+		</port>
+		<port name="ProfileChildSearchPort" binding="tns:ProfileChildSearchBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        <port name="ProfileCreateFieldPort" binding="tns:ProfileCreateFieldBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        <port name="ProfileModifyFieldPort" binding="tns:ProfileModifyFieldBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        <port name="ProfileSearchFieldPort" binding="tns:ProfileSearchFieldBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        <port name="ProfileRetrieveHistoryPort" binding="tns:ProfileRetrieveHistoryBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        <port name="ProfileDeleteTagPort" binding="tns:ProfileDeleteTagBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        
+        <port name="ProfileCreateTagsPort" binding="tns:ProfileCreateTagsBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+        <port name="ProfileModifyTagsPort" binding="tns:ProfileModifyTagsBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>      
+           
+        <port name="ProfileSearchTagsPort" binding="tns:ProfileSearchTagsBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port> 
+        <port name="SingleProfileMigrationPort" binding="tns:SingleProfileMigrationBinding">
+            <soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+        </port>
+		<port name="ProfileRetrieveParentPort" binding="tns:ProfileRetrieveParentBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService"/>
+		</port> 
+		<port name="UIMetaDataCreatePort" binding="tns:UIMetaDataCreateBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService"/>
+		</port>
+		<port name="UIMetaDataModifyPort" binding="tns:UIMetaDataModifyBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService"/>
+		</port>
+		<port name="UIMetaDataRetrievePort" binding="tns:UIMetaDataRetrieveBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService"/>
+		</port>
+		<port name="UIMetaDataDeletePort" binding="tns:UIMetaDataDeleteBinding">
+			<soap:address location="http://localhost:9080/kestrel/UProfileSharedService" />
+		</port>         
+	</service>
+
+</definitions>
+   
