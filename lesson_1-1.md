@@ -286,7 +286,7 @@ If you want to use endpoints other than the ones that are the default for test c
 // in...check your travelport sign up to see which url you should use...
 // use the version with copy in the name for test credentials... 
 // note trailing slash!
-static public String ENDPOINT_PREFIX="https://emea.copy-webservices.travelport.com/B2BGateway/connect/uAPI/";
+static public String ENDPOINT_PREFIX="https://emea.universal-api.pp.travelport.com/B2BGateway/connect/uAPI/";
 
 {% endhighlight %}
 
